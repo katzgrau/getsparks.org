@@ -12,7 +12,6 @@ class Packages extends CI_Controller
         if(!$spark) show_404 ();
 
         $contributor = $spark->getContributor();
-
         $spark->contributor = $contributor;
 
         $this->output->set_output(json_encode($spark));

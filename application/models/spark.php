@@ -10,12 +10,33 @@ class Spark extends CI_Model
      */
     public static function get($name, $version)
     {
+        if($version == 'HEAD')
+            return self::getLatest ($name);
+        
         $CI = &get_instance();
         $CI->db->select("s.*, v.version");
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
         $CI->db->where('s.name', $name);
         $CI->db->where('v.version', $version);
+
+        return $CI->db->get()->row(0, 'Spark');
+    }
+
+    /**
+     * Get the latest version
+     * @param string $name
+     * @return Spark
+     */
+    public static function getLatest($name)
+    {
+        $CI = &get_instance();
+        $CI->db->select("s.*, v.version");
+        $CI->db->from('sparks s');
+        $CI->db->join('versions v', 'v.spark_id = s.id');
+        $CI->db->where('s.name', $name);
+        $CI->db->order_by('v.created', 'DESC');
+        $CI->db->limit(1);
 
         return $CI->db->get()->row(0, 'Spark');
     }
