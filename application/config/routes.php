@@ -41,6 +41,10 @@
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 
+# http://sparks.codeigniter.com/packages/gravataz/versions/1.0/spec.json
+$route['packages/(:any)/versions/(:any)/spec.(:any)'] = "packages/spec/$1/$2/$3";
+
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
