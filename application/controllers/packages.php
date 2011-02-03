@@ -8,6 +8,9 @@ class Packages extends CI_Controller
         $this->load->model('contributor');
 
         $spark = Spark::get($package_name, $version);
+
+        if(!$spark) show_404 ();
+
         $contributor = $spark->getContributor();
 
         $spark->contributor = $contributor;
