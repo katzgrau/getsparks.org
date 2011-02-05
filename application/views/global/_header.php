@@ -38,6 +38,7 @@
 <a href="<?php echo base_url(); ?>packages/add">Contribute</a>
 <?php if(!UserHelper::isLoggedIn()): ?>
   &bull; <a href="<?php echo base_url(); ?>login">Login</a>
+  &bull; <a href="<?php echo base_url(); ?>register">Register</a>
 <?php else: ?>
   &bull; <a href="<?php echo base_url(); ?>logout">[<?php echo UserHelper::getUsername(); ?>] Logout</a>
 <?php endif; ?>

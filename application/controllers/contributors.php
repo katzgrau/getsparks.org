@@ -8,7 +8,7 @@ class Contributors extends CI_Controller
 
         if($submit)
         {
-            $email = $this->input->post('email');
+            $email    = $this->input->post('email');
             $password = $this->input->post('password');
 
             $this->load->model('contributor');
@@ -28,6 +28,13 @@ class Contributors extends CI_Controller
         }
 
         $this->load->view('contributors/login');
+    }
+
+    public function logout()
+    {
+        UserHelper::logout();
+        #UserHelper::setNotice("You've been logged out");
+        redirect(base_url());
     }
 
     public function register()

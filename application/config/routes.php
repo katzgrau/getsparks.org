@@ -49,6 +49,7 @@ $route['packages/add']                                = "packages/add";
 
 $route['home']         = "home/index";
 $route['login']        = "contributors/login";
+$route['logout']        = "contributors/logout";
 $route['register']        = "contributors/register";
 
 $route['contributors/(:any)/profile']        = "contributors/profile/$1";

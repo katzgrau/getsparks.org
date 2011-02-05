@@ -22,7 +22,7 @@
             Password
         </div>
         <div class="field-value">
-            <input type="text" name="password" value="" />
+            <input type="password" name="password" value="" />
         </div>
     </div>
     <div class="input-field">
@@ -30,7 +30,7 @@
             Password Again
         </div>
         <div class="field-value">
-            <input type="text" name="password_again" value="" />
+            <input type="password" name="password_again" value="" />
         </div>
     </div>
     <div class="input-field">
