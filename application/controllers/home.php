@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Home extends CI_Controller {
 
 	function __construct()
 	{
@@ -9,7 +9,9 @@ class Welcome extends CI_Controller {
 
 	function index()
 	{
-		$this->load->view('welcome_message');
+        $this->load->model('spark');
+        $data['top_sparks'] = Spark::getTop();
+		$this->load->view('home/index', $data);
 	}
 }
 

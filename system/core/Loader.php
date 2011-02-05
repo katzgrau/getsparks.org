@@ -404,7 +404,7 @@ class CI_Loader {
 				log_message('debug', 'Helper loaded: '.$helper);
 				continue;
 			}
-
+#print_r($this->_ci_helper_paths);
 			// Try to load the helper
 			foreach ($this->_ci_helper_paths as $path)
 			{
@@ -526,7 +526,17 @@ class CI_Loader {
 	 */
 	function add_package_path($path)
 	{
-		$path = rtrim($path, '/').'/';
+		$path = rtrim($path, '/');
+
+        /* If we get a straight string as a package path, such as 'payment',
+         *  assume that it is a package inside the third_party directory.
+         */
+        if(FALSE === strpos($path, '/') && !file_exists($path))
+        {
+            $path = APPPATH . 'third_party/' . $path;
+        }
+
+        $path .= '/';
 
 		array_unshift($this->_ci_library_paths, $path);
 		array_unshift($this->_ci_model_paths, $path);

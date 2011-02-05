@@ -38,11 +38,21 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "home";
 $route['404_override'] = '';
 
 # http://sparks.codeigniter.com/packages/gravataz/versions/1.0/spec.json
 $route['packages/(:any)/versions/(:any)/spec.(:any)'] = "packages/spec/$1/$2/$3";
+$route['packages/(:any)/versions/(:any)/show']        = "packages/show/$1/$2/$3";
+$route['packages/(:any)/show']                        = "packages/show/$1";
+$route['packages/add']                                = "packages/add";
+
+$route['home']         = "home/index";
+$route['login']        = "contributors/login";
+$route['register']        = "contributors/register";
+
+$route['contributors/(:any)/profile']        = "contributors/profile/$1";
+$route['versions/add']                       = "versions/add";
 
 
 
