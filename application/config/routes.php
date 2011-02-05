@@ -44,6 +44,8 @@ $route['404_override'] = '';
 # http://sparks.codeigniter.com/packages/gravataz/versions/1.0/spec.json
 $route['packages/(:any)/versions/(:any)/spec.(:any)'] = "packages/spec/$1/$2/$3";
 $route['packages/(:any)/versions/(:any)/show']        = "packages/show/$1/$2/$3";
+$route['packages/(:any)/versions/(:any)/enable']      = "packages/enable/$1/$2";
+$route['packages/(:any)/versions/(:any)/disable']     = "packages/disable/$1/$2";
 $route['packages/(:any)/show']                        = "packages/show/$1";
 $route['packages/add']                                = "packages/add";
 

@@ -39,24 +39,43 @@ class Contributors extends CI_Controller
 
     public function register()
     {
+        $this->load->helper('robot');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        
         $submit = $this->input->post('submit');
 
         if($submit)
         {
-            $this->load->model('contributor');
-            $insert = elements(array('username', 'email', 'real_name', 'password', 'website'), $_POST);
-
-            if(Contributor::insert($insert))
+            if($this->form_validation->run('registration'))
             {
-                UserHelper::setNotice("Yay! Start contributing sparks!");
-                redirect(base_url() . 'contributors/' . $insert['username'] . '/profile');
+                $this->load->model('contributor');
+                $insert = elements(array('username', 'email', 'real_name', 'password', 'website'), $_POST);
+
+                if(Contributor::insert($insert))
+                {
+                    UserHelper::setNotice("Yay! Start contributing sparks!");
+                    UserHelper::setLoggedIn(Contributor::findByUsername($insert['username']));
+
+                    redirect(base_url() . 'contributors/' . $insert['username'] . '/profile');
+                }
+                else
+                {
+                    UserHelper::setNotice("Whoa. That didn't work. Sorry?", FALSE);
+                }
             }
             else
             {
-                UserHelper::setNotice("Whoa. That didn't work. Sorry?", FALSE);
+                UserHelper::setNotice('Whoops. There were some errors. Check below and re-submit!');
             }
         }
-        $this->load->view('contributors/register');
+
+        list($question, $answer) = get_spam_check();
+       
+        $data['spam_question'] = $question;
+        $data['spam_answer']   = $answer;
+
+        $this->load->view('contributors/register', $data);
     }
 
     public function profile($username)
@@ -67,5 +86,15 @@ class Contributors extends CI_Controller
         $data['contributions'] = $data['contributor']->getContributions();
 
         $this->load->view('contributors/profile', $data);
+    }
+
+    public function robot_check($answer)
+    {
+        $this->load->library('form_validation');
+
+        if(spam_check_answer($answer)) return true;
+
+        $this->form_validation->set_message('robot_check', 'The robot check was wrong. hrmm.');
+        return FALSE;
     }
 }

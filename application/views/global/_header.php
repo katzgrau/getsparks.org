@@ -61,7 +61,7 @@
             <?php if($is_good): ?>
                 <p class="message"><?php echo $message; ?></p>
             <?php else: ?>
-                <p class="critical"><?php echo $warning; ?></p>
+                <p class="critical"><?php echo $message; ?></p>
             <?php endif; ?>
         <?php endforeach; ?>
     <?php endif; ?>

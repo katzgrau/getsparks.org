@@ -117,4 +117,17 @@ class Spark extends CI_Model
         $this->db->order_by('created', 'DESC');
         return $this->db->get_where('versions', array('spark_id' => $this->id))->result('Version');
     }
+
+    public function recordInstall()
+    {
+        return $this->db->insert('installs', array('spark_id' => $this->id, 'created' => date('Y-m-d H:i:s')));
+    }
+
+    public function setVersionStatus($version, $deactivated = FALSE)
+    {
+        $this->db->where('spark_id', $this->id);
+        $this->db->where('version', $version);
+
+        $this->db->update('versions', array('is_deactivated' => $deactivated));
+    }
 }
