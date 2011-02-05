@@ -16,6 +16,13 @@ class UserHelper
         $CI->session->set_userdata('logged_in', TRUE);
     }
 
+    public static function getAvatarURL($size = 80)
+    {
+        $CI = &get_instance();
+        $CI->load->helper('gravatar');
+        return GravatarHelper::from_email(self::getEmail(), NULL, $size, NULL);
+    }
+
     public static function getUsername()
     {
         $CI = &get_instance();
@@ -23,11 +30,25 @@ class UserHelper
         return (bool)$contributor ? $contributor['username']: FALSE;
     }
 
+    public static function getRealName()
+    {
+        $CI = &get_instance();
+        $contributor = $CI->session->userdata('contributor');
+        return (bool)$contributor ? $contributor['real_name']: FALSE;
+    }
+
     public static function getId()
     {
         $CI = &get_instance();
         $contributor = $CI->session->userdata('contributor');
         return (bool)$contributor ? $contributor['id']: FALSE;
+    }
+
+    public static function getEmail()
+    {
+        $CI = &get_instance();
+        $contributor = $CI->session->userdata('contributor');
+        return (bool)$contributor ? $contributor['email']: FALSE;
     }
 
     public static function logout()

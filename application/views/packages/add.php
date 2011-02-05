@@ -22,7 +22,7 @@
             Display Name
         </div>
         <div class="field-value">
-            <input type="text" name="display_name" value="<?php echo set_value('display_name'); ?>" />
+            <input type="text" name="summary" value="<?php echo set_value('summary'); ?>" />
         </div>
     </div>
     <div class="input-field">

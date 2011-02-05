@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Admin Dashboard</title>
+<title><?php if(isset($title)) echo "$title &mdash; "; ?>CodeIgniter Sparks Repository </title>
 
 <style type='text/css' media='all'>@import url('/static/styles/userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='/static/styles/userguide.css' />
@@ -16,12 +16,30 @@
 <body>
 
 <!-- START NAVIGATION -->
-<div id="nav"><div id="nav_inner"></div></div>
+<div id="nav">
+    <div id="nav_inner">
+        <div style="float:left; border-left: 2px solid #808080; padding-left: 10px;">
+            <?php if(UserHelper::isLoggedIn()): ?>
+                <a href="<?php echo base_url(); ?>contributors/<?php echo UserHelper::getUsername(); ?>/profile">
+                    <img src="<?php echo UserHelper::getAvatarURL(30); ?>" alt="Gravatar" align="middle" />
+                </a>
+                <span class="username"><?php echo UserHelper::getRealName(); ?></span>
+                
+            <?php else: ?>
+                <span class="sparks_head">Sparks</span>
+            <?php endif; ?>
+        </div>
+        <div style="float:right; padding-top: 3px;">
+            <span class="downloads"><?php echo number_format(UtilityHelper::getGlobalInstallCount()); ?> Installs and Counting</span>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+</div>
 <div id="nav2"><a name="top">&nbsp;</a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter Sparks Respository</h1></td>
+<td><h1>CodeIgniter Sparks Repository</h1></td>
 <td id="breadcrumb_right"></td>
 </tr>
 </table>
@@ -34,7 +52,7 @@
 <tr>
 <td id="breadcrumb">
 <a href="<?php echo base_url(); ?>">Home</a> &bull;
-<a href="/admin/dashboard">Top Sparks</a> &bull;
+<a href="<?php echo base_url(); ?>how">How</a> &bull;
 <a href="<?php echo base_url(); ?>packages/add">Contribute</a>
 <?php if(!UserHelper::isLoggedIn()): ?>
   &bull; <a href="<?php echo base_url(); ?>login">Login</a>

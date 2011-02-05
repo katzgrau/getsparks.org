@@ -54,9 +54,9 @@ $config = array (
         ),
 
         array (
-            'field'   => 'display_name',
-            'label'   => 'Display Name',
-            'rules'   => 'required|min_length[3]|max_length[32]'
+            'field'   => 'summary',
+            'label'   => 'Summary',
+            'rules'   => 'required|min_length[10]|max_length[200]'
         ),
 
         array (

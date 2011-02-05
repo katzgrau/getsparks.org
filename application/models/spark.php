@@ -31,6 +31,12 @@ class Spark extends CI_Model
         return $CI->db->get()->row(0, 'Spark');
     }
 
+    public static function getGlobalInstallCount()
+    {
+        $CI = &get_instance();
+        return $CI->db->count_all('installs');
+    }
+
     /**
      * Get spark info by its name and version
      * @param string $name
@@ -91,6 +97,30 @@ class Spark extends CI_Model
         $CI->db->select("s.*, c.username");
         $CI->db->from('sparks s');
         $CI->db->join('contributors c', 's.contributor_id = c.id');
+        $CI->db->order_by('s.created', 'DESC');
+        $CI->db->limit($n);
+
+        return $CI->db->get()->result('Spark');
+    }
+
+    /**
+     * Get the top sparks.. however that's done
+     * @param int $n
+     * @return array[Spark]
+     */
+    public static function getLatestOf($n = 10, $is_featured = NULL, $is_official = NULL)
+    {
+        $CI = &get_instance();
+        $CI->db->select("s.*, c.username");
+        $CI->db->from('sparks s');
+        $CI->db->join('contributors c', 's.contributor_id = c.id');
+        
+        if($is_featured !== NULL)
+            $CI->db->where('s.is_featured', (bool)$is_featured);
+
+        if($is_official !== NULL)
+            $CI->db->where('s.is_official', (bool)$is_official);
+
         $CI->db->order_by('s.created', 'DESC');
         $CI->db->limit($n);
 

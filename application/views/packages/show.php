@@ -1,9 +1,8 @@
 <?php $this->load->view('global/_header.php'); ?>
 
-<h2><?php echo $contribution->display_name; ?> (<?php echo $contribution->name; ?>)</h2>
-
+<h2><?php echo $contribution->name; ?></h2>
 <p>
-    <?php echo $contribution->description; ?>
+    <em><?php echo $contribution->summary; ?></em>
 </p>
 
 <table>
@@ -30,6 +29,12 @@
         <td>: <?php echo $contribution->repository_type; ?></td>
     </tr>
 </table>
+
+<h3>Description</h3>
+
+<p>
+    <?php echo $contribution->description; ?>
+</p>
 
 <h3>Versions</h3>
 <ul>

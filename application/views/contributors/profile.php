@@ -23,7 +23,8 @@
         <?php foreach($contributions as $contribution): ?>
             <li>
                 <a href="<?php echo base_url(); ?>packages/<?php echo $contribution->name; ?>/versions/HEAD/show">
-                    <?php echo $contribution->display_name; ?> (<?php echo $contribution->name; ?>)
+                    <?php echo $contribution->name; ?> <br />
+                    <small><?php echo $contribution->summary; ?></small>
                 </a>
             </li>
         <?php endforeach; ?>

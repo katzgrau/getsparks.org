@@ -40,7 +40,7 @@ class Packages extends CI_Controller
                 $post = $_POST;
                 $post['contributor_id'] = UserHelper::getId();
 
-                $insert = elements(array('contributor_id', 'name', 'display_name', 'description', 'repository_type', 'base_location'), $post);
+                $insert = elements(array('contributor_id', 'name', 'summary', 'description', 'repository_type', 'base_location'), $post);
 
                 $this->load->model('Spark');
 

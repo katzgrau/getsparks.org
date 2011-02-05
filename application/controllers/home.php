@@ -11,8 +11,16 @@ class Home extends CI_Controller {
 	{
         $this->load->model('spark');
         $data['top_sparks'] = Spark::getTop();
+        $data['featured_sparks'] = Spark::getLatestOf(10, TRUE);
+        $data['official_sparks'] = Spark::getLatestOf(10, NULL, TRUE);
+
 		$this->load->view('home/index', $data);
 	}
+
+    function how()
+    {
+        $this->load->view('home/how');;
+    }
 }
 
 /* End of file welcome.php */
