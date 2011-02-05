@@ -40,7 +40,8 @@
   &bull; <a href="<?php echo base_url(); ?>login">Login</a>
   &bull; <a href="<?php echo base_url(); ?>register">Register</a>
 <?php else: ?>
-  &bull; <a href="<?php echo base_url(); ?>logout">[<?php echo UserHelper::getUsername(); ?>] Logout</a>
+  &bull; <a href="<?php echo base_url(); ?>contributors/<?php echo UserHelper::getUsername(); ?>/profile"><?php echo UserHelper::getUsername(); ?></a>
+  &bull; <a href="<?php echo base_url(); ?>logout"> Logout</a>
 <?php endif; ?>
 
 </td>
