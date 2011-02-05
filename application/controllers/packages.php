@@ -11,8 +11,9 @@ class Packages extends CI_Controller
 
         if(!$spark) show_404 ();
 
-        $contributor = $spark->getContributor();
-        $spark->contributor = $contributor;
+        $spark->spark_home  = base_url() . 'packages/' . $spark->name . '/show';
+        $spark->contributor = $spark->getContributor();
+
 
         $this->output->set_output(json_encode($spark));
     }

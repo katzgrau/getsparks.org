@@ -2,6 +2,11 @@
 
 class Contributor extends CI_Model
 {
+    /**
+     *
+     * @param <type> $data
+     * @return bool
+     */
     public static function insert($data)
     {
         $CI = &get_instance();
