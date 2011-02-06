@@ -52,7 +52,8 @@
 <tr>
 <td id="breadcrumb">
 <a href="<?php echo base_url(); ?>">Home</a> &bull;
-<a href="<?php echo base_url(); ?>how">How</a> &bull;
+<a href="<?php echo base_url(); ?>about">About</a> &bull;
+<a href="<?php echo base_url(); ?>how">How-To</a> &bull;
 <a href="<?php echo base_url(); ?>packages/add">Contribute</a>
 <?php if(!UserHelper::isLoggedIn()): ?>
   &bull; <a href="<?php echo base_url(); ?>login">Login</a>

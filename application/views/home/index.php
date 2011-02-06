@@ -5,6 +5,12 @@
     to use in your CodeIgniter application.
 </p>
 
+<p class="message">
+    CodeIgniter 'sparks' is an <strong><span class="meaning">upcoming framework feature</span></strong> that is <em>still being
+        actively developed.</em> It's in an alpha state. <a href="<?php echo base_url(); ?>about">Read more about it here</a>.
+    Follow <a href="http://twitter.com/_kennyk_">@_kennyk_</a> and <a href="http://twitter.com/seejohnrun">@seejohnrun</a> for updates.
+</p>
+
 <h2>Official Sparks</h2>
 <p>These are sparks built by the developers of CodeIgniter</p>
 <ul>

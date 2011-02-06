@@ -21,6 +21,11 @@ class Home extends CI_Controller {
     {
         $this->load->view('home/how');;
     }
+
+    function about()
+    {
+        $this->load->view('home/about');;
+    }
 }
 
 /* End of file welcome.php */

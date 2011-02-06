@@ -51,6 +51,7 @@ $route['packages/add']                                = "packages/add";
 
 $route['home']         = "home/index";
 $route['how']         = "home/how";
+$route['about']         = "home/about";
 $route['login']        = "contributors/login";
 $route['logout']        = "contributors/logout";
 $route['register']        = "contributors/register";

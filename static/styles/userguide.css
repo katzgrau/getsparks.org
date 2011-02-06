@@ -505,3 +505,7 @@ form {
 .form_table td {
     padding: 5px;
 }
+
+span.meaning {
+    color: #69A74E;
+}
