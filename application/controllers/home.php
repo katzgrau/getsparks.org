@@ -24,7 +24,15 @@ class Home extends CI_Controller {
 
     function about()
     {
-        $this->load->view('home/about');;
+        $this->load->view('home/about');
+    }
+
+    function download()
+    {
+        $this->load->model('download');
+        Download::recordDownload('system');
+
+        redirect(config_item('sparks_download_url'));
     }
 }
 

@@ -37,7 +37,7 @@
 |
 */
 
-$autoload['packages'] = array(APPPATH.'third_party/paypal');
+$autoload['packages'] = array('sparks/');
 
 
 /*
@@ -80,7 +80,7 @@ $autoload['helper'] = array('user', 'url', 'array', 'utility');
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('application');
 
 
 /*

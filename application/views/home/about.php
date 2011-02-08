@@ -42,4 +42,55 @@ Or
     <strong>Very soon, this will be a reality</strong>. <a href="#">See for yourself</a>.
 </p>
 
+<h2>Alpha Download</h2>
+
+<p>
+    Get an alpha version of sparks by downloading the package below:
+</p>
+
+<p>
+    <a href="<?php echo base_url(); ?>download" class="download"><?php echo config_item('sparks_download_text'); ?></a>
+</p>
+
+<h3>Installation</h3>
+
+<p>
+    Sparks will ideally come packaged with CodeIgniter in the near future.
+    For now, you will need to manually install the spark system.
+</p>
+
+<h3>Pre-requisites</h3>
+
+<p>
+    Using the command line <strong>is not required</strong> to use sparks. It
+    does, however, provide you with many of the conveniences of a traditional
+    package manager.
+</p>
+
+<h4>Command-line prerequisites</h4>
+
+<ul>
+    <li>The PHP Command-line interface (CLI) available for *nix and Windows</li>
+</ul>
+
+<h4>Command-line Installation Steps</h4>
+
+<ol>
+    <li>
+        Download the package, and extract it into the document root of your application.
+        You will have to rename the extracted folder to 'tools'. <strong>The 'tools' folder
+        should sit alongside your application and system folders.</strong>
+    </li>
+    <li>
+        On Linux or OSX, from the document root, type:
+        <code>
+$ tools/spark
+        </code>
+        On Windows, from the document root, type:
+        <code>
+C:\> php tools\spark
+        </code>
+    </li>
+</ol>
+
 <?php $this->load->view('global/_footer.php'); ?>

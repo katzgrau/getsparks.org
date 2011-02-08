@@ -1,0 +1,29 @@
+#!/usr/bin/env php
+<?php
+
+require_once 'lib/spark/spark_source.php';
+require_once 'lib/spark/spark_cli.php';
+
+// define a source
+$sources = array();
+if ($fh = @fopen(dirname(__FILE__) . '/lib/spark/sources', 'r')) {
+    while ($line = fgets($fh)) {
+        $line = trim($line);
+        if ($line && $line[0] != '#') $sources[] = new SparkSource($line);
+    }
+    fclose($fh);
+}
+
+if (count($sources) == 0) {
+    $default_source = 'sparks.oconf.org';
+    SparkUtils::warning("No sources found, using $default_source");
+    $sources[] = new SparkSource($default_source);
+}
+
+// take commands
+$cli = new SparkCLI($sources);
+
+$cmd = $argc > 1 ? $argv[1] : null;
+$args = $argc > 2 ? array_slice($argv, 2) : array();
+
+$cli->execute($cmd, $args);

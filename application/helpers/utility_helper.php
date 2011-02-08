@@ -6,6 +6,6 @@ class UtilityHelper
     {
         $CI = &get_instance();
         $CI->load->model('spark');
-        return Spark::getGlobalInstallCount();
+        return Spark::getGlobalInstallCount() + config_item('install_count_base');
     }
 }

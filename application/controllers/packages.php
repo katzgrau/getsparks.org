@@ -6,6 +6,7 @@ class Packages extends CI_Controller
     {
         $this->load->model('spark');
         $this->load->model('contributor');
+        $this->load->model('download');
 
         $spark = Spark::get($package_name, $version);
 
@@ -19,6 +20,7 @@ class Packages extends CI_Controller
 
         # Do this?
         $spark->recordInstall();
+        Download::recordDownload('spec');
 
         $this->output->set_output(json_encode($spark));
     }

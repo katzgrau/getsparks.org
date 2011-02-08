@@ -57,7 +57,7 @@
                     <?php endif; ?>
                 <?php endif; ?>
                 <code>
-                    $ tools/spark install -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
+                    <?php echo config_item('install_prototype_nix'); ?> -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
                 </code>
             </li>
         <?php $count++; endforeach; ?>

@@ -31,6 +31,7 @@
         </div>
         <div style="float:right; padding-top: 3px;">
             <span class="downloads"><?php echo number_format(UtilityHelper::getGlobalInstallCount()); ?> Installs and Counting</span>
+            <a href="<?php echo base_url() . 'download'; ?>" class="download"><?php echo config_item('sparks_download_text'); ?></a>
         </div>
         <div style="clear:both;"></div>
     </div>
@@ -52,7 +53,7 @@
 <tr>
 <td id="breadcrumb">
 <a href="<?php echo base_url(); ?>">Home</a> &bull;
-<a href="<?php echo base_url(); ?>about">About</a> &bull;
+<a href="<?php echo base_url(); ?>about">About &amp; Download</a> &bull;
 <a href="<?php echo base_url(); ?>how">How-To</a> &bull;
 <a href="<?php echo base_url(); ?>packages/add">Contribute</a>
 <?php if(!UserHelper::isLoggedIn()): ?>

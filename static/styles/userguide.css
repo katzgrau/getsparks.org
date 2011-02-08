@@ -509,3 +509,15 @@ form {
 span.meaning {
     color: #69A74E;
 }
+
+a.download {
+ background-color:#69A74E !important;
+ border:1px solid #3B6E22;
+ color:#FFFFFF !important;
+ cursor:pointer;
+ padding: 5px 25px;
+ -moz-border-radius:8px 8px 8px 8px;
+ font-size: 18px;
+ font-family: arial;
+ margin-left: 10px;
+}

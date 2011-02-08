@@ -50,6 +50,7 @@ $route['packages/(:any)/show']                        = "packages/show/$1";
 $route['packages/add']                                = "packages/add";
 
 $route['home']         = "home/index";
+$route['download']         = "home/download";
 $route['how']         = "home/how";
 $route['about']         = "home/about";
 $route['login']        = "contributors/login";
