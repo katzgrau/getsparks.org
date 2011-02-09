@@ -28,7 +28,7 @@ class Packages extends CI_Controller
     public function add()
     {
         if(!UserHelper::isLoggedIn())
-            show_error ("Sorry, ya ain't logged in.");
+            UtilityHelper::redirectAndComeback(FALSE, "Before you contribute, log in :)");
 
         $this->load->library('form_validation');
         $this->load->helper('form_helper');

@@ -1,0 +1,5 @@
+- Create sparks directory if it doesn't exist.
+- Say when the internet connection isn't available vs 404
+- update and update-all
+- match CI coding standards
+- $ tools/spark search [term]

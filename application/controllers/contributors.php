@@ -19,6 +19,9 @@ class Contributors extends CI_Controller
             {
                 UserHelper::setLoggedIn($contributor);
                 UserHelper::setNotice("Sup, {$contributor->real_name}?");
+
+                UtilityHelper::handleRedirectIfNeeded();
+
                 redirect(base_url() . 'contributors/' . $contributor->username . '/profile');
             }
             else
