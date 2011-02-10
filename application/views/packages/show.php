@@ -30,6 +30,12 @@
     </tr>
 </table>
 
+<p>
+    <a href="<?php echo base_url(); ?>packages/<?php echo $contribution->name; ?>/edit">
+        Edit Details
+    </a>
+</p>
+
 <h3>Description</h3>
 
 <p>

@@ -47,6 +47,7 @@ $route['packages/(:any)/versions/(:any)/show']        = "packages/show/$1/$2/$3"
 $route['packages/(:any)/versions/(:any)/enable']      = "packages/enable/$1/$2";
 $route['packages/(:any)/versions/(:any)/disable']     = "packages/disable/$1/$2";
 $route['packages/(:any)/show']                        = "packages/show/$1";
+$route['packages/(:any)/edit']                        = "packages/edit/$1";
 $route['packages/add']                                = "packages/add";
 
 $route['home']         = "home/index";
@@ -58,6 +59,7 @@ $route['logout']        = "contributors/logout";
 $route['register']        = "contributors/register";
 
 $route['contributors/(:any)/profile']        = "contributors/profile/$1";
+$route['contributors/(:any)/profile/edit']   = "contributors/edit/";
 $route['versions/add']                       = "versions/add";
 
 

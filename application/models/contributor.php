@@ -28,6 +28,17 @@ class Contributor extends CI_Model
     }
 
     /**
+     * Get a contributor by his id
+     * @param int $user_id
+     * @return Contributor
+     */
+    public static function findById($user_id)
+    {
+        $CI = &get_instance();
+        return $CI->db->get_where('contributors', array('id' => $user_id))->row(0, 'Contributor');
+    }
+
+    /**
      *
      * @param string $username
      * @param string $password
@@ -50,5 +61,29 @@ class Contributor extends CI_Model
         return $CI->db->get_where('sparks', array('contributor_id' => $this->id))->result('Spark');
     }
 
+    /**
+     *
+     * @param int $id
+     * @param array $data
+     * @return bool
+     */
+    public static function update($id, $data)
+    {
+        $CI = &get_instance();
+        # Do some password handling
+        if(array_key_exists('password', $data))
+        {
+            if(empty($data['password']))
+            {
+                unset($data['password']);
+            }
+            else
+            {
+                $data['password'] = sha1($data['password']);
+            }
+        }
 
+        $CI->db->where('id', $id);
+        return $CI->db->update('contributors', $data);
+    }
 }

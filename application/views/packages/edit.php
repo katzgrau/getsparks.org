@@ -3,17 +3,23 @@
     $this->form_validation->set_error_delimiters('<li>', '</li>');
 ?>
 
+<p>
+    <a href="<?php echo base_url(); ?>contributors/<?php echo UserHelper::getUsername(); ?>/profile">
+        &larr; Back To Your Profile
+    </a>
+</p>
+
 <ul>
     <?php echo validation_errors(); ?>
 </ul>
 
-<form action="<?php echo base_url(); ?>packages/add" method="post">
+<form action="<?php echo current_url(); ?>" method="post">
     <div class="input-field">
         <div class="field-name">
             Name
         </div>
         <div class="field-value">
-            <input type="text" name="name" value="<?php echo set_value('name'); ?>" /><br />
+            <input type="text" name="name" value="<?php echo set_value('name', $contribution->name); ?>" /><br />
             <small>(only lowercase letters, dashes, underscores, and numbers)</small>
         </div>
     </div>
@@ -22,7 +28,7 @@
             Summary
         </div>
         <div class="field-value">
-            <input type="text" name="summary" value="<?php echo set_value('summary'); ?>" />
+            <input type="text" name="summary" value="<?php echo set_value('summary', $contribution->summary); ?>" />
         </div>
     </div>
     <div class="input-field">
@@ -30,7 +36,7 @@
             Description
         </div>
         <div class="field-value">
-            <textarea name="description"><?php echo set_value('description'); ?></textarea>
+            <textarea name="description"><?php echo set_value('description', $contribution->description); ?></textarea>
         </div>
     </div>
     <div class="input-field">
@@ -39,9 +45,9 @@
         </div>
         <div class="field-value">
             <select name="repository_type">
-                <option value="hg" <?php if(set_value('repository_type') == 'hg') echo 'selected'; ?>>Mercurial (hg)</option>
-                <option value="git" <?php if(set_value('repository_type') == 'git') echo 'selected'; ?>>Git (git)</option>
-                <option value="zip" <?php if(set_value('repository_type') == 'zip') echo 'selected'; ?>>Zip (zip)</option>
+                <option value="hg" <?php if(set_value('repository_type', $contribution->repository_type) == 'hg') echo 'selected'; ?>>Mercurial (hg)</option>
+                <option value="git" <?php if(set_value('repository_type', $contribution->repository_type) == 'git') echo 'selected'; ?>>Git (git)</option>
+                <option value="zip" <?php if(set_value('repository_type', $contribution->repository_type) == 'zip') echo 'selected'; ?>>Zip (zip)</option>
             </select>
         </div>
     </div>
@@ -50,7 +56,7 @@
             Clone URL
         </div>
         <div class="field-value">
-            <input type="text" name="base_location" value="<?php echo set_value('base_location'); ?>" /><br />
+            <input type="text" name="base_location" value="<?php echo set_value('base_location', $contribution->base_location); ?>" /><br />
             <small>e.g., https://bitbucket.org/katzgrau/ci-sparks-repo</small>
         </div>
     </div>
@@ -59,6 +65,7 @@
             Submit
         </div>
         <div class="field-value">
+            <input type="hidden" name="spark_id" value="<?php echo $contribution->id; ?>" />
             <input type="submit" name="submit" value="Submit" />
         </div>
     </div>

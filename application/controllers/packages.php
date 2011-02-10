@@ -48,7 +48,7 @@ class Packages extends CI_Controller
 
                 if(Spark::insert($insert))
                 {
-                    UserHelper::setNotice("Woot, the spark's been added!");
+                    UserHelper::setNotice("Woot, the spark's been added! Thanks for making CodeIgniter awesome!");
                     redirect(base_url() . 'packages/' . $insert['name'] . '/show');
                 }
                 else
@@ -63,6 +63,36 @@ class Packages extends CI_Controller
         }
 
         $this->load->view('packages/add');
+    }
+
+    public function edit($package_name)
+    {
+        $this->load->model('spark');
+        $this->load->model('contributor');
+        $this->load->library('form_validation');
+        $this->load->helper('form_helper');
+
+        $submit   = $this->input->post('submit');
+        $spark_id = $this->input->post('spark_id');
+
+        if($submit)
+        {
+            if($this->form_validation->run('edit-package'))
+            {
+                $update = elements(array('name', 'summary', 'description', 'repository_type', 'base_location'), $_POST);
+                Spark::update($spark_id, $update);
+                UserHelper::setNotice("This spark has been updated. Thanks again, you're awesome.");
+            }
+            else
+            {
+                UserHelper::setNotice("Whoops, there were some errors..", FALSE);
+            }
+        }
+
+        $spark = Spark::getInfo($package_name);
+        if(!$spark) show_404();
+
+        $this->load->view('packages/edit', array('contribution' => $spark));
     }
 
     public function show($package_name)
@@ -109,5 +139,25 @@ class Packages extends CI_Controller
             UserHelper::setNotice("The $version release has been disabled");
 
         redirect(base_url() . 'packages/' . $package_name . '/show');
+    }
+
+    public function package_available($package_name)
+    {
+        $this->load->model('spark');
+
+        if(!Spark::doesExist($package_name)) return true;
+
+        $this->form_validation->set_message('package_available', 'Sorry! That Spark name is taken');
+        return FALSE;
+    }
+    
+    public function is_owner($spark_id)
+    {
+        $this->load->model('spark');
+
+        if(Spark::getById($spark_id)->contributor_id == UserHelper::getId()) return true;
+
+        $this->form_validation->set_message('is_owner', "Sorry, you don't own that spark. That also means you're an ass.");
+        return FALSE;
     }
 }

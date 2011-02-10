@@ -17,6 +17,12 @@
     </tr>
 </table>
 
+<p>
+    <a href="<?php echo base_url(); ?>contributors/<?php echo $contributor->username; ?>/profile/edit">
+        Edit Your Profile
+    </a>
+</p>
+
 <h3>Contributions</h3>
 <ul>
     <?php if(count($contributions) > 0): ?>

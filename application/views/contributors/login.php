@@ -1,5 +1,9 @@
 <?php $this->load->view('global/_header.php'); ?>
 
+<p>
+    Don't have an account? <a href="<?php echo base_url(); ?>register">Sign-up</a>.
+</p>
+
 <form action="<?php echo base_url(); ?>login" method="post">
     <div class="input-field">
         <div class="field-name">

@@ -3,6 +3,10 @@
     $this->form_validation->set_error_delimiters('<li>', '</li>');
 ?>
 
+<p>
+    Already have an account? <a href="<?php echo base_url(); ?>login">Sign-in</a>.
+</p>
+
 <ul>
     <?php echo validation_errors(); ?>
 </ul>

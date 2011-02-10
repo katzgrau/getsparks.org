@@ -160,4 +160,18 @@ class Spark extends CI_Model
 
         $this->db->update('versions', array('is_deactivated' => $deactivated));
     }
+
+    public static function update($id, $data)
+    {
+        $CI = &get_instance();
+        $CI->db->where('id', $id);
+        return $CI->db->update('sparks', $data);
+    }
+
+    public static function doesExist($package_name)
+    {
+        $CI = &get_instance();
+        $sql = "SELECT EXISTS (SELECT id FROM sparks WHERE name = ?) AS 'exists'";
+        return $CI->db->query($sql, array($package_name))->row()->exists;
+    }
 }

@@ -59,6 +59,7 @@ class Contributors extends CI_Controller
                 {
                     UserHelper::setNotice("Yay! Start contributing sparks!");
                     UserHelper::setLoggedIn(Contributor::findByUsername($insert['username']));
+                    UtilityHelper::handleRedirectIfNeeded();
 
                     redirect(base_url() . 'contributors/' . $insert['username'] . '/profile');
                 }
@@ -89,6 +90,41 @@ class Contributors extends CI_Controller
         $data['contributions'] = $data['contributor']->getContributions();
 
         $this->load->view('contributors/profile', $data);
+    }
+
+    public function edit()
+    {
+        $this->load->model('contributor');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        
+        $contributor_id = UserHelper::getId();
+        $contributor    = Contributor::findById($contributor_id);
+        $submit         = $this->input->post('submit');
+
+        if($submit)
+        {
+            if($this->form_validation->run('edit_profile'))
+            {
+                $update = elements(array('email', 'website', 'real_name', 'password'), $_POST);
+                Contributor::update($contributor_id, $update);
+
+                if($update['password'])
+                    UserHelper::setNotice("Nice, everything saved, including your new password");
+                else
+                    UserHelper::setNotice("Nice, everything saved");
+            }
+            else
+            {
+                UserHelper::setNotice("Hrm, there was a problem (see below)", FALSE);
+            }
+        }
+
+        $data = array (
+            'contributor' => $contributor
+        );
+
+        $this->load->view('contributors/edit', $data);
     }
 
     public function robot_check($answer)
