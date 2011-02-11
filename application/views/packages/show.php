@@ -77,7 +77,7 @@
 
 <h2>Documentation and Description</h2>
 
-<div class="markdown reset">
+<div id="documentation" class="markdown">
 <?php echo parse_markdown($contribution->description); ?>
 </div>
 

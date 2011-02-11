@@ -558,3 +558,13 @@ a.download {
     border: 1px dotted #ccc;
     padding: 10px;
 }
+
+#documentation pre {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+    color: black !important;
+}
