@@ -528,6 +528,10 @@ a.download {
     width: 30%;
 }
 
+.spark-col h2 {
+    /* text-align: center; */
+}
+
 .spark-col ul {
     padding: 0;
     margin: 0;

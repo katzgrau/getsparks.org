@@ -50,9 +50,12 @@ $route['packages/(:any)/show']                        = "packages/show/$1";
 $route['packages/(:any)/edit']                        = "packages/edit/$1";
 $route['packages/add']                                = "packages/add";
 
-$route['home']         = "home/index";
+$route['api/packages/search/(:any)/(:any)']               = "api/packages/search/$1";
+$route['api/packages/(:any)/versions/(:any)/spec/(:any)'] = "api/packages/spec/$1/$2/$3";
+
+$route['home']             = "home/index";
 $route['download']         = "home/download";
-$route['how']         = "home/how";
+$route['how']              = "home/how";
 $route['about']         = "home/about";
 $route['login']        = "contributors/login";
 $route['logout']        = "contributors/logout";

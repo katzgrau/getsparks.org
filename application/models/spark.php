@@ -174,4 +174,18 @@ class Spark extends CI_Model
         $sql = "SELECT EXISTS (SELECT id FROM sparks WHERE name = ?) AS 'exists'";
         return $CI->db->query($sql, array($package_name))->row()->exists;
     }
+
+    /**
+     * Search for a package by string name
+     * @param string $term
+     * @return array
+     */
+    public static function search($term)
+    {
+        $CI = &get_instance();
+        $CI->db->select('s.*');
+        $CI->db->from('sparks s');
+        $CI->db->like('name', $term, 'both');
+        return $CI->db->get()->result();
+    }
 }
