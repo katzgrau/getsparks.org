@@ -1,6 +1,6 @@
 <?php $this->load->view('global/_header.php'); ?>
 
-<h2><?php echo $contribution->name; ?></h2>
+<h2>Basic Information: <?php echo $contribution->name; ?></h2>
 <p>
     <em><?php echo $contribution->summary; ?></em>
 </p>
@@ -36,13 +36,7 @@
     </a>
 </p>
 
-<h3>Description</h3>
-
-<p>
-    <?php echo $contribution->description; ?>
-</p>
-
-<h3>Versions</h3>
+<h2>Versions and Download</h2>
 <ul>
     <?php if(count($versions) > 0): $count = 0; ?>
         <?php foreach($versions as $version): ?>
@@ -80,6 +74,12 @@
         <input type="submit" name="submit" value="Submit" />
     </form>
 <?php endif; ?>
+
+<h2>Documentation and Description</h2>
+
+<div class="markdown reset">
+<?php echo parse_markdown($contribution->description); ?>
+</div>
 
 <script type="text/javascript">
     function yank(version)

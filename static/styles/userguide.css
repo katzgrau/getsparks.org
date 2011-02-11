@@ -521,3 +521,40 @@ a.download {
  font-family: arial;
  margin-left: 10px;
 }
+
+.spark-col {
+    margin: 2px 15px 2px 5px;
+    float: left;
+    width: 30%;
+}
+
+.spark-col ul {
+    padding: 0;
+    margin: 0;
+}
+.spark-col ul li {
+    background: url(../images/reactor-bullet.png) no-repeat 0px 10%;
+    list-style: none;
+    padding-left: 25px;
+}
+
+.spark-cat-desc {
+    font-size: 80%;
+    font-style: italic;
+}
+
+.reset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 80%;
+    vertical-align: baseline;
+    background: transparent;
+    color: black !important;
+}
+
+.markdown {
+    border: 1px dotted #ccc;
+    padding: 10px;
+}
