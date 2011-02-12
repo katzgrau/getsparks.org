@@ -99,8 +99,7 @@ class Packages extends CI_Controller
     {
         $this->load->model('spark');
         $this->load->model('contributor');
-        $this->load->add_package_path('sparks/markdown/1.0/');
-        $this->load->helper('markdown');
+        $this->load->spark('markdown/1.0');
 
         $spark = Spark::getInfo($package_name);
 

@@ -26,7 +26,7 @@
                 <span class="username"><?php echo UserHelper::getRealName(); ?></span>
                 
             <?php else: ?>
-                <span class="sparks_head">Sparks</span>
+                <span class="sparks_head"><a href="<?php echo base_url(); ?>">Sparks</a></span>
             <?php endif; ?>
         </div>
         <div style="float:right; padding-top: 3px;">

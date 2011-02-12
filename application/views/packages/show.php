@@ -36,12 +36,57 @@
     </a>
 </p>
 
-<h2>Versions and Download</h2>
+<h2>Get the Latest</h2>
 <ul>
     <?php if(count($versions) > 0): $count = 0; ?>
+        <?php $latest_verion = $version = $versions[0]; ?>
+            <li>
+               <?php echo $version->version; ?> (latest/HEAD)
+               <a href="<?php echo base_url(); ?>packages/<?php echo $contribution->name; ?>/versions/<?php echo $version->version; ?>/spec.json">
+                 [spec]
+               </a>
+                <?php if($is_author): ?>
+                    <?php if(!$version->is_deactivated): ?>
+                    <a href="#" onclick="return yank('<?php echo $version->version; ?>');">
+                      [disable version]
+                    </a>
+                    <?php else: ?>
+                    <a href="#" onclick="return unyank('<?php echo $version->version; ?>');">
+                      [enable version]
+                    </a>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <code>
+                    <?php echo config_item('install_prototype_nix'); ?> -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
+                </code>
+            </li>
+    <?php else: ?>
+            <li>Nothin' to see here..</li>
+    <?php endif; ?>
+</ul>
+
+
+<?php if(UserHelper::getId() == $contribution->contributor_id): ?>
+    <form action="<?php echo base_url(); ?>versions/add" method="post">
+        Add a new version: <input type="text" name="version" />
+        <input type="hidden" name="spark_id" value="<?php echo $contribution->id; ?>" />
+        <input type="submit" name="submit" value="Submit" />
+    </form>
+<?php endif; ?>
+
+<?php if(count($versions) > 0): ?>
+    <h2>Description/Documentation</h2>
+    <div id="documentation" class="markdown">
+    <?php echo parse_markdown($contribution->description); ?>
+    </div>
+<?php endif; ?>
+
+<h2>Older Versions</h2>
+<ul>
+    <?php if(count($versions) > 1): $versions = array_slice($versions, 1); ?>
         <?php foreach($versions as $version): ?>
             <li>
-               <?php echo $version->version; ?><?php if($count == 0) echo '/HEAD ';?>
+               <?php echo $version->version; ?>
                <a href="<?php echo base_url(); ?>packages/<?php echo $contribution->name; ?>/versions/<?php echo $version->version; ?>/spec.json">
                  [spec]
                </a>
@@ -65,21 +110,6 @@
             <li>Nothin' to see here..</li>
     <?php endif; ?>
 </ul>
-
-
-<?php if(UserHelper::getId() == $contribution->contributor_id): ?>
-    <form action="<?php echo base_url(); ?>versions/add" method="post">
-        Add a new version: <input type="text" name="version" />
-        <input type="hidden" name="spark_id" value="<?php echo $contribution->id; ?>" />
-        <input type="submit" name="submit" value="Submit" />
-    </form>
-<?php endif; ?>
-
-<h2>Documentation and Description</h2>
-
-<div id="documentation" class="markdown">
-<?php echo parse_markdown($contribution->description); ?>
-</div>
 
 <script type="text/javascript">
     function yank(version)

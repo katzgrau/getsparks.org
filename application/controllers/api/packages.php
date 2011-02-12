@@ -2,17 +2,29 @@
 
 class Packages extends CI_Controller
 {
+    /**
+     * The API to search for a package
+     * @param string $term The term to search for in a package
+     * @param string $format The return format
+     * @return $format
+     */
     public function search($term)
     {
         $this->load->model('spark');
 
         if(strlen($term) <= 2)
-            return json_encode(array('success' => FALSE, 'message' => 'You must search with at least 2 characters'));
+            $this->output->set_output(json_encode(array('success' => FALSE, 'message' => 'You must search with at least 2 characters')));
 
         $this->output->set_output(json_encode(Spark::search($term)));
     }
 
-    public function spec($package_name, $version, $format)
+    /**
+     * The API call to get a spec
+     * @param string $package_name
+     * @param string $version
+     * @param string $format
+     */
+    public function spec($package_name, $version)
     {
         $this->load->model('spark');
         $this->load->model('contributor');
