@@ -111,7 +111,7 @@ class Spark extends CI_Model
     public static function getLatestOf($n = 10, $is_featured = NULL, $is_official = NULL)
     {
         $CI = &get_instance();
-        $CI->db->select("s.*, c.username");
+        $CI->db->select("s.*, c.username, c.email");
         $CI->db->from('sparks s');
         $CI->db->join('contributors c', 's.contributor_id = c.id');
         

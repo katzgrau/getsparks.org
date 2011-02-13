@@ -53,9 +53,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="<?php echo base_url(); ?>">Home</a> &bull;
-<a href="<?php echo base_url(); ?>about">About &amp; Download</a> &bull;
-<a href="<?php echo base_url(); ?>how">How-To</a> &bull;
-<a href="<?php echo base_url(); ?>packages/add">Contribute</a>
+<a href="<?php echo base_url(); ?>about">Why</a> &bull;
+<a href="<?php echo base_url(); ?>set-up">1. Set Up for Sparks</a> &bull;
+<a href="<?php echo base_url(); ?>get-sparks">2. Install Sparks</a> &bull;
+<a href="<?php echo base_url(); ?>make-sparks">3. Make Sparks</a>
 <?php if(!UserHelper::isLoggedIn()): ?>
   &bull; <a href="<?php echo base_url(); ?>login">Login</a>
   &bull; <a href="<?php echo base_url(); ?>register">Register</a>

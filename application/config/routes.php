@@ -55,7 +55,9 @@ $route['api/packages/(:any)/versions/(:any)/spec/(:any)'] = "api/packages/spec/$
 
 $route['home']             = "home/index";
 $route['download']         = "home/download";
-$route['how']              = "home/how";
+$route['set-up']           = "home/set_up";
+$route['get-sparks']         = "home/get_sparks";
+$route['make-sparks']         = "home/make_sparks";
 $route['about']         = "home/about";
 $route['login']        = "contributors/login";
 $route['logout']        = "contributors/logout";

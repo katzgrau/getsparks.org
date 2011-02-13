@@ -10,6 +10,7 @@ class Home extends CI_Controller {
 	function index()
 	{
         $this->load->model('spark');
+        $this->load->helper('gravatar');
         $data['top_sparks'] = Spark::getTop();
         $data['featured_sparks'] = Spark::getLatestOf(10, TRUE);
         $data['official_sparks'] = Spark::getLatestOf(10, NULL, TRUE);
@@ -17,9 +18,19 @@ class Home extends CI_Controller {
 		$this->load->view('home/index', $data);
 	}
 
-    function how()
+    function set_up()
     {
-        $this->load->view('home/how');;
+        $this->load->view('home/set_up');;
+    }
+
+    function get_sparks()
+    {
+        $this->load->view('home/get_sparks');;
+    }
+
+    function make_sparks()
+    {
+        $this->load->view('home/make_sparks');;
     }
 
     function about()

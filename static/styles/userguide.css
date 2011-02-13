@@ -51,6 +51,7 @@ a:hover {
  left: 0;
  width: 100%;
  z-index: 10;
+ min-width: 800px;
 }
 #nav2 {
  background: #fff url(x/../images/nav_bg_darker.jpg) repeat-x left top;
@@ -172,6 +173,7 @@ padding: 0 0 6px 0;
 #content {
  margin: 20px 40px 0 40px;
  padding: 0;
+ min-width: 800px;
 }
 
 #content p {
@@ -508,6 +510,7 @@ form {
 
 span.meaning {
     color: #69A74E;
+    font-weight: bold;
 }
 
 a.download {
@@ -525,7 +528,19 @@ a.download {
 .spark-col {
     margin: 2px 15px 2px 5px;
     float: left;
-    width: 30%;
+    min-width: 200px;
+}
+
+.official {
+    width: 35%;
+}
+
+.featured {
+    width: 35%;
+}
+
+.newest {
+    width: 20%;
 }
 
 .spark-col h2 {
@@ -540,11 +555,16 @@ a.download {
     background: url(../images/reactor-bullet.png) no-repeat 0px 10%;
     list-style: none;
     padding-left: 25px;
+    height: 55px;
+    overflow: hidden;
+	text-overflow: ellipsis;
+    border-bottom: 1px dotted #ccc;
 }
 
 .spark-cat-desc {
     font-size: 80%;
     font-style: italic;
+    height: 30px;
 }
 
 .reset {
