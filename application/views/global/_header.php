@@ -31,7 +31,7 @@
         </div>
         <div style="float:right; padding-top: 3px;">
             <span class="downloads"><?php echo number_format(UtilityHelper::getGlobalInstallCount()); ?> Installs and Counting</span>
-            <a href="<?php echo base_url() . 'download'; ?>" class="download"><?php echo config_item('sparks_download_text'); ?></a>
+            <a href="<?php echo base_url() . 'set-up'; ?>" class="download"><?php echo config_item('sparks_download_text'); ?></a>
         </div>
         <div style="clear:both;"></div>
     </div>
