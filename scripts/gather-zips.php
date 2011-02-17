@@ -1,5 +1,6 @@
 <?php
 
+
 define('IS_BOOTSTRAP', TRUE);
 require_once dirname(__FILE__) . '/../index.php';
 
@@ -7,10 +8,15 @@ require_once dirname(__FILE__) . '/../index.php';
 $CI = &get_instance();
 $CI->load->model('spark');
 
+# Set the spark path
 $spark_path = WEBROOT . config_item('archive_path');
 
 # Grab the unverified sparks
 $sparks = Spark::getUnverified();
+
+# A place to hold successfull/unsuccessful
+$successful   = array();
+$unsuccessful = array();
 
 foreach($sparks as $spark)
 {
@@ -35,14 +41,23 @@ foreach($sparks as $spark)
     else
     {
         echo "Unknown repo type ($spark->repository_type) for {$spark->name}.. skipping.\n";
+        $unsuccessful[] = $spark;
+        continue;
     }
 
     # TODO: Validate
     @mkdir($release_dir, 0777, TRUE);
-    `zip $release.zip *`;
+    `zip -r $release.zip *`;
     @copy("$tmp/$release.zip", $release_dir."/$release.zip");
 
     $spark->setVerified($spark->version, TRUE, base_url().config_item('archive_path').$spark->name.'/'.$release.".zip");
+    $successful[] = $spark;
 
-    echo "Verified $spark->name -- $tmp\n";
+    echo "Verified $spark->name v$spark->version -- $tmp\n";
+}
+
+echo "\n" . count($unsuccessful) . " errors.\n";
+foreach($unsuccessful as $spark)
+{
+    echo "$spark->id - $spark->name - $spark->version\n";
 }
