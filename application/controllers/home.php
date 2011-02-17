@@ -11,6 +11,7 @@ class Home extends CI_Controller {
 	{
         $this->load->model('spark');
         $this->load->helper('gravatar');
+
         $data['top_sparks'] = Spark::getTop();
         $data['featured_sparks'] = Spark::getLatestOf(10, TRUE);
         $data['official_sparks'] = Spark::getLatestOf(10, NULL, TRUE);

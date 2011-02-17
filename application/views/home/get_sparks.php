@@ -46,7 +46,13 @@ $this->example_spark->printHello();           # echo's "Hello from the example s
 
 <h3>Installing Sparks Manually</h3>
 
-TODO: Write.
+<p>
+    Find the package you want to install in the repository, perhaps via <a href="#">search</a>.
+    For this example, we'll use 'example-spark', whose page can be found here:
+    <a target="_blank" href="<?php echo base_url(); ?>packages/example-spark/show">
+        <?php echo base_url(); ?>packages/example-spark/show
+    </a>
+</p>
 
 
 <?php $this->load->view('global/_footer.php'); ?>

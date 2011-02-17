@@ -59,6 +59,8 @@
                 <code>
                     <?php echo config_item('install_prototype_nix'); ?> -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
                 </code>
+                Or download this version manually:
+                <a href="<?php echo base_url() . 'set-up'; ?>" class="download">Get <?php echo $contribution->name; ?>.zip</a>
             </li>
     <?php else: ?>
             <li>Nothin' to see here..</li>
@@ -104,6 +106,8 @@
                 <code>
                     <?php echo config_item('install_prototype_nix'); ?> -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
                 </code>
+                Or download this version manually:
+                <a href="<?php echo base_url() . 'set-up'; ?>" class="download">Get <?php echo $contribution->name; ?>-<?php echo $version->version; ?>.zip</a>
             </li>
         <?php $count++; endforeach; ?>
     <?php else: ?>

@@ -42,7 +42,7 @@ $route['default_controller'] = "home";
 $route['404_override'] = '';
 
 # http://sparks.codeigniter.com/packages/gravataz/versions/1.0/spec.json
-$route['packages/(:any)/versions/(:any)/spec.(:any)'] = "packages/spec/$1/$2/$3";
+$route['packages/(:any)/versions/(:any)/spec[.\/](:any)'] = "packages/spec/$1/$2/$3";
 $route['packages/(:any)/versions/(:any)/show']        = "packages/show/$1/$2/$3";
 $route['packages/(:any)/versions/(:any)/enable']      = "packages/enable/$1/$2";
 $route['packages/(:any)/versions/(:any)/disable']     = "packages/disable/$1/$2";
@@ -50,18 +50,18 @@ $route['packages/(:any)/show']                        = "packages/show/$1";
 $route['packages/(:any)/edit']                        = "packages/edit/$1";
 $route['packages/add']                                = "packages/add";
 
-$route['api/packages/search/(:any)/(:any)']               = "api/packages/search/$1";
-$route['api/packages/(:any)/versions/(:any)/spec/(:any)'] = "api/packages/spec/$1/$2/$3";
+$route['api/packages/search']                             = "api/packages/search/";
+$route['api/packages/(:any)/versions/(:any)/spec'] = "api/packages/spec/$1/$2";
 
 $route['home']             = "home/index";
 $route['download']         = "home/download";
 $route['set-up']           = "home/set_up";
-$route['get-sparks']         = "home/get_sparks";
-$route['make-sparks']         = "home/make_sparks";
-$route['about']         = "home/about";
-$route['login']        = "contributors/login";
-$route['logout']        = "contributors/logout";
-$route['register']        = "contributors/register";
+$route['get-sparks']       = "home/get_sparks";
+$route['make-sparks']      = "home/make_sparks";
+$route['about']            = "home/about";
+$route['login']            = "contributors/login";
+$route['logout']           = "contributors/logout";
+$route['register']         = "contributors/register";
 
 $route['contributors/(:any)/profile']        = "contributors/profile/$1";
 $route['contributors/(:any)/profile/edit']   = "contributors/edit/";

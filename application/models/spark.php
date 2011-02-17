@@ -94,6 +94,7 @@ class Spark extends CI_Model
     public static function getTop($n = 10)
     {
         $CI = &get_instance();
+
         $CI->db->select("s.*, c.username");
         $CI->db->from('sparks s');
         $CI->db->join('contributors c', 's.contributor_id = c.id');
