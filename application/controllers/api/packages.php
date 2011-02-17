@@ -48,6 +48,6 @@ class Packages extends CI_Controller
         $spark->recordInstall();
         Download::recordDownload('spec');
 
-        $this->output->set_output(json_encode(array('success' => true, 'spec' => json_encode($spark))));
+        $this->output->set_output(json_encode(array('success' => true, 'spec' => $spark)));
     }
 }
