@@ -38,7 +38,7 @@ foreach($sparks as $spark)
     }
 
     # TODO: Validate
-    @mkdir($release_dir, null, TRUE);
+    @mkdir($release_dir, 0777, TRUE);
     `zip $release.zip *`;
     @copy("$tmp/$release.zip", $release_dir."/$release.zip");
 
