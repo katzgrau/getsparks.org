@@ -1,8 +1,13 @@
 <?php
 
 
+# Set the right directories
 define('IS_BOOTSTRAP', TRUE);
-require_once dirname(__FILE__) . '/../index.php';
+$webroot = dirname(__FILE__) . '/../';
+chdir($webroot);
+
+require_once $webroot . 'index.php';
+
 
 # Load up the spark libs
 $CI = &get_instance();
