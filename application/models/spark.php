@@ -155,9 +155,10 @@ class Spark extends CI_Model
         return $this->db->get_where('contributors', array('id' => $this->contributor_id))->row(0, 'Contributor');
     }
 
-    public static function setVerified($version, $is_verified = TRUE, $archive_url = '')
+    public function setVerified($version, $is_verified = TRUE, $archive_url = '')
     {
         $CI = &get_instance();
+        $CI->db->where('spark_id', $this->id);
         $CI->db->where('version', $version);
         $CI->db->update('versions', array('is_verified' => $is_verified, 'archive_url' => $archive_url));
     }
