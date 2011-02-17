@@ -3,7 +3,6 @@
 <p class="message">
     CodeIgniter sparks is an upcoming framework feature that is <em>still being
         actively developed.</em> It's in an alpha state.
-    Follow <a href="http://twitter.com/_kennyk_">@_kennyk_</a> and <a href="http://twitter.com/seejohnrun">@seejohnrun</a> for updates.
 </p>
 
 <h2>Why Sparks?</h2>

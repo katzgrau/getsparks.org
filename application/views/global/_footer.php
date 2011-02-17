@@ -4,7 +4,7 @@
 
 <div id="footer">
 
-    <p>For <a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Built by <a href="http://oconf.org">OConf</a></p>
+    <p>For <a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Follow <a href="http://twitter.com/_kennyk_">@_kennyk_</a> and <a href="http://twitter.com/seejohnrun">@seejohnrun</a> for updates.</p>
 </div>
 <script type="text/javascript">
 

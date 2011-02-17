@@ -17,11 +17,13 @@
     </tr>
 </table>
 
+<?php if($contributor->id == UserHelper::getId()): ?>
 <p>
     <a href="<?php echo base_url(); ?>contributors/<?php echo $contributor->username; ?>/profile/edit">
         Edit Your Profile
     </a>
 </p>
+<?php endif; ?>
 
 <h3>Contributions</h3>
 <ul>

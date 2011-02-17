@@ -87,6 +87,23 @@ class Spark extends CI_Model
     }
 
     /**
+     * Get the latest version
+     * @param string $name
+     * @return Spark
+     */
+    public static function getUnverified()
+    {
+        $CI = &get_instance();
+        $CI->db->select("s.*, v.version, v.is_deactivated, v.is_verified");
+        $CI->db->from('sparks s');
+        $CI->db->join('versions v', 'v.spark_id = s.id');
+        $CI->db->where('v.is_verified', 0);
+        $CI->db->order_by('v.created', 'DESC');
+
+        return $CI->db->get()->result('Spark');
+    }
+
+    /**
      * Get the top sparks.. however that's done
      * @param int $n
      * @return array[Spark]
@@ -136,6 +153,13 @@ class Spark extends CI_Model
     {
         $this->load->model('contributor');
         return $this->db->get_where('contributors', array('id' => $this->contributor_id))->row(0, 'Contributor');
+    }
+
+    public static function setVerified($version, $is_verified = TRUE, $archive_url = '')
+    {
+        $CI = &get_instance();
+        $CI->db->where('version', $version);
+        $CI->db->update('versions', array('is_verified' => $is_verified, 'archive_url' => $archive_url));
     }
 
     /**
