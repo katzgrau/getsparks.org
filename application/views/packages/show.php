@@ -79,9 +79,9 @@
 <?php endif; ?>
 
 <?php if(count($versions) > 0): ?>
-    <h2>Description/Documentation</h2>
+    <h2>Readme</h2>
     <div id="documentation" class="markdown">
-    <?php echo parse_markdown($contribution->description); ?>
+    <?php echo parse_markdown($versions[0]->readme); ?>
     </div>
 <?php endif; ?>
 

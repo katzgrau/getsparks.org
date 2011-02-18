@@ -22,7 +22,7 @@ class Spark extends CI_Model
             return self::getLatest ($name);
 
         $CI = &get_instance();
-        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url");
+        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme");
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
         $CI->db->where('s.name', $name);
@@ -73,13 +73,17 @@ class Spark extends CI_Model
      * @param string $name
      * @return Spark
      */
-    public static function getLatest($name)
+    public static function getLatest($name, $verified = TRUE)
     {
         $CI = &get_instance();
-        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url");
+        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme");
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
         $CI->db->where('s.name', $name);
+
+        if($verified)
+            $CI->db->where('v.is_verified');
+
         $CI->db->order_by('v.created', 'DESC');
         $CI->db->limit(1);
 
@@ -163,6 +167,14 @@ class Spark extends CI_Model
         $CI->db->update('versions', array('is_verified' => $is_verified, 'archive_url' => $archive_url));
     }
 
+    public function setVersionReadme($version, $readme)
+    {
+        $CI = &get_instance();
+        $CI->db->where('spark_id', $this->id);
+        $CI->db->where('version', $version);
+        $CI->db->update('versions', array('readme' => $readme));
+    }
+
     /**
      * Get this spark's version list
      * @return array[Version]
@@ -185,6 +197,12 @@ class Spark extends CI_Model
         $this->db->where('version', $version);
 
         $this->db->update('versions', array('is_deactivated' => $deactivated));
+    }
+
+    public static function save($data)
+    {
+        $this->db->where('id', $this->id);
+        return $this->db->update('sparks', $data);
     }
 
     public static function update($id, $data)
