@@ -46,6 +46,11 @@ class Home extends CI_Controller {
 
         redirect(config_item('sparks_download_url'));
     }
+
+	function beau()
+	{
+		$this->load->view('home/beau');
+	}
 }
 
 /* End of file welcome.php */

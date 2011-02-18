@@ -1,0 +1,35 @@
+/***********************************************************************/
+/* Clear Fix Hack */
+/***********************************************************************/
+.hide {
+	position: absolute;
+	left: -9999px;
+}
+
+.clear {
+	clear: both;
+	font-size: 0;
+	height: 0;
+	line-height: 0;
+	overflow: hidden;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.clearfix {
+	display: inline-block; 
+}
+	
+/* Hides from IE-mac \*/ 
+* html .clearfix {
+	height: 1%; }
+
+.clearfix {
+	display: block; }
+/* End hide from IE-mac */
