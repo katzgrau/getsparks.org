@@ -16,8 +16,8 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 
 #page { background-color: #f0f0f0; padding: 40px 0 25px 0; }
 #page h2, #page h3, #page p { margin-bottom: 15px; }
-#page h2 { font-size: 24px; }
-#page h3 { font-size: 18px; }
+#page h2 { font-size: 24px; color: #4D0202; }
+#page h3 { font-size: 18px; color: #4D0202; }
 #page p { line-height: 1.3em; }
 
 #footer { border-top: solid 5px #333; font-size: 12px; color: #fff; padding-top: 10px; }
