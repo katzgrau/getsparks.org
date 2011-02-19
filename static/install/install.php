@@ -1,5 +1,5 @@
 <?php
-$zip    = "https://github.com/seejohnrun/sparks/zipball/master";
+$zip    = "http://getsparks.org/static/install/spark-manager-0.0.1.zip";
 $loader = "http://getsparks.org/static/Loader.php.txt";
 
 if(!file_exists("application/core"))
