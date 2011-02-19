@@ -48,7 +48,7 @@ foreach($sparks as $spark)
     {
         $token = 'spark-' . $spark->id . '-' . time();
         `git clone $spark->base_location $tmp`;
-        `git checkout $spark->version -b $token`;
+        `cd $tmp ; git checkout $spark->version -b $token`;
     }
     else
     {

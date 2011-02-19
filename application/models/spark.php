@@ -144,7 +144,8 @@ class Spark extends CI_Model
             $CI->db->where('s.is_official', (bool)$is_official);
 
         $CI->db->order_by('s.created', 'DESC');
-        $CI->db->limit($n);
+
+        if($n !== FALSE) $CI->db->limit($n);
 
         return $CI->db->get()->result('Spark');
     }
