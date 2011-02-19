@@ -17,20 +17,33 @@
 	</div>
 	
 	<div class="info-box clearfix">
+		<h2>Official Sparks</h2>
+		<ul>
+			<?php foreach ($official_sparks as $spark) { ?>
+			<li class="clearfix">
+				<img src="<?php echo GravatarHelper::from_email($spark->email, null, 40); ?>" />
+				<p>
+					<a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a> by <a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile"><?php echo $spark->username; ?></a></p>
+			</li>
+			<?php } ?>
+		</ul>
+	</div>
+	
+	<div class="info-box clearfix">
+		<h2>Featured Sparks</h2>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac elit a magna euismod venenatis. Duis in justo leo. Maecenas ligula purus, rhoncus</p>
 	</div>
 	
 </div>
 
 <div class="page-right">
-	<h2>Page Title</h2>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac elit a magna euismod venenatis. Duis in justo leo. Maecenas ligula purus, rhoncus at malesuada mattis, viverra ac libero. Vivamus dignissim libero quis ligula dignissim a semper dolor tristique. In hac habitasse platea dictumst. Aliquam consectetur lorem ut dui blandit a ultricies magna luctus. Aliquam eu metus purus, nec gravida ante. Curabitur vel nibh ipsum. Etiam quis sem quis arcu cursus condimentum. Aliquam et fringilla nulla.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac elit a magna euismod venenatis. Duis in justo leo. Maecenas ligula purus, rhoncus at malesuada mattis, viverra ac libero. Vivamus dignissim libero quis ligula dignissim a semper dolor tristique. In hac habitasse platea dictumst. Aliquam consectetur lorem ut dui blandit a ultricies magna luctus. Aliquam eu metus purus, nec gravida ante. Curabitur vel nibh ipsum. Etiam quis sem quis arcu cursus condimentum. Aliquam et fringilla nulla.</p>
-	<h3>Page Sub-Title</h3>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac elit a magna euismod venenatis. Duis in justo leo. Maecenas ligula purus, rhoncus at malesuada mattis, viverra ac libero. Vivamus dignissim libero quis ligula dignissim a semper dolor tristique. In hac habitasse platea dictumst. Aliquam consectetur lorem ut dui blandit a ultricies magna luctus. Aliquam eu metus purus, nec gravida ante. Curabitur vel nibh ipsum. Etiam quis sem quis arcu cursus condimentum. Aliquam et fringilla nulla.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac elit a magna euismod venenatis. Duis in justo leo. Maecenas ligula purus, rhoncus at malesuada mattis, viverra ac libero. Vivamus dignissim libero quis ligula dignissim a semper dolor tristique. In hac habitasse platea dictumst. Aliquam consectetur lorem ut dui blandit a ultricies magna luctus. Aliquam eu metus purus, nec gravida ante. Curabitur vel nibh ipsum. Etiam quis sem quis arcu cursus condimentum. Aliquam et fringilla nulla.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac elit a magna euismod venenatis. Duis in justo leo. Maecenas ligula purus, rhoncus at malesuada mattis, viverra ac libero. Vivamus dignissim libero quis ligula dignissim a semper dolor tristique. In hac habitasse platea dictumst. Aliquam consectetur lorem ut dui blandit a ultricies magna luctus. Aliquam eu metus purus, nec gravida ante. Curabitur vel nibh ipsum. Etiam quis sem quis arcu cursus condimentum. Aliquam et fringilla nulla.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac elit a magna euismod venenatis. Duis in justo leo. Maecenas ligula purus, rhoncus at malesuada mattis, viverra ac libero. Vivamus dignissim libero quis ligula dignissim a semper dolor tristique. In hac habitasse platea dictumst. Aliquam consectetur lorem ut dui blandit a ultricies magna luctus. Aliquam eu metus purus, nec gravida ante. Curabitur vel nibh ipsum. Etiam quis sem quis arcu cursus condimentum. Aliquam et fringilla nulla.</p>
+	<h2>What is Sparks?</h2>
+	<p>Sparks is a package management system for Codeigniter that will allow you install high-quality libraries into your applications instantly.</p>
+	<p>Imagine that you wanted to find an 'Auth' for an app you're writing. You're sure there must be something for CodeIgniter already written by another member of the community. You check the Sparks repository, and sure enough, there's a featured spark for auth on the front page.</p>
+	<div class="code">$ tools/spark install auth</div>
+	<p>Or</p>
+	<div class="code">C:\app> php tools/spark install auth</div>
+	<p>How <em>easy</em> was that?</p>
 </div>
 
 <br class="clear" />
