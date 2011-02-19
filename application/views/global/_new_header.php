@@ -27,19 +27,6 @@
 	<div id="header" class="clearfix">
 		<div class="wrapper">
 			<h1><a href="/" title="Sparks | Automated Package Management for Codeigniter">Sparks</a></h1>
-			<!--<span class="desc">Automated Package Management for Codeigniter</span>-->
-			
-			<!--
-			<dl>
-				<dd><a class="active" href="/" title="Home">Home</a></dd>
-				<dd><a href="/" title="Why">Why</a></dd>
-				<dd><a href="/" title="Install">Install</a></dd>
-				<dd><a href="/" title="Publish">Publish</a></dd>
-				<dd><a href="/" title="Login">Login</a></dd>
-				<dd><a href="/" title="Register">Register</a></dd>
-			</dl>
-			-->
-			
 			<div class="spark-count">
 				<p>
 					1,232 Installs and Counting!

@@ -21,7 +21,7 @@
 		<ul>
 			<?php foreach ($official_sparks as $spark) { ?>
 			<li class="clearfix">
-				<img src="<?php echo GravatarHelper::from_email($spark->email, null, 40); ?>" />
+				<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><img src="<?php echo GravatarHelper::from_email($spark->email, null, 40); ?>" /></a>
 				<p>
 					<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a><br />
 					by: <a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile"><?php echo $spark->username; ?></a>
@@ -43,7 +43,45 @@
 	<div class="code">$ tools/spark install auth</div>
 	<p>Or</p>
 	<div class="code">C:\app> php tools/spark install auth</div>
-	<p>How <em>easy</em> was that?</p>
+	<p>How <em>easy</em> was that? You should really <a href="#">install sparks now</a>, don't you think?</p>
+	
+	<br /><br />
+	
+	<div class="left-col">
+		<h2>Featured Sparks</h2>
+		<ul>
+			<?php foreach ($featured_sparks as $spark) { ?>
+			<li class="clearfix">
+				<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><img src="<?php echo GravatarHelper::from_email($spark->email, null, 40); ?>" /></a>
+				<p>
+					<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a><br />
+					by: <a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile"><?php echo $spark->username; ?></a>
+				</p>
+				<br class="clear" />
+				<p><em><?php echo $spark->summary; ?></em></p>
+			</li>
+			<?php } ?>
+			<li class="last"><a href="#">View All Featured Sparks</a></li>
+		</ul>
+	</div>
+	
+	<div class="right-col">
+		<h2>Recent Sparks</h2>
+		<ul>
+			<?php foreach ($top_sparks as $spark) { ?>
+			<li class="clearfix">
+				<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><img src="<?php echo GravatarHelper::from_email($spark->email, null, 40); ?>" /></a>
+				<p>
+					<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a><br />
+					by: <a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile"><?php echo $spark->username; ?></a>
+				</p>
+				<br class="clear" />
+				<p><em><?php echo $spark->summary; ?></em></p>
+			</li>
+			<?php } ?>
+			<li class="last"><a href="#">View All Recent Sparks</a></li>
+		</ul>
+	</div>
 </div>
 
 <br class="clear" />
