@@ -23,11 +23,11 @@
 			<li class="clearfix">
 				<img src="<?php echo GravatarHelper::from_email($spark->email, null, 40); ?>" />
 				<p>
-					<a style="font-size:14px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a><br />
+					<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a><br />
 					by: <a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile"><?php echo $spark->username; ?></a>
 				</p>
 				<br class="clear" />
-				<p><?php echo $spark->summary; ?></p>
+				<p><em><?php echo $spark->summary; ?></em></p>
 			</li>
 			<?php } ?>
 			<li class="last"><a href="#">View All Official Sparks</a></li>
