@@ -6,8 +6,7 @@ $loader = "http://getsparks.org/static/install/Loader.php.txt";
 
 if(!file_exists("application/core"))
 {
-    echo "Can't find application/core. Currently this script only works
-            with the default instance of Reactor. You may need to try a manual installation..\n";
+    echo "Can't find application/core. Currently this script only works with the default instance of Reactor. You may need to try a manual installation..\n";
     exit;
 }
 
