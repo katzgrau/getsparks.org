@@ -22,7 +22,7 @@ if(class_exists('ZipArchive'))
     $zip = new ZipArchive;
     if ($zip->open('sparks.zip') === TRUE)
     {
-        $zip->extractTo('./');
+        $zip->extractTo('./tools');
         $zip->close();
         echo "Extraction complete\n";
     } 
