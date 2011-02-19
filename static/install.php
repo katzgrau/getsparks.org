@@ -1,5 +1,4 @@
 #!/usr/bin/env php
-
 <?php
 
 $zip    = "http://getsparks.org/static/install/spark-manager-0.0.1.zip";
