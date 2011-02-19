@@ -1,6 +1,3 @@
-#!/usr/bin/env php
-<?php
-
 $zip    = "http://getsparks.org/static/install/spark-manager-0.0.1.zip";
 $loader = "http://getsparks.org/static/install/Loader.php.txt";
 
@@ -14,7 +11,7 @@ echo "Pulling down spark manager from $zip ...\n";
 copy($zip, "sparks.zip");
 
 echo "Pulling down Loader class core extension from $loader ...\n";
-copy($loader, "application/core/Loader.php");
+copy($loader, "application/core/MY_Loader.php");
 
 echo "Extracting zip package ...\n";
 if(class_exists('ZipArchive'))
