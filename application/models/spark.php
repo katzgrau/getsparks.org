@@ -82,7 +82,7 @@ class Spark extends CI_Model
         $CI->db->where('s.name', $name);
 
         if($verified)
-            $CI->db->where('v.is_verified');
+            $CI->db->where('v.is_verified', TRUE);
 
         $CI->db->order_by('v.created', 'DESC');
         $CI->db->limit(1);

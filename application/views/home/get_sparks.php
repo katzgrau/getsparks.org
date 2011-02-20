@@ -10,7 +10,7 @@
 <h3>Installing Sparks with the Spark Manager</h3>
 
 <p>
-    In this example, we'll install the 'spark-example' spark.
+    In this example, we'll install the 'example-spark'.
 </p>
 
 <p>
@@ -19,13 +19,13 @@
 </p>
 
 <code>
-    <?php echo config_item('install_prototype_nix'); ?> spark-example
+    <?php echo config_item('install_prototype_nix'); ?> example-spark
 </code>
 
 On Windows, type:
 
 <code>
-    <?php echo config_item('install_prototype_win'); ?> spark-example
+    <?php echo config_item('install_prototype_win'); ?> example-spark
 </code>
 
 You should see:
