@@ -81,7 +81,12 @@
 <?php if(count($versions) > 0): ?>
     <h2>Readme</h2>
     <div id="documentation" class="markdown">
-    <?php echo parse_markdown($versions[0]->readme); ?>
+        <?php
+            if(strlen($versions[0]->readme_html))
+                echo $versions[0]->readme_html;
+            else
+                echo "There is no documentation (readme) for this release.";
+        ?>
     </div>
 <?php endif; ?>
 
