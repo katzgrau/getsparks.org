@@ -51,6 +51,7 @@ class Home extends CI_Controller {
 	function beau()
 	{
 		$this->load->model('spark');
+        $this->load->spark('gravatar-helper/1.1');
         $this->load->helper('gravatar');
 
         $data['top_sparks'] = Spark::getTop();
