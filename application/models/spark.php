@@ -120,7 +120,7 @@ class Spark extends CI_Model
     {
         $CI = &get_instance();
 
-        $CI->db->select("s.*, c.username");
+        $CI->db->select("s.*, c.username, c.email");
         $CI->db->from('sparks s');
         $CI->db->join('contributors c', 's.contributor_id = c.id');
         $CI->db->order_by('s.created', 'DESC');
