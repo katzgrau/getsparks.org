@@ -27,6 +27,8 @@ class Spark extends CI_Model
         $CI->db->join('versions v', 'v.spark_id = s.id');
         $CI->db->where('s.name', $name);
         $CI->db->where('v.version', $version);
+        $CI->db->where('v.is_verified', TRUE);
+        $CI->db->where('v.is_deactivated', FALSE);
 
         return $CI->db->get()->row(0, 'Spark');
     }
@@ -80,6 +82,7 @@ class Spark extends CI_Model
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
         $CI->db->where('s.name', $name);
+        $CI->db->where('v.is_deactivated', FALSE);
 
         if($verified)
             $CI->db->where('v.is_verified', TRUE);
@@ -102,6 +105,7 @@ class Spark extends CI_Model
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
         $CI->db->where('v.is_verified', 0);
+        $CI->db->where('v.is_deactivated', FALSE);
         $CI->db->order_by('v.created', 'DESC');
 
         return $CI->db->get()->result('Spark');
@@ -120,6 +124,7 @@ class Spark extends CI_Model
         $CI->db->from('sparks s');
         $CI->db->join('contributors c', 's.contributor_id = c.id');
         $CI->db->order_by('s.created', 'DESC');
+
         $CI->db->limit($n);
 
         return $CI->db->get()->result('Spark');
@@ -192,6 +197,8 @@ class Spark extends CI_Model
         elseif($is_verified === FALSE)
             $this->db->where('is_verified', FALSE);
 
+        $this->db->where('is_deactivated', FALSE);
+
         return $this->db->get_where('versions', array('spark_id' => $this->id))->result('Version');
     }
 
@@ -262,6 +269,7 @@ Here are some specifics: \n\n";
         $CI->db->select('s.*');
         $CI->db->from('sparks s');
         $CI->db->like('name', $term, 'both');
+
         return $CI->db->get()->result();
     }
 }
