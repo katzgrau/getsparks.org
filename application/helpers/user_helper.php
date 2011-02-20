@@ -19,8 +19,9 @@ class UserHelper
     public static function getAvatarURL($size = 80)
     {
         $CI = &get_instance();
+        $CI->load->spark('gravatar-helper/1.1');
         $CI->load->helper('gravatar');
-        return GravatarHelper::from_email(self::getEmail(), NULL, $size, NULL);
+        return Gravatar_helper::from_email(self::getEmail(), NULL, $size, NULL);
     }
 
     public static function getUsername()

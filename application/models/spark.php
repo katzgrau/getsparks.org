@@ -171,9 +171,11 @@ class Spark extends CI_Model
     public function setVersionReadme($version, $readme)
     {
         $CI = &get_instance();
+        $CI->load->spark('markdown/1.1');
         $CI->db->where('spark_id', $this->id);
         $CI->db->where('version', $version);
-        $CI->db->update('versions', array('readme' => $readme));
+        $CI->db->update('versions', array('readme'      => $readme,
+                                          'readme_html' => parse_markdown($readme)));
     }
 
     /**
