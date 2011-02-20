@@ -16,6 +16,7 @@ require_once $webroot . 'index.php';
 $CI = &get_instance();
 $CI->load->model('spark');
 $CI->load->helper('spark');
+$CI->load->spark('markdown/1.1');
 
 # Set the spark path
 $spark_path = WEBROOT . config_item('archive_path');

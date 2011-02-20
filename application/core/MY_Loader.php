@@ -71,17 +71,24 @@ class MY_Loader extends CI_Loader
         $spark = rtrim($spark, '/');
 
         $spark_path = SPARKPATH . $spark . '/';
+        $parts      = explode('/', $spark);
+        $spark_slug = strtolower($parts[0]);
 
+        # If we've already loaded this spark, bail
+        if(array_key_exists($spark_slug, $this->_ci_loaded_sparks))
+        {
+            return true;
+        }
+
+        # Check that it exists. CI Doesn't check package existence by itself
         if(!file_exists($spark_path))
         {
             show_error("Cannot find spark path at $spark_path");
         }
-
-        $parts = explode('/', $spark);
-
-        if($parts == 2)
+        
+        if(count($parts) == 2)
         {
-            $this->_ci_loaded_sparks[strtolower($parts[0])] = $spark;
+            $this->_ci_loaded_sparks[$spark_slug] = $spark;
         }
 
         $this->add_package_path($spark_path);
