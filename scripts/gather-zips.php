@@ -50,7 +50,7 @@ foreach($sparks as $spark)
     {
         $token = 'spark-' . $spark->id . '-' . time();
         `git clone $spark->base_location $tmp`;
-        `cd $tmp ; git checkout $spark->version -b $token`;
+        `cd $tmp ; git checkout $spark->version -b $token ; cd ..`;
     }
     else
     {
@@ -62,6 +62,7 @@ foreach($sparks as $spark)
     if($errors = SparkHelper::validateSpark($spark, $tmp))
     {
         $spark->removeVersionAndNotify($spark->version, $errors);
+        `rm -rf $tmp`;
         continue;
     }
 
@@ -82,6 +83,7 @@ foreach($sparks as $spark)
     $successful[] = $spark;
 
     echo "Verified $spark->name v$spark->version -- $tmp\n";
+    `rm -rf $tmp`;
 }
 
 echo "\n" . count($unsuccessful) . " errors.\n";
