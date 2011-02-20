@@ -62,3 +62,4 @@ function spam_check_answer($answer)
     return ($answer == $CI->session->userdata('spam_check_answer'));
 }
 
+

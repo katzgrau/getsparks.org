@@ -23,7 +23,7 @@
     <p class="spark-cat-desc">These are sparks built by the developers of CodeIgniter</p>
     <ul>
         <?php foreach($official_sparks as $spark): ?>
-        <li style="background: url(<?php echo GravatarHelper::from_email($spark->email, null, 40); ?>) no-repeat 0px 50%; padding-left: 50px;">
+        <li style="background: url(<?php echo Gravatar_helper::from_email($spark->email, null, 40); ?>) no-repeat 0px 50%; padding-left: 50px;">
             <a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a>
              by
             <a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile"><?php echo $spark->username; ?></a>
@@ -39,7 +39,7 @@
     <p class="spark-cat-desc">These sparks are officially endorsed by the developers of Reactor as being awesome.</p>
     <ul>
         <?php foreach($featured_sparks as $spark): ?>
-        <li style="background: url(<?php echo GravatarHelper::from_email($spark->email, null, 40); ?>) no-repeat 0px 50%; padding-left: 50px;">
+        <li style="background: url(<?php echo Gravatar_helper::from_email($spark->email, null, 40); ?>) no-repeat 0px 50%; padding-left: 50px;">
             <a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a>
              by
             <a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile"><?php echo $spark->username; ?></a>

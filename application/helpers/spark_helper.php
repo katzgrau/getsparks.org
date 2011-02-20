@@ -15,7 +15,7 @@ class SparkHelper
         # If the directory doesn't exist it was probably a bad checkotu
         if(!file_exists($directory))
         {
-            $errors[] = "{$spark_info->name}: The clone URL does not seem to be valid: {$spark_info->base_location}";
+            $errors[] = "The clone URL/tag combo does not seem to be valid: {$spark_info->base_location}, tag '{$spark_info->version}'";
             return $errors;
         }
 
@@ -32,12 +32,11 @@ class SparkHelper
                 $has_something = TRUE;
         }
 
-        if($has_something)
+        if(!$has_something)
         {
-            $errors[] = "{$spark_info->name}: The spark should contain a config, helpers, models, libraries, or views directory to be useful. This spark has none of that.";
+            $errors[] = "The spark should contain a config, helpers, models, libraries, or views directory to be useful. This spark has none of that.";
             return $errors;
         }
-
 
         return $errors;
     }

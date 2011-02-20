@@ -37,7 +37,7 @@
 |
 */
 
-$autoload['packages'] = array('sparks/markdown');
+$autoload['packages'] = array();
 
 
 /*

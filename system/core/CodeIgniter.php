@@ -53,7 +53,7 @@
  *  Define a custom error handler so we can log PHP errors
  * ------------------------------------------------------
  */
-    if(defined('IS_BOOTSTRAP')) set_error_handler('_exception_handler');
+    if(!defined('IS_BOOTSTRAP')) set_error_handler('_exception_handler');
 
 	if ( ! is_php('5.3'))
 	{
