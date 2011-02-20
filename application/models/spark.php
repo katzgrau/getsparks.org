@@ -182,10 +182,16 @@ class Spark extends CI_Model
      * Get this spark's version list
      * @return array[Version]
      */
-    public function getVersions()
+    public function getVersions($is_verified = NULL)
     {
         $this->load->model('version');
         $this->db->order_by('created', 'DESC');
+
+        if($is_verified === TRUE)
+            $this->db->where('is_verified', TRUE);
+        elseif($is_verified === FALSE)
+            $this->db->where('is_verified', FALSE);
+
         return $this->db->get_where('versions', array('spark_id' => $this->id))->result('Version');
     }
 
@@ -200,6 +206,29 @@ class Spark extends CI_Model
         $this->db->where('version', $version);
 
         $this->db->update('versions', array('is_deactivated' => $deactivated));
+    }
+
+    public function removeVersionAndNotify($version, $errors)
+    {
+        $this->load->helper('email');
+        $contrib   = $this->getContributor();
+        $sys_email = config_item('system_alert_email');
+
+        $message = "Hey there,
+This is an automated message to tell you that version '$version' of
+$this->name couldn't be verified ($this->base_location).
+We've removed that version from our system at getsparks. Once you get
+things figured out on your end, you can re-add the version :).
+Here are some specifics: \n\n";
+
+        foreach($errors as $error)
+            $message .= "$error\n";
+
+        send_email("{$contrib->email},{$sys_email}", "{$this->name} v{$version} Removed.", $message);
+        
+        $this->db->where('spark_id', $this->id);
+        $this->db->where('version', $version);
+        return $this->db->delete('versions');
     }
 
     public static function save($data)

@@ -108,7 +108,8 @@ class Packages extends CI_Controller
 
         $data['contribution'] = $spark;
         $data['contributor']  = $contributor;
-        $data['versions']     = $spark->getVersions();
+        $data['versions']     = $spark->getVersions(TRUE);
+        $data['versions_unverified'] = $spark->getVersions(FALSE);
         $data['is_author']    = ($contributor->id == UserHelper::getId());
 
         $this->load->view('packages/show', $data);

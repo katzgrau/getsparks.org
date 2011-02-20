@@ -15,6 +15,7 @@ require_once $webroot . 'index.php';
 # Load up the spark libs
 $CI = &get_instance();
 $CI->load->model('spark');
+$CI->load->model('contributor');
 $CI->load->helper('spark');
 $CI->load->spark('markdown/1.1');
 
@@ -55,6 +56,12 @@ foreach($sparks as $spark)
     {
         echo "Unknown repo type ($spark->repository_type) for {$spark->name}.. skipping.\n";
         $unsuccessful[] = $spark;
+        continue;
+    }
+
+    if($errors = SparkHelper::validateSpark($spark, $tmp))
+    {
+        $spark->removeVersionAndNotify($spark->version, $errors);
         continue;
     }
 

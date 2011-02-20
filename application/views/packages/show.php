@@ -38,6 +38,12 @@
 </p>
 <?php endif; ?>
 
+<?php if(count($versions_unverified)): ?>
+<p class="message">
+    The system is currently processing a new version for this spark (<?php echo $versions_unverified[0]->version; ?>).
+</p>
+<?php endif; ?>
+
 <h2>Get the Latest</h2>
 <ul>
     <?php if(count($versions) > 0): $count = 0; ?>
@@ -62,7 +68,7 @@
                     <?php echo config_item('install_prototype_nix'); ?> -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
                 </code>
                 Or download this version manually:
-                <a href="<?php echo $version->archive_url; ?>" class="download">Get <?php echo $contribution->name; ?>.zip</a>
+                <a href="<?php echo $version->archive_url; ?>" class="download">Get <?php echo $contribution->name; ?>-v<?php echo $version->version; ?>.zip</a>
             </li>
     <?php else: ?>
             <li>Nothin' to see here..</li>
@@ -72,9 +78,17 @@
 
 <?php if(UserHelper::getId() == $contribution->contributor_id): ?>
     <form action="<?php echo base_url(); ?>versions/add" method="post">
-        Add a new version: <input type="text" name="version" />
+        <p>
+        Add a new version: <br />
+        <small>
+            Note that after you add this, the spark will be processed on our end. <br/>
+            The version string you enter below should correspond to a tag in your
+            source repository. <br/>
+        </small>
+        </p>
+        <input type="text" name="version" />
         <input type="hidden" name="spark_id" value="<?php echo $contribution->id; ?>" />
-        <input type="submit" name="submit" value="Submit" />
+        <input type="submit" name="submit" value="Create From Tag" />
     </form>
 <?php endif; ?>
 
