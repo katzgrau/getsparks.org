@@ -54,7 +54,7 @@ a:hover {
  min-width: 800px;
 }
 #nav2 {
- background: #fff url(x/../images/nav_bg_darker.jpg) repeat-x left top;
+ /* background: #fff url(../images/nav_bg_darker.jpg) repeat-x left top; */
  padding: 0 310px 0 0;
  margin: 0;
  text-align: right;
@@ -112,7 +112,7 @@ a:hover {
  margin: 0 0 10px 0;
 }
 #nav_inner ul {
- list-style-image: url(images/arrow.gif);
+ list-style-image: url(../images/arrow.gif);
  padding: 0 0 0 18px;
  margin: 8px 0 12px 0;
 }
@@ -280,7 +280,7 @@ padding: 3px 0 7px 3px;
 }
 
 #content ul {
- list-style-image: url(images/arrow.gif);
+ list-style-image: url(../images/arrow.gif);
  margin: 10px 0 12px 0;
 }
 

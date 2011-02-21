@@ -10,6 +10,19 @@ RewriteBase /
 	Deny From All
 </Files>
 
+<IfModule mod_expires.c>
+        ExpiresActive on
+        ExpiresByType image/gif "access plus 1 days"
+        ExpiresByType image/jpeg "access plus 1 days"
+        ExpiresByType image/png "access plus 1 days"
+        ExpiresByType text/css "access plus 1 days"
+        ExpiresByType text/js "access plus 1 days"
+        ExpiresByType text/javascript "access plus 1 days"
+        ExpiresByType application/javascript "access plus 1 days"
+        ExpiresByType application/x-javascript "access plus 1 days"
+        #ExpiresDefault "access plus 1 days"
+</IfModule>
+
 # Protect application and system files from being viewed
 RewriteRule ^(?:application|modules|system|data)\b.* index.php/$0 [L]
 
