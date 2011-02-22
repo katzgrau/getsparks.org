@@ -54,5 +54,9 @@ $this->example_spark->printHello();           # echo's "Hello from the example s
     </a>
 </p>
 
+<p>
+    Find the button/link to download the latest version of the spark.
+</p>
+
 
 <?php $this->load->view('global/_footer.php'); ?>

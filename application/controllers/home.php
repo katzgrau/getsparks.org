@@ -23,9 +23,9 @@ class Home extends CI_Controller {
 		$this->load->view('home/index', $data);
 	}
 
-    function install()
+    function set_up()
     {
-        $this->load->view('home/install');;
+        $this->load->view('home/set_up');;
     }
 
     function get_sparks()
