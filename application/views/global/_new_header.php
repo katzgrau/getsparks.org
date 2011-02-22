@@ -25,7 +25,7 @@
 <body>
 	
 	<div id="header" class="clearfix">
-		<div class="wrapper">
+		<div class="wrapper header-wrapper">
 			<h1><a href="/" title="Sparks | Automated Package Management for Codeigniter">Sparks</a></h1>
 			<div class="spark-count">
 				<p>
