@@ -1,4 +1,4 @@
-<?php $this->load->view('global/_header.php', array('title' => 'About Sparks')); ?>
+<?php $this->load->view('global/_new_header.php', array('title' => 'About Sparks')); ?>
 
 <p class="message">
     CodeIgniter sparks is an upcoming framework feature that is <em>still being
@@ -41,4 +41,4 @@ Or
     <strong>Very soon, this will be a reality</strong>. <a href="<?php echo base_url() ?>set-up">Get Sparks</a>.
 </p>
 
-<?php $this->load->view('global/_footer.php'); ?>
+<?php $this->load->view('global/_new_footer.php'); ?>

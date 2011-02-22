@@ -19,9 +19,9 @@ class Home extends CI_Controller {
 		$this->load->view('home/index', $data);
 	}
 
-    function set_up()
+    function install()
     {
-        $this->load->view('home/set_up');;
+        $this->load->view('home/install');;
     }
 
     function get_sparks()
@@ -57,6 +57,16 @@ class Home extends CI_Controller {
         $data['official_sparks'] = Spark::getLatestOf(10, NULL, TRUE);
 
 		$this->load->view('home/beau',$data);
+	}
+	
+	function contact()
+	{
+		$this->load->view('home/contact');
+	}
+	
+	function privacy()
+	{
+		$this->load->view('home/privacy');
 	}
 }
 

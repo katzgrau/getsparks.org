@@ -1,4 +1,4 @@
-<?php $this->load->view('global/_header.php', array('title' => 'How to Write a Spark')); ?>
+<?php $this->load->view('global/_new_header.php', array('title' => 'How to Write a Spark')); ?>
 
 <h2>Step 1. Setting Up</h2>
 
@@ -8,20 +8,29 @@
     package manager will be integrated into the CodeIgniter framework to facilitate rapid community code reuse.
 </p>
 
-<h4>Contents:</h4>
+<!-- <h4>Contents:</h4> -->
 
+<p>
+	<a href="#option-1">Option 1. Setting up the Spark Manager (<em>for user with PHP-CLI</em>)</a><br />
+	<a href="#option-2">Option 2. Setting up <em>without</em> the Spark Manager</a><br />
+	<a href="#option-2">Option 3. Options 1 and 2 don't work</a>
+</p>
+
+<!--
 <ul>
     <li>
-        <p><a href="#option-1">Option 1. Setting up the Spark Manager (<em>for user with PHP-CLI</em>)</a></p>
+        <p></p>
         <ul>
             <li><a href="#quick-start">Quick Start Installation</a></li>
             <li><a href="#normal">Normal Installation</a></li>
         </ul>
     </li>
-    <li><a href="#option-2">Option 2. Setting up <em>without</em> the Spark Manager</a></li>
-    <li><a href="#option-2">Option 3. Options 1 and 2 don't work</a></li>
+    <li></li>
+    <li></li>
 </ul>
+-->
 
+<br />
 
 <a name="option-1"></a>
 <h3>Option 1 (Recommended): Setting Up via the Spark Package Manager</h3>
@@ -37,6 +46,7 @@
 <p>
     In order to use this quick start option, you should be using OSX or some flavor of linux.
 </p>
+
 <h5>Steps:</h5>
 <ol>
     <li>Via the shell, navigate to the root of your CodeIgniter application</li>
@@ -87,4 +97,4 @@
 <p>
     Send us an email at <a href="ohcrap@getsparks.org">ohcrap@getsparks.org</a>, and let us know. We'll try and get you up and running.
 </p>
-<?php $this->load->view('global/_footer.php'); ?>
+<?php $this->load->view('global/_new_footer.php'); ?>

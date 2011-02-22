@@ -29,7 +29,7 @@
 			<h1><a href="/" title="Sparks | Automated Package Management for Codeigniter">Sparks</a></h1>
 			<div class="spark-count">
 				<p>
-					1,232 Installs and Counting!
+					<?php echo number_format(UtilityHelper::getGlobalInstallCount()); ?> Installs and Counting!
 					<a href="#" title="Get Sparking!">Get Sparks Now!</a>
 				</p>
 			</div>
@@ -38,3 +38,8 @@
 	
 	<div id="page">
 		<div class="wrapper">
+			
+			<?php $this->load->view('global/_left_column.php'); ?>
+			
+			<div class="page-right">
+				

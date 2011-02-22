@@ -17,12 +17,16 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 
 /** Page **/
 #page { background-color: #f0f0f0; }
-#page h2, #page h3, #page p { margin-bottom: 10px; }
+#page h2, #page h3, #page h4, #page h5, #page p { margin-bottom: 15px; }
 #page h2 { font-size: 24px; color: #4D0202; padding-bottom: 10px; border-bottom: solid 1px #7d2626; }
 #page h3 { font-size: 18px; color: #4D0202; }
+#page h4 { font-size: 16px; color: #4D0202; }
+#page h5 { font-size: 14px; color: #4D0202; }
 #page p { line-height: 1.4em; }
 #page a { color: #0000CC; text-decoration: none; }
 #page a:hover { text-decoration: underline; }
+#page ol { margin-bottom: 15px; }
+#page ol li { margin-left: 35px; list-style-type: decimal; margin-bottom: 5px; }
 
 /** Page - Left Column **/
 #page div.page-left, #page div.page-right { float: left; }
@@ -57,7 +61,7 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #page div.page-right div.left-col, #page div.page-right div.right-col { width: 355px; float: left; }
 #page div.page-right div.left-col { margin-right: 20px; }
 
-#page div.code { font-family: Monaco, Verdana, Sans-serif; font-size: 12px; background-color: #f9f9f9;
+#page div.code, #page code { font-family: Monaco, Verdana, Sans-serif; font-size: 12px; background-color: #f9f9f9;
 	border: 1px solid #D0D0D0; color: #002166; display: block; margin: 15px 0 15px 0; padding: 12px 10px 12px 10px; }
 
 #footer { border-top: solid 3px #333; font-size: 12px; color: #fff; padding-top: 10px; }
