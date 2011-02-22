@@ -76,6 +76,14 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('home/privacy');
 	}
+
+    /**
+     * The installation script
+     */
+    function go_sparks()
+    {
+        $this->load->view('home/go_sparks');
+    }
 }
 
 /* End of file welcome.php */

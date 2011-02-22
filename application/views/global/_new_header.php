@@ -4,7 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title><?php if(isset($title)) echo "$title &mdash; "; ?>CodeIgniter Sparks Repository </title>
+<title>CodeIgniter Sparks | <?php echo isset($title) ? "$title" : "The Package Manager and Repository"; ?></title>
 
 <link rel='stylesheet' type='text/css' media='all' href='/static/styles/reset.css' />
 <link rel='stylesheet' type='text/css' media='all' href='/static/styles/fancybox.css' />
@@ -30,7 +30,7 @@
 			<div class="spark-count">
 				<p>
 					<?php echo number_format(UtilityHelper::getGlobalInstallCount()); ?> Installs and Counting!
-					<a href="#" title="Get Sparking!">Get Sparks Now!</a>
+					<a href="<?php echo base_url(); ?>set-up" title="Get Sparking!">Get Sparks Now!</a>
 				</p>
 			</div>
 		</div>

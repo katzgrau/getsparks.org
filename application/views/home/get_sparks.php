@@ -1,4 +1,4 @@
-<?php $this->load->view('global/_header.php', array('title' => 'How to Write a Spark')); ?>
+<?php $this->load->view('global/_new_header.php', array('title' => 'Installing Sparks')); ?>
 
 <h2>Step 2. Installing Sparks</h2>
 
@@ -59,4 +59,4 @@ $this->example_spark->printHello();           # echo's "Hello from the example s
 </p>
 
 
-<?php $this->load->view('global/_footer.php'); ?>
+<?php $this->load->view('global/_new_footer.php'); ?>

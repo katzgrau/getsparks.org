@@ -1,4 +1,4 @@
-<?php $this->load->view('global/_header.php'); ?>
+<?php $this->load->view('global/_new_header.php', array('title' => $contribution->name)); ?>
 
 <h2>Basic Information: <?php echo $contribution->name; ?></h2>
 <p>
@@ -158,4 +158,4 @@
     }
 </script>
 
-<?php $this->load->view('global/_footer.php'); ?>
+<?php $this->load->view('global/_new_footer.php'); ?>
