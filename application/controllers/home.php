@@ -9,7 +9,11 @@ class Home extends CI_Controller {
 
 	function index()
 	{
+        if(config_item('is_production'))
+            $this->output->cache(5);
+
         $this->load->model('spark');
+        $this->load->spark('gravatar-helper/1.1');
         $this->load->helper('gravatar');
 
         $data['top_sparks'] = Spark::getTop();
@@ -49,7 +53,11 @@ class Home extends CI_Controller {
 
 	function beau()
 	{
+        if(config_item('is_production'))
+            $this->output->cache(5);
+
 		$this->load->model('spark');
+        $this->load->spark('gravatar-helper/1.1');
         $this->load->helper('gravatar');
 
         $data['top_sparks'] = Spark::getTop();

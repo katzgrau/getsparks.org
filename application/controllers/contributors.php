@@ -42,6 +42,7 @@ class Contributors extends CI_Controller
 
     public function register()
     {
+        $this->load->spark('robot-helper/1.1');
         $this->load->helper('robot');
         $this->load->helper('form');
         $this->load->library('form_validation');

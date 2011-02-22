@@ -99,7 +99,6 @@ class Packages extends CI_Controller
     {
         $this->load->model('spark');
         $this->load->model('contributor');
-        $this->load->spark('markdown/1.0');
 
         $spark = Spark::getInfo($package_name);
 
@@ -109,7 +108,8 @@ class Packages extends CI_Controller
 
         $data['contribution'] = $spark;
         $data['contributor']  = $contributor;
-        $data['versions']     = $spark->getVersions();
+        $data['versions']     = $spark->getVersions(TRUE);
+        $data['versions_unverified'] = $spark->getVersions(FALSE);
         $data['is_author']    = ($contributor->id == UserHelper::getId());
 
         $this->load->view('packages/show', $data);
@@ -160,5 +160,44 @@ class Packages extends CI_Controller
 
         $this->form_validation->set_message('is_owner', "Sorry, you don't own that spark. That also means you're an ass.");
         return FALSE;
+    }
+
+    function browse($type)
+    {
+        $this->load->model('spark');
+        $sparks = array();
+
+        if($type == 'latest')
+        {
+            $sparks = Spark::getTop(100);
+        }
+        elseif($type == 'featured')
+        {
+            $sparks = Spark::getLatestOf(FALSE, TRUE);
+        }
+        elseif($type == 'official')
+        {
+            $sparks = Spark::getLatestOf(FALSE, NULL, TRUE);
+        }
+
+        # Wait until the views are donw
+        $data['sparks'] = $sparks;
+        print_r($data); exit;
+        
+        $this->load->view('packages/browse');
+    }
+
+    function search()
+    {
+        $this->load->model('spark');
+        $term = $this->input->get_post('q');
+
+        $sparks = Spark::search($term);
+
+        $data['results'] = $sparks;
+
+        # We'll skip the view until the new design is done
+        print_r($data); exit;
+        $this->load->view('packages/search');
     }
 }

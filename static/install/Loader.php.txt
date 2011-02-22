@@ -85,7 +85,7 @@ class MY_Loader extends CI_Loader
         {
             show_error("Cannot find spark path at $spark_path");
         }
-        
+
         if(count($parts) == 2)
         {
             $this->_ci_loaded_sparks[$spark_slug] = $spark;
@@ -111,7 +111,7 @@ class MY_Loader extends CI_Loader
 
         // Looks for a spark's specific autoloader
         $this->_ci_path_autoloader($spark_path);
-        
+
         return true;
     }
 

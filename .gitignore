@@ -1,2 +1,5 @@
 .DS_Store
 application/config/database.php
+static/archives
+application/logs/*
+application/cache/*
