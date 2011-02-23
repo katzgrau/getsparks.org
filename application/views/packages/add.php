@@ -41,13 +41,13 @@
             <select name="repository_type">
                 <option value="hg" <?php if(set_value('repository_type') == 'hg') echo 'selected'; ?>>Mercurial (hg)</option>
                 <option value="git" <?php if(set_value('repository_type') == 'git') echo 'selected'; ?>>Git (git)</option>
-                <option value="zip" <?php if(set_value('repository_type') == 'zip') echo 'selected'; ?>>Zip (zip)</option>
+                <?php //<option value="zip" <?php if(set_value('repository_type') == 'zip') echo 'selected'; ?>>Zip (zip)</option> ?>
             </select>
         </div>
     </div>
     <div class="input-field">
         <div class="field-name">
-            Clone URL
+            <strong>Public</strong> Clone URL
         </div>
         <div class="field-value">
             <input type="text" name="base_location" value="<?php echo set_value('base_location'); ?>" /><br />

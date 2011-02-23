@@ -1,6 +1,6 @@
 <?php $this->load->view('global/_new_header.php', array('title' => 'Setting Up')); ?>
 
-<h2>Step 1. Setting Up</h2>
+<h2>Guide #1: Setting Up</h2>
 
 <p>
     This document will explain how to install the spark package manager for <strong>CodeIgniter Reactor</strong>. It will also explain how to

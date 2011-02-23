@@ -17,3 +17,5 @@ $config['install_count_base'] = 1232;
 $config['archive_path'] = 'static/archives/';
 
 $config['system_alert_email'] = 'cron@oconf.org';
+
+$config['support_email'] = 'katzgrau@gmail.com';

@@ -1,6 +1,6 @@
 <?php $this->load->view('global/_new_header.php', array('title' => 'Installing Sparks')); ?>
 
-<h2>Step 2. Installing Sparks</h2>
+<h2>Guide #2: Installing Sparks</h2>
 
 <p>
     This document will explain how to install sparks with both the spark manager <em>and</em>
