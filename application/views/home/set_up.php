@@ -5,7 +5,7 @@
 <p>
     This document will explain how to install the spark package manager for <strong>CodeIgniter Reactor</strong>. It will also explain how to
     prepare your CodeIgniter installation to use sparks without the package manager. One day, this
-    package manager will be integrated into the CodeIgniter framework to facilitate rapid community code reuse.
+    package manager might be integrated into the CodeIgniter framework to facilitate rapid community code reuse.
 </p>
 
 <!-- <h4>Contents:</h4> -->

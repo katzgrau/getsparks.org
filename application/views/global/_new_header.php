@@ -30,7 +30,7 @@
 			<div class="spark-count">
 				<p>
 					<?php echo number_format(UtilityHelper::getGlobalInstallCount()); ?> Installs and Counting!
-					<a href="<?php echo base_url(); ?>set-up" title="Get Sparking!">Get Sparks Now!</a>
+                    <a href="<?php echo config_item('sparks_download_button_url'); ?>" title="Get Sparking!"><?php echo config_item('sparks_download_button_text'); ?></a>
 				</p>
 			</div>
 		</div>
