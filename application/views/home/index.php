@@ -1,6 +1,9 @@
 <?php $this->load->view('global/_new_header.php'); ?>
 
 <h2>What is Sparks?</h2>
+
+<iframe title="YouTube video player" width="480" height="292" src="http://www.youtube.com/embed/S1tnV2uX0-Q" frameborder="0" allowfullscreen style="padding-bottom: 10px;"></iframe>
+
 <p>Sparks is a package management system for Codeigniter that will allow you install high-quality libraries into your applications instantly.</p>
 <p>Imagine that you wanted to find an 'Auth' for an app you're writing. You're sure there must be something for CodeIgniter already written by another member of the community. You check the Sparks repository, and sure enough, there's a featured spark for auth on the front page.</p>
 <div class="code">$ tools/spark install auth</div>
