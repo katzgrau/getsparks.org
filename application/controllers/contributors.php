@@ -4,9 +4,9 @@ class Contributors extends CI_Controller
 {
     public function login()
     {
-        $submit = $this->input->post('submit');
+        // $submit = $this->input->post('submit');
 
-        if($submit)
+        if ($_POST)
         {
             $email    = $this->input->post('email');
             $password = $this->input->post('password');

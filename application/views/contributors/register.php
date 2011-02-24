@@ -1,82 +1,29 @@
-<?php 
-    $this->load->view('global/_header.php');
-    $this->form_validation->set_error_delimiters('<li>', '</li>');
-?>
+<?php $this->load->view('global/_new_header.php'); ?>
 
-<p>
-    Already have an account? <a href="<?php echo base_url(); ?>login">Sign-in</a>.
-</p>
+<h2>Register</h2>
 
-<ul>
-    <?php echo validation_errors(); ?>
-</ul>
+<p>Hook us up with some registration information, and we'll let you come on inside and start sparkin' up the place! (However, pyro's are encouraged to check their lighters at the door. Thx - "the Mgmt")</p>
 
-<form action="<?php echo base_url(); ?>register" method="post">
-    <div class="input-field">
-        <div class="field-name">
-            Username
-        </div>
-        <div class="field-value">
-            <input type="text" name="username" value="<?php echo set_value('username'); ?>" />
-        </div>
-    </div>
-    <div class="input-field">
-        <div class="field-name">
-            Email
-        </div>
-        <div class="field-value">
-            <input type="text" name="email" value="<?php echo set_value('email'); ?>" />
-        </div>
-    </div>
-    <div class="input-field">
-        <div class="field-name">
-            Password
-        </div>
-        <div class="field-value">
-            <input type="password" name="password" value="" />
-        </div>
-    </div>
-    <div class="input-field">
-        <div class="field-name">
-            Password Again
-        </div>
-        <div class="field-value">
-            <input type="password" name="password_again" value="" />
-        </div>
-    </div>
-    <div class="input-field">
-        <div class="field-name">
-            Real Name
-        </div>
-        <div class="field-value">
-            <input type="text" name="real_name" value="<?php echo set_value('real_name'); ?>" />
-        </div>
-    </div>
-    <div class="input-field">
-        <div class="field-name">
-            Website
-        </div>
-        <div class="field-value">
-            <input type="text" name="website" value="<?php echo set_value('website'); ?>" />
-        </div>
-    </div>
-    <div class="input-field">
-        <div class="field-name">
-            Robot Check
-        </div>
-        <div class="field-value">
-            <input type="text" name="spam_check_answer" value="<?php echo set_value('spam_check_answer'); ?>" /><br />
-            <small><?php echo $spam_question; ?></small>
-        </div>
-    </div>
-    <div class="input-field">
-        <div class="field-name">
-            Submit
-        </div>
-        <div class="field-value">
-            <input type="submit" name="submit" value="Submit" />
-        </div>
-    </div>
-</form>
+<div class="form-wrapper">
+	<form action="/register" id="register" method="post">
+		<fieldset>
+			<label for="username">User Name:</label><br class="clear" />
+			<input type="text" id="username" name="username" class="text-box" /><br class="clear" />
+			<label for="email">Email Address:</label><br class="clear" />
+			<input type="text" id="email" name="email" class="text-box" /><br class="clear" />
+			<label for="password">Password:</label><br class="clear" />
+			<input type="password" id="password" name="password" class="text-box" /><br class="clear" />
+			<label for="password_again">Confirm Password:</label><br class="clear" />
+			<input type="password" id="password_again" name="password_again" class="text-box" /><br class="clear" />
+			<label for="real_name">Full Name:</label><br class="clear" />
+			<input type="text" id="real_name" name="real_name" class="text-box" /><br class="clear" />
+			<label for="website">Web Site:</label><br class="clear" />
+			<input type="text" id="website" name="website" class="text-box" /><br class="clear" />
+			<label for="spam_check_answer">Robot Check:</label>&nbsp;&nbsp;<span class="robot-question"><?=$spam_question;?></span><br class="clear" />
+			<input type="text" id="spam_check_answer" name="spam_check_answer" class="text-box" /><br class="clear" />
+			<input type="submit" name="submit" value="Register" class="button" />
+		</fieldset>
+	</form>
+</div>
 
-<?php $this->load->view('global/_footer.php'); ?>
+<?php $this->load->view('global/_new_footer.php'); ?>

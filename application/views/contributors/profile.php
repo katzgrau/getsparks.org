@@ -1,4 +1,4 @@
-<?php $this->load->view('global/_header.php'); ?>
+<?php $this->load->view('global/_new_header.php'); ?>
 
 <h2>Profile for <?php echo $contributor->real_name; ?> (<?php echo $contributor->username; ?>)</h2>
 
@@ -40,4 +40,5 @@
             <li>Nothin' to see here..</li>
     <?php endif; ?>
 </ul>
-<?php $this->load->view('global/_footer.php'); ?>
+
+<?php $this->load->view('global/_new_footer.php'); ?>
