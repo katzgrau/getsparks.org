@@ -77,6 +77,14 @@ class Home extends CI_Controller {
 		$this->load->view('home/privacy');
 	}
 
+	function project()
+	{
+		$this->load->spark('gravatar-helper/1.1');
+		$this->load->helper('gravatar');
+		
+		$this->load->view('home/project');
+	}
+
     /**
      * The installation script
      */
