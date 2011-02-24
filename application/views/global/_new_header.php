@@ -43,3 +43,17 @@
 			
 			<div class="page-right">
 				
+				<?php if($notices = UserHelper::getNotices()): ?>
+			        <?php foreach($notices as $notice): ?>
+			            <?php list($message, $is_good) = $notice; ?>
+			            <?php if($is_good): ?>
+							<div class="message-success">
+								<p><?php echo $message; ?></p>
+							</div>
+			            <?php else: ?>
+							<div class="message-error">
+								<p><?php echo $message; ?></p>
+							</div>
+			            <?php endif; ?>
+			        <?php endforeach; ?>
+			    <?php endif; ?>

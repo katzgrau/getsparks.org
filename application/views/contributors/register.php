@@ -3,6 +3,11 @@
 <h2>Register</h2>
 
 <p>Hook us up with some registration information, and we'll let you come on inside and start sparkin' up the place! (However, pyro's are encouraged to check their lighters at the door. Thx - "the Mgmt")</p>
+<p>Already have an account? <a href="/login">Login to your account</a> now.</p>
+
+<ul>
+    <?php echo validation_errors(); ?>
+</ul>
 
 <div class="form-wrapper">
 	<form action="/register" id="register" method="post">

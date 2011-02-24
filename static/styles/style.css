@@ -67,6 +67,8 @@ div.header-wrapper { background: #333 url('/static/images/ci-logo-trans.png') to
 #page div.page-right div.left-col, #page div.page-right div.right-col { width: 355px; float: left; }
 #page div.page-right div.left-col { margin-right: 20px; }
 
+#page div.page-right table tbody tr td { padding-bottom: 4px; padding-right: 2px; }
+
 #page div.code, #page code, #page pre { font-family: Monaco, Verdana, Sans-serif; font-size: 12px; background-color: #f9f9f9;
 	border: 1px solid #D0D0D0; color: #002166; display: block; margin: 15px 0 15px 0; padding: 12px 10px 12px 10px; }
 
@@ -80,6 +82,14 @@ div.form-wrapper label { font-weight: bold; margin-bottom: 5px; }
 div.form-wrapper input.text-box { width: 400px; border: solid 1px #999; font-size: 12px; padding: 5px; margin-bottom: 10px; }
 div.form-wrapper input.button { font-size: 12px; border: solid 1px #333; background-color: #4D0202; padding: 4px 10px 5px 10px; 
 	font-weight: bold; color: #fff; -moz-border-radius: 5px; border-radius: 5px; margin-top: 5px; }
+
+/* ## Success Message ## */
+#page div.message-success { padding: 5px 10px; background-color: #18c74a; margin-bottom: 15px; }
+#page div.message-success p { font-size: 1.1em; font-weight: bold; color: #fff; margin: 0; }
+
+/* ## Error Message ## */
+#page div.message-error { padding: 5px; background-color: #ef6464; margin-bottom: 15px; }
+#page div.message-error p { font-size: 1.1em; font-weight: bold; color: #fff; margin: 0; }
 
 #footer { border-top: solid 3px #333; font-size: 12px; color: #fff; padding-top: 10px; }
 #footer p { text-align: center; margin-bottom: 10px; }

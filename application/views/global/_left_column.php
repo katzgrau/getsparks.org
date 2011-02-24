@@ -46,13 +46,5 @@
 		</ul>
 	</div>
 	<?php } ?>
-	
-	<!--
-	<div class="info-box clearfix">
-		<h2>Recent News</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris euismod congue ligula quis pellentesque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris luctus consectetur lectus, in porttitor felis dictum ut. Pellentesque nec mi eget nisl sagittis ultricies. Quisque nunc nulla, facilisis nec sollicitudin vel, luctus nec elit. Vivamus imperdiet vehicula lacus, sit amet consectetur magna tristique facilisis.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris euismod congue ligula quis pellentesque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris luctus consectetur lectus, in porttitor felis dictum ut. Pellentesque nec mi eget nisl sagittis ultricies. Quisque nunc nulla, facilisis nec sollicitudin vel, luctus nec elit. Vivamus imperdiet vehicula lacus, sit amet consectetur magna tristique facilisis.</p>
-	</div>
-	-->
-	
+		
 </div>
