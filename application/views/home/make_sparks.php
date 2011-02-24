@@ -194,11 +194,173 @@ print_r($tweets);
 
 <h3>Contributing</h3>
 
-<p>This section will go through the process of contributing a spark.</p>
+<p>
+    So now you have a spark that works, and you want to contribute it to the
+    rest of the CodeIgniter world. Awesome! We're going to assume here that:
+</p>
+
+<ol>
+    <li>
+        You have an account at GitHub or BitBucket, or you run your own
+        publicly-accessible git or mercurial server. If you don't have one of
+        these, go get one and join the open-source world!
+    </li>
+    <li>
+        You know how to set up a project in your repository.
+    </li>
+    <li>
+        You know what a "Clone URL" is, and how to get a publicly-readable
+        clone URL from your repository.
+    </li>
+</ol>
+
+<p>Here's what you need to do:</p>
+
+<ol>
+    <li>
+        <p>
+        If you haven't already, copy your spark's files into your project
+        directory.
+        </p>
+    </li>
+    <li>
+        Optionally, you may add a readme file at the root of your
+        spark. Readme files are expected to be in markdown format. This readme
+        will be parsed and posted with your spark when it goes live.
+    </li>
+    <li>
+        Push the files to your repository via:
+        <code>
+            $ hg push
+        </code>
+        or
+        <code>
+            $ git push
+        </code>
+    </li>
+    <li>
+        Create and push a new tag. This should be something sane, like a version number.
+<pre>
+$ hg tag '1.0'
+$ hg add .
+$ hg commit -m "My neato releaso ;)"
+$ hg push
+</pre>
+        Or
+<pre>
+$ git tag '1.0'
+$ git push --tags
+</pre>
+    </li>
+    <li>
+        <p>
+            If you don't already have an account as GetSparks.org,
+            <a href="<?php echo base_url(); ?>register">get one</a> and log in.
+        </p>
+    </li>
+    <li>
+        <p>
+            Head over the <a href="<?php echo base_url(); ?>packages/add">spark contribution page</a>, fill out the details, and
+            create your entry. <strong>Remember</strong>, for "Clone URL," use the
+            publicly-accessible one. On GitHub, this is called your "Read Only" clone
+            URL.
+        </p>
+    </li>
+    <li>
+        <p>
+            You should now be on your project's page. You'll notice a form that
+            says "Add a New Version." This is where you enter the tag that you
+            created in step 3. Enter "1.0" and click "Create from Tag"
+        </p>
+        <p>
+            Your spark entry will be created, but marked as "unverified".
+            Over the next few minutes, the GetSparks daemons will check out
+            and validate your spark.
+        </p>
+    </li>
+    <li>
+        <p>
+            If your spark looks fine, it'll be marked
+            as verified. If there was some sort of error (like an invalid
+            clone URL), the version will be removed and you'll receive an
+            automated email explaining why. At this point, you should try to
+            fix the errors and re-register your tag on GetSparks.
+        </p>
+    </li>
+    <li>
+        <p>
+            Once your spark has been verified, version information and a download-able
+            zip will appear on the page. If you have the spark-manager installed
+            in one of your applications, you can open up a terminal and navigate to your project.
+            Try:
+            <code>
+                $ php tools\spark install [your-spark-name]
+            </code>
+            Did it work? Sweet! Go tell your friends. If not, and you think these 
+            directions are faulty in some way, <a href="mailto:<?php echo config_item('support_email'); ?>">let us know!</a>.
+        </p>
+    </li>
+</ol>
 
 
 <h3>Best Practices</h3>
 
+<ol>
+    <li>
+        <p>
+            <strong>Naming:</strong> Naming your spark so that it won't conflict with a user's existing
+            libraries or sparks is a something you should absolutely do. This is especially
+            important because of PHP's lack of namespacing in earlier, but still
+            support versions (<5.3).
+        </p>
+        <p>
+            If your spark involves a model that deals with users, you might
+            be inclined to naming the class 'User'. Instead, prefix the name
+            of the class with the name of the spark: Something like 'Birdseed_user'.
+            Keep in mind, we stick to CodeIgniter's class and file naming conventions.
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Documentation:</strong> Put your spark's documentation in a Readme file at the root of your spark.
+            The GetSparks.org spark daemon will pull down any readme file at the root
+            of your spark, and try to parse it as markdown. This means it's compatible with
+            GitHub and BitBucket's Readme format too.
+        </p>
+        <p>
+            Writing your spark documentation this way will allow you to update
+            your code and docs all in one place: your repo. How easy is that?
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Vendor Files:</strong> If you're writing a spark that uses
+            third-party libraries, and you need a place to store them, just place
+            them in a folder named 'vendor' inside your spark. Including those
+            file via require_once etc, should be done by your spark intelligently.
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Autoloading:</strong> The spark system allows you to autoload
+            anything you need in config/autoload.php. This can make things handy
+            for the end-user, but don't forget one of the major philosophies of
+            CodeIgniter: Only include what you need.
+        </p>
+    </li>
+</ol>
+
 <h3>Tips for Advanced Users</h3>
+
+<ol>
+    <li>
+        <p>
+            When working on a spark that you have as a project in github, it may be
+            much easier to manage if you set up a symbolic link in the sparks
+            directory to point to the spark project path.
+        </p>
+    </li>
+
+</ol>
 
 <?php $this->load->view('global/_new_footer.php'); ?>
