@@ -1,11 +1,11 @@
-<?php $this->load->view('global/_new_header.php', array('title' => 'How to Write a Spark')); ?>
+<?php $this->load->view('global/_new_header.php', array('title' => 'Setting Up')); ?>
 
-<h2>Step 1. Setting Up</h2>
+<h2>Guide #1: Setting Up</h2>
 
 <p>
     This document will explain how to install the spark package manager for <strong>CodeIgniter Reactor</strong>. It will also explain how to
     prepare your CodeIgniter installation to use sparks without the package manager. One day, this
-    package manager will be integrated into the CodeIgniter framework to facilitate rapid community code reuse.
+    package manager might be integrated into the CodeIgniter framework to facilitate rapid community code reuse.
 </p>
 
 <!-- <h4>Contents:</h4> -->
@@ -53,7 +53,7 @@
     <li>
         Copy and paste the following into the command line:<br />
         <code>
-            php -r "$(curl -fsSL http://www.getsparks.org/static/install.php)"
+            php -r "$(curl -fsSL <?php echo base_url(); ?>go-sparks)"
         </code>
     </li>
     <li>
@@ -70,7 +70,7 @@
     <li>Download the sparks package: <a href="<?php echo base_url(); ?>download">spark-manager.zip</a></li>
     <li>Extract the contents of the package into your CodeIgniter application root.</li>
     <li>Verify that in your root, you have a folder named 'tools'</li>
-    <li>Download the Loader class extension: <a href="<?php echo base_url(); ?>static/MY_Loader.php.txt">http://getsparks.org/static/MY_Loader.php</a></li>
+    <li>Download the Loader class extension: <a href="<?php echo config_item('sparks_loader_url'); ?>"><?php echo config_item('sparks_loader_url'); ?></a></li>
     <li>Move the Loader class to application/core/Loader.php</li>
     <li>If all goes well, continue to <a href="<?php echo base_url(); ?>get-sparks">Step 2.</a></li>
 </ol>
@@ -87,7 +87,7 @@
     <li>Navigate to the root of your CodeIgniter application (where the application and system directories reside by default)</li>
     <li>Create a directory named 'sparks'</li>
     <li>Create a new file: application/core/MY_Loader.php</li>
-    <li>Copy the contents of <a href="http://getsparks.org/static/MY_Loader.php.txt">http://getsparks.org/static/MY_Loader.php.txt</a> into the file created above.</li>
+    <li>Copy the contents of <a href="<?php echo config_item('sparks_loader_url'); ?>"><?php echo config_item('sparks_loader_url'); ?></a> into the file created above.</li>
     <li>Verify that the 'subclass_prefix' setting in application/config/config.php is set to MY_ .</li>
     <li>If all goes well, continue to <a href="<?php echo base_url(); ?>get-sparks">Step 2.</a></li>
 </ol>

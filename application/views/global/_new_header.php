@@ -4,7 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title><?php if(isset($title)) echo "$title &mdash; "; ?>CodeIgniter Sparks Repository </title>
+<title>CodeIgniter Sparks | <?php echo isset($title) ? "$title" : "The Package Manager and Repository"; ?></title>
 
 <link rel='stylesheet' type='text/css' media='all' href='/static/styles/reset.css' />
 <link rel='stylesheet' type='text/css' media='all' href='/static/styles/fancybox.css' />
@@ -25,12 +25,12 @@
 <body>
 	
 	<div id="header" class="clearfix">
-		<div class="wrapper">
+		<div class="wrapper header-wrapper">
 			<h1><a href="/" title="Sparks | Automated Package Management for Codeigniter">Sparks</a></h1>
 			<div class="spark-count">
 				<p>
 					<?php echo number_format(UtilityHelper::getGlobalInstallCount()); ?> Installs and Counting!
-					<a href="#" title="Get Sparking!">Get Sparks Now!</a>
+                    <a href="<?php echo config_item('sparks_download_button_url'); ?>" title="Get Sparking!"><?php echo config_item('sparks_download_button_text'); ?></a>
 				</p>
 			</div>
 		</div>

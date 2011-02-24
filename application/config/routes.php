@@ -19,7 +19,7 @@ $route['api/packages/(:any)/versions/(:any)/spec'] 			= "api/packages/spec/$1/$2
 
 $route['home']             = "home/index";
 $route['download']         = "home/download";
-$route['install']          = "home/install";
+$route['set-up']           = "home/set_up";
 $route['get-sparks']       = "home/get_sparks";
 $route['make-sparks']      = "home/make_sparks";
 $route['about']            = "home/about";
@@ -28,6 +28,8 @@ $route['logout']           = "contributors/logout";
 $route['register']         = "contributors/register";
 $route['contact']		   = "home/contact";
 $route['privacy']		   = "home/privacy";
+$route['go-sparks']		   = "home/go_sparks";
+$route['install']		   = "home/set_up";
 
 $route['contributors/(:any)/profile']        = "contributors/profile/$1";
 $route['contributors/(:any)/profile/edit']   = "contributors/edit/";

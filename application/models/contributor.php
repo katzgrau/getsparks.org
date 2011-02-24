@@ -1,9 +1,15 @@
 <?php
+/**
+ * The file contains a model for dealing with contributors
+ */
 
+/**
+ * This model represents a spark contributor
+ */
 class Contributor extends CI_Model
 {
     /**
-     *
+     * Insert a contributor record
      * @param <type> $data
      * @return bool
      */
@@ -62,7 +68,7 @@ class Contributor extends CI_Model
     }
 
     /**
-     *
+     * Update a contributor's data
      * @param int $id
      * @param array $data
      * @return bool

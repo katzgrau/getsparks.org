@@ -23,9 +23,9 @@ class Home extends CI_Controller {
 		$this->load->view('home/index', $data);
 	}
 
-    function install()
+    function set_up()
     {
-        $this->load->view('home/install');;
+        $this->load->view('home/set_up');;
     }
 
     function get_sparks()
@@ -60,6 +60,22 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('home/privacy');
 	}
+
+	function project()
+	{
+		$this->load->spark('gravatar-helper/1.1');
+		$this->load->helper('gravatar');
+		
+		$this->load->view('home/project');
+	}
+
+    /**
+     * The installation script
+     */
+    function go_sparks()
+    {
+        $this->load->view('home/go_sparks');
+    }
 }
 
 /* End of file welcome.php */
