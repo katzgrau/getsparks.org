@@ -203,9 +203,16 @@ class Packages extends CI_Controller
         if($term = $this->input->get_post('q'))
             $data['sparks'] = Spark::search($term);
 
+        $total = count($data['sparks']);
+
         # We'll skip the view until the new design is done
         $data['browse_type'] = 'Search';
-        $data['description'] = "Search results for Sparks with '$term' in the name or description";
+        $data['description'] = "There "
+                                .($total == 0 ? "were " : "was ")
+                                .$total
+                                ." search result"
+                                .($total == 1 ? "" : "s")
+                                ." for Sparks with '$term' in the name or description.";
         $data['is_search']   = TRUE;
 
         $this->load->view('packages/listing', $data);

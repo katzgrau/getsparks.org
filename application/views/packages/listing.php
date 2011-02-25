@@ -1,7 +1,10 @@
-<?php $this->load->view('global/_new_header.php', array('title' => 'Browse Sparks')); ?>
+<?php
+$title = ($browse_type != '' ? "$browse_type " : "") . 'Packages';
+$this->load->view('global/_new_header.php', array('title' => $title)); ?>
 
-<h2><?php echo ($browse_type != '' ? "$browse_type " : ""); ?>Packages</h2>
+<h2><?php echo $title; ?></h2>
 
+<p><?php echo $description; ?></p>
 <ul>
     <?php if(count($sparks) > 0): ?>
         <?php foreach($sparks as $spark): ?>
