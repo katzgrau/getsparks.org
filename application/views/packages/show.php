@@ -77,19 +77,21 @@
 
 
 <?php if(UserHelper::getId() == $contribution->contributor_id): ?>
-    <form action="<?php echo base_url(); ?>versions/add" method="post">
-        <p>
-        Add a new version: <br />
-        <small>
-            Note that after you add this, the spark will be processed on our end. <br/>
-            The version string you enter below should correspond to a tag in your
-            source repository. <br/>
-        </small>
-        </p>
-        <input type="text" name="version" />
-        <input type="hidden" name="spark_id" value="<?php echo $contribution->id; ?>" />
-        <input type="submit" name="submit" value="Create From Tag" />
-    </form>
+	<div class="form-wrapper clearfix">
+		<form action="<?php echo base_url(); ?>versions/add" method="post">
+	        <p>
+	        Add a new version: <br />
+	        <small>
+	            Note that after you add this, the spark will be processed on our end. <br/>
+	            The version string you enter below should correspond to a tag in your
+	            source repository. <br/>
+	        </small>
+	        </p>
+	        <input type="text" name="version" />
+	        <input type="hidden" name="spark_id" value="<?php echo $contribution->id; ?>" />
+	        <input type="submit" name="submit" value="Create From Tag" />
+	    </form>
+	</div>
 <?php endif; ?>
 
 <?php if(count($versions) > 0): ?>
