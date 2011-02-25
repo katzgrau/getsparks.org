@@ -1,3 +1,11 @@
+<?php
+
+$this->load->model('spark');
+$featured_sparks = Spark::getLatestOf(3, TRUE);
+$official_sparks = Spark::getLatestOf(3, NULL, TRUE);
+
+?>
+
 <div class="page-left">
 	
 	<div class="login-box clearfix">
