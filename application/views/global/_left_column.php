@@ -53,7 +53,7 @@ $official_sparks = Spark::getLatestOf(3, NULL, TRUE);
 				<p class="no-margin"><em><?php echo $spark->summary; ?></em></p>
 			</li>
 			<?php endforeach; ?>
-			<li class="last"><a href="#">View All Official Sparks</a></li>
+			<li class="last"><a href="<?php echo base_url(); ?>packages/browse/official">View All Official Sparks</a></li>
 		</ul>
 	</div>
 	<?php endif; ?>
@@ -73,7 +73,7 @@ $official_sparks = Spark::getLatestOf(3, NULL, TRUE);
 				<p class="no-margin"><em><?php echo $spark->summary; ?></em></p>
 			</li>
 			<?php endforeach; ?>
-			<li class="last"><a href="#">View All Featured Sparks</a></li>
+			<li class="last"><a href="<?php echo base_url(); ?>packages/browse/featured">View All Featured Sparks</a></li>
 		</ul>
 	</div>
 	<?php endif; ?>
