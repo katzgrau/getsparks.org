@@ -2,7 +2,8 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
  	font-size: 14px; color: #333; }
 
 /** Header **/
-#header { color: #fff; border-bottom: solid 15px #4D0202; padding: 15px 0 10px 0; background-color: #333; }
+#header { color: #fff; border-bottom: solid 15px #4D0202; padding: 15px 0 10px 0; background-color: #333;
+	background: #333 url('/static/images/ci-logo-trans.png') 380px -250px no-repeat; }
 
 #header h1 { font-size: 38px; float: left; padding-bottom: 5px; background: url('/static/images/ci_logo_flame_trans.png') top left no-repeat; 
 	padding-left: 45px; padding-top: 1px; text-shadow: 1px 1px 3px #111; }
@@ -44,6 +45,11 @@ div.header-wrapper { background: #333 url('/static/images/ci-logo-trans.png') to
 	color: #fff; font-weight: normal; font-size: 12px; border: solid 1px #f0f0f0; display: inline-block; 
 	padding: 3px 10px 4px 10px; border-radius: 5px; -moz-border-radius: 5px; margin-top: 2px; }
 #page div.page-left div.login-box a.register { padding: 5px 10px 7px 10px; float: right; margin-right: 5px; }
+
+#page div.page-left div.login-box div.profile-image { float: left; margin-right: 10px; }
+#page div.page-left div.login-box div.profile-links { float: left; }
+#page div.page-left div.login-box div.profile-links a { color: #fff; font-size: 12px; }
+#page div.page-left div.login-box div.profile-links dl dd { margin-bottom: 5px; }
 	
 #page div.page-left div.info-box h2 { color: #fff; margin-bottom: 10px; font-size: 20px; border-bottom: solid 1px #7d2626;
 	padding-bottom: 10px; }
@@ -62,12 +68,29 @@ div.header-wrapper { background: #333 url('/static/images/ci-logo-trans.png') to
 #page div.page-right div.left-col, #page div.page-right div.right-col { width: 355px; float: left; }
 #page div.page-right div.left-col { margin-right: 20px; }
 
+#page div.page-right table tbody tr td { padding-bottom: 4px; padding-right: 2px; }
+
 #page div.code, #page code, #page pre { font-family: Monaco, Verdana, Sans-serif; font-size: 12px; background-color: #f9f9f9;
 	border: 1px solid #D0D0D0; color: #002166; display: block; margin: 15px 0 15px 0; padding: 12px 10px 12px 10px; }
 
 #page pre {
     line-height: 1.4;
 }
+
+/* Form */
+div.form-wrapper label, input { float: left; }
+div.form-wrapper label { font-weight: bold; margin-bottom: 5px; }
+div.form-wrapper input.text-box { width: 400px; border: solid 1px #999; font-size: 12px; padding: 5px; margin-bottom: 10px; }
+div.form-wrapper input.button { font-size: 12px; border: solid 1px #333; background-color: #4D0202; padding: 4px 10px 5px 10px; 
+	font-weight: bold; color: #fff; -moz-border-radius: 5px; border-radius: 5px; margin-top: 5px; }
+
+/* ## Success Message ## */
+#page div.message-success { padding: 5px 10px; background-color: #18c74a; margin-bottom: 15px; }
+#page div.message-success p { font-size: 1.1em; font-weight: bold; color: #fff; margin: 0; }
+
+/* ## Error Message ## */
+#page div.message-error { padding: 5px; background-color: #ef6464; margin-bottom: 15px; }
+#page div.message-error p { font-size: 1.1em; font-weight: bold; color: #fff; margin: 0; }
 
 #footer { border-top: solid 3px #333; font-size: 12px; color: #fff; padding-top: 10px; }
 #footer p { text-align: center; margin-bottom: 10px; }

@@ -3,17 +3,26 @@
 	<div class="login-box clearfix">
 		
 		<?php if (!UserHelper::isLoggedIn()) { ?>
-			<form action="<?php echo base_url(); ?>login" method="post">
+			<form action="/login" method="post">
 				<fieldset>
-					<label for="user_email">Email Address:</label><br class="clear" />
-					<input type="text" id="user_email" name="user[email]" class="text-box" /><br class="clear" />
-					<label for="user_pass">Password:</label><br class="clear" />
-					<input type="text" id="user_pass" name="user[pass]" class="text-box" /><br class="clear" />
-					<input type="submit" id="submit_login" class="submit" value="Login">
+					<label for="email">Email Address:</label><br class="clear" />
+					<input type="text" id="email" name="email" class="text-box" /><br class="clear" />
+					<label for="password">Password:</label><br class="clear" />
+					<input type="password" id="password" name="password" class="text-box" /><br class="clear" />
+					<input type="submit" id="submit" class="submit" value="Login">
 				</fieldset>
 			</form>
 		<?php } else { ?>
-			<p>Logged In</p>
+			<div class="profile-image">
+				<img src="<?php echo UserHelper::getAvatarURL(80); ?>" alt="Gravatar" />
+			</div>
+			<div class="profile-links">
+				<dl>
+					<dd><a href="/contributors/profile/<?=UserHelper::getUsername();?>" title="Your Profile">View Profile</a></dd>
+					<dd><a href="/contributors/<?=UserHelper::getUsername();?>/profile/edit" title="Your Profile">Update Profile</a></dd>
+					<dd><a href="/logout" title="Logout">Logout</a></dd>
+				</dl>
+			</div>
 		<?php } ?>
 		
 	</div>
@@ -37,13 +46,5 @@
 		</ul>
 	</div>
 	<?php } ?>
-	
-	<!--
-	<div class="info-box clearfix">
-		<h2>Recent News</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris euismod congue ligula quis pellentesque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris luctus consectetur lectus, in porttitor felis dictum ut. Pellentesque nec mi eget nisl sagittis ultricies. Quisque nunc nulla, facilisis nec sollicitudin vel, luctus nec elit. Vivamus imperdiet vehicula lacus, sit amet consectetur magna tristique facilisis.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris euismod congue ligula quis pellentesque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris luctus consectetur lectus, in porttitor felis dictum ut. Pellentesque nec mi eget nisl sagittis ultricies. Quisque nunc nulla, facilisis nec sollicitudin vel, luctus nec elit. Vivamus imperdiet vehicula lacus, sit amet consectetur magna tristique facilisis.</p>
-	</div>
-	-->
-	
+		
 </div>

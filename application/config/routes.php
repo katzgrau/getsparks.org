@@ -28,6 +28,7 @@ $route['logout']           = "contributors/logout";
 $route['register']         = "contributors/register";
 $route['contact']		   = "home/contact";
 $route['privacy']		   = "home/privacy";
+$route['project']		   = "home/project";
 $route['go-sparks']		   = "home/go_sparks";
 $route['install']		   = "home/set_up";
 
