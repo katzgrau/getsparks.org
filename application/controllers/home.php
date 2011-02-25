@@ -12,15 +12,10 @@ class Home extends CI_Controller {
         if(config_item('is_production'))
             $this->output->cache(5);
 
-        $this->load->model('spark');
         $this->load->spark('gravatar-helper/1.1');
         $this->load->helper('gravatar');
 
-        $data['top_sparks'] = Spark::getTop();
-        $data['featured_sparks'] = Spark::getLatestOf(3, TRUE);
-        $data['official_sparks'] = Spark::getLatestOf(3, NULL, TRUE);
-
-		$this->load->view('home/index', $data);
+		$this->load->view('home/index');
 	}
 
     function set_up()
