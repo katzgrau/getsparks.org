@@ -165,38 +165,49 @@ class Packages extends CI_Controller
     {
         $this->load->model('spark');
         $sparks = array();
+        $data['browse_type'] = '';
+        $data['description'] = '';
 
         if($type == 'latest')
         {
-            $sparks = Spark::getTop(100);
+            $sparks              = Spark::getTop(100);
+            $data['browse_type'] = 'Browse Latest';
+            $data['description'] = 'These are the most recently registered sparks';
         }
         elseif($type == 'featured')
         {
-            $sparks = Spark::getLatestOf(FALSE, TRUE);
+            $sparks              = Spark::getLatestOf(FALSE, TRUE);
+            $data['browse_type'] = 'Browse Featured';
+            $data['description'] = 'These are sparks that the GetSparks team thinks are worth a spin';
         }
         elseif($type == 'official')
         {
-            $sparks = Spark::getLatestOf(FALSE, NULL, TRUE);
+            $sparks              = Spark::getLatestOf(FALSE, NULL, TRUE);
+            $data['browse_type'] = 'Browse Official';
+            $data['description'] = 'These are sparks written by GetSparks, the Reactor Team, or CodeIgntier gurus';
         }
 
         # Wait until the views are donw
         $data['sparks'] = $sparks;
-        print_r($data); exit;
         
-        $this->load->view('packages/browse');
+        $this->load->view('packages/listing', $data);
     }
 
     function search()
     {
         $this->load->model('spark');
-        $term = $this->input->get_post('q');
 
-        $sparks = Spark::search($term);
-
-        $data['results'] = $sparks;
+        $data['sparks'] = array();
+        $term = FALSE;
+        
+        if($term = $this->input->get_post('q'))
+            $data['sparks'] = Spark::search($term);
 
         # We'll skip the view until the new design is done
-        print_r($data); exit;
-        $this->load->view('packages/search');
+        $data['browse_type'] = 'Search';
+        $data['description'] = "Search results for Sparks with '$term' in the name or description";
+        $data['is_search']   = TRUE;
+
+        $this->load->view('packages/listing', $data);
     }
 }
