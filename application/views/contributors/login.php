@@ -10,7 +10,7 @@
 			<input type="text" id="email" name="email" class="text-box" /><br class="clear" />
 			<label for="password">Password:</label><br class="clear" />
 			<input type="password" id="password" name="password" class="text-box" /><br class="clear" />
-			<input type="submit" name="submit" value="Register" class="button" />
+			<input type="submit" name="submit" value="Login" class="button" />
 		</fieldset>
 	</form>
 </div>
