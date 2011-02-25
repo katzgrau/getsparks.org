@@ -46,5 +46,25 @@
 		</ul>
 	</div>
 	<?php } ?>
+	
+	<?php if (isset($featured_sparks)) { ?>
+	<div class="info-box clearfix">
+		<h2>Featured Sparks</h2>
+		<ul>
+			<?php foreach ($featured_sparks as $spark) { ?>
+			<li class="clearfix">
+				<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><img src="<?php echo Gravatar_helper::from_email($spark->email, null, 40); ?>" /></a>
+				<p class="no-margin">
+					<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a><br />
+					by: <a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile"><?php echo $spark->username; ?></a>
+				</p>
+				<br class="clear" />
+				<p class="no-margin"><em><?php echo $spark->summary; ?></em></p>
+			</li>
+			<?php } ?>
+			<li class="last"><a href="#">View All Featured Sparks</a></li>
+		</ul>
+	</div>
+	<?php } ?>
 		
 </div>

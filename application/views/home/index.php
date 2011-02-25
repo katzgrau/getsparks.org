@@ -11,6 +11,7 @@
 <div class="code">C:\app> php tools/spark install auth</div>
 <p>How <em>easy</em> was that? You should really <a href="/install">install sparks now</a>, don't you think?</p>
 
+<!--
 <br /><br />
 
 <div class="left-col">
@@ -48,6 +49,7 @@
 		<li class="last"><a href="#">View All Recent Sparks</a></li>
 	</ul>
 </div>
+-->
 
 <!--
 <p class="message">
