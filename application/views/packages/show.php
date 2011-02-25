@@ -5,7 +5,7 @@
     <em><?php echo $contribution->summary; ?></em>
 </p>
 
-<table>
+<table style="margin-bottom:15px">
     <tr>
         <td>Contributor</td>
         <td>: <a href="<?php echo base_url(); ?>contributors/<?php echo $contributor->username; ?>/profile"><?php echo $contributor->username; ?></a></td>
@@ -71,7 +71,7 @@
                 <a href="<?php echo $version->archive_url; ?>" class="download">Get <?php echo $contribution->name; ?>-v<?php echo $version->version; ?>.zip</a>
             </li>
     <?php else: ?>
-            <li>Nothin' to see here..</li>
+            <li class="last" style="text-align:left; margin-bottom:15px">Apparently there isn't a latest version. Hmph. Shocker.</li>
     <?php endif; ?>
 </ul>
 
@@ -132,7 +132,7 @@
             </li>
         <?php $count++; endforeach; ?>
     <?php else: ?>
-            <li>Nothin' to see here..</li>
+            <li class="last" style="text-align:left; margin-bottom:15px">Apparently there any older versions. Hmph. Shocker.</li>
     <?php endif; ?>
 </ul>
 
