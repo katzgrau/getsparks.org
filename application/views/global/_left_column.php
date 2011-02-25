@@ -20,6 +20,7 @@
 				<dl>
 					<dd><a href="/contributors/profile/<?=UserHelper::getUsername();?>" title="Your Profile">View Profile</a></dd>
 					<dd><a href="/contributors/<?=UserHelper::getUsername();?>/profile/edit" title="Your Profile">Update Profile</a></dd>
+					<dd><a href="/packages/add" title="Create a Spark">Create a Spark</a></dd>
 					<dd><a href="/logout" title="Logout">Logout</a></dd>
 				</dl>
 			</div>
