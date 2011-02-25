@@ -10,13 +10,17 @@ class Contributor extends CI_Model
 {
     /**
      * Insert a contributor record
-     * @param <type> $data
+     * @param array $data
      * @return bool
      */
     public static function insert($data)
     {
         $CI = &get_instance();
         $data['password'] = sha1($data['password']);
+
+        if(array_key_exists('email', $data))
+            $data['email_hash'] = UtilityHelper::hashEmail($data['email']);
+
         $data['modified'] = date('Y-m-d H:i:s');
         $data['created']  = date('Y-m-d H:i:s');
         return $CI->db->insert('contributors', $data);
@@ -88,6 +92,9 @@ class Contributor extends CI_Model
                 $data['password'] = sha1($data['password']);
             }
         }
+
+        if(array_key_exists('email', $data))
+            $data['email_hash'] = UtilityHelper::hashEmail($data['email']);
 
         $CI->db->where('id', $id);
         return $CI->db->update('contributors', $data);

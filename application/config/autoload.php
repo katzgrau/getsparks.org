@@ -39,7 +39,7 @@
 
 $autoload['packages'] = array();
 
-
+$autoload['sparks'] = array('gravatar-helper/1.1');
 /*
 | -------------------------------------------------------------------
 |  Auto-load Libraries
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'session');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('user', 'url', 'array', 'utility');
+$autoload['helper'] = array('user', 'url', 'array', 'utility', 'gravatar');
 
 
 /*

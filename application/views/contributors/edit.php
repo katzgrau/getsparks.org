@@ -10,7 +10,7 @@ $this->form_validation->set_error_delimiters('<li>', '</li>');
 </ul>
 
 <div class="form-wrapper form-wrapper-full">
-	<form action="/contributors/<?=UserHelper::getUsername();?>/profile/edit" method="post">
+	<form action="/contributors/<?php echo UserHelper::getUsername(); ?>/profile/edit" method="post">
 		<fieldset>
 			<label for="email">Email Address:</label><br class="clear" />
 			<input type="text" id="email" name="email" class="text-box" value="<?php echo set_value('email', $contributor->email); ?>" /><br class="clear" />

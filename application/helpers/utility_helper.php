@@ -33,4 +33,9 @@ class UtilityHelper
 
         return;
     }
+
+    public static function hashEmail($email)
+    {
+        return md5(strtolower(trim($email)));
+    }
 }

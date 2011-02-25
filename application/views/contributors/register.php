@@ -24,7 +24,7 @@
 			<input type="text" id="real_name" name="real_name" class="text-box" /><br class="clear" />
 			<label for="website">Web Site:</label><br class="clear" />
 			<input type="text" id="website" name="website" class="text-box" /><br class="clear" />
-			<label for="spam_check_answer">Robot Check:</label>&nbsp;&nbsp;<span class="robot-question"><?=$spam_question;?></span><br class="clear" />
+			<label for="spam_check_answer">Robot Check:</label>&nbsp;&nbsp;<span class="robot-question"><?php echo $spam_question; ?></span><br class="clear" />
 			<input type="text" id="spam_check_answer" name="spam_check_answer" class="text-box" /><br class="clear" />
 			<input type="submit" name="submit" value="Register" class="button" />
 		</fieldset>

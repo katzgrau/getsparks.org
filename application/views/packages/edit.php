@@ -3,7 +3,7 @@
     $this->form_validation->set_error_delimiters('<li>', '</li>');
 ?>
 
-<h2>Update Spark - <?=$contribution->name;?></h2>
+<h2>Update Spark - <?php echo $contribution->name; ?></h2>
 <p>Update away - try not to break anything though...we're getting low on sugar free Red Bull.</p>
 
 <ul>

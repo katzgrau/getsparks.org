@@ -10,7 +10,7 @@ $official_sparks = Spark::getLatestOf(3, NULL, TRUE);
 	
 	<div class="login-box clearfix">
 		
-		<?php if (!UserHelper::isLoggedIn()) { ?>
+		<?php if (!UserHelper::isLoggedIn()): ?>
 			<form action="/login" method="post">
 				<fieldset>
 					<label for="email">Email Address:</label><br class="clear" />
@@ -20,27 +20,27 @@ $official_sparks = Spark::getLatestOf(3, NULL, TRUE);
 					<input type="submit" id="submit" class="submit" value="Login">
 				</fieldset>
 			</form>
-		<?php } else { ?>
+		<?php else: ?>
 			<div class="profile-image">
 				<img src="<?php echo UserHelper::getAvatarURL(80); ?>" alt="Gravatar" />
 			</div>
 			<div class="profile-links">
 				<dl>
-					<dd><a href="/contributors/profile/<?=UserHelper::getUsername();?>" title="Your Profile">View Profile</a></dd>
-					<dd><a href="/contributors/<?=UserHelper::getUsername();?>/profile/edit" title="Your Profile">Update Profile</a></dd>
+					<dd><a href="/contributors/profile/<?php echo UserHelper::getUsername(); ?>" title="Your Profile">View Profile</a></dd>
+					<dd><a href="/contributors/<?php echo UserHelper::getUsername(); ?>/profile/edit" title="Your Profile">Update Profile</a></dd>
 					<dd><a href="/packages/add" title="Create a Spark">Create a Spark</a></dd>
 					<dd><a href="/logout" title="Logout">Logout</a></dd>
 				</dl>
 			</div>
-		<?php } ?>
+		<?php endif; ?>
 		
 	</div>
 	
-	<?php if (isset($official_sparks)) { ?>
+	<?php if (isset($official_sparks)): ?>
 	<div class="info-box clearfix">
 		<h2>Official Sparks</h2>
 		<ul>
-			<?php foreach ($official_sparks as $spark) { ?>
+			<?php foreach ($official_sparks as $spark): ?>
 			<li class="clearfix">
 				<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><img src="<?php echo Gravatar_helper::from_email($spark->email, null, 40); ?>" /></a>
 				<p class="no-margin">
@@ -50,17 +50,17 @@ $official_sparks = Spark::getLatestOf(3, NULL, TRUE);
 				<br class="clear" />
 				<p class="no-margin"><em><?php echo $spark->summary; ?></em></p>
 			</li>
-			<?php } ?>
+			<?php endforeach; ?>
 			<li class="last"><a href="#">View All Official Sparks</a></li>
 		</ul>
 	</div>
-	<?php } ?>
+	<?php endif; ?>
 	
-	<?php if (isset($featured_sparks)) { ?>
+	<?php if (isset($featured_sparks)): ?>
 	<div class="info-box clearfix">
 		<h2>Featured Sparks</h2>
 		<ul>
-			<?php foreach ($featured_sparks as $spark) { ?>
+			<?php foreach ($featured_sparks as $spark): ?>
 			<li class="clearfix">
 				<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><img src="<?php echo Gravatar_helper::from_email($spark->email, null, 40); ?>" /></a>
 				<p class="no-margin">
@@ -70,10 +70,10 @@ $official_sparks = Spark::getLatestOf(3, NULL, TRUE);
 				<br class="clear" />
 				<p class="no-margin"><em><?php echo $spark->summary; ?></em></p>
 			</li>
-			<?php } ?>
+			<?php endforeach; ?>
 			<li class="last"><a href="#">View All Featured Sparks</a></li>
 		</ul>
 	</div>
-	<?php } ?>
+	<?php endif; ?>
 		
 </div>

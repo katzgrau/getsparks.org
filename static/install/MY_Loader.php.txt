@@ -110,34 +110,9 @@ class MY_Loader extends CI_Loader
         }
 
         // Looks for a spark's specific autoloader
-        $this->_ci_path_autoloader($spark_path);
+        $this->_ci_autoloader($spark_path);
 
         return true;
-    }
-
-    /**
-     * Override the CI autoloader so we can include autoloading of sparks
-     */
-    function  _ci_autoloader()
-    {
-        parent::_ci_autoloader();
-
-        // This was already done in the parent, but we need to get it again
-        include(APPPATH.'config/autoload'.EXT);
-
-        if ( ! isset($autoload))
-		{
-			return FALSE;
-		}
-
-		// Autoload sparks
-		if (isset($autoload['sparks']))
-		{
-			foreach ($autoload['sparks'] as $spark)
-			{
-				$this->spark($spark);
-			}
-		}
     }
 
 	/**
@@ -150,9 +125,16 @@ class MY_Loader extends CI_Loader
 	 * @param	array
 	 * @return	void
 	 */
-	function _ci_path_autoloader($basepath)
+	function _ci_autoloader($basepath = NULL)
 	{
-        $autoload_path = $basepath.'config/autoload'.EXT;
+        if($basepath !== NULL)
+        {
+            $autoload_path = $basepath.'config/autoload'.EXT;
+        }
+        else
+        {
+            $autoload_path = APPPATH.'config/autoload'.EXT;
+        }
 
         if(! file_exists($autoload_path))
         {
@@ -172,6 +154,15 @@ class MY_Loader extends CI_Loader
 			foreach ($autoload['packages'] as $package_path)
 			{
 				$this->add_package_path($package_path);
+			}
+		}
+
+        // Autoload sparks
+		if (isset($autoload['sparks']))
+		{
+			foreach ($autoload['sparks'] as $spark)
+			{
+				$this->spark($spark);
 			}
 		}
 
@@ -228,4 +219,3 @@ class MY_Loader extends CI_Loader
 		}
 	}
 }
-

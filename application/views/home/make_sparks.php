@@ -225,7 +225,9 @@ print_r($tweets);
     </li>
     <li>
         Optionally, you may add a readme file at the root of your
-        spark. Readme files are expected to be in markdown format. This readme
+        spark. Readme files are expected to be in
+        <a target="_blank" href="http://daringfireball.net/projects/markdown/syntax">
+            markdown format</a>. This readme
         will be parsed and posted with your spark when it goes live.
     </li>
     <li>
@@ -324,8 +326,9 @@ $ git push --tags
         <p>
             <strong>Documentation:</strong> Put your spark's documentation in a Readme file at the root of your spark.
             The GetSparks.org spark daemon will pull down any readme file at the root
-            of your spark, and try to parse it as markdown. This means it's compatible with
-            GitHub and BitBucket's Readme format too.
+            of your spark, and try to parse it as 
+            <a target="_blank" href="http://daringfireball.net/projects/markdown/syntax">markdown</a>.
+            This means it's compatible with GitHub and BitBucket's Readme format too.
         </p>
         <p>
             Writing your spark documentation this way will allow you to update
