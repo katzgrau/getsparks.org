@@ -10,7 +10,7 @@
     <?php echo validation_errors(); ?>
 </ul>
 
-<div class="form-wrapper form-wrapper-long">
+<div class="form-wrapper form-wrapper-full">
 	<form action="<?php echo current_url(); ?>" method="post">
 
 		<label for="name">Package Name:</label><br class="clear" />
