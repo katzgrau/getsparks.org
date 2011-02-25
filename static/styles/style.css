@@ -19,7 +19,7 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #header div.nav dl dd { float: left; }
 #header div.nav dl dd a { display: inline-block; color: #fff; text-decoration: none; padding: 10px 10px 11px 10px;
 	text-shadow: 1px 1px 3px #111; }
-#header div.nav dl dd a:hover { background-color: #333; }
+#header div.nav dl dd a:hover { background-color: #d14000; }
 	
 #header div.header-wrapper { padding: 15px 0 10px 0; background: #333 url('/static/images/ci-logo-trans.png') 175px -250px no-repeat; }
 
@@ -53,9 +53,11 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #page div.page-left div.login-box a.register { padding: 5px 10px 7px 10px; float: right; margin-right: 5px; }
 
 #page div.page-left div.login-box div.profile-image { float: left; margin-right: 10px; }
-#page div.page-left div.login-box div.profile-links { float: left; }
+#page div.page-left div.login-box div.profile-links { float: left; width: 130px; }
 #page div.page-left div.login-box div.profile-links a { color: #fff; font-size: 12px; }
-#page div.page-left div.login-box div.profile-links dl dd { margin-bottom: 5px; }
+#page div.page-left div.login-box div.profile-links dl dd { margin-bottom: 3px; padding-bottom: 3px; 
+	border-bottom: dashed 1px #7d2626; display: block; }
+#page div.page-left div.login-box div.profile-links dl dd.last { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
 	
 #page div.page-left div.info-box h2 { color: #fff; margin-bottom: 10px; font-size: 20px; border-bottom: solid 1px #7d2626;
 	padding-bottom: 10px; }
