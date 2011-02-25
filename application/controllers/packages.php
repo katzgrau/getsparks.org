@@ -61,7 +61,7 @@ class Packages extends CI_Controller
             }
         }
 
-        $this->load->view('packages/add', $data);
+        $this->load->view('packages/add');
     }
 
     public function edit($package_name)
