@@ -3,12 +3,12 @@
     $this->form_validation->set_error_delimiters('<li>', '</li>');
 ?>
 
+<h2>Create a Spark</h2>
+<p>To begin, fill out the required information below.</p>
+
 <ul>
     <?php echo validation_errors(); ?>
 </ul>
-
-<h2>Create a Spark</h2>
-<p>To begin, fill out the required information below.</p>
 
 <div class="form-wrapper form-wrapper-full">
 	<form action="<?php echo base_url(); ?>packages/add" method="post">
