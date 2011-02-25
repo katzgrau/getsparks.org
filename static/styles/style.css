@@ -76,6 +76,8 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
     line-height: 1.4;
 }
 
+#page small { font-size: 12px; }
+
 /* Form */
 div.form-wrapper label, input { float: left; }
 div.form-wrapper label { font-weight: bold; margin-bottom: 5px; }
