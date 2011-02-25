@@ -34,7 +34,7 @@
 	<input type="text" id="base_location" name="base_location" class="text-box" value="<?php echo set_value('base_location', $contribution->base_location); ?>" /><br class="clear" />
 	<span class="helper">e.g., https://bitbucket.org/katzgrau/ci-sparks-repo</span><br class="clear" />
 	
-	<input type="submit" name="submit" value="Create Spark" class="button" />
+	<input type="submit" name="submit" value="Update Spark" class="button" />
 	
 </form>
 
