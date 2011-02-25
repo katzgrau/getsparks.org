@@ -32,10 +32,12 @@ class Packages extends CI_Controller
 
         $this->load->library('form_validation');
         $this->load->helper('form_helper');
+		$this->load->model('spark');
 
-        $submit = $this->input->post('submit');
+		$data['featured_sparks'] = Spark::getLatestOf(3, TRUE);
+        $data['official_sparks'] = Spark::getLatestOf(3, NULL, TRUE);
 
-        if($submit)
+        if ($_POST)
         {
             if($this->form_validation->run('add-package'))
             {
@@ -62,7 +64,7 @@ class Packages extends CI_Controller
             }
         }
 
-        $this->load->view('packages/add');
+        $this->load->view('packages/add', $data);
     }
 
     public function edit($package_name)
