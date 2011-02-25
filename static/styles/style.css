@@ -79,9 +79,18 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 /* Form */
 div.form-wrapper label, input { float: left; }
 div.form-wrapper label { font-weight: bold; margin-bottom: 5px; }
-div.form-wrapper input.text-box { width: 400px; border: solid 1px #999; font-size: 12px; padding: 5px; margin-bottom: 10px; }
+div.form-wrapper input.text-box, div.form-wrapper textarea, div.form-wrapper select.drop-down { width: 400px; 
+	border: solid 1px #999; font-size: 12px; padding: 5px; margin-bottom: 10px; }
+div.form-wrapper textarea { height: 175px; }
+div.form-wrapper select.drop-down { width: 411px; }
+div.form-wrapper select.drop-down-small { width: 150px; }
 div.form-wrapper input.button { font-size: 12px; border: solid 1px #333; background-color: #4D0202; padding: 4px 10px 5px 10px; 
 	font-weight: bold; color: #fff; -moz-border-radius: 5px; border-radius: 5px; margin-top: 5px; }
+	
+div.form-wrapper span.helper { color: #999; font-size: 12px; font-style: italic; float: left; margin-bottom: 10px; margin-top: -5px; }
+	
+div.form-wrapper-full input.text-box, 
+	div.form-wrapper-full textarea { width: 718px; }
 
 /* ## Success Message ## */
 #page div.message-success { padding: 5px 10px; background-color: #18c74a; margin-bottom: 15px; }
