@@ -17,20 +17,25 @@ class Home extends CI_Controller {
 
 		$this->load->view('home/index');
 	}
+	
+	function version2()
+	{
+		$this->load->view('home/version2');
+	}
 
     function set_up()
     {
-        $this->load->view('home/set_up');;
+        $this->load->view('home/set_up');
     }
 
     function get_sparks()
     {
-        $this->load->view('home/get_sparks');;
+        $this->load->view('home/get_sparks');
     }
 
     function make_sparks()
     {
-        $this->load->view('home/make_sparks');;
+        $this->load->view('home/make_sparks');
     }
 
     function about()
