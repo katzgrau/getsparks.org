@@ -2,8 +2,6 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
  	font-size: 14px; color: #333; }
 
 /** Header **/
-/* #header { color: #fff; border-bottom: solid 15px #4D0202; padding: 15px 0 10px 0; background-color: #333;
-	background: #333 url('/static/images/ci-logo-trans.png') 380px -250px no-repeat; } */
 #header { color: #fff; border-bottom: solid 15px #4D0202; background-color: #333; }
 
 #header h1 { font-size: 38px; float: left; padding-bottom: 5px; background: url('/static/images/ci_logo_flame_trans.png') top left no-repeat; 
