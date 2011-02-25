@@ -34,9 +34,6 @@ class Packages extends CI_Controller
         $this->load->helper('form_helper');
 		$this->load->model('spark');
 
-		$data['featured_sparks'] = Spark::getLatestOf(3, TRUE);
-        $data['official_sparks'] = Spark::getLatestOf(3, NULL, TRUE);
-
         if ($_POST)
         {
             if($this->form_validation->run('add-package'))
