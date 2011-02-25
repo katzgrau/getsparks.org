@@ -84,7 +84,7 @@ class Packages extends CI_Controller
             }
             else
             {
-                UserHelper::setNotice("Whoops, there were some errors..", FALSE);
+                UserHelper::setNotice("Whoops, there were some errors...", FALSE);
             }
         }
 
