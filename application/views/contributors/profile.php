@@ -37,8 +37,9 @@
             </li>
         <?php endforeach; ?>
     <?php else: ?>
-            <li>Nothin' to see here..</li>
+            <li>You haven't contributed any sparks yet.</li>
     <?php endif; ?>
+	<li class="last" style="text-align:left"><a href="/packages/add" title="Create a Spark">Create a Spark</a></li>
 </ul>
 
 <?php $this->load->view('global/_new_footer.php'); ?>
