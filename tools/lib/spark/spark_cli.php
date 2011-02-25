@@ -4,7 +4,7 @@ require_once dirname(__FILE__) . '/spark_utils.php';
 require_once dirname(__FILE__) . '/spark_exception.php';
 require_once dirname(__FILE__) . '/spark_source.php';
 
-define('SPARK_VERSION', '0.0.1');
+define('SPARK_VERSION', '0.0.2');
 define('SPARK_PATH', './sparks');
 
 class SparkCLI {
@@ -13,6 +13,7 @@ class SparkCLI {
         'install' => 'install',
         'list' => 'lister',
         'remove' => 'remove',
+        'search' => 'search',
         'sources' => 'sources',
         'version' => 'version',
         'help' => 'help',
@@ -38,8 +39,6 @@ class SparkCLI {
 
     private function index($args) {
         SparkUtils::line('Spark (v' . SPARK_VERSION . ')');
-        SparkUtils::line('by John Crepezzi (@seejohnrun) and Kenny Katzgrau (@_kennyk_)');
-        SparkUtils::line();
         SparkUtils::line('For help: `php tools/spark help`');
     }
 
@@ -62,9 +61,23 @@ class SparkCLI {
         SparkUtils::line('install   # Install a spark');
         SparkUtils::line('remove    # Remove a spark');
         SparkUtils::line('list      # List installed sparks');
+        SparkUtils::line('search    # Search for a spark');
         SparkUtils::line('sources   # Display the spark source URL(s)');
         SparkUtils::line('version   # Display the installed spark version');
         SparkUtils::line('help      # This message');
+    }
+
+    private function search($args) {
+        $term = implode($args, ' ');
+        foreach($this->spark_sources as $source) {
+            $results = $source->search($term);
+            foreach ($results as $result) {
+                $result_line = $result->name;
+                // only show the source information if there are multiple sources
+                if (count($this->spark_sources) > 1) $result_line .= " (source: $source->url)";
+                SparkUtils::line($result_line);
+            }
+        }
     }
 
     private function sources() {
@@ -128,6 +141,9 @@ class SparkCLI {
 
         // did we find the details?
         if ($spark == null) throw new SparkException("Unable to find spark: $spark_name ($version) in any sources");
+
+        // verify the spark, and put out warnings if needed
+        $spark->verify();
 
         // retrieve the spark
         SparkUtils::notice("From Downtown! Retrieving spark from " . $spark->location_detail());

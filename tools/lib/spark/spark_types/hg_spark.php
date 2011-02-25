@@ -2,10 +2,18 @@
 
 class MercurialSpark extends Spark {
 
-    function __construct($name, $data) {
-        if (!self::hg_installed()) throw new SparkException('Mercurial must be installed to use this spark');
-        parent::__construct($name, $data);
-        $this->tag = $this->data->version;
+    function __construct($data) {
+        parent::__construct($data);
+        $this->tag = $this->version;
+    }
+
+    static function get_spark($data) {
+        if (self::hg_installed()) {
+            return new MercurialSpark($data);
+        } else {
+            SparkUtils::warning('Mercurial not found - reverting to archived copy');
+            return new ZipSpark($data);
+        }
     }
 
     private static function hg_installed() {

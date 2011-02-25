@@ -2,10 +2,19 @@
 
 class GitSpark extends Spark {
 
-    function __construct($name, $data) {
+    function __construct($data) {
         if (!self::git_installed()) throw new SparkException('You have to have git to install this spark.');
-        parent::__construct($name, $data);
-        $this->tag = $this->data->version;
+        parent::__construct($data);
+        $this->tag = $this->version;
+    }
+
+    static function get_spark($data) {
+        if (self::git_installed()) {
+            return new GitSpark($data);
+        } else {
+            SparkUtils::warning('Git not found - reverting to archived copy');
+            return new ZipSpark($data);
+        }
     }
 
     private static function git_installed() {
