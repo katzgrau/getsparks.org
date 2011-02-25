@@ -3,7 +3,7 @@
 <h2>Login</h2>
 <p>You know the drill - email &amp; password please. Don't have an account yet? <a href="/register">Register for one</a> right now.</p>
 
-<div class="form-wrapper">
+<div class="form-wrapper form-wrapper-full">
 	<form action="/login" method="post">
 		<fieldset>
 			<label for="email">Email Address:</label><br class="clear" />

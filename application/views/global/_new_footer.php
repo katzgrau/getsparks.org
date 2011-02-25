@@ -10,7 +10,6 @@
 				<a href="/about" title="About">Why</a> | 
 				<a href="/install" title="Install">Install</a> | 
 				<a href="/register" title="Register">Register</a> | 
-				<a href="/privacy" title="Home">Privacy</a> | 
 				<a href="/contact" title="Home">Contact</a>
 			</p>
 			<p>

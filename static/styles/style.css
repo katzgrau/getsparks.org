@@ -2,7 +2,7 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
  	font-size: 14px; color: #333; }
 
 /** Header **/
-#header { color: #fff; border-bottom: solid 15px #4D0202; background-color: #333; }
+#header { color: #fff; border-bottom: solid 0 #4D0202; background-color: #333; }
 
 #header h1 { font-size: 38px; float: left; padding-bottom: 5px; background: url('/static/images/ci_logo_flame_trans.png') top left no-repeat; 
 	padding-left: 45px; padding-top: 1px; text-shadow: 1px 1px 3px #111; }
@@ -13,6 +13,13 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #header div.spark-count p a { display: inline-block; background-color: #d14000; 
 	text-decoration: none; color: #fff; font-weight: normal; padding: 13px 20px; border: solid 1px #f0f0f0; 
 	-moz-border-radius: 5px; border-radius: 5px; margin-left: 10px; -moz-box-shadow: 1px 1px 2px #000; font-size: 20px; }
+	
+#header div.nav { background-color: #4D0202; }
+#header div.nav dl {  }
+#header div.nav dl dd { float: left; }
+#header div.nav dl dd a { display: inline-block; color: #fff; text-decoration: none; padding: 10px 10px 11px 10px;
+	text-shadow: 1px 1px 3px #111; }
+#header div.nav dl dd a:hover { background-color: #333; }
 	
 #header div.header-wrapper { padding: 15px 0 10px 0; background: #333 url('/static/images/ci-logo-trans.png') 175px -250px no-repeat; }
 
