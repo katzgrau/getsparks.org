@@ -38,4 +38,4 @@
 	
 </form>
 
-<?php $this->load->view('global/_new_header.php'); ?>
+<?php $this->load->view('global/_new_footer.php'); ?>
