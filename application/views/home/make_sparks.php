@@ -152,7 +152,7 @@ function birdseed_fetch($username, $n = 10)
 {
     $base_url = config_item('twitter_api_base_url');
     $call_url = $base_url
-                . 'statuses/user_timeline.xml?screen_name='
+                . 'statuses/user_timeline.json?screen_name='
                 . $username
                 . '&count='
                 . $n;
@@ -163,13 +163,6 @@ function birdseed_fetch($username, $n = 10)
     {
         # We didn't get a valid response back. Maybe the innerwebs are down.
         return FALSE;
-    }
-
-    $return = array();
-
-    foreach($tweets->user->tweets as $tweet)
-    {
-        $return[] = $tweet;
     }
 
     return $tweets;
@@ -183,8 +176,24 @@ function birdseed_fetch($username, $n = 10)
 $this->load->spark('birdseed');
 
 # Grab _kennyk_'s tweets
-$tweets = birdeseed_fetch('_kennyk_', 5);
+$tweets = birdseed_fetch('_kennyk_', 5);
 print_r($tweets);
+</pre>
+        <p>You could then try something like this in your view:</p>
+<pre>
+&lt;?php
+
+    # Load the spark and get some tweets
+    $this->load->spark('birdseed');
+    $tweets = birdseed_fetch('_kennyk_', 5);
+
+?&gt;
+...
+&lt;ul&gt;
+    &lt;?php foreach($tweets as $tweet): ?&gt;
+        &lt;li&gt;&lt;?php echo $tweet->text; ?&gt;&lt;/li&gt;
+    &lt;?php endforeach; ?&gt;
+&lt;/ul&gt;
 </pre>
     </li>
     <li>
@@ -232,19 +241,22 @@ print_r($tweets);
     </li>
     <li>
         Push the files to your repository via:
-        <code>
-            $ hg push
-        </code>
+<pre>
+$ hg add .
+$ hg commit -m "My sweet new spark - first commit"
+$ hg push
+</pre>
         or
-        <code>
-            $ git push
-        </code>
+<pre>
+$ git add .
+$ git commit -m "My sweet new spark - first commit"
+$ git push
+</pre>
     </li>
     <li>
         Create and push a new tag. This should be something sane, like a version number.
 <pre>
 $ hg tag '1.0'
-$ hg add .
 $ hg commit -m "My neato releaso ;)"
 $ hg push
 </pre>
@@ -321,6 +333,16 @@ $ git push --tags
             of the class with the name of the spark: Something like 'Birdseed_user'.
             Keep in mind, we stick to CodeIgniter's class and file naming conventions.
         </p>
+        <p>
+            <strong>Also:</strong> GetSparks currently only accepts letters,
+            numbers, and underscores in spark names. If your spark only contains
+            a single library, it might be an idea to name your library after
+            the spark to keep things clear for the end user:
+        </p>
+<pre>
+$this->load->spark('example_spark'); # Autoloader loads a library named 'example spark'
+$this->example_spark->doSomethingCool();
+</pre>
     </li>
     <li>
         <p>

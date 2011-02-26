@@ -1,6 +1,6 @@
 <?php
 
-$config['install_prototype_win'] = 'php tools/spark install';
+$config['install_prototype_win'] = 'php tools\spark install';
 
 $config['install_prototype_nix'] = 'tools/spark install';
 

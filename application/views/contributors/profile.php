@@ -34,7 +34,7 @@
             </li>
         <?php endforeach; ?>
     <?php else: ?>
-            <li>You haven't contributed any sparks yet.</li>
+            <li>Not contributed sparks yet.</li>
     <?php endif; ?>
 	<?php if ($contributor->id == UserHelper::getId()) { ?>
 		<li class="last" style="text-align:left"><a href="/packages/add" title="Create a Spark">Create a Spark</a></li>
