@@ -1,4 +1,4 @@
-$zip    = "http://getsparks.org/static/install/spark-manager-0.0.2.zip";
+$zip    = "http://getsparks.org/static/install/spark-manager-0.0.3.zip";
 $loader = "http://getsparks.org/static/install/Loader.php.txt";
 
 if(!file_exists("application/core"))
