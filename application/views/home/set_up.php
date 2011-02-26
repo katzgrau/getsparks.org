@@ -57,7 +57,7 @@
         </code>
     </li>
     <li>
-        Press enter. If all goes well, move on to <a href="<?php echo base_url(); ?>get-sparks">Step 2.</a> If not, try the normal installation below.
+        Press enter. If all goes well, move on to <a href="<?php echo base_url(); ?>get-sparks">Get Sparks.</a> If not, try the normal installation below.
     </li>
 </ol>
 
@@ -72,7 +72,7 @@
     <li>Verify that in your root, you have a folder named 'tools'</li>
     <li>Download the Loader class extension: <a href="<?php echo config_item('sparks_loader_url'); ?>"><?php echo config_item('sparks_loader_url'); ?></a></li>
     <li>Move the Loader class to application/core/Loader.php</li>
-    <li>If all goes well, continue to <a href="<?php echo base_url(); ?>get-sparks">Step 2.</a></li>
+    <li>If all goes well, continue to <a href="<?php echo base_url(); ?>get-sparks">Get Sparks.</a></li>
 </ol>
 
 <a name="option-2"></a>
@@ -89,7 +89,7 @@
     <li>Create a new file: application/core/MY_Loader.php</li>
     <li>Copy the contents of <a href="<?php echo config_item('sparks_loader_url'); ?>"><?php echo config_item('sparks_loader_url'); ?></a> into the file created above.</li>
     <li>Verify that the 'subclass_prefix' setting in application/config/config.php is set to MY_ .</li>
-    <li>If all goes well, continue to <a href="<?php echo base_url(); ?>get-sparks">Step 2.</a></li>
+    <li>If all goes well, continue to <a href="<?php echo base_url(); ?>get-sparks">Get Sparks.</a></li>
 </ol>
 
 <a name="option-3"></a>

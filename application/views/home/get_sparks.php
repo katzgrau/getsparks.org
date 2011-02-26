@@ -40,11 +40,11 @@ You should see:
 Now your spark is installed! In your application, try:
 
 <pre>
-$this->spark->load('example-spark/1.0');      # We specify the version for now. This might change
+$this->load->spark('example-spark/1.0');      # We specify the version for now. This might change
 $this->example_spark->printHello();           # echo's "Hello from the example spark!"
 </pre>
 
-<p>Now you can install all the sparks you want. And if you feel like contributing your own, check out <a href="<?php echo base_url(); ?>make-sparks">Step 3</a>.</p>
+<p>Now you can install all the sparks you want. And if you feel like contributing your own, check out <a href="<?php echo base_url(); ?>make-sparks">Making Sparks</a>.</p>
 
 <h3>Installing Sparks Manually</h3>
 
@@ -96,6 +96,6 @@ $this->example_spark->printHello();    # echo's "Hello from the example spark!"
 </pre>
 </ol>
 
-<p>Lookin' good? Want to contribute? Check out <a href="<?php echo base_url(); ?>make-sparks">Step 3</a>.</p>
+<p>Lookin' good? Want to contribute? Check out <a href="<?php echo base_url(); ?>make-sparks">Making Sparks</a>.</p>
 
 <?php $this->load->view('global/_new_footer.php'); ?>
