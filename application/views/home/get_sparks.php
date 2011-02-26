@@ -91,7 +91,7 @@ $this->example_spark->printHello();           # echo's "Hello from the example s
 <p>Now your spark is installed! Try this from within your application:</p>
 
 <pre>
-$this->spark->load('example-spark');   # Don't forget to add '/[version]' if you added a version folder!
+$this->load->spark('example-spark');   # Don't forget to add '/[version]' if you added a version folder!
 $this->example_spark->printHello();    # echo's "Hello from the example spark!"
 </pre>
 </ol>
