@@ -162,7 +162,7 @@ function birdseed_fetch($username, $n = 10)
     if($tweets === FALSE)
     {
         # We didn't get a valid response back. Maybe the innerwebs are down.
-        return FALSE;
+        return array();
     }
 
     return $tweets;
@@ -311,7 +311,7 @@ $ git push --tags
                 $ php tools\spark install [your-spark-name]
             </code>
             Did it work? Sweet! Go tell your friends. If not, and you think these 
-            directions are faulty in some way, <a href="mailto:<?php echo config_item('support_email'); ?>">let us know!</a>.
+            directions are faulty in some way, <a href="mailto:<?php echo config_item('support_email'); ?>">let us know!</a>
         </p>
     </li>
 </ol>

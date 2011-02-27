@@ -13,7 +13,7 @@
     </tr>
     <tr>
         <td>Email</td>
-        <td>: <?php echo $contributor->email; ?></td>
+        <td>: <?php echo (UserHelper::isLoggedIn() ? $contributor->email : "Log in to view"); ?></td>
     </tr>
     <tr>
         <td>Website</td>

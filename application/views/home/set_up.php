@@ -37,8 +37,10 @@
 
 <p>
     For this option, it is required that you have the PHP Command-Line Interface (CLI) installed. 
-    If you don't, you can get it for Windows, OSX,
-    and Linux. You can also try <a href="#option-2">Option 2</a>.
+    If you don't, you can get it for OSX and Linux. For Windows, all you need to
+    do is <a href="http://php.net/manual/en/install.windows.commandline.php">make sure php.exe is in your PATH</a>.
+    If you want to avoid the command line altogether, check out
+    <a href="#option-2">Option 2</a>.
 </p>
 
 <a name="quick-start"></a>
@@ -69,7 +71,7 @@
 <ol>
     <li>Download the sparks package: <a href="<?php echo base_url(); ?>download">spark-manager.zip</a></li>
     <li>Extract the contents of the package into a folder named 'tools' in your CodeIgniter application root.</li>
-    <li>Verify that in your root, you have a folder named 'tools'</li>
+    <li>Verify that in your root, you have a folder named 'tools', and inside is a file named 'spark'</li>
     <li>Download the Loader class extension: <a href="<?php echo config_item('sparks_loader_url'); ?>"><?php echo config_item('sparks_loader_url'); ?></a></li>
     <li>Move the Loader class to application/core/MY_Loader.php</li>
     <li>If all goes well, continue to <a href="<?php echo base_url(); ?>get-sparks">Get Sparks.</a></li>
