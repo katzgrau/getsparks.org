@@ -18,4 +18,4 @@ $config['archive_path'] = 'static/archives/';
 
 $config['system_alert_email'] = 'cron@oconf.org';
 
-$config['support_email'] = 'katzgrau@gmail.com';
+$config['support_email'] = 'ohcrap@getsparks.org';
