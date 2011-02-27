@@ -117,3 +117,5 @@ div.form-wrapper-full input.text-box,
 #footer p a:hover { text-decoration: underline; }
 
 div.wrapper { width: 1000px; margin: 0 auto; }
+
+span.superscript { font-size:14px; vertical-align: super; }

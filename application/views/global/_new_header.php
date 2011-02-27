@@ -26,7 +26,7 @@
 	
 	<div id="header" class="clearfix">
 		<div class="wrapper header-wrapper clearfix">
-			<h1><a href="/" title="Sparks | Automated Package Management for Codeigniter">Sparks</a></h1>
+			<h1><a href="/" title="Sparks | Automated Package Management for Codeigniter">Sparks<span class="superscript">&nbsp;Alpha</span></a></h1>
 			<div class="spark-count">
 				<p>
 					<?php echo number_format(UtilityHelper::getGlobalInstallCount()); ?> Installs and Counting!
