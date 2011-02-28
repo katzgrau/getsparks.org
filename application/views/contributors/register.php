@@ -14,23 +14,23 @@
 		<fieldset>
 			<label for="username">User Name:</label><br class="clear" />
 			<input type="text" id="username" name="username" class="text-box" /><br class="clear" />
-			<span class="helper">Kinda like the same one you have for Twitter/Facebook/AdultFriendFinder/etc.</span><br class="clear" />
+			<span class="helper">Kinda like the same one you have for Twitter/Facebook/etc.</span><br class="clear" />
 			
 			<label for="email">Email Address:</label><br class="clear" />
 			<input type="text" id="email" name="email" class="text-box" /><br class="clear" />
-			<span class="helper">Nifty style - address@domain.com</span><br class="clear" />
+			<span class="helper">address@domain.com</span><br class="clear" />
 			
 			<label for="password">Password:</label><br class="clear" />
 			<input type="password" id="password" name="password" class="text-box" /><br class="clear" />
-			<span class="helper">What are the 5 most used passwords?</span><br class="clear" />
+			<span class="helper">Something relatively secure (because we're not enforcing any rules)</span><br class="clear" />
 			
 			<label for="password_again">Confirm Password:</label><br class="clear" />
 			<input type="password" id="password_again" name="password_again" class="text-box" /><br class="clear" />
-			<span class="helper">You probably shouldn't use those.</span><br class="clear" />
+			<span class="helper">And again</span><br class="clear" />
 			
 			<label for="real_name">Full Name:</label><br class="clear" />
 			<input type="text" id="real_name" name="real_name" class="text-box" /><br class="clear" />
-			<span class="helper">Make it nice (First Last) - like on a cover sheet for your 11th grade book report on Romeo &amp; Juliet.</span><br class="clear" />
+			<span class="helper">Make it nice (First Last) - like on a cover sheet for your 11th grade book report</span><br class="clear" />
 			
 			<label for="website">Web Site:</label><br class="clear" />
 			<input type="text" id="website" name="website" class="text-box" /><br class="clear" />
