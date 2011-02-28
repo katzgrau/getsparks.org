@@ -38,7 +38,7 @@
 			<div class="wrapper clearfix">
 				<dl style="float:left;margin-left:249px;">
 					<dd><a href="/">Home</a></dd>
-					<dd><a href="/about">Why Sparks</a></dd>
+					<dd><a href="/packages/browse/latest">Browse</a></dd>
 					<dd><a href="/install">Install/Setup</a></dd>
 					<dd><a href="/get-sparks">Get Sparks</a></dd>
 					<dd><a href="/make-sparks">Make Sparks</a></dd>

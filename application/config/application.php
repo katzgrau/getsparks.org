@@ -1,8 +1,8 @@
 <?php
 
-$config['install_prototype_win'] = 'php tools\spark install';
+$config['install_prototype_win'] = 'C:\reactor-app> php tools\spark install';
 
-$config['install_prototype_nix'] = 'tools/spark install';
+$config['install_prototype_nix'] = 'reactor-app $ tools/spark install';
 
 $config['sparks_download_button_text'] = 'Get Sparks Now!';
 

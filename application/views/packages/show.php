@@ -71,7 +71,7 @@
                 <a href="<?php echo $version->archive_url; ?>" class="download">Get <?php echo $contribution->name; ?>-v<?php echo $version->version; ?>.zip</a>
             </li>
     <?php else: ?>
-            <li class="last" style="text-align:left; margin-bottom:15px">Apparently there isn't a latest version. Hmph. Shocker.</li>
+            <li class="last" style="text-align:left; margin-bottom:15px">There isn't a latest version.</li>
     <?php endif; ?>
 </ul>
 
@@ -134,7 +134,7 @@
             </li>
         <?php $count++; endforeach; ?>
     <?php else: ?>
-            <li class="last" style="text-align:left; margin-bottom:15px">Apparently there any older versions. Hmph. Shocker.</li>
+            <li class="last" style="text-align:left; margin-bottom:15px">There are no older versions.</li>
     <?php endif; ?>
 </ul>
 
