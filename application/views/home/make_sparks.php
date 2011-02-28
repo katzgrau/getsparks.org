@@ -362,7 +362,7 @@ $this->example_spark->doSomethingCool();
             <strong>Vendor Files:</strong> If you're writing a spark that uses
             third-party libraries, and you need a place to store them, just place
             them in a folder named 'vendor' inside your spark. Including those
-            file via require_once etc, should be done by your spark intelligently.
+            files via require_once etc, should be done by your spark intelligently.
         </p>
     </li>
     <li>

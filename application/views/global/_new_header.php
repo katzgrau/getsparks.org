@@ -46,9 +46,9 @@
 				<dl style="float:right">
 					<?php if (!UserHelper::isLoggedIn()) { ?>
 						<dd><a href="/register">Register</a></dd>
-						<dd><a href="/contact">Contact</a></dd>
+						<dd><a href="/contact">About</a></dd>
 					<?php } else { ?>
-						<dd><a href="/contact">Contact</a></dd>
+						<dd><a href="/contact">About</a></dd>
 						<dd><a href="/logout">Logout</a></dd>
 					<?php } ?>
 				</dl>
