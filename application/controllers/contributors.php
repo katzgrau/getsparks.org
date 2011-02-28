@@ -137,4 +137,23 @@ class Contributors extends CI_Controller
         $this->form_validation->set_message('robot_check', 'The robot check was wrong. hrmm.');
         return FALSE;
     }
+
+	public function get_profile_info()
+	{
+		$html  = '<div class="profile-image">';
+		$html .= '<a href="/contributors/profile/'.UserHelper::getUsername().'" title="View Your Profile">';
+		$html .= '<img src="'.UserHelper::getAvatarURL(80).'" alt="Gravatar" />';
+		$html .= '</a>';
+		$html .= '</div>';
+		$html .= '<div class="profile-links">';
+		$html .= '<dl>';
+		$html .= '<dd><a href="/contributors/profile/'.UserHelper::getUsername().'" title="View Your Profile">View Your Profile</a></dd>';
+		$html .= '<dd><a href="/contributors/'.UserHelper::getUsername().'/profile/edit" title="Update Your Profile">Update Your Profile</a></dd>';
+		$html .= '<dd><a href="/packages/add" title="Create a Spark">Create a Spark</a></dd>';
+		$html .= '<dd class="last"><a href="/logout" title="Logout">Logout</a></dd>';
+		$html .= '</dl>';
+		$html .= '</div>';
+		
+		echo $html;
+	}
 }
