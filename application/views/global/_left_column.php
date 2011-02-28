@@ -1,6 +1,8 @@
 <script type="text/javascript" charset="utf-8">
 	$(document).ready(function() {
-		$("#lazy_profile").load("/contributors/get_profile_info");
+		$.get("/contributors/get_profile_info", function(data) {
+			$("#lazy_profile").html(data);
+		});
 	});
 </script>
 
