@@ -154,6 +154,6 @@ class Contributors extends CI_Controller
 		$html .= '</dl>';
 		$html .= '</div>';
 		
-		echo $html;
+		$this->output->set_output($html);
 	}
 }
