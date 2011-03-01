@@ -23,7 +23,7 @@ core reasons that this would be extensively valuable:
 ## The Management System
 
 The Spark management system is being developed under a second project, at
-[github](https://github.com/seejohnrun/sparks). That is the actual CLI package manager
+[https://github.com/seejohnrun/sparks](https://github.com/seejohnrun/sparks). That is the actual CLI package manager
 which one day _might_ be integrated into Reactor (projected for Q2 or Q3).
 
 ## Project Info & Management
