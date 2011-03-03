@@ -1,5 +1,11 @@
 <?php
+/**
+ * This file contains the API controller for packages
+ */
 
+/**
+ * The contraoller for API calls regarding packages
+ */
 class Packages extends CI_Controller
 {
     /**

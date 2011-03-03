@@ -1,7 +1,20 @@
 <?php
+/**
+ * Contains the Packages controller
+ */
 
+/**
+ * A controller for handling calls regarding packages
+ */
 class Packages extends CI_Controller
 {
+    /**
+     * Get the JSON spec for a package
+     * @param string $package_name The name of the package to get the spec for
+     * @param string $version The version string of the specific version to grab.
+     *  Can be HEAD
+     * @param string $format The format to get the spec in
+     */
     public function spec($package_name, $version, $format)
     {
         $this->load->model('spark');
@@ -25,6 +38,9 @@ class Packages extends CI_Controller
         $this->output->set_output(json_encode($spark));
     }
 
+    /**
+     * The call for allowing a user to contribute a spark
+     */
     public function add()
     {
         if(!UserHelper::isLoggedIn())
@@ -64,6 +80,12 @@ class Packages extends CI_Controller
         $this->load->view('packages/add');
     }
 
+    /**
+     * The call for editing a package
+     * @param string $package_name The name of the package to edit
+     * @todo Permission validation is in place, but check that the user has permission to
+     *  edit in the first place
+     */
     public function edit($package_name)
     {
         $this->load->model('spark');
@@ -94,6 +116,10 @@ class Packages extends CI_Controller
         $this->load->view('packages/edit', array('contribution' => $spark));
     }
 
+    /**
+     * Show the public information page for a spark
+     * @param string $package_name The package being viewed
+     */
     public function show($package_name)
     {
         $this->load->model('spark');
@@ -114,16 +140,33 @@ class Packages extends CI_Controller
         $this->load->view('packages/show', $data);
     }
 
+    /**
+     * Call to enable a spark
+     * @param string $package_name The name of the package to enable
+     * @param string $version The version to enable
+     */
     public function enable($package_name, $version)
     {
         $this->_setEnabled($package_name, $version, TRUE);
     }
 
+    /**
+     * Call to disable a spark
+     * @param string $package_name The name of the package to disable
+     * @param string $version The version to disable
+     */
     public function disable($package_name, $version)
     {
         $this->_setEnabled($package_name, $version, FALSE);
     }
 
+    /**
+     * An internal utility call to enable or disable a spark and redirect to
+     *  the spark page with a notice
+     * @param string $package_name The spark to enable or disable
+     * @param string $version The version to update
+     * @param bool $enabled True to enable, false to disable
+     */
     private function _setEnabled($package_name, $version, $enabled = true)
     {
         $this->load->model('spark');
@@ -141,6 +184,11 @@ class Packages extends CI_Controller
         redirect(base_url() . 'packages/' . $package_name . '/show');
     }
 
+    /**
+     * A CI validation callback to make sure a package name is available
+     * @param string $package_name The package name that a user is trying to add
+     * @return bool True if OK, false if not
+     */
     public function package_available($package_name)
     {
         $this->load->model('spark');
@@ -150,7 +198,13 @@ class Packages extends CI_Controller
         $this->form_validation->set_message('package_available', 'Sorry! That Spark name is taken');
         return FALSE;
     }
-    
+
+    /**
+     * A CI validation callback to make sure the package being edited is owned by the
+     *  logged-in user
+     * @param int $spark_id The id of the spark
+     * @return bool True if the logged in user is the owner, false if not
+     */
     public function is_owner($spark_id)
     {
         $this->load->model('spark');
@@ -161,6 +215,11 @@ class Packages extends CI_Controller
         return FALSE;
     }
 
+    /**
+     * The call for showing the package listing page. For type, handles
+     *  'latest', 'featured' and 'official'
+     * @param string $type
+     */
     function browse($type)
     {
         $this->load->model('spark');
@@ -193,6 +252,9 @@ class Packages extends CI_Controller
         $this->load->view('packages/listing', $data);
     }
 
+    /**
+     * Show the spark search page
+     */
     function search()
     {
         $this->load->model('spark');

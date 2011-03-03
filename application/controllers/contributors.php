@@ -1,7 +1,16 @@
 <?php
+/**
+ * This file contains a controller for handling contributors
+ */
 
+/**
+ * The controller for contributors
+ */
 class Contributors extends CI_Controller
 {
+    /**
+     * Called for the login page
+     */
     public function login()
     {
         // $submit = $this->input->post('submit');
@@ -33,6 +42,9 @@ class Contributors extends CI_Controller
         $this->load->view('contributors/login');
     }
 
+    /**
+     * Called to logout
+     */
     public function logout()
     {
         UserHelper::logout();
@@ -40,6 +52,9 @@ class Contributors extends CI_Controller
         redirect(base_url());
     }
 
+    /**
+     * Called to register
+     */
     public function register()
     {
         $this->load->spark('robot-helper/1.1');
@@ -83,6 +98,10 @@ class Contributors extends CI_Controller
         $this->load->view('contributors/register', $data);
     }
 
+    /**
+     * Called to load (render) a profile for a user
+     * @param string $username The username to load
+     */
     public function profile($username)
     {
         $this->load->model('contributor');
@@ -93,6 +112,10 @@ class Contributors extends CI_Controller
         $this->load->view('contributors/profile', $data);
     }
 
+    /**
+     * Called when to show the edit page for a user's profile. Works of the current
+     *  logged in user
+     */
     public function edit()
     {
         $this->load->model('contributor');
@@ -128,6 +151,12 @@ class Contributors extends CI_Controller
         $this->load->view('contributors/edit', $data);
     }
 
+    /**
+     * A CodeIgniter validation callback for checking to see the the anti-spam
+     *  robot check was correct
+     * @param string $answer The submitted value
+     * @return bool True if validation passed, false if not
+     */
     public function robot_check($answer)
     {
         $this->load->library('form_validation');
@@ -138,6 +167,11 @@ class Contributors extends CI_Controller
         return FALSE;
     }
 
+    /**
+     * An ajax call to get the current logged-in-user's profile page when logged in.
+     * Loaded via ajax so the front page can be cached easily
+     * @todo Remove the markup and return JSON. Also, refactor to a dedicated ajax controller
+     */
 	public function get_profile_info()
 	{
 		$html  = '<div class="profile-image">';
