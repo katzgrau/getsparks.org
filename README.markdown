@@ -58,7 +58,7 @@ on Twitter for updates. We'll announce and evangelize.
 ## Roadmap
 
 * Alpha Release, week of Feb 21st, 2011.
-* Beta Release, unscheduled
+* Beta Release, week of March 28, 2011.
 * Full Public Release, unscheduled
 * Reactor Integration, unscheduled
 
