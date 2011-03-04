@@ -1,7 +1,9 @@
 <?php
 
+# Installation prefix for windows via CLI
 $config['install_prototype_win'] = 'C:\reactor-app> php tools\spark install';
 
+# Installation prefix for unix/osx via CLI
 $config['install_prototype_nix'] = 'reactor-app $ tools/spark install';
 
 $config['sparks_download_button_text'] = 'Get Sparks Now!';

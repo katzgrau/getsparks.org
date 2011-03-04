@@ -1,7 +1,17 @@
 <?php
+/**
+ * The file contains a controller for dealing with versions
+ */
 
+/**
+ * This is a controller for handling adding and removing of versions
+ */
 class Versions extends CI_Controller
 {
+    /**
+     * The POST call to add a version to a package
+     *  Redirect to the package page on success
+     */
     public function add()
     {
         $submit = $this->input->post('submit');

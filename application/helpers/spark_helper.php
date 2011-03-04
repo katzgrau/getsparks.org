@@ -1,5 +1,12 @@
 <?php
+/**
+ * This file contains a helper class for handling sprak utility functions
+ */
 
+/**
+ * A helper class for delaing with things like validation potential sparks,
+ *  loading readmes, etc.
+ */
 class SparkHelper
 {
     /**

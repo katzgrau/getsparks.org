@@ -1,7 +1,17 @@
 <?php
+/**
+ * This file contains a utility class for doing misc. things around the site
+ */
 
+/**
+ * A class for doing boring things that don't fit in any other helper or library
+ */
 class UtilityHelper
 {
+    /**
+     * Get the number of total installs in GetSparks.org history
+     * @return int
+     */
     public static function getGlobalInstallCount()
     {
         $CI = &get_instance();
@@ -9,6 +19,13 @@ class UtilityHelper
         return Spark::getGlobalInstallCount() + config_item('install_count_base');
     }
 
+    /**
+     * Redirect the current user to the login page. After they login or register,
+     *  they'll be sent back to $back_to
+     * @param string $back_to The URL to come bak to after login. Default $back_to
+     *  is the current URL
+     * @param string $message A message to show on the login page like "Login first, sucka"
+     */
     public static function redirectAndComeback($back_to = FALSE, $message = FALSE)
     {
         $CI = &get_instance();
@@ -25,15 +42,22 @@ class UtilityHelper
         redirect(base_url() . 'login');
     }
 
+    /**
+     * Call this immediately after login or registration to send the user wherever
+     *  they came from first (if directed by the redirectAndComeback function)
+     */
     public static function handleRedirectIfNeeded()
     {
         $CI = &get_instance();
         $back_to = $CI->session->userdata('back_to');
         if($back_to) redirect ($back_to);
-
-        return;
     }
 
+    /**
+     * Hash an email (lowercase, trim, md5).
+     * @param string $email The email to hash
+     * @return string The 32-character hash
+     */
     public static function hashEmail($email)
     {
         return md5(strtolower(trim($email)));

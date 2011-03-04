@@ -1,7 +1,18 @@
 <?php
+/**
+ * This file contains a model for handling sparks
+ */
 
+/**
+ * A model for representing sparks
+ */
 class Spark extends CI_Model
 {
+    /**
+     * Insert a spark into the database
+     * @param array $data The data to insert
+     * @return bool True if it worked, false if not
+     */
     public static function insert($data)
     {
         $CI = &get_instance();
@@ -33,6 +44,10 @@ class Spark extends CI_Model
         return $CI->db->get()->row(0, 'Spark');
     }
 
+    /**
+     * Get the total number of downloads on the site
+     * @return int
+     */
     public static function getGlobalInstallCount()
     {
         $CI = &get_instance();
@@ -165,6 +180,12 @@ class Spark extends CI_Model
         return $this->db->get_where('contributors', array('id' => $this->contributor_id))->row(0, 'Contributor');
     }
 
+    /**
+     * Set a version of this spark as 'verified', which means it checked out fine, and looks legit
+     * @param string $version The version to set 'verified'
+     * @param string $is_verified True for verified, false for not
+     * @param string $archive_url The URL to download the spark at
+     */
     public function setVerified($version, $is_verified = TRUE, $archive_url = '')
     {
         $CI = &get_instance();
@@ -173,6 +194,11 @@ class Spark extends CI_Model
         $CI->db->update('versions', array('is_verified' => $is_verified, 'archive_url' => $archive_url));
     }
 
+    /**
+     * Set the README text for a version of this spark
+     * @param string $version The version to set the readme for
+     * @param string $readme The readme MARKDOWN
+     */
     public function setVersionReadme($version, $readme)
     {
         $CI = &get_instance();
@@ -202,11 +228,20 @@ class Spark extends CI_Model
         return $this->db->get_where('versions', array('spark_id' => $this->id))->result('Version');
     }
 
+    /**
+     * Record an install of this spark
+     * @return bool True if it worked, false if not
+     */
     public function recordInstall()
     {
         return $this->db->insert('installs', array('spark_id' => $this->id, 'created' => date('Y-m-d H:i:s')));
     }
 
+    /**
+     * Activate or deactivate a version of a spark
+     * @param string $version The version to activate or deactivate
+     * @param bool $deactivated True if deactivated, false if not
+     */
     public function setVersionStatus($version, $deactivated = FALSE)
     {
         $this->db->where('spark_id', $this->id);
@@ -215,6 +250,13 @@ class Spark extends CI_Model
         $this->db->update('versions', array('is_deactivated' => $deactivated));
     }
 
+    /**
+     * Remove a spark from the database, and tell it's dreadful author why
+     *  we're removing it via email.
+     * @param string $version The version to remove
+     * @param array $errors The things wrong with the spark
+     * @return bool
+     */
     public function removeVersionAndNotify($version, $errors)
     {
         $this->load->helper('email');
@@ -238,12 +280,23 @@ Here are some specifics: \n\n";
         return $this->db->delete('versions');
     }
 
+    /**
+     * Update this spark with an assoc. array of data
+     * @param array $data Fields/values to update
+     * @return bool True if it worked, false if not
+     */
     public static function save($data)
     {
         $this->db->where('id', $this->id);
         return $this->db->update('sparks', $data);
     }
 
+    /**
+     * Update a spark with an assoc. array of fields to update
+     * @param int $id The id of the spark to update
+     * @param array $data The data
+     * @return bool True/false if it worked
+     */
     public static function update($id, $data)
     {
         $CI = &get_instance();
@@ -251,6 +304,11 @@ Here are some specifics: \n\n";
         return $CI->db->update('sparks', $data);
     }
 
+    /**
+     * Check whether a given package name exists
+     * @param string $package_name The package name in questions
+     * @return bool
+     */
     public static function doesExist($package_name)
     {
         $CI = &get_instance();
@@ -261,7 +319,7 @@ Here are some specifics: \n\n";
     /**
      * Search for a package by string name
      * @param string $term
-     * @return array
+     * @return array An array of Spark objects
      */
     public static function search($term)
     {
