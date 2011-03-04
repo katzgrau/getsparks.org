@@ -25,6 +25,15 @@ class Spark {
         @mkdir(SPARK_PATH); // Two steps for windows
         @mkdir(SPARK_PATH . "/$this->name");
         $success = @rename($this->temp_path, $this->installation_path);
+
+        // if rename() failed let's try copying manually
+        if ( ! $success)
+        {
+            $this->copy_recursive($this->temp_path, $this->installation_path);
+            $this->delete_recursive($this->temp_path);
+            $success = is_dir($this->installation_path);
+        }
+
         if ($success) $this->installed_path = $this->installation_path;
     }
     
@@ -47,4 +56,63 @@ class Spark {
         }
     }
 
+    function copy_recursive($source, $target)
+    {
+        if (is_dir($source))
+        {
+            @mkdir($target);
+            $dir = dir($source);
+
+            while ( FALSE !== ($entry = $dir->read()) )
+            {
+                if ($entry == '.' || $entry == '..')
+                {
+                    continue;
+                }
+
+                $child_entry = $source.'/'.$entry;
+
+                if (is_dir($child_entry))
+                {
+                    $this->copy_recursive($child_entry, $target.'/'.$entry);
+                    continue;
+                }
+                copy($child_entry, $target.'/'.$entry);
+            }
+            $dir->close();
+        }
+        else
+        {
+            copy($source, $target);
+        }
+    }
+
+    function delete_recursive($source)
+    {
+        if (is_dir($source))
+        {
+            $objects = scandir($source);
+
+            foreach ($objects as $object)
+            {
+                if ($object != '.' && $object != '..')
+                {
+                    if (filetype($source.'/'.$object) == 'dir')
+                    {
+                        $this->delete_recursive($source.'/'.$object);
+                    }
+                    else
+                    {
+                        unlink($source.'/'.$object);
+                    }
+                }
+            }
+            reset($objects);
+            rmdir($source);
+         }
+         else
+         {
+            unlink($source);
+         }
+    }
 }

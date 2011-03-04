@@ -1,4 +1,4 @@
-<?php  if (! defined('BASEPATH')) exit('No direct script access allowed');
+cd ..<?php  if (! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Sparks
  *
@@ -38,11 +38,23 @@ class MY_Loader extends CI_Loader
      */
     function __construct()
     {
-        if(!defined('SPARKPATH'))
+        if ( ! defined('SPARKPATH'))
         {
-            define('SPARKPATH', 'sparks/');
+            // check current dir
+            if (is_dir('sparks'))
+            {
+                define('SPARKPATH', 'sparks/');
+            }
+            // check parent dir
+            elseif (is_dir('../sparks'))
+            {
+                define('SPARKPATH', '../sparks/');
+            }
+            else
+            {
+                show_error("Cannot find sparks directory at '" .getcwd(). "/sparks' or '" .dirname(getcwd()). "/sparks'");
+            }
         }
-
         parent::__construct();
     }
 
