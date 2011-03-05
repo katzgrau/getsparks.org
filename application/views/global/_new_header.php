@@ -44,13 +44,8 @@
 					<dd><a href="/make-sparks">Make Sparks</a></dd>
 				</dl>
 				<dl style="float:right">
-					<?php if (!UserHelper::isLoggedIn()) { ?>
-						<dd><a href="/register">Register</a></dd>
-						<dd><a href="/contact">About</a></dd>
-					<?php } else { ?>
-						<dd><a href="/contact">About</a></dd>
-						<dd><a href="/logout">Logout</a></dd>
-					<?php } ?>
+                <dd><a href="/register">Register</a></dd>
+                <dd><a href="/contact">About</a></dd>
 				</dl>
 			</div>
 		</div>
