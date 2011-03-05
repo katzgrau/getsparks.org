@@ -229,12 +229,21 @@ class Spark extends CI_Model
     }
 
     /**
-     * Record an install of this spark
+     * Record an install of this spark. Do not count 'example-spark', which
+     *  is used for tutorial and unit-testing purposes.
      * @return bool True if it worked, false if not
      */
     public function recordInstall()
     {
-        return $this->db->insert('installs', array('spark_id' => $this->id, 'created' => date('Y-m-d H:i:s')));
+        if($this->name != 'example-spark')
+        {
+            $this->db->insert('installs', array('spark_id' => $this->id, 'created' => date('Y-m-d H:i:s')));
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
