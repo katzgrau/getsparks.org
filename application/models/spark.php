@@ -55,7 +55,7 @@ class Spark extends CI_Model
     }
 
     /**
-     * Get spark info by its name and version
+     * Get spark info by its name
      * @param string $name
      * @param string $version
      * @return Spark

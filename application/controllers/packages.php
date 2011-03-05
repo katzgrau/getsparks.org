@@ -95,6 +95,7 @@ class Packages extends CI_Controller
 
         $submit   = $this->input->post('submit');
         $spark_id = $this->input->post('spark_id');
+        $success  = FALSE;
 
         if($submit)
         {
@@ -103,6 +104,7 @@ class Packages extends CI_Controller
                 $update = elements(array('name', 'summary', 'description', 'repository_type', 'base_location'), $_POST);
                 Spark::update($spark_id, $update);
                 UserHelper::setNotice("This spark has been updated. Thanks again, you're awesome.");
+                $success = TRUE;
             }
             else
             {
@@ -110,7 +112,11 @@ class Packages extends CI_Controller
             }
         }
 
-        $spark = Spark::getInfo($package_name);
+        if($success)
+            $spark = Spark::getInfo($update['name']);
+        else
+            $spark = Spark::getInfo($package_name);
+        
         if(!$spark) show_404();
 
         $this->load->view('packages/edit', array('contribution' => $spark));
@@ -193,10 +199,24 @@ class Packages extends CI_Controller
     {
         $this->load->model('spark');
 
-        if(!Spark::doesExist($package_name)) return true;
+        $spark = Spark::getInfo($package_name);
 
-        $this->form_validation->set_message('package_available', 'Sorry! That Spark name is taken');
-        return FALSE;
+        if($spark)
+        {
+            if($spark->contributor_id !== UserHelper::getId())
+            {
+                $this->form_validation->set_message('package_available', 'Sorry! That Spark name is taken');
+                return FALSE;
+            }
+
+            if($spark->id != $this->input->post('spark_id'))
+            {
+                $this->form_validation->set_message('package_available', 'You already have a Spark with that name');
+                return FALSE;
+            }
+        }
+
+        return TRUE;
     }
 
     /**

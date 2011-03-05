@@ -11,7 +11,7 @@
 </ul>
 
 <div class="form-wrapper form-wrapper-full">
-	<form action="<?php echo current_url(); ?>" method="post">
+    <form action="<?php echo base_url(); ?>packages/<?php echo $contribution->name; ?>/edit" method="post">
 
 		<label for="name">Package Name:</label><br class="clear" />
 		<input type="text" id="name" name="name" class="text-box" value="<?php echo set_value('name', $contribution->name); ?>" /><br class="clear" />

@@ -126,7 +126,7 @@ $config = array (
         array (
             'field'   => 'name',
             'label'   => 'Spark Name',
-            'rules'   => 'required|min_length[3]|max_length[20]|alpha_dash'
+            'rules'   => 'required|min_length[3]|max_length[20]|alpha_dash|callback_package_available'
         ),
 
         array (
