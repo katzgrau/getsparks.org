@@ -174,19 +174,34 @@ class Contributors extends CI_Controller
      */
 	public function get_profile_info()
 	{
-		$html  = '<div class="profile-image">';
-		$html .= '<a href="/contributors/profile/'.UserHelper::getUsername().'" title="View Your Profile">';
-		$html .= '<img src="'.UserHelper::getAvatarURL(80).'" alt="Gravatar" />';
-		$html .= '</a>';
-		$html .= '</div>';
-		$html .= '<div class="profile-links">';
-		$html .= '<dl>';
-		$html .= '<dd><a href="/contributors/profile/'.UserHelper::getUsername().'" title="View Your Profile">View Your Profile</a></dd>';
-		$html .= '<dd><a href="/contributors/'.UserHelper::getUsername().'/profile/edit" title="Update Your Profile">Update Your Profile</a></dd>';
-		$html .= '<dd><a href="/packages/add" title="Create a Spark">Create a Spark</a></dd>';
-		$html .= '<dd class="last"><a href="/logout" title="Logout">Logout</a></dd>';
-		$html .= '</dl>';
-		$html .= '</div>';
+        if(UserHelper::isLoggedIn())
+        {
+            $html  = '<div class="profile-image">';
+            $html .= '<a href="/contributors/profile/'.UserHelper::getUsername().'" title="View Your Profile">';
+            $html .= '<img src="'.UserHelper::getAvatarURL(80).'" alt="Gravatar" />';
+            $html .= '</a>';
+            $html .= '</div>';
+            $html .= '<div class="profile-links">';
+            $html .= '<dl>';
+            $html .= '<dd><a href="/contributors/profile/'.UserHelper::getUsername().'" title="View Your Profile">View Your Profile</a></dd>';
+            $html .= '<dd><a href="/contributors/'.UserHelper::getUsername().'/profile/edit" title="Update Your Profile">Update Your Profile</a></dd>';
+            $html .= '<dd><a href="/packages/add" title="Create a Spark">Create a Spark</a></dd>';
+            $html .= '<dd class="last"><a href="/logout" title="Logout">Logout</a></dd>';
+            $html .= '</dl>';
+            $html .= '</div>';
+        }
+        else
+        {
+			$html  = '<form action="/login" method="post">';
+            $html .= '<fieldset>';
+            $html .= '<label for="email">Email Address:</label><br class="clear" />';
+			$html .= '<input type="text" id="email" name="email" class="text-box" /><br class="clear" />';
+			$html .= '<label for="password">Password:</label><br class="clear" />';
+			$html .= '<input type="password" id="password" name="password" class="text-box" /><br class="clear" />';
+            $html .= '<input type="submit" id="submit" class="submit" value="Login">';
+			$html .= '</fieldset>';
+			$html .= '</form>';
+        }
 		
 		$this->output->set_output($html);
 	}
