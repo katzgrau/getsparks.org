@@ -43,6 +43,11 @@
     <a href="#option-2">Option 2</a>.
 </p>
 
+<p>
+    <strong>Users with the Modular Extensions system</strong> can follow the instructions here:
+    <a href="<?php echo base_url(); ?>set-up-mx">Setting Up with Modular Extensions</a>.
+</p>
+
 <a name="quick-start"></a>
 <h4>Quick Start for OSX and Linux</h4>
 <p>

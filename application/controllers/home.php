@@ -45,6 +45,14 @@ class Home extends CI_Controller {
     }
 
     /**
+     * The call for showing install instructions
+     */
+    function set_up_mx()
+    {
+        $this->load->view('home/set_up_mx');
+    }
+
+    /**
      * The call for showing how to download sparks
      */
     function get_sparks()
