@@ -35,7 +35,7 @@ $config = array (
         array (
             'field'   => 'website',
             'label'   => 'Website',
-            'rules'   => 'min_length[12]'
+            'rules'   => 'min_length[5]'
         ),
 
         array (
@@ -74,7 +74,7 @@ $config = array (
         array (
             'field'   => 'website',
             'label'   => 'Website',
-            'rules'   => 'min_length[12]'
+            'rules'   => 'min_length[5]'
         ),
     ),
 

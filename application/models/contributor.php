@@ -21,6 +21,10 @@ class Contributor extends CI_Model
         if(array_key_exists('email', $data))
             $data['email_hash'] = UtilityHelper::hashEmail($data['email']);
 
+        if(array_key_exists('website', $data)
+            && $data['website'])
+            $data['website'] = prep_url($data['website']);
+
         $data['modified'] = date('Y-m-d H:i:s');
         $data['created']  = date('Y-m-d H:i:s');
         return $CI->db->insert('contributors', $data);
@@ -92,6 +96,11 @@ class Contributor extends CI_Model
                 $data['password'] = sha1($data['password']);
             }
         }
+
+        # Prep the website
+        if(array_key_exists('website', $data)
+            && $data['website'])
+            $data['website'] = prep_url($data['website']);
 
         if(array_key_exists('email', $data))
             $data['email_hash'] = UtilityHelper::hashEmail($data['email']);
