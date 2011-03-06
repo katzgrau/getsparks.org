@@ -75,4 +75,19 @@ class UtilityHelper
             $CI->output->cache($ttl);
         }
     }
+
+    /**
+     * Load the disqus comment thread JS
+     */
+    public static function loadDisqus()
+    {
+        $data = array (
+            'permalink'  => current_url(),
+            'identifier' => uri_string(),
+            'shortname'  => config_item('service_handle')
+        );
+
+        $CI = &get_instance();
+        $CI->load->view('global/_disqus', $data);
+    }
 }

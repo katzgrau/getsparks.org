@@ -29,3 +29,6 @@ $config['system_alert_email'] = 'cron@oconf.org';
 
 # The place to email when shit goes wrong
 $config['support_email'] = 'ohcrap@getsparks.org';
+
+# The handle we use for twitter, disqus, etc.
+$config['service_handle'] = 'getsparks';

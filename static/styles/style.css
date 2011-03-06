@@ -120,7 +120,7 @@ div.wrapper { width: 1000px; margin: 0 auto; }
 
 span.superscript { font-size:14px; vertical-align: super; }
 
-#documentation { border: 1px dotted #808080; padding: 6px; }
+#documentation { border: 1px dotted #808080; padding: 6px; margin: 20px; }
 #documentation h1 { font-size: 18px; border: none; padding-bottom: 10px; }
 #documentation h2 { font-size: 14px ; border: none ; margin-bottom: 5px ; }
 #documentation h3 { font-size: 10px; font-weight: bold; }

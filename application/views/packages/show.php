@@ -92,6 +92,7 @@
 	        <input type="submit" name="submit" value="Create From Tag" />
 	    </form>
 	</div>
+<p></p>
 <?php endif; ?>
 
 <?php if(count($versions) > 0): ?>
@@ -137,6 +138,9 @@
             <li class="last" style="text-align:left; margin-bottom:15px">There are no older versions.</li>
     <?php endif; ?>
 </ul>
+
+<h2>Comments</h2>
+<?php UtilityHelper::loadDisqus(); ?>
 
 <script type="text/javascript">
     function yank(version)
