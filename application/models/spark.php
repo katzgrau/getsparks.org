@@ -55,6 +55,16 @@ class Spark extends CI_Model
     }
 
     /**
+     * Get the total number of installs this spark has had
+     * @return int The number of installs
+     */
+    public function getInstallCount()
+    {
+        $this->db->where('id', $this->id);
+        return $this->db->count_all_results('installs');
+    }
+
+    /**
      * Get spark info by its name
      * @param string $name
      * @param string $version

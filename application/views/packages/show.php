@@ -28,6 +28,10 @@
         <td>Repository Type</td>
         <td>: <?php echo $contribution->repository_type; ?></td>
     </tr>
+    <tr>
+        <td>Number of Installs</td>
+        <td>: <?php echo $contribution->getInstallCount(); ?></td>
+    </tr>
 </table>
 
 <?php if($contribution->contributor_id == UserHelper::getId()): ?>
