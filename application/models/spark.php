@@ -60,7 +60,7 @@ class Spark extends CI_Model
      */
     public function getInstallCount()
     {
-        $this->db->where('id', $this->id);
+        $this->db->where('spark_id', $this->id);
         return $this->db->count_all_results('installs');
     }
 
