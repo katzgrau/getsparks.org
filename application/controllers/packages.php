@@ -59,7 +59,7 @@ class Packages extends CI_Controller
                 $post = $_POST;
                 $post['contributor_id'] = UserHelper::getId();
 
-                $insert = elements(array('contributor_id', 'name', 'summary', 'description', 'repository_type', 'base_location'), $post);
+                $insert = elements(array('contributor_id', 'name', 'summary', 'description', 'website', 'repository_type', 'base_location'), $post);
 
                 $this->load->model('Spark');
 
@@ -103,7 +103,7 @@ class Packages extends CI_Controller
         {
             if($this->form_validation->run('edit-package'))
             {
-                $update = elements(array('name', 'summary', 'description', 'repository_type', 'base_location'), $_POST);
+                $update = elements(array('name', 'summary', 'description', 'website', 'repository_type', 'base_location'), $_POST);
                 Spark::update($spark_id, $update);
                 UserHelper::setNotice("This spark has been updated. Thanks again, you're awesome.");
                 $success = TRUE;

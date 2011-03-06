@@ -6,6 +6,8 @@
 <h2>Update Spark - <?php echo $contribution->name; ?></h2>
 <p>Update away - try not to break anything though...we're getting low on sugar free Red Bull.</p>
 
+<p><a href="<?php echo base_url(); ?>packages/<?php echo $contribution->name; ?>/show">Or view the <?php echo $contribution->name; ?> page.</a></p>
+
 <ul>
     <?php echo validation_errors(); ?>
 </ul>
@@ -31,9 +33,13 @@
 			<option value="hg" <?php if(set_value('repository_type', $contribution->repository_type) == 'hg') echo 'selected'; ?>>Mercurial (hg)</option>
 		</select><br class="clear" />
 
+		<label for="website">Website:</label><br class="clear" />
+		<input type="text" id="base_location" name="website" class="text-box" value="<?php echo set_value('website', $contribution->website); ?>" /><br class="clear" />
+		<span class="helper">The place for news and stuff about your spark (or just the github page)</span><br class="clear" />
+		
 		<label for="base_location">Public Clone URL:</label><br class="clear" />
 		<input type="text" id="base_location" name="base_location" class="text-box" value="<?php echo set_value('base_location', $contribution->base_location); ?>" /><br class="clear" />
-		<span class="helper">e.g., https://bitbucket.org/katzgrau/ci-sparks-repo</span><br class="clear" />
+		<span class="helper">e.g., git://github.com/katzgrau/getsparks.org.git</span><br class="clear" />
 
 		<input type="hidden" name="spark_id" value="<?php echo set_value('spark_id', $contribution->id); ?>">
 		<input type="submit" name="submit" value="Update Spark" class="button" />

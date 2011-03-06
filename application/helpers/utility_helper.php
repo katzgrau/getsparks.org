@@ -90,4 +90,16 @@ class UtilityHelper
         $CI = &get_instance();
         $CI->load->view('global/_disqus', $data);
     }
+
+    /**
+     * Is the user using some sort of *nix variant? (OSX, Linux, etc)
+     * @return bool True if yes, false if no
+     */
+    public static function isWindows()
+    {
+        $CI = &get_instance();
+        $CI->load->library('user_agent');
+        $platform = $CI->agent->platform();
+        return strstr($platform, 'Windows');
+    }
 }

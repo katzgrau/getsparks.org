@@ -70,9 +70,15 @@
                     </a>
                     <?php endif; ?>
                 <?php endif; ?>
+                <?php if(UtilityHelper::isWindows()): ?>
+                <code>
+                    <?php echo config_item('install_prototype_win'); ?> -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
+                </code>
+               <?php else: ?>
                 <code>
                     <?php echo config_item('install_prototype_nix'); ?> -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
                 </code>
+               <?php endif; ?>
                 Or download this version manually:
                 <a href="<?php echo $version->archive_url; ?>" class="download">Get <?php echo $contribution->name; ?>-v<?php echo $version->version; ?>.zip</a>
             </li>
@@ -119,9 +125,6 @@
         <?php foreach($versions as $version): ?>
             <li>
                <?php echo $version->version; ?>
-               <a href="<?php echo base_url(); ?>packages/<?php echo $contribution->name; ?>/versions/<?php echo $version->version; ?>/spec.json">
-                 [spec]
-               </a>
                 <?php if($is_author): ?>
                     <?php if(!$version->is_deactivated): ?>
                     <a href="#" onclick="return yank('<?php echo $version->version; ?>');">
@@ -133,9 +136,15 @@
                     </a>
                     <?php endif; ?>
                 <?php endif; ?>
+                <?php if(UtilityHelper::isWindows()): ?>
+                <code>
+                    <?php echo config_item('install_prototype_win'); ?> -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
+                </code>
+               <?php else: ?>
                 <code>
                     <?php echo config_item('install_prototype_nix'); ?> -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
                 </code>
+               <?php endif; ?>
                 Or download this version manually:
                 <a href="<?php echo $version->archive_url; ?>" class="download">Get <?php echo $contribution->name; ?>-<?php echo $version->version; ?>.zip</a>
             </li>
