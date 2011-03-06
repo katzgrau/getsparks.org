@@ -1,0 +1,95 @@
+# Table Torch Scaffolding Spark
+
+Table Torch is a custom scaffolding system that can be used for common administration tasks of tables in your CodeIgniter Application. Table Torch is different from the traditional scaffold you are used to in the fact that its customizable, and is quite extensible.
+
+## Core Features
+
+-  Set what tables and what fields of those tables you would like editable by Table Torch in your config file
+-  Set what actions can be performed on each table, add, edit, delete
+-  Searchable, sortable Listing pages
+-  After editing or adding, you will return to the listing page in the previous state, pagination, sorting, search criteria in tact.
+-  Views can be overridden from your controller
+-  CRUD callbacks available to your controller
+
+## Setup Your Config Preferences
+
+In sparks/table-torch/config/table_torch.php you will find the preferences for running your scaffold. The config file is well commented.
+
+## Basic Usage From Your Controller
+
+    function __construct(){
+		parent::__construct();
+		// you would obviously need to do your authorization prior to letting the world see your Table Torch
+		$this->load->spark( 'table-torch/[version #]');
+	}
+
+	function index(){
+		// you can do this in any method you like does not have to be the index
+		$this->table_torch->route();
+	}
+
+## Overriding the Table Torch Views
+You have the ability to override any action of Table Torch. To do so just add the action to the controller from which you used Table Torch and it will use your method instead, while still passing you all the data that Table Torch fetched for the page. The example below overrides edit page of the "users" table.
+
+### Actions That Can Be Overridden
+
+-  [tableName]_add ( creating a new row )
+-  [tableName]_edit ( the editing of an existing row )
+-  [tableName]_listing ( the listing of all rows )
+
+### Loading Your Own View after an override
+
+If you wish to load your own view for the page, specify FALSE in the third param. Or you can use the Table torch view. Either way, you will be using the template file specified in the *sparks/table-torch/1.0/config/table_torch.php* file
+
+	// your custom view loaded
+	function users_edit( $data ){
+		// print_r( $data );
+		$this->table_torch->load_view( 'user/edit', $data, FALSE );
+	}
+	
+	// the normal Table Torch view loaded
+	function users_edit( $data ){
+		// print_r( $data );
+		$this->table_torch->load_view( 'form', $data, TRUE );
+	}
+
+## Callback Hooks
+You can preform additional functions before or after the Table Torch form submissions. Available callbacks are 
+
+-  before_insert
+-  after_insert
+-  before_update
+-  after_update
+-  before_delete
+-  after_delete
+
+## Example of Callbacks
+
+	function before_delete( $table, $primary_key ){
+		// do what you need to before deleting the row here, you are given the table and primary key being deleted...
+	}
+
+	function before_insert( $table, $data ){
+		/*
+		do what you need to do before inserting
+		You must return the data that will be inserted
+		*/
+		return $data;
+	}
+
+	function before_update( $table, $data ){
+		/*
+		do what you need to before updating a row
+		you must return the data from this method
+		*/
+		return $data;
+	}
+
+	function after_insert( $table, $data ){
+		// do what you need to do before inserting
+	}
+
+	function after_update( $table, $data ){
+		// do what you need to before updating a row
+	}
+

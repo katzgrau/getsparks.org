@@ -1,0 +1,23 @@
+# Fire Log Spark
+
+Fire Log is a spark that lets you browse all the log files in your application/logs directory. 
+
+-  You can filter what types of items you would like to view DEBUG, ERROR, INFO
+-  You can delete logs files from Fire Log to clear out your logs
+-  Fire log uses a view that you can easily customize in sparks/fire\_log/[version]/views/fire\_log_view.php
+-  You can change if tags are stripped in logs or not from the config
+-  Language file for all text used
+
+## Usage
+
+Really Simple...
+    
+	// in your controller
+	function logs(){
+		/*
+		highly advised that you use authentification before running this controller to keep the world out of your logs!!!
+		you can use whatever method you like does not have to be logs
+		*/
+		$this->load->spark( 'fire_log/[version #]');
+		// thats it, ill take if from there
+	}

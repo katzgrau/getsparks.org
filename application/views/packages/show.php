@@ -30,7 +30,7 @@
     </tr>
     <tr>
         <td>Number of Installs</td>
-        <td>: <?php echo $contribution->getInstallCount(); ?></td>
+        <td>: <?php echo number_format($contribution->getInstallCount()); ?></td>
     </tr>
 </table>
 
@@ -54,9 +54,11 @@
         <?php $latest_verion = $version = $versions[0]; ?>
             <li>
                <?php echo $version->version; ?> (latest/HEAD)
+               <?php /*
                <a href="<?php echo base_url(); ?>packages/<?php echo $contribution->name; ?>/versions/<?php echo $version->version; ?>/spec.json">
                  [spec]
                </a>
+                */ ?>
                 <?php if($is_author): ?>
                     <?php if(!$version->is_deactivated): ?>
                     <a href="#" onclick="return yank('<?php echo $version->version; ?>');">
