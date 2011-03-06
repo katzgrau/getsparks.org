@@ -1,6 +1,6 @@
 <script type="text/javascript" charset="utf-8">
-	$(document).ready(function() {
-		$.get("/contributors/get_profile_info", function(data) {
+	$('#lazy_profile').available(function() {
+		$.get("/ajax/contributors/get_profile_box", function(data) {
 			$("#lazy_profile").html(data);
 		});
 	});

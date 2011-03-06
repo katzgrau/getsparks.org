@@ -128,3 +128,7 @@ span.superscript { font-size:14px; vertical-align: super; }
 #documentation ul  { list-style:circle inside; padding-left: 25px;}
 #documentation ul li { border: none !important; padding: 0 !important; }
 #documentation code { white-space: pre; line-height: 1.5; padding: 12px 10px !important; }
+
+/* Sizing the profile box as close to the actual size as possible so it doesn't
+   flash when loaded via ajax */
+#lazy_profile { min-height: 82px; }
