@@ -17,6 +17,8 @@ class Packages extends CI_Controller
      */
     public function spec($package_name, $version, $format)
     {
+        #UtilityHelper::tryPageCache(1);
+
         $this->load->model('spark');
         $this->load->model('contributor');
         $this->load->model('download');
@@ -128,6 +130,8 @@ class Packages extends CI_Controller
      */
     public function show($package_name)
     {
+        #UtilityHelper::tryPageCache();
+        
         $this->load->model('spark');
         $this->load->model('contributor');
 
@@ -242,6 +246,8 @@ class Packages extends CI_Controller
      */
     function browse($type)
     {
+        UtilityHelper::tryPageCache(1);
+        
         $this->load->model('spark');
         $sparks = array();
         $data['browse_type'] = '';

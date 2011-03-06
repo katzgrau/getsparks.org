@@ -11,6 +11,9 @@ class Home extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+        
+        # Page cache everything under the home controller for 5 minutes
+        UtilityHelper::tryPageCache();
 	}
 
     /**
@@ -18,9 +21,6 @@ class Home extends CI_Controller {
      */
 	function index()
 	{
-        if(config_item('is_production'))
-            $this->output->cache(5);
-
         $this->load->spark('gravatar-helper/1.1');
         $this->load->helper('gravatar');
 

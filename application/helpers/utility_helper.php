@@ -62,4 +62,17 @@ class UtilityHelper
     {
         return md5(strtolower(trim($email)));
     }
+
+    /**
+     * Cache the page if we're in a production environment
+     * @param int $ttl Minutes to cache the page for
+     */
+    public static function tryPageCache($ttl = 5)
+    {
+        if(config_item('is_production'))
+        {
+            $CI = &get_instance();
+            $CI->output->cache($ttl);
+        }
+    }
 }
