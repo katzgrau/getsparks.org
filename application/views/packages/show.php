@@ -52,7 +52,7 @@
 <ul>
     <?php if(count($versions) > 0): $count = 0; ?>
         <?php $latest_verion = $version = $versions[0]; ?>
-            <li>
+            <li class="no-border">
                <?php echo $version->version; ?> (latest/HEAD)
                <?php /*
                <a href="<?php echo base_url(); ?>packages/<?php echo $contribution->name; ?>/versions/<?php echo $version->version; ?>/spec.json">
@@ -83,7 +83,7 @@
                 <a href="<?php echo $version->archive_url; ?>" class="download">Get <?php echo $contribution->name; ?>-v<?php echo $version->version; ?>.zip</a>
             </li>
     <?php else: ?>
-            <li class="last" style="text-align:left; margin-bottom:15px">There isn't a latest version.</li>
+            <li class="last no-border" style="text-align:left; margin-bottom:15px">There isn't a latest version.</li>
     <?php endif; ?>
 </ul>
 
@@ -123,7 +123,7 @@
 <ul>
     <?php if(count($versions) > 1): $versions = array_slice($versions, 1); ?>
         <?php foreach($versions as $version): ?>
-            <li>
+            <li class="no-border">
                <?php echo $version->version; ?>
                 <?php if($is_author): ?>
                     <?php if(!$version->is_deactivated): ?>
@@ -150,7 +150,7 @@
             </li>
         <?php $count++; endforeach; ?>
     <?php else: ?>
-            <li class="last" style="text-align:left; margin-bottom:15px">There are no older versions.</li>
+            <li class="last no-border" style="text-align:left; margin-bottom:15px">There are no older versions.</li>
     <?php endif; ?>
 </ul>
 

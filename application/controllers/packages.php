@@ -257,7 +257,7 @@ class Packages extends CI_Controller
         {
             $sparks              = Spark::getTop(100);
             $data['browse_type'] = 'Browse Latest';
-            $data['description'] = 'These are the most recently registered sparks';
+            $data['description'] = 'These are the most recently registered sparks with at least one release.';
         }
         elseif($type == 'featured')
         {

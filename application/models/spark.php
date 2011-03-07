@@ -100,12 +100,19 @@ class Spark extends CI_Model
      * @param string $name
      * @return Spark
      */
-    public static function getLatest($name, $verified = TRUE)
+    public static function getLatest($name, $verified = TRUE, $require_release = TRUE)
     {
         $CI = &get_instance();
         $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme");
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
+
+        if($require_release)
+        {
+            $CI->db->join('versions v', 'v.spark_id = s.id');
+            $CI->db->group_by('s.id');
+        }
+
         $CI->db->where('s.name', $name);
         $CI->db->where('v.is_deactivated', FALSE);
 
@@ -141,13 +148,20 @@ class Spark extends CI_Model
      * @param int $n
      * @return array[Spark]
      */
-    public static function getTop($n = 10)
+    public static function getTop($n = 10, $require_release = TRUE)
     {
         $CI = &get_instance();
 
         $CI->db->select("s.*, c.username, c.email");
         $CI->db->from('sparks s');
         $CI->db->join('contributors c', 's.contributor_id = c.id');
+
+        if($require_release)
+        {
+            $CI->db->join('versions v', 'v.spark_id = s.id');
+            $CI->db->group_by('s.id');
+        }
+
         $CI->db->order_by('s.created', 'DESC');
 
         $CI->db->limit($n);
