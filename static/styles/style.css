@@ -117,18 +117,19 @@ div.form-wrapper-full input.text-box,
 #footer p a:hover { text-decoration: underline; }
 
 div.wrapper { width: 1000px; margin: 0 auto; }
+div.wrapper ul li { border: none !important; }
 
 span.superscript { font-size:14px; vertical-align: super; }
 
-#documentation { border: 1px dotted #808080; padding: 6px; margin: 20px; }
+#documentation { border: 1px dotted #808080; padding: 10px 10px 0px 10px; margin: 10px 0px 10px 0px; }
 #documentation h1 { font-size: 18px; border: none; padding-bottom: 10px; }
 #documentation h2 { font-size: 14px ; border: none ; margin-bottom: 5px ; }
 #documentation h3 { font-size: 10px; font-weight: bold; }
 #documentation p  { }
 #documentation ul  { list-style:circle inside; padding-left: 25px;}
 #documentation ul li { border: none !important; padding: 0 !important; }
-#documentation code { white-space: pre; line-height: 1.5; padding: 12px 10px !important; }
-
+#documentation code { margin: 0; white-space: pre; line-height: 1.5; padding: 0 !important; border: none !important; }
+#documentation pre { margin: 0 0 10px 0 !important; }
 /* Sizing the profile box as close to the actual size as possible so it doesn't
    flash when loaded via ajax */
 #lazy_profile { min-height: 82px; }

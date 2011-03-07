@@ -108,7 +108,7 @@
 <?php endif; ?>
 
 <?php if(count($versions) > 0): ?>
-    <h2>Readme</h2>
+    <h2>How-To</h2>
     <div id="documentation" class="markdown">
         <?php
             if(strlen($versions[0]->readme_html))

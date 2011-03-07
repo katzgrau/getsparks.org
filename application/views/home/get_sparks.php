@@ -10,7 +10,7 @@
 <h3>Installing Sparks with the Spark Manager</h3>
 
 <p>
-    In this example, we'll install the 'example-spark'.
+    In this example, we'll install the 'example-spark' via the terminal.
 </p>
 
 <p>
