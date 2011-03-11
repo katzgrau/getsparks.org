@@ -16,8 +16,7 @@ $config['is_production'] = FALSE;
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://sparks.codeigniter.com/';
-# $config['base_url']	= 'http://localhost:8888/';
+$config['base_url']	= '';
 /*
 |--------------------------------------------------------------------------
 | Index File
