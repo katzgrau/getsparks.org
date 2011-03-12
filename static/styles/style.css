@@ -149,3 +149,4 @@ span.superscript { font-size:14px; vertical-align: super; }
    flash when loaded via ajax */
 #lazy_profile { min-height: 82px; }
 #lazy_profile a {float:right; color: #fff;}
+#disqus_thread ul li { border: none !important; padding: 0 !important; }
