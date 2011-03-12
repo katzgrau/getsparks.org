@@ -42,10 +42,10 @@
 					<dd><a href="/install">Install/Setup</a></dd>
 					<dd><a href="/get-sparks">Get Sparks</a></dd>
 					<dd><a href="/make-sparks">Make Sparks</a></dd>
+                <dd><a href="/contact">About</a></dd>
 				</dl>
 				<dl style="float:right">
-                <dd><a href="/register">Register</a></dd>
-                <dd><a href="/contact">About</a></dd>
+                <dd><form action="/search" method="post" id="headersearch"><input type="text" name="term" value="" class="text-box" /><input type="submit" name="submit" class="submit" value="Search" /></form></dd>
 				</dl>
 			</div>
 		</div>

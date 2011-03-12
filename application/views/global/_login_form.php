@@ -5,5 +5,6 @@
         <label for="password">Password:</label><br class="clear" />
         <input type="password" id="password" name="password" class="text-box" /><br class="clear" />
         <input type="submit" id="submit" class="submit" value="Login">
+		<a href="/register" class="register">Register</a>
     </fieldset>
 </form>

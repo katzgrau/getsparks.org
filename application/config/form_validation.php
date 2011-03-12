@@ -172,5 +172,12 @@ $config = array (
             'label'   => 'Version',
             'rules'   => 'required|min_length[1]|max_length[10]'
         )
-    )
+    ),
+    'search' => array (
+        array (
+            'field'   => 'term',
+            'label'   => 'Search term',
+            'rules'   => 'required|min_length[4]|xss_clean|trim'
+        ),
+	),
 );
