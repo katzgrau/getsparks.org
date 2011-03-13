@@ -1,10 +1,21 @@
 <?php
-$title = ($browse_type != '' ? "$browse_type " : "") . 'Packages';
+$title = 'Package Search: '.$search_term;
 $this->load->view('global/_new_header.php', array('title' => $title)); ?>
 
 <h2><?php echo $title; ?></h2>
 
 <p><?php echo $description; ?></p>
+<div id="mainsearch">
+	<form action="/search" method="post">
+		<fieldset>
+			<label for="term">Search term</label>
+			<br class="clear" />
+			<input type="text" name="term" id="term" value="<?php echo $search_term; ?>" class="text-box" />
+			<br class="clear" />
+			<input type="submit" name="submit" class="submit" value="Search" />
+		</fieldset>
+	</form>
+</div>
 <ul id="sparklisting">
     <?php if(count($sparks) > 0): ?>
         <?php foreach($sparks as $spark): ?>
@@ -16,7 +27,7 @@ $this->load->view('global/_new_header.php', array('title' => $title)); ?>
 					<a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile">
 						<?php echo $spark->username; ?>
 					</a>
-					<span><?php echo $spark->summary; ?></span>
+					<span><?php echo preg_replace("/(".$search_term.")/i", "<strong>$1</strong>", $spark->summary); ?></span>
 				</div>
 				<div class="sparkstats">
 					<ul>
@@ -30,7 +41,7 @@ $this->load->view('global/_new_header.php', array('title' => $title)); ?>
             </li>
         <?php endforeach; ?>
     <?php else: ?>
-            <li>You haven't contributed any sparks yet.</li>
+            <li>There are no sparks returned for your search.</li>
     <?php endif; ?>
 </ul>
 

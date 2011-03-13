@@ -351,10 +351,13 @@ Here are some specifics: \n\n";
     public static function search($term)
     {
         $CI = &get_instance();
-        $CI->db->select('s.*');
+        $CI->db->select("s.*, c.username, c.email");
         $CI->db->from('sparks s');
+        $CI->db->join('contributors c', 's.contributor_id = c.id');
         $CI->db->like('name', $term, 'both');
+        $CI->db->or_like('summary', $term, 'both');
+        $CI->db->or_like('description', $term, 'both');
 
-        return $CI->db->get()->result();
+        return $CI->db->get()->result('Spark');
     }
 }

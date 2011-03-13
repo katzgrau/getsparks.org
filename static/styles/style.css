@@ -42,12 +42,14 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #page div.page-left div.login-box, #page div.page-left div.info-box { background-color: #4D0202; -moz-border-radius: 0 0 5px 5px; 
 	border-radius: 0 0 5px 5px; padding: 0 15px 15px 15px; margin-bottom: 10px; color: #fff; }
 #page div.page-left div.login-box { padding-top: 5px;}
+
 #page div.page-left div.info-box { font-size: 12px; -moz-border-radius: 5px; border-radius: 5px; padding: 15px; }
 #page div.page-left div.login-box label, #page div.page-left div.login-box input { float: left; }
 #page div.page-left div.login-box label { color: #fff; font-size: 12px; margin-bottom: 5px; }
-#page div.page-left div.login-box input.text-box { width: 207px; border: solid 1px #333; margin-bottom: 7px; padding: 4px; font-size: 12px;
+#page div.page-left div.login-box input.text-box, #page div.page-right div#mainsearch input.text-box, #header form#headersearch input.text-box { width: 207px; border: solid 1px #333; margin-bottom: 7px; padding: 4px; font-size: 12px;
 	border-radius: 5px; -moz-border-radius: 5px; }
-#page div.page-left div.login-box input.submit, #page div.page-left div.login-box a.register { background-color: #d14000; 
+#header form#headersearch input.text-box { width: 157px; margin: 3px 5px 0 0;}
+#page div.page-left div.login-box input.submit, #page div.page-right div#mainsearch input.submit, #header form#headersearch input.submit, #page div.page-left div.login-box a.register { background-color: #d14000;
 	color: #fff; font-weight: normal; font-size: 12px; border: solid 1px #f0f0f0; display: inline-block; 
 	padding: 3px 10px 4px 10px; border-radius: 5px; -moz-border-radius: 5px; margin-top: 2px; }
 #page div.page-left div.login-box a.register { padding: 5px 10px 7px 10px; float: right; margin-right: 5px; }
@@ -66,6 +68,10 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 
 #page div.page-left div.info-box ul li, #page div.page-right ul li { color: #fff; padding-bottom: 10px; margin-bottom: 10px; 
 	border-bottom: solid 1px #7d2626; }
+
+#page div.page-right div#mainsearch {display: block; margin: 10px 0}
+#page div.page-right div#mainsearch label {font-weight: bold;}
+
 #page div.page-right ul li { color: #333; border-bottom: dashed 1px #7d2626; }
 #page div.page-left div.info-box ul li.last, #page div.page-right ul li.last { padding: 0; margin: 0; border: 0; text-align: center; }
 #page div.page-left div.info-box ul li img, #page div.page-right ul li img { float: left; padding: 0 10px 5px 0; }
@@ -77,6 +83,15 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #page div.page-right div.left-col { margin-right: 20px; }
 
 #page div.page-right table tbody tr td { padding-bottom: 4px; padding-right: 2px; }
+
+#page div.page-right ul#sparklisting {display: block}
+#page div.page-right ul#sparklisting li {display:inline-block; border: 1px solid #7D2626; height: auto; list-style: none; background-color: #ddd; padding: 5px;}
+#page div.page-right ul#sparklisting li div.sparkinfo {float:left; display: inline-table; width: 550px}
+#page div.page-right ul#sparklisting li div.sparkinfo a {display: inline-block; margin-bottom: 8px;}
+#page div.page-right ul#sparklisting li div.sparkinfo span {display: block; margin-bottom: 8px;}
+#page div.page-right ul#sparklisting li div.sparkstats {border: 0; display: block; float: right;  width: 150px}
+#page div.page-right ul#sparklisting li div.sparkstats  li {font-size: 12px; display: block; border: 0; padding: 2px; margin: 0;}
+#page div.page-right ul#sparklisting li div.sparkstats  li span {display: inline-block; width: 110px;}
 
 #page div.code, #page code, #page pre { font-family: Monaco, Verdana, Sans-serif; font-size: 12px; background-color: #f9f9f9;
 	border: 1px solid #D0D0D0; color: #002166; display: block; margin: 15px 0 15px 0; padding: 12px 10px 12px 10px; }
@@ -133,4 +148,5 @@ span.superscript { font-size:14px; vertical-align: super; }
 /* Sizing the profile box as close to the actual size as possible so it doesn't
    flash when loaded via ajax */
 #lazy_profile { min-height: 82px; }
+#lazy_profile a {float:right; color: #fff;}
 #disqus_thread ul li { border: none !important; padding: 0 !important; }
