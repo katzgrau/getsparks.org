@@ -20,6 +20,15 @@ $official_sparks = Spark::getLatestOf(3, NULL, TRUE);
         <div id="lazy_profile"></div>
 	</div>
 	
+    <!-- Temporary Twitter -->
+    
+	<div class="info-box clearfix">
+        <h2><img src="" />Twitter: <a style="color:white;" href="http://twitter.com/getsparks">@getsparks</a></h2>
+        <p>Hey! Keep up to date with the project through it's beta and public launch by following <a style="color:white;" href="http://twitter.com/getsparks">@getsparks</a>.</p>
+	</div>
+    
+    <!-- End Twitter -->
+
 	<?php if (isset($official_sparks)): ?>
 	<div class="info-box clearfix">
 		<h2>Official Sparks</h2>
