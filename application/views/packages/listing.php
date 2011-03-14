@@ -1,6 +1,7 @@
 <?php
 $title = ($browse_type != '' ? "$browse_type " : "") . 'Packages';
-$this->load->view('global/_new_header.php', array('title' => $title)); ?>
+$this->load->view('global/_new_header.php', array('title' => $title)); 
+$this->load->helper('rating');?>
 
 <h2><?php echo $title; ?></h2>
 
@@ -27,11 +28,20 @@ $this->load->view('global/_new_header.php', array('title' => $title)); ?>
 						<li><span>Approved: </span> <?php echo $spark->is_approved == 1 ? 'Yes' : 'No'; ?></li>
 					</ul>
 				</div>
+				<div id="ratings" style="float:left;font-size:small;"><?php echo get_ratings($spark->id); ?></div>
             </li>
         <?php endforeach; ?>
     <?php else: ?>
             <li>You haven't contributed any sparks yet.</li>
     <?php endif; ?>
 </ul>
-
+<script>
+$(".rate").click(function(event) {
+	event.preventDefault();
+	$this = $(this);
+	$.post($this.attr('href'), function(data) {
+		$this.parent().html(data);
+	});
+});
+</script>
 <?php $this->load->view('global/_new_footer.php'); ?>
