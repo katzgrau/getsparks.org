@@ -31,6 +31,56 @@ class Spark_specification {
     public $dependencies = array();
 
     /**
+     * Load a spark spec file and validate it
+     * @param string $filepath
+     */
+    public static function load($filepath)
+    {
+        $spec = array();
+
+        /* Check that the spark file exists */
+        if(!file_exists($filepath))
+        {
+            throw new SpecificationException("The spark file does not exist: $filepath");
+        }
+
+        /* Load it, it should have a $spec array inside it */
+        include($filepath);
+
+        if(!is_array($spec))
+        {
+            throw new SpecificationException("The spec does not contain valid spec information: $filepath");
+        }
+
+        /* Create a spec instance */
+        $spark               = new self();
+
+        /* Check for each individual component and load it */
+        if(!array_key_exists('name', $spec))
+        {
+            throw new SpecificationException("The spec does not contain a spec name: $filepath");
+        }
+
+        $spark->name         = $spec['name'];
+
+        if(!array_key_exists('version', $spec))
+        {
+            throw new SpecificationException("The spec does not contain a spec version: $filepath");
+        }
+
+        $spark->version      = $spec['version'];
+
+        if(!array_key_exists('dependencies', $spec))
+        {
+            throw new SpecificationException("The spec does not contain a spec dependency: $filepath");
+        }
+        
+        $spark->dependencies = $spec['dependencies'];
+
+        $spark->validate();
+    }
+
+    /**
      * Validate this spark. Throws an exception if things look broken
      * @throws SpecificationException
      */
@@ -58,9 +108,9 @@ class Spark_specification {
 
         foreach($versions as $v)
         {
-            if(!is_int($v) || $v < 1)
+            if(!is_numeric($v) || $v < 0)
             {
-                throw new SpecificationException("Each component of the versions string must be a positive integer: {$version}");
+                throw new SpecificationException("Each component of the versions string must be an integer >= 0: {$version}");
             }
         }
     }
@@ -73,7 +123,7 @@ class Spark_specification {
     private function _validateName($name)
     {
         /* Validate the name of the spark */
-        if(is_string($name))
+        if(!is_string($name))
         {
             throw new SpecificationException("The name of the specification must be a string: {$name}");
         }
