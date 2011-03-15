@@ -33,6 +33,7 @@ class Spark_specification {
     /**
      * Load a spark spec file and validate it
      * @param string $filepath
+     * @return Spark_specification
      */
     public static function load($filepath)
     {
@@ -78,6 +79,8 @@ class Spark_specification {
         $spark->dependencies = $spec['dependencies'];
 
         $spark->validate();
+
+        return $spark;
     }
 
     /**
