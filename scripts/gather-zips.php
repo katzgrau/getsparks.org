@@ -16,7 +16,7 @@ require_once $webroot . 'index.php';
 $CI = &get_instance();
 $CI->load->model('spark');
 $CI->load->model('contributor');
-$CI->load->helper('spark');
+$CI->load->library('spark_spec');
 $CI->load->spark('markdown/1.1');
 
 # Set the spark path
@@ -34,7 +34,7 @@ foreach($sparks as $spark)
 {
     $handle = md5(uniqid());
     $tmp    = "/tmp/$handle";
-    $release= "{$spark->name}-v{$spark->version}";
+    $release= "{$spark->name}-{$spark->version}";
     $release_dir = $spark_path . $spark->name;
 
     # Create a temporary holding place
@@ -59,7 +59,11 @@ foreach($sparks as $spark)
         continue;
     }
 
-    if($errors = SparkHelper::validateSpark($spark, $tmp))
+    try
+    {
+        $spec = Spark_spec::loadFromDirectory($tmp);
+    }
+    catch(Exception $ex)
     {
         $spark->removeVersionAndNotify($spark->version, $errors);
         `rm -rf $tmp`;
@@ -67,7 +71,7 @@ foreach($sparks as $spark)
     }
 
     # If there's a README file, store the contents
-    if($readme = SparkHelper::getReadme($tmp))
+    if($readme = $spec->getReadme())
     {
         $readme = file_get_contents($tmp.'/'.$readme);
         $spark->setVersionReadme($spark->version, $readme);
