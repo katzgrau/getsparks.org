@@ -7,7 +7,7 @@
  * This class defines a spark. That is, it contains information about
  *  a spark's name, the version, and dependency information
  */
-class SparkSpecification {
+class Spark_specification {
 
     /**
      * The registered name of a spark. This is purely informational.
