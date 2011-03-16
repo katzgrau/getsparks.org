@@ -11,12 +11,11 @@ chdir($webroot);
 # Load up CodeIgniter
 require_once $webroot . 'index.php';
 
-
 # Load up the spark libs
 $CI = &get_instance();
 $CI->load->model('spark');
 $CI->load->model('contributor');
-$CI->load->library('spark_spec');
+$CI->load->spark('spark-sdk/1.0');
 $CI->load->spark('markdown/1.1');
 
 # Set the spark path
@@ -65,6 +64,7 @@ foreach($sparks as $spark)
     }
     catch(Exception $ex)
     {
+        $errors = array($ex->getMessage());
         $spark->removeVersionAndNotify($spark->version, $errors);
         `rm -rf $tmp`;
         continue;

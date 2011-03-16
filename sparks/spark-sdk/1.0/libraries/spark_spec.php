@@ -3,6 +3,13 @@
  * This file contains a class for defining a spark.
  */
 
+/* Load the YAML class if it does not already exist. This is sort of special --
+ *  this spark will have many uses fromt he command line.
+ */
+if(!class_exists('YAML'))
+{
+    require_once dirname(__FILE__) . '/yaml.php';
+}
 /**
  * This class defines a spark. That is, it contains information about
  *  a spark's name, the version, and dependency information
@@ -57,20 +64,21 @@ class Spark_spec {
     {
         $spec       = array();
         $filepath   = rtrim($filepath, '/') . '/';
-        $specfile   = $filepath . 'spec.php';
+        $filename   = 'spark.info';
+        $specfile   = $filepath . $filename;
         
         /* Check that the spark file exists */
         if(!file_exists($specfile))
         {
-            throw new SpecValidationException("The spec file does not exist: $specfile");
+            throw new SpecValidationException("The spec file does not exist in the spark's root: $filename");
         }
 
-        /* Load it, it should have a $spec array inside it */
-        include($specfile);
+        /* Load it, it should have a $spec setup inside it */
+        $spec = Yaml::parse_file($specfile);
 
         if(!is_array($spec))
         {
-            throw new SpecValidationException("The spec does not contain valid spec information: $specfile");
+            throw new SpecValidationException("The spec does not contain valid spec information: $filename");
         }
 
         /* Create a spec instance */
@@ -81,21 +89,21 @@ class Spark_spec {
         /* Check for each individual component and load it */
         if(!array_key_exists('name', $spec))
         {
-            throw new SpecValidationException("The spec does not contain a spec name: $specfile");
+            throw new SpecValidationException("The spec does not contain a spec name: $filename");
         }
 
         $spark->name = $spec['name'];
 
         if(!array_key_exists('version', $spec))
         {
-            throw new SpecValidationException("The spec does not contain a spec version: $specfile");
+            throw new SpecValidationException("The spec does not contain a spec version: $filename");
         }
 
         $spark->version = $spec['version'];
 
         if(!array_key_exists('dependencies', $spec))
         {
-            throw new SpecValidationException("The spec does not contain a spec dependency: $specfile");
+            throw new SpecValidationException("The spec does not contain a spec dependency: $filename");
         }
         
         $spark->dependencies = $spec['dependencies'];
@@ -183,21 +191,11 @@ class Spark_spec {
             throw new SpecValidationException("The dependency information should be an array.");
         }
 
-        foreach($dependencies as $d)
+        foreach($dependencies as $name => $version)
         {
-            if(!is_array($d))
-            {
-                throw new SpecValidationException("Each dependency in the dependency array should be described as an array.");
-            }
+            $this->_validateName($name);
 
-            if(count($d) != 2)
-            {
-                throw new SpecValidationException("Each dependency in the dependency array should consist of 2 elements: name and version");
-            }
-
-            $this->_validateName($d[0]);
-
-            $this->_validateVersion($d[1]);
+            $this->_validateVersion($version);
         }
     }
 
@@ -238,12 +236,9 @@ class Spark_spec {
      * Given a directory, return the filename of any readme file if it exists
      * @param string $dir The directory to search
      */
-    private static function _validateReadme($dir)
+    private function _validateReadme($dir)
     {
-        $CI = &get_instance();
-        $CI->load->helper('file');
-
-        $files = get_filenames($dir);
+        $files = static::getFilenames($dir);
 
         $readme = FALSE;
         $file   = '';
@@ -272,6 +267,46 @@ class Spark_spec {
             $this->_readme = $file;
         }
     }
+
+    /**
+     * Ripped from the CodeIgniter core, with love. We had to do this to minimize
+     *  dependencies for spark-sdk.
+     * @param string $source_dir
+     * @param <type> $include_path
+     * @param <type> $_recursion
+     * @return <type>
+     */
+	function getFilenames($source_dir, $include_path = FALSE, $_recursion = FALSE)
+	{
+		static $_filedata = array();
+
+		if ($fp = @opendir($source_dir))
+		{
+			// reset the array and make sure $source_dir has a trailing slash on the initial call
+			if ($_recursion === FALSE)
+			{
+				$_filedata = array();
+				$source_dir = rtrim(realpath($source_dir), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
+			}
+
+			while (FALSE !== ($file = readdir($fp)))
+			{
+				if (@is_dir($source_dir.$file) && strncmp($file, '.', 1) !== 0)
+				{
+					self::getFilenames($source_dir.$file.DIRECTORY_SEPARATOR, $include_path, TRUE);
+				}
+				elseif (strncmp($file, '.', 1) !== 0)
+				{
+					$_filedata[] = ($include_path == TRUE) ? $source_dir.$file : $file;
+				}
+			}
+			return $_filedata;
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
 }
 
 /**
