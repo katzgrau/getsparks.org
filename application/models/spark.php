@@ -33,7 +33,7 @@ class Spark extends CI_Model
             return self::getLatest ($name);
 
         $CI = &get_instance();
-        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme");
+        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme, v.id AS 'version_id'");
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
         $CI->db->where('s.name', $name);
@@ -103,7 +103,7 @@ class Spark extends CI_Model
     public static function getLatest($name, $verified = TRUE)
     {
         $CI = &get_instance();
-        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme");
+        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme, v.id AS 'version_id'");
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
 
@@ -127,7 +127,7 @@ class Spark extends CI_Model
     public static function getUnverified()
     {
         $CI = &get_instance();
-        $CI->db->select("s.*, v.version, v.is_deactivated, v.is_verified");
+        $CI->db->select("s.*, v.version, v.tag, v.is_deactivated, v.is_verified, v.id AS 'version_id'");
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
         $CI->db->where('v.is_verified', 0);
@@ -359,5 +359,76 @@ echo $message . "\n"; return;
         $CI->db->or_like('description', $term, 'both');
 
         return $CI->db->get()->result('Spark');
+    }
+
+    /**
+     * Add dependencies for the current spark current spark.
+     * If you have a new unverified version of a spark, and you want to add it's
+     *  dependencies, pass the spec in here.
+     * @param Spark_spec $spec
+     */
+    public function processDependencies($spec)
+    {
+        # Make sure we're working with something usable
+        $spec->validate();
+
+        # These will hold version ids
+        $direct_dependencies   = array();
+        $indirect_dependencies = array();
+        
+        # Will hold the rows to be insterted into the db
+        $dependency_rows      = array();
+
+        if(count($spec->dependencies))
+        {
+            # Make sure all the dependencies exist
+            #  If they do, keep track of the version_id in the direct dependants
+            foreach($spec->dependencies as $name => $version)
+            {
+                if(!($spark = self::get($name, $version)))
+                    throw new SpecValidationException("The dependency '$name' version $version does not exist");
+
+                $direct_dependencies[] = $spark->version_id;
+            }
+
+            # Get the dependencies of the dependencies, and add them to our own
+            $this->db->select('needed_version_id');
+            $this->db->where_in('version_id', $direct_dependencies);
+            $rows = $this->db->get('dependencies')->result();
+
+            # Anything that comes back is an indirect dependency, so let's
+            #  keep it separate
+            foreach($rows as $second_degree_dependency)
+            {
+                $version_id = $second_degree_dependency->needed_version_id;
+                if(!in_array($version_id, $direct_dependencies))
+                        $indirect_dependencies[] = $version_id;
+            }
+
+            # Add the direct dependency rows
+            foreach($direct_dependencies as $dependency)
+            {
+                $dependency_rows[] = array (
+                    'version_id'        => $this->version_id,
+                    'needed_version_id' => $dependency,
+                    'is_direct'         => TRUE
+                );
+            }
+
+            # Add the indrect dependency rows
+            foreach($indirect_dependencies as $dependency)
+            {
+                $dependency_rows[] = array (
+                    'version_id'        => $this->version_id,
+                    'needed_version_id' => $dependency,
+                    'is_direct'         => FALSE
+                );
+            }
+
+            # Insert the dependency information
+            return $this->db->insert_batch('dependencies', $dependency_rows);
+        }
+
+        return TRUE;
     }
 }

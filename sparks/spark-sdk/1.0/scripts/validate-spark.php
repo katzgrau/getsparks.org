@@ -2,7 +2,7 @@
 
 require_once dirname(__FILE__) . '/../libraries/spark_spec.php';
 
-$args = $_SERVER['argv'];
+$args   = $_SERVER['argv'];
 $script = $args[0];
 
 if(count($args) != 2)

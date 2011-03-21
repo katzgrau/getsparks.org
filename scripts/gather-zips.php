@@ -43,13 +43,13 @@ foreach($sparks as $spark)
     # Pull down a copy
     if($spark->repository_type == 'hg')
     {
-        `hg clone -r$spark->version $spark->base_location $tmp`;
+        `hg clone -r$spark->tag $spark->base_location $tmp`;
     }
     elseif($spark->repository_type == 'git')
     {
         $token = 'spark-' . $spark->id . '-' . time();
         `git clone $spark->base_location $tmp`;
-        `cd $tmp ; git checkout $spark->version -b $token ; cd ..`;
+        `cd $tmp ; git checkout $spark->tag -b $token ; cd ..`;
     }
     else
     {
@@ -60,32 +60,39 @@ foreach($sparks as $spark)
 
     try
     {
+        # All or nothing. Verify versions aand insert dependencies atomically
+        $CI->db->trans_start();
+        # Load the spark's YAML Spec
         $spec = Spark_spec::loadFromDirectory($tmp);
+        # Add any dependencies in the spec
+        $spark->processDependencies($spec);
+        # If there's a README file, store the contents
+        if($readme = $spec->getReadme())
+        {
+            $readme = file_get_contents($tmp.'/'.$readme);
+            $spark->setVersionReadme($spark->version, $readme);
+        }
+        # Mark this spark as verified
+        $spark->setVerified($spark->version, TRUE, base_url().config_item('archive_path').$spark->name.'/'.$release.".zip");
+        # Commit anything we've done
+        $CI->db->trans_complete();
+        # Yay, keep track of it
+        $successful[] = $spark;
     }
     catch(Exception $ex)
     {
+        echo "Error processing {$spark->name} - {$spark->version}: " . $ex->getMessage() . ". Removing..\n";
         $errors = array($ex->getMessage());
         $spark->removeVersionAndNotify($spark->version, $errors);
+        $unsuccessful[] = $spark;
         `rm -rf $tmp`;
         continue;
     }
 
-    # If there's a README file, store the contents
-    if($readme = $spec->getReadme())
-    {
-        $readme = file_get_contents($tmp.'/'.$readme);
-        $spark->setVersionReadme($spark->version, $readme);
-    }
-
-    # TODO: Validate
+    # The spark's been added, now do some disk cleanup
     @mkdir($release_dir, 0777, TRUE);
     `zip -r $release.zip *`;
     @copy("$tmp/$release.zip", $release_dir."/$release.zip");
-
-    # Mark it as verified
-    $spark->setVerified($spark->version, TRUE, base_url().config_item('archive_path').$spark->name.'/'.$release.".zip");
-    $successful[] = $spark;
-
     echo "Verified $spark->name v$spark->version -- $tmp\n";
     `rm -rf $tmp`;
 }
