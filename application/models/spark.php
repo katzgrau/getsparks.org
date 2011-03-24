@@ -199,6 +199,21 @@ class Spark extends CI_Model
     }
 
     /**
+     * Get an array of a spark's dependencies
+     */
+    public function getDependencies($extended = TRUE)
+    {
+        $this->db->select("s.*, v.version, v.id AS 'version_id'");
+        $this->db->from('dependencies d');
+        $this->db->join('versions v', 'v.id = d.needed_version_id');
+        $this->db->join('sparks s', 's.id = v.spark_id');
+        $this->db->where('version_id', $this->version_id);
+        $this->db->where('is_direct', !$extended);
+
+        return $this->db->get()->result();
+    }
+
+    /**
      * Set a version of this spark as 'verified', which means it checked out fine, and looks legit
      * @param string $version The version to set 'verified'
      * @param string $is_verified True for verified, false for not

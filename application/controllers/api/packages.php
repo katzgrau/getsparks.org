@@ -46,6 +46,7 @@ class Packages extends CI_Controller
 
         $spark->spark_home  = base_url() . 'packages/' . $spark->name . '/show';
         $spark->contributor = $spark->getContributor();
+        $spark->dependencies= $spark->getDependencies();
 
         # Omit the password hash
         unset($spark->contributor->password);
