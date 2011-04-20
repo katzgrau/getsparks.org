@@ -30,10 +30,14 @@
 			<option value="git" <?php if(set_value('repository_type') == 'git') echo 'selected'; ?>>Git (git)</option>
 			<option value="hg" <?php if(set_value('repository_type') == 'hg') echo 'selected'; ?>>Mercurial (hg)</option>
 		</select><br class="clear" />
+
+		<label for="website">Website:</label><br class="clear" />
+		<input type="text" id="base_location" name="website" class="text-box" value="<?php echo set_value('website'); ?>" /><br class="clear" />
+		<span class="helper">The place for news and stuff about your spark (or just the github page)</span><br class="clear" />
 		
 		<label for="base_location">Public Clone URL:</label><br class="clear" />
 		<input type="text" id="base_location" name="base_location" class="text-box" value="<?php echo set_value('base_location'); ?>" /><br class="clear" />
-		<span class="helper">e.g., https://bitbucket.org/katzgrau/ci-sparks-repo</span><br class="clear" />
+		<span class="helper">e.g., git://github.com/katzgrau/getsparks.org.git</span><br class="clear" />
 		
 		<input type="submit" name="submit" value="Create Spark" class="button" />
 

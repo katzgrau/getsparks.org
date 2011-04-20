@@ -35,7 +35,7 @@ $config = array (
         array (
             'field'   => 'website',
             'label'   => 'Website',
-            'rules'   => 'min_length[12]'
+            'rules'   => 'min_length[5]'
         ),
 
         array (
@@ -74,7 +74,7 @@ $config = array (
         array (
             'field'   => 'website',
             'label'   => 'Website',
-            'rules'   => 'min_length[12]'
+            'rules'   => 'min_length[5]'
         ),
     ),
 
@@ -126,7 +126,7 @@ $config = array (
         array (
             'field'   => 'name',
             'label'   => 'Spark Name',
-            'rules'   => 'required|min_length[3]|max_length[20]|alpha_dash'
+            'rules'   => 'required|min_length[3]|max_length[20]|alpha_dash|callback_package_available'
         ),
 
         array (
@@ -172,5 +172,12 @@ $config = array (
             'label'   => 'Version',
             'rules'   => 'required|min_length[1]|max_length[10]'
         )
-    )
+    ),
+    'search' => array (
+        array (
+            'field'   => 'term',
+            'label'   => 'Search term',
+            'rules'   => 'required|min_length[4]|xss_clean|trim'
+        ),
+	),
 );

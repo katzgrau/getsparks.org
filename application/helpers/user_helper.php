@@ -131,4 +131,14 @@ class UserHelper
         
         return $notices;
     }
+
+    /**
+     * Check whether this user is an administrator or not
+     */
+    public static function isAdmin()
+    {
+        $CI = &get_instance();
+        $contributor = $CI->session->userdata('contributor');
+        return (bool)$contributor ? $contributor['is_admin']: FALSE;
+    }
 }

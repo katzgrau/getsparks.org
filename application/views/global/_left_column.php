@@ -1,6 +1,6 @@
 <script type="text/javascript" charset="utf-8">
-	$(document).ready(function() {
-		$.get("/contributors/get_profile_info", function(data) {
+	$('#lazy_profile').available(function() {
+		$.post("/ajax/contributors/get_profile_box", function(data) {
 			$("#lazy_profile").html(data);
 		});
 	});
@@ -17,23 +17,18 @@ $official_sparks = Spark::getLatestOf(3, NULL, TRUE);
 <div class="page-left">
 	
 	<div class="login-box clearfix">
-		
-		<?php if (!UserHelper::isLoggedIn()): ?>
-			<form action="/login" method="post">
-				<fieldset>
-					<label for="email">Email Address:</label><br class="clear" />
-					<input type="text" id="email" name="email" class="text-box" /><br class="clear" />
-					<label for="password">Password:</label><br class="clear" />
-					<input type="password" id="password" name="password" class="text-box" /><br class="clear" />
-					<input type="submit" id="submit" class="submit" value="Login">
-				</fieldset>
-			</form>
-		<?php else: ?>
-			<div id="lazy_profile"></div>
-		<?php endif; ?>
-		
+        <div id="lazy_profile"></div>
 	</div>
 	
+    <!-- Temporary Twitter -->
+    
+	<div class="info-box clearfix">
+        <h2><img src="" />Twitter: <a style="color:white;" href="http://twitter.com/getsparks">@getsparks</a></h2>
+        <p>Hey! Keep up to date with the project through it's beta and public launch by following <a style="color:white;" href="http://twitter.com/getsparks">@getsparks</a>.</p>
+	</div>
+    
+    <!-- End Twitter -->
+
 	<?php if (isset($official_sparks)): ?>
 	<div class="info-box clearfix">
 		<h2>Official Sparks</h2>

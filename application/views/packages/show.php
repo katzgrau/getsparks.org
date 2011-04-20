@@ -28,6 +28,10 @@
         <td>Repository Type</td>
         <td>: <?php echo $contribution->repository_type; ?></td>
     </tr>
+    <tr>
+        <td>Number of Installs</td>
+        <td>: <?php echo number_format($contribution->getInstallCount()); ?></td>
+    </tr>
 </table>
 
 <?php if($contribution->contributor_id == UserHelper::getId()): ?>
@@ -48,11 +52,13 @@
 <ul>
     <?php if(count($versions) > 0): $count = 0; ?>
         <?php $latest_verion = $version = $versions[0]; ?>
-            <li>
+            <li class="no-border">
                <?php echo $version->version; ?> (latest/HEAD)
+               <?php /*
                <a href="<?php echo base_url(); ?>packages/<?php echo $contribution->name; ?>/versions/<?php echo $version->version; ?>/spec.json">
                  [spec]
                </a>
+                */ ?>
                 <?php if($is_author): ?>
                     <?php if(!$version->is_deactivated): ?>
                     <a href="#" onclick="return yank('<?php echo $version->version; ?>');">
@@ -64,14 +70,20 @@
                     </a>
                     <?php endif; ?>
                 <?php endif; ?>
+                <?php if(UtilityHelper::isWindows()): ?>
+                <code>
+                    <?php echo config_item('install_prototype_win'); ?> -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
+                </code>
+               <?php else: ?>
                 <code>
                     <?php echo config_item('install_prototype_nix'); ?> -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
                 </code>
+               <?php endif; ?>
                 Or download this version manually:
                 <a href="<?php echo $version->archive_url; ?>" class="download">Get <?php echo $contribution->name; ?>-v<?php echo $version->version; ?>.zip</a>
             </li>
     <?php else: ?>
-            <li class="last" style="text-align:left; margin-bottom:15px">There isn't a latest version.</li>
+            <li class="last no-border" style="text-align:left; margin-bottom:15px">There isn't a latest version.</li>
     <?php endif; ?>
 </ul>
 
@@ -92,10 +104,11 @@
 	        <input type="submit" name="submit" value="Create From Tag" />
 	    </form>
 	</div>
+<p></p>
 <?php endif; ?>
 
 <?php if(count($versions) > 0): ?>
-    <h2>Readme</h2>
+    <h2>How-To</h2>
     <div id="documentation" class="markdown">
         <?php
             if(strlen($versions[0]->readme_html))
@@ -110,11 +123,8 @@
 <ul>
     <?php if(count($versions) > 1): $versions = array_slice($versions, 1); ?>
         <?php foreach($versions as $version): ?>
-            <li>
+            <li class="no-border">
                <?php echo $version->version; ?>
-               <a href="<?php echo base_url(); ?>packages/<?php echo $contribution->name; ?>/versions/<?php echo $version->version; ?>/spec.json">
-                 [spec]
-               </a>
                 <?php if($is_author): ?>
                     <?php if(!$version->is_deactivated): ?>
                     <a href="#" onclick="return yank('<?php echo $version->version; ?>');">
@@ -126,17 +136,26 @@
                     </a>
                     <?php endif; ?>
                 <?php endif; ?>
+                <?php if(UtilityHelper::isWindows()): ?>
+                <code>
+                    <?php echo config_item('install_prototype_win'); ?> -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
+                </code>
+               <?php else: ?>
                 <code>
                     <?php echo config_item('install_prototype_nix'); ?> -v<?php echo $version->version; ?> <?php echo $contribution->name; ?>
                 </code>
+               <?php endif; ?>
                 Or download this version manually:
                 <a href="<?php echo $version->archive_url; ?>" class="download">Get <?php echo $contribution->name; ?>-<?php echo $version->version; ?>.zip</a>
             </li>
         <?php $count++; endforeach; ?>
     <?php else: ?>
-            <li class="last" style="text-align:left; margin-bottom:15px">There are no older versions.</li>
+            <li class="last no-border" style="text-align:left; margin-bottom:15px">There are no older versions.</li>
     <?php endif; ?>
 </ul>
+
+<h2>Comments</h2>
+<?php UtilityHelper::loadDisqus(); ?>
 
 <script type="text/javascript">
     function yank(version)

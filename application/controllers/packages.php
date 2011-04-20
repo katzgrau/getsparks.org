@@ -17,6 +17,8 @@ class Packages extends CI_Controller
      */
     public function spec($package_name, $version, $format)
     {
+        #UtilityHelper::tryPageCache(1);
+
         $this->load->model('spark');
         $this->load->model('contributor');
         $this->load->model('download');
@@ -57,7 +59,7 @@ class Packages extends CI_Controller
                 $post = $_POST;
                 $post['contributor_id'] = UserHelper::getId();
 
-                $insert = elements(array('contributor_id', 'name', 'summary', 'description', 'repository_type', 'base_location'), $post);
+                $insert = elements(array('contributor_id', 'name', 'summary', 'description', 'website', 'repository_type', 'base_location'), $post);
 
                 $this->load->model('Spark');
 
@@ -95,14 +97,16 @@ class Packages extends CI_Controller
 
         $submit   = $this->input->post('submit');
         $spark_id = $this->input->post('spark_id');
+        $success  = FALSE;
 
         if($submit)
         {
             if($this->form_validation->run('edit-package'))
             {
-                $update = elements(array('name', 'summary', 'description', 'repository_type', 'base_location'), $_POST);
+                $update = elements(array('name', 'summary', 'description', 'website', 'repository_type', 'base_location'), $_POST);
                 Spark::update($spark_id, $update);
                 UserHelper::setNotice("This spark has been updated. Thanks again, you're awesome.");
+                $success = TRUE;
             }
             else
             {
@@ -110,7 +114,11 @@ class Packages extends CI_Controller
             }
         }
 
-        $spark = Spark::getInfo($package_name);
+        if($success)
+            $spark = Spark::getInfo($update['name']);
+        else
+            $spark = Spark::getInfo($package_name);
+        
         if(!$spark) show_404();
 
         $this->load->view('packages/edit', array('contribution' => $spark));
@@ -122,6 +130,8 @@ class Packages extends CI_Controller
      */
     public function show($package_name)
     {
+        #UtilityHelper::tryPageCache();
+        
         $this->load->model('spark');
         $this->load->model('contributor');
 
@@ -193,10 +203,24 @@ class Packages extends CI_Controller
     {
         $this->load->model('spark');
 
-        if(!Spark::doesExist($package_name)) return true;
+        $spark = Spark::getInfo($package_name);
 
-        $this->form_validation->set_message('package_available', 'Sorry! That Spark name is taken');
-        return FALSE;
+        if($spark)
+        {
+            if($spark->contributor_id !== UserHelper::getId())
+            {
+                $this->form_validation->set_message('package_available', 'Sorry! That Spark name is taken');
+                return FALSE;
+            }
+
+            if($spark->id != $this->input->post('spark_id'))
+            {
+                $this->form_validation->set_message('package_available', 'You already have a Spark with that name');
+                return FALSE;
+            }
+        }
+
+        return TRUE;
     }
 
     /**
@@ -222,6 +246,8 @@ class Packages extends CI_Controller
      */
     function browse($type)
     {
+        UtilityHelper::tryPageCache(1);
+        
         $this->load->model('spark');
         $sparks = array();
         $data['browse_type'] = '';
@@ -231,7 +257,7 @@ class Packages extends CI_Controller
         {
             $sparks              = Spark::getTop(100);
             $data['browse_type'] = 'Browse Latest';
-            $data['description'] = 'These are the most recently registered sparks';
+            $data['description'] = 'These are the most recently registered sparks with at least one release.';
         }
         elseif($type == 'featured')
         {

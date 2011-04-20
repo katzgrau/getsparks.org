@@ -20,6 +20,7 @@ $route['api/packages/(:any)/versions/(:any)/spec'] 			= "api/packages/spec/$1/$2
 $route['home']             = "home/index";
 $route['download']         = "home/download";
 $route['set-up']           = "home/set_up";
+$route['set-up-mx']        = "home/set_up_mx";
 $route['get-sparks']       = "home/get_sparks";
 $route['make-sparks']      = "home/make_sparks";
 $route['about']            = "home/about";

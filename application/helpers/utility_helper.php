@@ -62,4 +62,44 @@ class UtilityHelper
     {
         return md5(strtolower(trim($email)));
     }
+
+    /**
+     * Cache the page if we're in a production environment
+     * @param int $ttl Minutes to cache the page for
+     */
+    public static function tryPageCache($ttl = 5)
+    {
+        if(config_item('is_production'))
+        {
+            $CI = &get_instance();
+            $CI->output->cache($ttl);
+        }
+    }
+
+    /**
+     * Load the disqus comment thread JS
+     */
+    public static function loadDisqus()
+    {
+        $data = array (
+            'permalink'  => current_url(),
+            'identifier' => uri_string(),
+            'shortname'  => config_item('service_handle')
+        );
+
+        $CI = &get_instance();
+        $CI->load->view('global/_disqus', $data);
+    }
+
+    /**
+     * Is the user using some sort of *nix variant? (OSX, Linux, etc)
+     * @return bool True if yes, false if no
+     */
+    public static function isWindows()
+    {
+        $CI = &get_instance();
+        $CI->load->library('user_agent');
+        $platform = $CI->agent->platform();
+        return strstr($platform, 'Windows');
+    }
 }

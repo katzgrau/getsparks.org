@@ -33,7 +33,7 @@ class Spark extends CI_Model
             return self::getLatest ($name);
 
         $CI = &get_instance();
-        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme");
+        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme, v.id AS 'version_id'");
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
         $CI->db->where('s.name', $name);
@@ -55,7 +55,17 @@ class Spark extends CI_Model
     }
 
     /**
-     * Get spark info by its name and version
+     * Get the total number of installs this spark has had
+     * @return int The number of installs
+     */
+    public function getInstallCount()
+    {
+        $this->db->where('spark_id', $this->id);
+        return $this->db->count_all_results('installs');
+    }
+
+    /**
+     * Get spark info by its name
      * @param string $name
      * @param string $version
      * @return Spark
@@ -93,9 +103,10 @@ class Spark extends CI_Model
     public static function getLatest($name, $verified = TRUE)
     {
         $CI = &get_instance();
-        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme");
+        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme, v.id AS 'version_id'");
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
+
         $CI->db->where('s.name', $name);
         $CI->db->where('v.is_deactivated', FALSE);
 
@@ -116,7 +127,7 @@ class Spark extends CI_Model
     public static function getUnverified()
     {
         $CI = &get_instance();
-        $CI->db->select("s.*, v.version, v.is_deactivated, v.is_verified");
+        $CI->db->select("s.*, v.version, v.tag, v.is_deactivated, v.is_verified, v.id AS 'version_id'");
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
         $CI->db->where('v.is_verified', 0);
@@ -131,13 +142,20 @@ class Spark extends CI_Model
      * @param int $n
      * @return array[Spark]
      */
-    public static function getTop($n = 10)
+    public static function getTop($n = 10, $require_release = TRUE)
     {
         $CI = &get_instance();
 
         $CI->db->select("s.*, c.username, c.email");
         $CI->db->from('sparks s');
         $CI->db->join('contributors c', 's.contributor_id = c.id');
+
+        if($require_release)
+        {
+            $CI->db->join('versions v', 'v.spark_id = s.id');
+            $CI->db->group_by('s.id');
+        }
+
         $CI->db->order_by('s.created', 'DESC');
 
         $CI->db->limit($n);
@@ -178,6 +196,21 @@ class Spark extends CI_Model
     {
         $this->load->model('contributor');
         return $this->db->get_where('contributors', array('id' => $this->contributor_id))->row(0, 'Contributor');
+    }
+
+    /**
+     * Get an array of a spark's dependencies
+     */
+    public function getDependencies($extended = TRUE)
+    {
+        $this->db->select("s.*, v.version, v.id AS 'version_id'");
+        $this->db->from('dependencies d');
+        $this->db->join('versions v', 'v.id = d.needed_version_id');
+        $this->db->join('sparks s', 's.id = v.spark_id');
+        $this->db->where('version_id', $this->version_id);
+        $this->db->where('is_direct', !$extended);
+
+        return $this->db->get()->result();
     }
 
     /**
@@ -229,12 +262,21 @@ class Spark extends CI_Model
     }
 
     /**
-     * Record an install of this spark
+     * Record an install of this spark. Do not count 'example-spark', which
+     *  is used for tutorial and unit-testing purposes.
      * @return bool True if it worked, false if not
      */
     public function recordInstall()
     {
-        return $this->db->insert('installs', array('spark_id' => $this->id, 'created' => date('Y-m-d H:i:s')));
+        if($this->name != 'example-spark')
+        {
+            $this->db->insert('installs', array('spark_id' => $this->id, 'created' => date('Y-m-d H:i:s')));
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
@@ -272,7 +314,7 @@ Here are some specifics: \n\n";
 
         foreach($errors as $error)
             $message .= "$error\n";
-
+echo $message . "\n"; return;
         send_email("{$contrib->email},{$sys_email}", "{$this->name} v{$version} Removed.", $message);
         
         $this->db->where('spark_id', $this->id);
@@ -324,10 +366,84 @@ Here are some specifics: \n\n";
     public static function search($term)
     {
         $CI = &get_instance();
-        $CI->db->select('s.*');
+        $CI->db->select("s.*, c.username, c.email");
         $CI->db->from('sparks s');
+        $CI->db->join('contributors c', 's.contributor_id = c.id');
         $CI->db->like('name', $term, 'both');
+        $CI->db->or_like('summary', $term, 'both');
+        $CI->db->or_like('description', $term, 'both');
 
-        return $CI->db->get()->result();
+        return $CI->db->get()->result('Spark');
+    }
+
+    /**
+     * Add dependencies for the current spark current spark.
+     * If you have a new unverified version of a spark, and you want to add it's
+     *  dependencies, pass the spec in here.
+     * @param Spark_spec $spec
+     */
+    public function processDependencies($spec)
+    {
+        # Make sure we're working with something usable
+        $spec->validate();
+
+        # These will hold version ids
+        $direct_dependencies   = array();
+        $indirect_dependencies = array();
+        
+        # Will hold the rows to be insterted into the db
+        $dependency_rows      = array();
+
+        if(count($spec->dependencies))
+        {
+            # Make sure all the dependencies exist
+            #  If they do, keep track of the version_id in the direct dependants
+            foreach($spec->dependencies as $name => $version)
+            {
+                if(!($spark = self::get($name, $version)))
+                    throw new SpecValidationException("The dependency '$name' version $version does not exist");
+
+                $direct_dependencies[] = $spark->version_id;
+            }
+
+            # Get the dependencies of the dependencies, and add them to our own
+            $this->db->select('needed_version_id');
+            $this->db->where_in('version_id', $direct_dependencies);
+            $rows = $this->db->get('dependencies')->result();
+
+            # Anything that comes back is an indirect dependency, so let's
+            #  keep it separate
+            foreach($rows as $second_degree_dependency)
+            {
+                $version_id = $second_degree_dependency->needed_version_id;
+                if(!in_array($version_id, $direct_dependencies))
+                        $indirect_dependencies[] = $version_id;
+            }
+
+            # Add the direct dependency rows
+            foreach($direct_dependencies as $dependency)
+            {
+                $dependency_rows[] = array (
+                    'version_id'        => $this->version_id,
+                    'needed_version_id' => $dependency,
+                    'is_direct'         => TRUE
+                );
+            }
+
+            # Add the indrect dependency rows
+            foreach($indirect_dependencies as $dependency)
+            {
+                $dependency_rows[] = array (
+                    'version_id'        => $this->version_id,
+                    'needed_version_id' => $dependency,
+                    'is_direct'         => FALSE
+                );
+            }
+
+            # Insert the dependency information
+            return $this->db->insert_batch('dependencies', $dependency_rows);
+        }
+
+        return TRUE;
     }
 }

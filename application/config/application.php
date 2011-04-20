@@ -1,10 +1,10 @@
 <?php
 
 # Installation prefix for windows via CLI
-$config['install_prototype_win'] = 'C:\reactor-app> php tools\spark install';
+$config['install_prototype_win'] = 'php tools\spark install';
 
 # Installation prefix for unix/osx via CLI
-$config['install_prototype_nix'] = 'reactor-app $ tools/spark install';
+$config['install_prototype_nix'] = 'php tools/spark install';
 
 # The text on the big button on the upper-right
 $config['sparks_download_button_text'] = 'Get Sparks Now!';
@@ -29,3 +29,6 @@ $config['system_alert_email'] = 'cron@oconf.org';
 
 # The place to email when shit goes wrong
 $config['support_email'] = 'ohcrap@getsparks.org';
+
+# The handle we use for twitter, disqus, etc.
+$config['service_handle'] = 'getsparks';

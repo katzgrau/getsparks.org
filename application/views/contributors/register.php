@@ -13,11 +13,11 @@
 	<form action="/register" id="register" method="post">
 		<fieldset>
 			<label for="username">User Name:</label><br class="clear" />
-			<input type="text" id="username" name="username" class="text-box" /><br class="clear" />
+			<input type="text" id="username" name="username" class="text-box" value="<?php echo set_value('username'); ?>" /><br class="clear" />
 			<span class="helper">Kinda like the same one you have for Twitter/Facebook/etc.</span><br class="clear" />
 			
 			<label for="email">Email Address:</label><br class="clear" />
-			<input type="text" id="email" name="email" class="text-box" /><br class="clear" />
+			<input type="text" id="email" name="email" class="text-box" value="<?php echo set_value('email'); ?>" /><br class="clear" />
 			<span class="helper">address@domain.com</span><br class="clear" />
 			
 			<label for="password">Password:</label><br class="clear" />
@@ -29,11 +29,11 @@
 			<span class="helper">And again</span><br class="clear" />
 			
 			<label for="real_name">Full Name:</label><br class="clear" />
-			<input type="text" id="real_name" name="real_name" class="text-box" /><br class="clear" />
+			<input type="text" id="real_name" name="real_name" class="text-box" value="<?php echo set_value('real_name'); ?>" /><br class="clear" />
 			<span class="helper">Make it nice (First Last) - like on a cover sheet for your 11th grade book report</span><br class="clear" />
 			
 			<label for="website">Web Site:</label><br class="clear" />
-			<input type="text" id="website" name="website" class="text-box" /><br class="clear" />
+			<input type="text" id="website" name="website" class="text-box" value="<?php echo set_value('website'); ?>" /><br class="clear" />
 			<span class="helper">http://www.example.com</span><br class="clear" />
 			
 			<label for="spam_check_answer">Robot Check:</label>&nbsp;&nbsp;<span class="robot-question"><?php echo $spam_question; ?></span><br class="clear" />
