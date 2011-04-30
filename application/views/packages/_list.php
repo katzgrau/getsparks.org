@@ -8,12 +8,13 @@
         <?php foreach($sparks as $spark): ?>
             <li>
                 <div class="ratings">
-                    <?php foreach (get_ratings($spark->id) as $label=>$count): ?>
-                    <div class="rating">
-                        <span><?php echo $count; ?></span><label><?php echo $label; ?></label>
+                    <div>
+                        <?php foreach (get_ratings($spark->id) as $label=>$count): ?>
+                        <div class="rating">
+                            <span><?php echo $count; ?></span><label><?php echo $label; ?></label>
+                        </div>
+                        <?php endforeach; ?>
                     </div>
-                    <?php endforeach; ?>
-                    <br/>
                     <div class="installcount"><?php echo number_format($spark->getInstallCount()); ?> Installs</div>
                 </div>
 			    <div class="sparkinfo">
