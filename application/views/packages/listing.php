@@ -4,31 +4,37 @@ $this->load->view('global/_new_header.php', array('title' => $title));
 $this->load->helper('rating');?>
 
 <h2><?php echo $title; ?></h2>
-
 <p><?php echo $description; ?></p>
+
 <ul id="sparklisting">
     <?php if(count($sparks) > 0): ?>
         <?php foreach($sparks as $spark): ?>
             <li>
-				<div class="sparkinfo">
-					<a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show">
-						<?php echo $spark->name; ?>
-					</a> by
-					<a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile">
-						<?php echo $spark->username; ?>
-					</a>
-					<span><?php echo $spark->summary; ?></span>
+                <div class="ratings">
+                    <?php foreach (get_ratings($spark->id) as $label=>$count): ?>
+                    <div class="rating">
+                        <span><?php echo $count; ?></span><label><?php echo $label; ?></label>
+                    </div>
+                    <?php endforeach; ?>
+                    <br/>
+                    <div class="installcount"><?php echo number_format($spark->getInstallCount()); ?> Installs</div>
+                </div>
+			    <div class="sparkinfo">
+                    <div class="title">
+           	            <a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show">
+                            <?php echo $spark->name; ?>
+                        </a> by
+                        <a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile">
+                            <?php echo $spark->username; ?>
+                        </a>
+                    </div>
+                    <div class="summary">
+                        <?php if ($spark->is_official): ?>
+                            <span class="official">[Official Spark]</span>
+                        <?php endif; ?>
+                        <?php echo $spark->summary; ?>
+                    </div>
 				</div>
-				<div class="sparkstats">
-					<ul>
-						<li><span>Number of Installs: </span> <?php echo number_format($spark->getInstallCount()); ?></li>
-						<li><span>Official: </span> <?php echo $spark->is_official == 1 ? 'Yes' : 'No'; ?></li>
-						<li><span>Featured: </span> <?php echo $spark->is_featured == 1 ? 'Yes' : 'No'; ?></li>
-						<li><span>Supported: </span> <?php echo $spark->is_unsupported == 0 ? 'Yes' : 'No'; ?></li>
-						<li><span>Approved: </span> <?php echo $spark->is_approved == 1 ? 'Yes' : 'No'; ?></li>
-					</ul>
-				</div>
-				<div id="ratings" style="float:left;font-size:small;"><?php echo get_ratings($spark->id); ?></div>
             </li>
         <?php endforeach; ?>
     <?php else: ?>

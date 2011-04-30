@@ -84,14 +84,18 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 
 #page div.page-right table tbody tr td { padding-bottom: 4px; padding-right: 2px; }
 
-#page div.page-right ul#sparklisting {display: block}
-#page div.page-right ul#sparklisting li {display:inline-block; border: 1px solid #7D2626; height: auto; list-style: none; background-color: #ddd; padding: 5px;}
-#page div.page-right ul#sparklisting li div.sparkinfo {float:left; display: inline-table; width: 550px}
-#page div.page-right ul#sparklisting li div.sparkinfo a {display: inline-block; margin-bottom: 8px;}
-#page div.page-right ul#sparklisting li div.sparkinfo span {display: block; margin-bottom: 8px;}
-#page div.page-right ul#sparklisting li div.sparkstats {border: 0; display: block; float: right;  width: 150px}
-#page div.page-right ul#sparklisting li div.sparkstats  li {font-size: 12px; display: block; border: 0; padding: 2px; margin: 0;}
-#page div.page-right ul#sparklisting li div.sparkstats  li span {display: inline-block; width: 110px;}
+#page div.page-right ul#sparklisting { display: block; }
+#page div.page-right ul#sparklisting li { border-width: 1px 0px 0px 0px; border-top: 1px dotted #7d2626; list-style: none; overflow: hidden; padding: 10px 0px; }
+#page div.page-right ul#sparklisting li div.sparkinfo .title { font-size: 18px; color: #333377; }
+#page div.page-right ul#sparklisting li div.sparkinfo .summary .official { color: green; }
+#page div.page-right ul#sparklisting li div.sparkinfo .summary { margin-top: 10px; color: #333; }
+
+#page div.page-right ul#sparklisting li div.ratings { float: right; text-align: right; }
+#page div.page-right ul#sparklisting li div.ratings .installcount { padding: 3px 5px; background: #777; color: #fff; font-size: 12px; display: inline-block; margin-right: 5px; border: 1px solid #333; margin-top: 5px; }
+#page div.page-right ul#sparklisting li div.ratings .rating { display: inline-block; border: 1px solid #333; margin-left: 5px; background: #d14000; font-size: 14px; }
+#page div.page-right ul#sparklisting li div.ratings .rating label { background: #fff; padding: 3px 5px; display: inline-block; }
+#page div.page-right ul#sparklisting li div.ratings .rating span { color: #fff; padding: 0px 5px; display: inline-block; color: #fff; }
+
 
 #page div.code, #page code, #page pre { font-family: Monaco, Verdana, Sans-serif; font-size: 12px; background-color: #f9f9f9;
 	border: 1px solid #D0D0D0; color: #002166; display: block; margin: 15px 0 15px 0; padding: 12px 10px 12px 10px; }

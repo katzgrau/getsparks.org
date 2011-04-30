@@ -13,6 +13,7 @@ public function get_ratings($sparks_id)
 {
 	$this->db->select('rn.id,rn.name, 
 		(SELECT count(rating_id) FROM ratings r WHERE rn.id = r.rating_id AND sparks_id = "'.$sparks_id.'") as `count`');
+    $this->db->order_by('name DESC');
 
 	$query = $this->db->get('rating_names rn');
 
