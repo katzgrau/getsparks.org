@@ -22,23 +22,6 @@
 </table>
 
 <h3>Contributions</h3>
-<ul>
-    <?php if(count($contributions) > 0): ?>
-        <?php foreach($contributions as $contribution): ?>
-            <li>
-                <a href="<?php echo base_url(); ?>packages/<?php echo $contribution->name; ?>/versions/HEAD/show">
-                    <?php echo $contribution->name; ?>
-                </a>
-				<br />
-                <small><?php echo $contribution->summary; ?></small>
-            </li>
-        <?php endforeach; ?>
-    <?php else: ?>
-            <li>Not contributed sparks yet.</li>
-    <?php endif; ?>
-	<?php if ($contributor->id == UserHelper::getId()) { ?>
-		<li class="last" style="text-align:left"><a href="/packages/add" title="Create a Spark">Create a Spark</a></li>
-	<?php } ?>
-</ul>
+<?php $this->load->view('packages/_list', array('sparks' => $contributions, 'hide_username' => true)); ?>
 
 <?php $this->load->view('global/_new_footer.php'); ?>
