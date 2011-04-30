@@ -12,6 +12,11 @@
 	error_reporting(E_ALL);
 
 /*
+ * Set the default time zone to avoid errors on systems with wonky php.ini's
+ */
+    date_default_timezone_set('UTC');
+
+/*
  *---------------------------------------------------------------
  * SYSTEM FOLDER NAME
  *---------------------------------------------------------------
