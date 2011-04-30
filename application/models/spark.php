@@ -171,7 +171,7 @@ class Spark extends CI_Model
     public static function getLatestOf($n = 10, $is_featured = NULL, $is_official = NULL)
     {
         $CI = &get_instance();
-        $CI->db->select("s.*, c.username, c.email");
+        $CI->db->select("s.*, c.username, c.email, s.created");
         $CI->db->from('sparks s');
         $CI->db->join('contributors c', 's.contributor_id = c.id');
         
@@ -203,12 +203,14 @@ class Spark extends CI_Model
      */
     public function getDependencies($extended = TRUE)
     {
-        $this->db->select("s.*, v.version, v.id AS 'version_id'");
+        $this->db->select("s.*, v.version, v.id AS 'version_id', d.is_direct");
         $this->db->from('dependencies d');
         $this->db->join('versions v', 'v.id = d.needed_version_id');
         $this->db->join('sparks s', 's.id = v.spark_id');
         $this->db->where('version_id', $this->version_id);
-        $this->db->where('is_direct', !$extended);
+
+        if(!$extended)
+            $this->db->where('is_direct', TRUE);
 
         return $this->db->get()->result();
     }
