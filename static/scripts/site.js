@@ -14,13 +14,16 @@ $(document).ready(function() {
 
 		e.preventDefault();
 		$this = $(this);
+
+		// If this is already selected, return
 		if ($this.hasClass('selected')) return;
 
-		var anySelected = !!$('a.rating.selected');
-
 		$.ajax({
-			type: 'get',
-			url: '/',
+			type: 'post',
+			url: '/ajax/packages/' + $(this).parents('.ratings').data('spark_name') + '/rate',
+			data: {
+				rating: $(this).data('rating')
+			},
             // dataType: 'json',
             success: function() {
 			    // change counts
@@ -33,7 +36,6 @@ $(document).ready(function() {
 			},
 		    error: function(e, m) {
 				// Error - reload the page
-			    alert(m);
 				window.location.reload();
 			}
 		});

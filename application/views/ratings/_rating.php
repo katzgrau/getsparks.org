@@ -7,11 +7,11 @@ if (!isset($current_user_rating)) $current_user_rating = false;
 if (!$ratings) $ratings = array();
 ?>
 
-<div class="ratings">
+<div class="ratings" data-spark_name="<?php echo $spark->name ?>">
     <div>
         <?php foreach ($ratings as $label=>$count): ?>
         <?php if ($linkify): ?>
-            <a href="#" class="rating<?php if ($label == $current_user_rating) echo 'selected'; ?>">
+            <a data-rating="<?php echo $label ?>" href="#" class="rating<?php if ($label == $current_user_rating) echo 'selected'; ?>">
                 <span><?php echo $count; ?></span><label><?php echo ucwords($label); ?></label>
             </a>
         <?php else: ?>

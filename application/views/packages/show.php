@@ -1,7 +1,10 @@
 <?php $this->load->view('global/_new_header.php', array('title' => $contribution->name)); ?>
 
 <div id="package_ratings">
-    <?php $this->load->view('ratings/_rating', array('spark' => $contribution, 'linkify' => UserHelper::isLoggedIn())); ?>
+    <?php 
+        $data = array('spark' => $contribution, 'linkify' => UserHelper::isLoggedIn(), 'current_user_rating' => $current_user_rating);
+        $this->load->view('ratings/_rating', $data);
+     ?>
 </div>
 
 <h2 class="clearfix">Basic Information: <?php echo $contribution->name; ?></h2>
