@@ -1,4 +1,5 @@
 <?php 
+    // requires - sparks and ratings
     $hide_username = isset($hide_username) ? $hide_username : false;
 ?>
 
@@ -6,7 +7,7 @@
     <?php if(count($sparks) > 0): ?>
         <?php foreach($sparks as $spark): ?>
             <li>
-                <?php $this->load->view('ratings/_rating', array('spark' => $spark)); ?>
+                <?php $this->load->view('ratings/_rating', array('spark' => $spark, 'ratings' => $ratings[$spark->id])); ?>
 			    <div class="sparkinfo">
                     <div class="title">
            	            <a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show">

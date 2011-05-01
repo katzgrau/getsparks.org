@@ -17,6 +17,6 @@ $this->load->view('global/_new_header.php', array('title' => $title)); ?>
 	</form>
 </div>
 
-<?php $this->load->view('packages/_list', array('sparks' => $sparks)); ?>
+<?php $this->load->view('packages/_list', array('sparks' => $sparks, 'ratings' => isset($ratings) ? $ratings : null)); ?>
 
 <?php $this->load->view('global/_new_footer.php'); ?>
