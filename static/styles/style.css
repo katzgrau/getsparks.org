@@ -97,7 +97,7 @@ div.ratings .rating { display: inline-block; border: 1px solid #333; margin-left
 div.ratings .rating label { background: #fff; padding: 3px 5px; display: inline-block; color: #000; }
 div.ratings .rating span { color: #fff; padding: 0px 5px; display: inline-block; color: #fff; }
 div.ratings .rating.selected label { background: #d14000 !important; color: #eee; }
-#package_ratings div.ratings .rating:hover label { background: #eee; cursor: hand; cursor: pointer; }
+div.ratings a.rating:hover label { background: #eee; cursor: hand; cursor: pointer; }
 
 #page div.code, #page code, #page pre { font-family: Monaco, Verdana, Sans-serif; font-size: 12px; background-color: #f9f9f9;
 	border: 1px solid #D0D0D0; color: #002166; display: block; margin: 15px 0 15px 0; padding: 12px 10px 12px 10px; }
