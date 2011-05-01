@@ -104,12 +104,21 @@ class Spark extends CI_Model
 	{
 			
 		$CI = &get_instance();
-        $CI->db->select("COUNT(*) as installs, DATE_FORMAT(created, '%u') AS week", FALSE);
+        $CI->db->select("COUNT(*) as installs, YEARWEEK(created) AS week", FALSE);
 		$CI->db->from("installs");
 		$CI->db->where("spark_id", $id);
-		$CI->db->group_by("DATE_FORMAT(created, '%u')", NULL, FALSE);
+		$CI->db->group_by("YEARWEEK(created)", NULL, FALSE);
+		$CI->db->limit("24");
 		
-		return $CI->db->get()->result();
+		$results = $CI->db->get()->result();
+		
+		// Rewrite results to a nice array
+		foreach ($results as $result)
+		{
+			$data[$result->week] = $result->installs;	
+		}
+		
+		return $data;
 		
 	}
 
