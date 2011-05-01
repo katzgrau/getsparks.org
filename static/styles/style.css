@@ -48,10 +48,11 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #page div.page-left div.login-box label { color: #fff; font-size: 12px; margin-bottom: 5px; }
 #page div.page-left div.login-box input.text-box, #page div.page-right div#mainsearch input.text-box, #header form#headersearch input.text-box { width: 207px; border: solid 1px #333; margin-bottom: 7px; padding: 4px; font-size: 12px;
 	border-radius: 5px; -moz-border-radius: 5px; }
-#header form#headersearch input.text-box { width: 157px; margin: 3px 5px 0 0;}
+#header form#headersearch input.text-box { width: 150px; margin: 5px; }
 #page div.page-left div.login-box input.submit, #page div.page-right div#mainsearch input.submit, #header form#headersearch input.submit, #page div.page-left div.login-box a.register { background-color: #d14000;
 	color: #fff; font-weight: normal; font-size: 12px; border: solid 1px #f0f0f0; display: inline-block; 
-	padding: 3px 10px 4px 10px; border-radius: 5px; -moz-border-radius: 5px; margin-top: 2px; }
+	padding: 3px 10px; border-radius: 5px; -moz-border-radius: 5px; }
+#header form#headersearch input.submit { margin-top: 5px; }
 #page div.page-left div.login-box a.register { padding: 5px 10px 7px 10px; float: right; margin-right: 5px; }
 
 #page div.page-left div.login-box div.profile-image { float: left; margin-right: 10px; }
