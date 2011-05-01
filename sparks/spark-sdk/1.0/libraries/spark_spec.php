@@ -299,7 +299,7 @@ class Spark_spec {
      */
     private function _validateReadme($dir)
     {
-        $files = static::getFilenames($dir);
+        $files = $this->getFilenames($dir);
 
         $readme = FALSE;
         $file   = '';
