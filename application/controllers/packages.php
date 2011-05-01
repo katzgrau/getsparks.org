@@ -141,6 +141,10 @@ class Packages extends CI_Controller
 
         $contributor = $spark->getContributor();
 
+		$data['stats'] = $spark->getStats($spark->id);
+		
+		$this->load->helper('google_chart');
+	
         $data['contribution'] = $spark;
         $data['contributor']  = $contributor;
         $data['versions']     = $spark->getVersions(TRUE);

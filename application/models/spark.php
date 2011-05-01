@@ -95,6 +95,25 @@ class Spark extends CI_Model
         return $CI->db->get()->row(0, 'Spark');
     }
 
+	/**
+	 * Get the stats for a spark
+	 * @param int $id
+	 * @return array
+	 */
+	public static function getStats($id)
+	{
+			
+		$CI = &get_instance();
+        $CI->db->select("COUNT(*) as installs, DATE_FORMAT(created, '%u') AS week", FALSE);
+		$CI->db->from("installs");
+		$CI->db->where("spark_id", $id);
+		$CI->db->group_by("DATE_FORMAT(created, '%u')", NULL, FALSE);
+		
+		return $CI->db->get()->result();
+		
+	}
+
+
     /**
      * Get the latest version
      * @param string $name
