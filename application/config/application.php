@@ -32,3 +32,10 @@ $config['support_email'] = 'ohcrap@getsparks.org';
 
 # The handle we use for twitter, disqus, etc.
 $config['service_handle'] = 'getsparks';
+
+# Rating names to keys. Dont' change
+$config['ratings'] = array (
+    0 => 'hate',
+    1 => 'like',
+    2 => 'love'
+);

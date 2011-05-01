@@ -19,6 +19,8 @@ $route['search']                                      = "packages/search";
 $route['api/packages/search']                             	= "api/packages/search/";
 $route['api/packages/(:any)/versions/(:any)/spec'] 			= "api/packages/spec/$1/$2";
 
+$route['ajax/packages/(:any)/rate']                   = "ajax/packages/rate/$1";
+
 $route['rss/sparks/(:any)']       = "api/rss/versions/$1";
 $route['rss/sparks']       = "api/rss/sparks/";
 
