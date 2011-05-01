@@ -15,7 +15,8 @@
                        'jquery.available.1.6.1.min.js',
                        'fancybox/jquery.fancybox-1.3.4.pack.js',
                        'fancybox/jquery.easing-1.3.pack.js',
-                       'fancybox/jquery.mousewheel-3.0.4.pack.js')); ?>
+                       'fancybox/jquery.mousewheel-3.0.4.pack.js',
+                       'site.js')); ?>
 
 <meta http-equiv='expires' content='-1' />
 <meta http-equiv= 'pragma' content='no-cache' />
