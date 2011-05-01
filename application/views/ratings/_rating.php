@@ -11,11 +11,11 @@ if (!$ratings) $ratings = array();
     <div>
         <?php foreach ($ratings as $label=>$count): ?>
         <?php if ($linkify): ?>
-            <a data-rating="<?php echo $label ?>" href="#" class="rating<?php if ($label == $current_user_rating) echo 'selected'; ?>">
+            <a data-rating="<?php echo $label ?>" href="#" class="rating<?php if ($label == $current_user_rating) echo ' selected'; ?>">
                 <span><?php echo $count; ?></span><label><?php echo ucwords($label); ?></label>
             </a>
         <?php else: ?>
-            <div class="rating<?php if ($label == $current_user_rating) echo 'selected'; ?>">
+            <div class="rating<?php if ($label == $current_user_rating) echo ' selected'; ?>">
                 <span><?php echo $count; ?></span><label><?php echo ucwords($label); ?></label>
             </div>
         <?php endif; ?>
