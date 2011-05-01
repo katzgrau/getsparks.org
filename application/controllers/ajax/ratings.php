@@ -11,7 +11,7 @@ class Ratings extends CI_Controller
     /**
 	 *
      */
-	public function set_ratings($spark_id, $rating)
+	public function set_rating($spark_id, $rating)
 	{
         if(UserHelper::isLoggedIn())
         {
@@ -20,8 +20,6 @@ class Ratings extends CI_Controller
 		
 			if($this->rating->ratedBefore($spark_id, UserHelper::getId()) == 0)
 				$this->rating->logRating($spark_id, UserHelper::getId(), $rating);
-            
-            echo get_ratings($spark_id);
         }
 	}
 }
