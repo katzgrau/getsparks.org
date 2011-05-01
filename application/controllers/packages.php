@@ -148,7 +148,7 @@ class Packages extends CI_Controller
         $data['versions_unverified'] = $spark->getVersions(FALSE);
         $data['is_author']    = ($contributor->id == UserHelper::getId());
         $data['current_user_rating'] = FALSE;
-        $data['ratings'] = $this->rating->getRatings($spark->id);
+        $data['ratings']      = $this->rating->getRatings($spark->id);
         
         if(UserHelper::isLoggedIn())
         {
@@ -257,6 +257,8 @@ class Packages extends CI_Controller
         UtilityHelper::tryPageCache(1);
         
         $this->load->model('spark');
+        $this->load->model('rating');
+        
         $sparks = array();
         $data['browse_type'] = '';
         $data['description'] = '';
@@ -280,9 +282,13 @@ class Packages extends CI_Controller
             $data['description'] = 'These are sparks written by GetSparks, the Reactor Team, or CodeIgntier gurus';
         }
 
+        # Get a list of spark ids on this page
+        $ids = array(); foreach($sparks as $s) $ids[] = $s->id;
+
         # Wait until the views are donw
         $data['sparks'] = $sparks;
-        
+        $data['ratings'] = $this->rating->getRatingsFromList($ids);
+
         $this->load->view('packages/listing', $data);
     }
 
@@ -293,11 +299,17 @@ class Packages extends CI_Controller
     {
         $this->load->model('spark');
 
-        $data['sparks'] = array();
+        $data['sparks']  = array();
+        $data['ratings'] = array();
         $term = FALSE;
         
         if($term = $this->input->get_post('q'))
-            $data['sparks'] = Spark::search($term);
+        {
+            # Get a list of spark ids on this page
+            $ids = array(); foreach($data['sparks'] as $s) $ids[] = $s->id;
+            $data['sparks']  = Spark::search($term);
+            $data['ratings'] = $this->rating->getRatingsFromList($ids);
+        }
 
         $total = count($data['sparks']);
 

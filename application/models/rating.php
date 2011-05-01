@@ -9,20 +9,33 @@
 class Rating extends CI_Model
 {
 
-    public function getRatingsFromList($spark_ids)
+    public function getRatingsFromList($spark_ids, $keyed = TRUE)
     {
         if(count($spark_ids) == 0) return array();
 
         $spark_ids = implode(',', $spark_ids);
 
-        $sql = "SELECT s.id AS 'spark_id,
+        $sql = "SELECT s.id,
                  (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 2 AND spark_id = s.id) AS 'like',
                  (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 3 AND spark_id = s.id) AS 'love',
                  (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 1 AND spark_id = s.id) AS 'hate'
                 FROM sparks s
                 WHERE s.id IN ($spark_ids)";
 
-        return $this->db->query($sql)->result();
+        $ratings = $this->db->query($sql)->result();
+
+        if($keyed)
+        {
+            $hash = array();
+            foreach($ratings as $rating)
+            {
+                $hash[$rating->id] = $rating;
+                unset($hash[$rating->id]->id);
+            }
+            $ratings = $hash;
+        }
+
+        return $ratings;
     }
 
     public function getRatings($spark_id)
