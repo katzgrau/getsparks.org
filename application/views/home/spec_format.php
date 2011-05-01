@@ -2,7 +2,7 @@
 
 <h2>The Spark Spec Format</h2>
 
-<p><em>Specs are required part of submitted sparks as of the beta launch.</em></p>
+<p><em>Specs are a required part of submitted sparks as of the beta launch.</em></p>
 
 <p>
     At the root of every spark is a spec file named <em>spark.info</em>.
@@ -22,7 +22,7 @@
 #  Use this format while developing your own sparks!
 
 # This is the spark name. This should be the registered name of the spark.
-#  It's only used for informational purpouses.
+#  It's only used for informational purposes.
 name: spark-sdk
 
 # This is the current version of this spark. All sparks should be in
@@ -46,9 +46,7 @@ tags: ["some", "tags", "here"]
 </pre>
 
 <p>
-    This is considered a complete spec, although only the name, version, and
-    compatibility fields are required. More information on the format of a
-    spark is available on the <a href="<?php echo base_url(); ?>/spec-format">spec format page</a>.
+    More attributes will be added in the future.
 </p>
 
 <?php $this->load->view('global/_new_footer.php'); ?>

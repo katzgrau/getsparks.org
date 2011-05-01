@@ -24,7 +24,7 @@ $official_sparks = Spark::getLatestOf(3, NULL, TRUE);
     
 	<div class="info-box clearfix">
         <h2><a style="color:#33ccff;letter-spacing:3px;" href="http://twitter.com/getsparks">@getsparks</a></h2>
-        <p>Hey! Keep up to date with the project through it's beta and public launch by following <a style="color:white;" href="http://twitter.com/getsparks">@getsparks</a>.</p>
+        <p>Hey! Keep up to date with the project through its beta and public launch by following <a style="color:white;" href="http://twitter.com/getsparks">@getsparks</a>.</p>
 	</div>
     
     <!-- End Twitter -->
