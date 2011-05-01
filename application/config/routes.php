@@ -17,12 +17,17 @@ $route['packages/browse/(:any)']                      = "packages/browse/$1";
 $route['api/packages/search']                             	= "api/packages/search/";
 $route['api/packages/(:any)/versions/(:any)/spec'] 			= "api/packages/spec/$1/$2";
 
+$route['rss/sparks/(:any)']       = "api/rss/versions/$1";
+$route['rss/sparks']       = "api/rss/sparks/";
+
+
 $route['home']             = "home/index";
 $route['download']         = "home/download";
 $route['set-up']           = "home/set_up";
 $route['set-up-mx']        = "home/set_up_mx";
 $route['get-sparks']       = "home/get_sparks";
 $route['make-sparks']      = "home/make_sparks";
+$route['spec-format']      = "home/spec_format";
 $route['about']            = "home/about";
 $route['login']            = "contributors/login";
 $route['logout']           = "contributors/logout";

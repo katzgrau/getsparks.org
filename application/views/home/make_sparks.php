@@ -74,7 +74,7 @@
 
 <p>
     When you create a spark project on github or bitbucket, all you have to do
-    is set up the root of your project to looks like:
+    is set up the root of your project to look like:
 </p>
 
 <pre>
@@ -168,6 +168,31 @@ function birdseed_fetch($username, $n = 10)
     return $tweets;
 }
 </pre>
+    </li>
+    <li>
+        Inside birdseed/spark.info, place this, and save the file:
+<pre>
+# This is the spark-sdk specification. It's in a magical format called YAML.
+#  Use this format while developing your own sparks!
+
+# This is the spark name. This should be the registered name of the spark.
+# It is here for informational purposes only.
+name: birdseed
+
+# This is the current version of this spark. All sparks should be in
+#  x.x.x format. Validation will fail otherwise.
+version: 0.0.1
+
+# This is the version of CodeIgniter this spark is compatible up to. It should
+#  be in x.x.x format
+compatibility: 2.0.2
+
+# There are no dependencies now, but when there are, uncomment below.
+#dependencies:
+#  some-spark-1: 1.0.0
+#  some-other-spark-2: 1.0.0
+</pre>
+<p>This is important for when you want to contribute your spark.</p>
     </li>
     <li>
         Now you're ready to try your new spark. From somewhere inside your
