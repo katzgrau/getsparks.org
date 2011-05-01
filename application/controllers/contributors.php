@@ -105,9 +105,13 @@ class Contributors extends CI_Controller
     public function profile($username)
     {
         $this->load->model('contributor');
+        $this->load->model('rating');
 
         $data['contributor']   = Contributor::findByUsername($username);
         $data['contributions'] = $data['contributor']->getContributions();
+
+        $ids = array(); foreach($data['contributions'] as $spark) $ids[] = $spark->id;
+        $data['ratings'] = $this->rating->getRatingsFromList($ids);
 
         $this->load->view('contributors/profile', $data);
     }
