@@ -1,5 +1,4 @@
 <?php 
-    $this->load->helper('rating');
     $hide_username = isset($hide_username) ? $hide_username : false;
 ?>
 
@@ -7,16 +6,7 @@
     <?php if(count($sparks) > 0): ?>
         <?php foreach($sparks as $spark): ?>
             <li>
-                <div class="ratings">
-                    <div>
-                        <?php foreach (get_ratings($spark->id) as $label=>$count): ?>
-                        <div class="rating">
-                            <span><?php echo $count; ?></span><label><?php echo $label; ?></label>
-                        </div>
-                        <?php endforeach; ?>
-                    </div>
-                    <div class="installcount"><?php echo number_format($spark->getInstallCount()); ?> Installs</div>
-                </div>
+                <?php $this->load->view('ratings/_rating', array('spark' => $spark)); ?>
 			    <div class="sparkinfo">
                     <div class="title">
            	            <a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show">

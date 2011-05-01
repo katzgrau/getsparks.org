@@ -90,12 +90,11 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #page div.page-right ul#sparklisting li div.sparkinfo .summary .official { color: green; }
 #page div.page-right ul#sparklisting li div.sparkinfo .summary { margin-top: 10px; color: #333; }
 
-#page div.page-right ul#sparklisting li div.ratings { float: right; text-align: right; }
-#page div.page-right ul#sparklisting li div.ratings .installcount { padding: 2px 5px; background: #777; color: #fff; font-size: 12px; display: inline-block; margin-left: 5px; border: 1px solid #333; margin-top: 5px; }
-#page div.page-right ul#sparklisting li div.ratings .rating { display: inline-block; border: 1px solid #333; margin-left: 5px; background: #d14000; font-size: 14px; }
-#page div.page-right ul#sparklisting li div.ratings .rating label { background: #fff; padding: 3px 5px; display: inline-block; }
-#page div.page-right ul#sparklisting li div.ratings .rating span { color: #fff; padding: 0px 5px; display: inline-block; color: #fff; }
-
+div.ratings { float: right; text-align: right; }
+div.ratings .installcount { padding: 2px 5px; background: #777; color: #fff; font-size: 12px; display: inline-block; margin-left: 5px; border: 1px solid #333; margin-top: 5px; }
+div.ratings .rating { display: inline-block; border: 1px solid #333; margin-left: 5px; background: #d14000; font-size: 14px; }
+div.ratings .rating label { background: #fff; padding: 3px 5px; display: inline-block; }
+div.ratings .rating span { color: #fff; padding: 0px 5px; display: inline-block; color: #fff; }
 
 #page div.code, #page code, #page pre { font-family: Monaco, Verdana, Sans-serif; font-size: 12px; background-color: #f9f9f9;
 	border: 1px solid #D0D0D0; color: #002166; display: block; margin: 15px 0 15px 0; padding: 12px 10px 12px 10px; }
