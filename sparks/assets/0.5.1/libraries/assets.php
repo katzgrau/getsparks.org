@@ -5,7 +5,7 @@
  *
  * @author 		Boris Strahija <boris@creolab.hr>
  * @copyright 	Copyright (c) 2010, Boris Strahija, Creo
- * @version 	0.2
+ * @version 	0.5.1
  */
 
 class Assets {
@@ -38,12 +38,15 @@ class Assets {
 	
 	
 	// Config
-	public $combine 	= true;
-	public $minify 		= false; // Minify all
-	public $minify_js 	= true;
-	public $minify_css 	= true;
-	public $html5 		= true; // Use HTML5 tags
-	public $env 		= 'production';
+	public $combine              = true;  // Combine files
+	public $minify               = false; // Minify all
+	public $minify_js            = true;
+	public $minify_css           = true;
+	public $auto_clear_cache     = false; // Automaticly clear all cache before creating new cache files
+	public $auto_clear_css_cache = false; // Or clear just cached CSS files
+	public $auto_clear_js_cache  = false; // Or just cached JS files
+	public $html5                = true;  // Use HTML5 tags
+	public $env                  = 'production';
 	
 	
 	/* ------------------------------------------------------------------------------------------ */
@@ -272,7 +275,15 @@ class Assets {
 						$data = $this->_process($data, $type, 'less');
 						$data = $this->_process($data, $type, 'minify', $base_url);
 					} // end if
-	
+					
+					// Auto clear cache directory?
+					if ($type == 'css' and ($this->auto_clear_cache or $this->auto_clear_css_cache)) {
+						$this->clear_css_cache();
+					} // end if
+					if ($type == 'js' and ($this->auto_clear_cache or $this->auto_clear_js_cache)) {
+						$this->clear_js_cache();
+					} // end if
+					
 					// And save the file
 					write_file($file_path, $data);
 					
@@ -298,6 +309,14 @@ class Assets {
 						
 						// Process
 						$data = $this->_process($data, $type, 'all', site_url($this->css_url));
+						
+						// Auto clear cache directory?
+						if ($type == 'css' and ($this->auto_clear_cache or $this->auto_clear_css_cache)) {
+							$this->clear_css_cache($asset);
+						} // end if
+						if ($type == 'js' and ($this->auto_clear_cache or $this->auto_clear_js_cache)) {
+							$this->clear_js_cache($asset);
+						} // end if
 						
 						// And save the file
 						write_file($file_path, $data);
@@ -361,11 +380,21 @@ class Assets {
 		
 		// Now return html tag
 		if ($file and $type == 'css') {
-			return '<link rel="stylesheet" href="'.$file.'">'.PHP_EOL;
+			if ($this->html5) {
+				return '<link rel="stylesheet" href="'.$file.'">'.PHP_EOL;
+			}
+			else {
+				return '<link rel="stylesheet" type="text/css" href="'.$file.'" />'.PHP_EOL;
+			} // end if
 			
 		}
 		elseif ($file and $type == 'js') {
-			return '<script src="'.$file.'"></script>'.PHP_EOL;
+			if ($this->html5) {
+				return '<script src="'.$file.'"></script>'.PHP_EOL;
+			}
+			else {
+				return '<script src="'.$file.'" type="text/javascript" charset="utf-8"></script>'.PHP_EOL;
+			} // end if
 			
 		} // end if
 		
@@ -438,7 +467,7 @@ class Assets {
 	/**
 	 *
 	 */
-	public function clear_cache($type = null)
+	public function clear_cache($type = null, $asset_file = null)
 	{
 		$files = directory_map($this->cache_path, 1);
 		
@@ -448,20 +477,33 @@ class Assets {
 					$file_path = reduce_double_slashes($this->cache_path.'/'.$file);
 					$file_info = pathinfo($file_path);
 					
-					if (is_file($file_path) and $file_info) {
-						// Delete the CSS files
-						if ($file_info['extension'] == 'css' and ( ! $type or $type == 'css')) {
-							unlink($file_path);
-							//echo 'Deleted CSS: '.$file;
-						} // end if
+					// Clear single file cache
+					if ($asset_file) {
+						$dev_file_name = substr($file, 15); // Get the real filename, without the timestamp prefix
 						
-						// Delete the JS files
-						if ($file_info['extension'] == 'js' and ( ! $type or $type == 'js')) {
+						// Compare file name and remove if necesary
+						if ($dev_file_name == $asset_file) {
 							unlink($file_path);
-							//echo 'Deleted JS: '.$file;
+							//echo 'Deleted asset: '.$file."<br>\n";
+						} // end if
+					}
+					
+					// Or all files
+					else {
+						if (is_file($file_path) and $file_info) {
+							// Delete the CSS files
+							if ($file_info['extension'] == 'css' and ( ! $type or $type == 'css')) {
+								unlink($file_path);
+								//echo 'Deleted CSS: '.$file."<br>\n";
+							} // end if
+							
+							// Delete the JS files
+							if ($file_info['extension'] == 'js' and ( ! $type or $type == 'js')) {
+								unlink($file_path);
+								//echo 'Deleted JS: '.$file."<br>\n";
+							} // end if
 						} // end if
 					} // end if
-					
 				} // end if
 			} // end foreach
 		} // end if
@@ -474,9 +516,9 @@ class Assets {
 	/**
 	 *
 	 */
-	public function clear_css_cache()
+	public function clear_css_cache($asset_file = null)
 	{
-		return $this->clear_cache('css');
+		return $this->clear_cache('css', $asset_file);
 		
 	} // end empty_css_cache()
 	
@@ -486,9 +528,9 @@ class Assets {
 	/**
 	 *
 	 */
-	public function clear_js_cache()
+	public function clear_js_cache($asset_file = null)
 	{
-		return $this->clear_cache('js');
+		return $this->clear_cache('js', $asset_file);
 		
 	} // end empty_js_cache()
 	
@@ -559,9 +601,7 @@ class Assets {
 		
 		// If it's still not writable throw error
 		if ( ! is_dir($this->cache_path) or ! is_really_writable($this->cache_path)) {
-			#exit('Error with CACHE directory.');
-            $this->env = 'dev';
-            log_message('error', "Assets: Environment is production, but cache is not writable");
+			exit('Error with CACHE directory.');
 		} // end if
 		
 	} // end _paths()
