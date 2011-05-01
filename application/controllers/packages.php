@@ -297,32 +297,36 @@ class Packages extends CI_Controller
      */
     function search()
     {
-        $this->load->model('spark');
+		$this->load->helper('form');
+		$this->load->library('form_validation');
 
-        $data['sparks']  = array();
+		$submit = $this->input->post('submit');
+		$search_results = array();
+
+		$search_term = $this->input->post('term');
         $data['ratings'] = array();
-        $term = FALSE;
         
-        if($term = $this->input->get_post('q'))
-        {
-            # Get a list of spark ids on this page
-            $data['sparks']  = Spark::search($term);
-            $ids = array(); foreach($data['sparks'] as $s) $ids[] = $s->id;
-            $data['ratings'] = $this->rating->getRatingsFromList($ids);
-        }
+		if($submit)
+		{
+			if($this->form_validation->run('search'))
+			{
+				$this->load->model('spark');
+				$this->load->model('rating');
 
-        $total = count($data['sparks']);
+				$search_results = Spark::search($search_term);
+                $ids = array(); foreach($search_results as $s) $ids[] = $s->id;
+                $data['ratings'] = $this->rating->getRatingsFromList($ids);
+			}
+			else
+			{
+				UserHelper::setNotice('Whoops. There were some errors. Check below and re-submit!');
+			}
+		}
 
-        # We'll skip the view until the new design is done
-        $data['browse_type'] = 'Search';
-        $data['description'] = "There "
-                                .($total == 0 ? "were " : "was ")
-                                .$total
-                                ." search result"
-                                .($total == 1 ? "" : "s")
-                                ." for Sparks with '$term' in the name or description.";
-        $data['is_search']   = TRUE;
+		$data['search_term'] = $search_term;
+		$data['sparks']   = $search_results;
+		$data['description'] = 'These are the most recently registered sparks with at least one release.';
 
-        $this->load->view('packages/listing', $data);
+		$this->load->view('search/listing', $data);
     }
 }

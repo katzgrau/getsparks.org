@@ -14,6 +14,8 @@ $route['packages/add']                                = "packages/add";
 $route['packages/search']                             = "packages/search";
 $route['packages/browse/(:any)']                      = "packages/browse/$1";
 
+$route['search']                                      = "packages/search";
+
 $route['api/packages/search']                             	= "api/packages/search/";
 $route['api/packages/(:any)/versions/(:any)/spec'] 			= "api/packages/spec/$1/$2";
 

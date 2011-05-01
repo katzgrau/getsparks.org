@@ -13,34 +13,7 @@ class Search extends CI_Controller {
 	 */
 	function index()
 	{
-		$this->load->helper('form');
-		$this->load->library('form_validation');
 
-		$submit = $this->input->post('submit');
-		$search_results = array();
-
-		$search_term = $this->input->post('term');
-		
-		if($submit)
-		{
-			if($this->form_validation->run('search'))
-			{
-				$this->load->model('spark');
-
-
-				$search_results = Spark::search($search_term);
-			}
-			else
-			{
-				UserHelper::setNotice('Whoops. There were some errors. Check below and re-submit!');
-			}
-		}
-
-		$data['search_term'] = $search_term;
-		$data['sparks']   = $search_results;
-		$data['description'] = 'These are the most recently registered sparks with at least one release.';
-
-		$this->load->view('search/listing', $data);
 	}
 
 
