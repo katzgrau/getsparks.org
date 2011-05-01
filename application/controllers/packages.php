@@ -306,8 +306,8 @@ class Packages extends CI_Controller
         if($term = $this->input->get_post('q'))
         {
             # Get a list of spark ids on this page
-            $ids = array(); foreach($data['sparks'] as $s) $ids[] = $s->id;
             $data['sparks']  = Spark::search($term);
+            $ids = array(); foreach($data['sparks'] as $s) $ids[] = $s->id;
             $data['ratings'] = $this->rating->getRatingsFromList($ids);
         }
 
