@@ -7,10 +7,4 @@ $(document).ready(function() {
 
 	});
 
-	$('#package_ratings .ratings .rating').hover(function() {
-		$(this).addClass('maybe');
-	}, function() {
-		$(this).removeClass('maybe');
-	});
-
 });
