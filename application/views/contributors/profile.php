@@ -22,6 +22,6 @@
 </table>
 
 <h3>Contributions</h3>
-<?php $this->load->view('packages/_list', array('sparks' => $contributions, 'hide_username' => true)); ?>
+<?php $this->load->view('packages/_list', array('sparks' => $contributions, 'hide_username' => true, 'ratings' => isset($ratings) ? $ratings : null)); ?>
 
 <?php $this->load->view('global/_new_footer.php'); ?>

@@ -3,3 +3,5 @@ application/config/database.php
 static/archives
 application/logs/*
 application/cache/*
+*.swp
+*.swo

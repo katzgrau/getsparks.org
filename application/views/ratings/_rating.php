@@ -1,18 +1,19 @@
 <?php 
-$this->load->helper('rating');
 $linkify = isset($linkify) ? $linkify : false; 
+if (!isset($current_user_rating)) $current_user_rating = false;
+if (!$ratings) $ratings = array();
 ?>
 
 <div class="ratings">
     <div>
-        <?php foreach (get_ratings($spark->id) as $label=>$count): ?>
+        <?php foreach ($ratings as $label=>$count): ?>
         <?php if ($linkify): ?>
-            <a href="#" class="rating">
-                <span><?php echo $count; ?></span><label><?php echo $label; ?></label>
+            <a href="#" class="rating<?php if ($label == $current_user_rating) echo 'selected'; ?>">
+                <span><?php echo $count; ?></span><label><?php echo ucwords($label); ?></label>
             </a>
         <?php else: ?>
-            <div class="rating">
-                <span><?php echo $count; ?></span><label><?php echo $label; ?></label>
+            <div class="rating<?php if ($label == $current_user_rating) echo 'selected'; ?>">
+                <span><?php echo $count; ?></span><label><?php echo ucwords($label); ?></label>
             </div>
         <?php endif; ?>
         <?php endforeach; ?>
