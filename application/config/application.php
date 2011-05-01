@@ -12,8 +12,11 @@ $config['sparks_download_button_text'] = 'Get Sparks Now!';
 # Where to send someone after clicking that big button
 $config['sparks_download_button_url'] = config_item('base_url').'set-up';
 
+# Get the latest
+$config['spark_manager_version_latest'] = '0.0.3';
+
 # Where to download the spark manager (the file)
-$config['sparks_download_url'] = config_item('base_url').'static/install/spark-manager-0.0.3.zip';
+$config['sparks_download_url'] = config_item('base_url').'static/install/spark-manager-'.$config['spark_manager_version_latest'].'.zip';
 
 # The URL of the Loader override
 $config['sparks_loader_url'] = config_item('base_url').'static/install/MY_Loader.php.txt';
