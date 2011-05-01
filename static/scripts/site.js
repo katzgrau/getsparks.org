@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 	$.fn.decrement = function() {
 		var val = parseInt($(this).html(), 10);
-		$(this).html(val - 1);
+		$(this).html(val < 1 ? 0 : val - 1);
 	};
 
 	$('#package_ratings a.rating').click(function(e) {
