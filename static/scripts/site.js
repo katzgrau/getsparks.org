@@ -10,13 +10,13 @@ $(document).ready(function() {
 		$(this).html(val < 1 ? 0 : val - 1);
 	};
 
-	$('#package_ratings a.rating').click(function(e) {
+	$('a.rating').click(function(e) {
 
 		e.preventDefault();
 		$this = $(this);
 		if ($this.hasClass('selected')) return;
 
-		var anySelected = !!$('#package_ratings a.rating.selected');
+		var anySelected = !!$('a.rating.selected');
 
 		$.ajax({
 			type: 'get',
@@ -24,7 +24,7 @@ $(document).ready(function() {
             // dataType: 'json',
             success: function() {
 			    // change counts
-				var $selected = $('#package_ratings a.rating.selected');
+				var $selected = $('a.rating.selected');
 				$selected.removeClass('selected');
 				$selected.children('span').decrement();
 				// set selected

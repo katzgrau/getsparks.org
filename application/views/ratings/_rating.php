@@ -1,4 +1,7 @@
 <?php 
+// This is more complicated than normal because it can be used in two modes - one where
+// it contains links, the other where it is DIV-only
+
 $linkify = isset($linkify) ? $linkify : false; 
 if (!isset($current_user_rating)) $current_user_rating = false;
 if (!$ratings) $ratings = array();
