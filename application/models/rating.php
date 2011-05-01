@@ -51,7 +51,7 @@ class Rating extends CI_Model
         return $this->db->query($sql, array($spark_id))->row();
     }
 
-    public function getUserRating($contributor_id, $spark_id)
+    public function getUserRating($contributor_id, $spark_id, $rating_only = TRUE)
     {
         $rating_names = config_item('ratings');
 
@@ -65,12 +65,22 @@ class Rating extends CI_Model
 
         if($row)
         {
-            $row->rating_name = $rating_names[$row->rating];
-            return $row;
+            if($rating_only)
+            {
+                return $rating_names[$row->rating];
+            }
+            else
+            {
+                $row->rating_name = $rating_names[$row->rating];
+                return $row;
+            }
         }
         else
         {
-            return $row;
+            if($rating_only)
+                return FALSE;
+            else
+                return $row;
         }
     }
 
@@ -84,7 +94,7 @@ class Rating extends CI_Model
             if(!array_key_exists($rating, $rating_names)) 
                 return FALSE;
 
-           $rating = $rating_names['rating'];
+           $rating = $rating_names[$rating];
         }
 
         if(!in_array($rating, $rating_names))
