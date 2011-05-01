@@ -16,8 +16,8 @@ class Rating extends CI_Model
         $spark_ids = implode(',', $spark_ids);
 
         $sql = "SELECT s.id,
-                 (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 2 AND spark_id = s.id) AS 'like',
                  (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 3 AND spark_id = s.id) AS 'love',
+                 (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 2 AND spark_id = s.id) AS 'like',
                  (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 1 AND spark_id = s.id) AS 'hate'
                 FROM sparks s
                 WHERE s.id IN ($spark_ids)";
@@ -41,8 +41,8 @@ class Rating extends CI_Model
     public function getRatings($spark_id)
     {
         $sql = "SELECT
-                 (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 2 AND spark_id = s.id) AS 'like',
                  (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 3 AND spark_id = s.id) AS 'love',
+                 (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 2 AND spark_id = s.id) AS 'like',
                  (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 1 AND spark_id = s.id) AS 'hate'
                 FROM sparks s
                 WHERE s.id = ?
