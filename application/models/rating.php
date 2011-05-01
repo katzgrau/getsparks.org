@@ -9,50 +9,75 @@
 class Rating extends CI_Model
 {
 
-public function get_ratings($sparks_id)
-{
-	$this->db->select('rn.id,rn.name, 
-		(SELECT count(rating_id) FROM ratings r WHERE rn.id = r.rating_id AND sparks_id = "'.$sparks_id.'") as `count`');
-    $this->db->order_by('name DESC');
+    public function getRatingsFromList($spark_ids)
+    {
+        if(count($spark_ids) == 0) return array();
 
-	$query = $this->db->get('rating_names rn');
+        $spark_ids = implode(',', $spark_ids);
 
-	foreach ($query->result() as $row)
-	{
-		$data[] = $row;
-	}
+        $sql = "SELECT s.id AS 'spark_id,
+                 (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 2 AND spark_id = s.id) AS 'like',
+                 (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 3 AND spark_id = s.id) AS 'love',
+                 (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 1 AND spark_id = s.id) AS 'hate'
+                FROM sparks s
+                WHERE s.id IN ($spark_ids)";
 
-	return $data;
-}
+        return $this->db->query($sql)->result();
+    }
+
+    public function getRatings($spark_id)
+    {
+        $sql = "SELECT
+                 (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 2 AND spark_id = s.id) AS 'like',
+                 (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 3 AND spark_id = s.id) AS 'love',
+                 (SELECT COUNT(*) FROM ratings WHERE rating_name_id = 1 AND spark_id = s.id) AS 'hate'
+                FROM sparks s
+                WHERE s.id = ?
+                LIMIT 1";
+
+        return $this->db->query($sql, array($spark_id))->row();
+    }
+
+    public function getUserRating($contributor_id, $spark_id)
+    {
+        $sql = "SELECT rn.name
+                FROM   ratings r
+                JOIN   rating_names rn ON rn.id = r.rating_name_id
+                WHERE  contributor_id = ?
+                AND    spark_id = ?
+                LIMIT  1";
+
+        return $this->db->query($sql, array($contributor_id, $spark_id))->row();
+    }
 
 
-public function rated_before($sparks_id, $contributors_id)
-{
-	$data = array (
-		'sparks_id'   => $sparks_id,
-		'contributors_id' => $contributors_id
-	);
+    public function ratedBefore($spark_id, $contributor_id)
+    {
+        $data = array (
+            'spark_id'   => $sparks_id,
+            'contributor_id' => $contributors_id
+        );
 
-	$query = $this->db->get_where('ratings', $data);
+        $query = $this->db->get_where('ratings', $data);
 
-	return $query->num_rows();
-}
+        return $query->num_rows();
+    }
 
-/**
- * Record a rating in the rating table
- *
- * @param string  $type The type of download
- * @return bool True on success, false on failure
- */
-public function log_rating($sparks_id, $contributors_id, $rating)
-{
-	$data = array (
-		'sparks_id'   		=> $sparks_id,
-		'contributors_id' 	=> $contributors_id,
-		'rating_id'     	=> $rating,
-		'voted'       		=> date('Y-m-d H:i:s')
-	);
+    /**
+     * Record a rating in the rating table
+     *
+     * @param string  $type The type of download
+     * @return bool True on success, false on failure
+     */
+    public function logRating($spark_id, $contributor_id, $rating)
+    {
+        $data = array (
+            'spark_id'   		=> $spark_id,
+            'contributor_id' 	=> $contributor_id,
+            'rating_name_id'  	=> $rating,
+            'voted'       		=> date('Y-m-d H:i:s')
+        );
 
-	return $this->db->insert('ratings', $data);
-}
+        return $this->db->insert('ratings', $data);
+    }
 }

@@ -133,6 +133,7 @@ class Packages extends CI_Controller
         #UtilityHelper::tryPageCache();
         
         $this->load->model('spark');
+        $this->load->model('rating');
         $this->load->model('contributor');
 
         $spark = Spark::getInfo($package_name);
@@ -146,6 +147,13 @@ class Packages extends CI_Controller
         $data['versions']     = $spark->getVersions(TRUE);
         $data['versions_unverified'] = $spark->getVersions(FALSE);
         $data['is_author']    = ($contributor->id == UserHelper::getId());
+        $data['current_user_rating'] = FALSE;
+        $data['ratings'] = $this->rating->getRatings($spark->id);
+        
+        if(UserHelper::isLoggedIn())
+        {
+            $data['current_user_rating'] = $this->rating->getUserRating(UserHelper::getId(), $spark->id);
+        }
 
         $this->load->view('packages/show', $data);
     }
