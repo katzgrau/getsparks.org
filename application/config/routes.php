@@ -16,8 +16,9 @@ $route['packages/browse/(:any)']                      = "packages/browse/$1";
 
 $route['search']                                      = "packages/search";
 
-$route['api/packages/search']                             	= "api/packages/search/";
-$route['api/packages/(:any)/versions/(:any)/spec'] 			= "api/packages/spec/$1/$2";
+$route['api/packages/search']                         = "api/packages/search/";
+$route['api/packages/(:any)/versions/(:any)/spec']    = "api/packages/spec/$1/$2";
+$route['api/system/latest']                           = "api/system/latest";
 
 $route['ajax/packages/(:any)/rate']                   = "ajax/packages/rate/$1";
 
