@@ -58,7 +58,7 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #page div.page-left div.login-box div.profile-links { float: left; width: 130px; }
 #page div.page-left div.login-box div.profile-links a { color: #fff; font-size: 12px; }
 #page div.page-left div.login-box div.profile-links dl dd { margin-bottom: 3px; padding-bottom: 3px; 
-	border-bottom: dashed 1px #7d2626; display: block; }
+	border-bottom: dashed 1px #7d2626; display: block; overflow: hidden; }
 #page div.page-left div.login-box div.profile-links dl dd.last { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
 	
 #page div.page-left div.info-box h2 { color: #fff; margin-bottom: 10px; font-size: 20px; border-bottom: solid 1px #7d2626;
