@@ -192,7 +192,10 @@ compatibility: 2.0.2
 #  some-spark-1: 1.0.0
 #  some-other-spark-2: 1.0.0
 </pre>
-<p>This is important for when you want to contribute your spark.</p>
+<p>
+    This is important for when you want to contribute your spark. Read
+    more about <a href="<?php echo base_url(); ?>spec-format">spec formats here</a>.
+</p>
     </li>
     <li>
         Now you're ready to try your new spark. From somewhere inside your
@@ -256,6 +259,11 @@ print_r($tweets);
         If you haven't already, copy your spark's files into your project
         directory.
         </p>
+    </li>
+    <li>
+        It is not required, but good practice to validate your spark <em>before</em>
+        submitting it to the repository. You can do this by installing the
+        'spark-sdk' spark, <a href="http://getsparks.org/packages/spark-sdk/versions/HEAD/show">available here</a>.
     </li>
     <li>
         Optionally, you may add a readme file at the root of your
