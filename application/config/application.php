@@ -42,3 +42,8 @@ $config['ratings'] = array (
     1 => 'like',
     2 => 'love'
 );
+
+$config['admin_users'] = array (
+    'katzgrau',
+    'seejohnrun'
+);
