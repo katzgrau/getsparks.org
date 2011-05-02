@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 # Flip this flag to turn on maintenance mode
-$config['is_maintanence'] = TRUE;
+$config['is_maintanence'] = FALSE;
 
 # Use prod settings? (Super-caching, minifying, etc)
 $config['is_production'] = FALSE;
