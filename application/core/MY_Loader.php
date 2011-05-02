@@ -50,7 +50,7 @@ class MY_Loader extends CI_Loader
      * Load a spark by it's path within the sparks directory defined by
      *  SPARKPATH, such as 'markdown/1.0'
      * @param string $spark The spark path withint he sparks directory
-     * @param array $autoload An optional array of items to autoload
+     * @param <type> $autoload An optional array of items to autoload
      *  in the format of:
      *   array (
      *     'helper' => array('somehelper')
@@ -219,4 +219,3 @@ class MY_Loader extends CI_Loader
 		}
 	}
 }
-
