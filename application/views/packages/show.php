@@ -12,7 +12,7 @@
     <em><?php echo $contribution->summary; ?></em>
 </p>
 
-<img src="<?php echo Google_chart::showBarChart($stats, '240', '125'); ?>" style="float: right" />
+<img src="<?php echo Google_chart::showBarChart($stats, '240', '80'); ?>" style="float: right" />
 
 <table style="margin-bottom:15px">
     <tr>

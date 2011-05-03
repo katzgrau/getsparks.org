@@ -30,7 +30,7 @@ class Google_chart {
 		);
 		
 		// Create our timestamp		
-		$yearweek = date('Y') . date('W');
+		$yearweek = date('YW');
 		
 		// Go 24 weeks back
 		for ($i = 0; $i <= 24; $i++)
@@ -54,7 +54,7 @@ class Google_chart {
 			}
 			
 		}
-		
+				
 		// Correct for the extra comma
 		$params['chd'] = 't:' . substr($params['chd'], 0, -1);
 		

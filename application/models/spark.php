@@ -73,7 +73,7 @@ class Spark extends CI_Model
     public static function getInfo($name)
     {       
         $CI = &get_instance();
-        $CI->db->select("s.*");
+        $CI->db->select('s.*');
         $CI->db->from('sparks s');
         $CI->db->where('s.name', $name);
 
@@ -88,7 +88,7 @@ class Spark extends CI_Model
     public static function getById($id)
     {
         $CI = &get_instance();
-        $CI->db->select("s.*");
+        $CI->db->select('s.*');
         $CI->db->from('sparks s');
         $CI->db->where('s.id', $id);
 
@@ -104,11 +104,11 @@ class Spark extends CI_Model
 	{
 			
 		$CI = &get_instance();
-        $CI->db->select("COUNT(*) as installs, YEARWEEK(created) AS week", FALSE);
-		$CI->db->from("installs");
-		$CI->db->where("spark_id", $id);
-		$CI->db->group_by("YEARWEEK(created)", NULL, FALSE);
-		$CI->db->limit("24");
+        $CI->db->select('COUNT(*) as installs, YEARWEEK(created) AS week');
+		$CI->db->from('installs');
+		$CI->db->where(array('spark_id' => $id, 'YEARWEEK(created) <=' => date('YW')));
+		$CI->db->group_by('YEARWEEK(created)', NULL, FALSE);
+		$CI->db->limit('24');
 		
 		$results = $CI->db->get()->result();
 		
@@ -117,7 +117,7 @@ class Spark extends CI_Model
 		{
 			$data[$result->week] = $result->installs;	
 		}
-		
+				
 		return $data;
 		
 	}
@@ -131,7 +131,7 @@ class Spark extends CI_Model
     public static function getLatest($name, $verified = TRUE)
     {
         $CI = &get_instance();
-        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme, v.id AS 'version_id'");
+        $CI->db->select('s.*, v.version, v.is_deactivated, v.archive_url, v.readme, v.id AS version_id');
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
 
