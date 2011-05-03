@@ -4,7 +4,7 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 /** Header **/
 #header { color: #fff; border-bottom: solid 0 #4D0202; background-color: #333; }
 
-#header h1 { font-size: 38px; float: left; padding-bottom: 5px; background: url('/static/images/ci_logo_flame_trans.png') top left no-repeat; 
+#header h1 { font-size: 38px; float: left; padding-bottom: 5px; background: url('/static/images/sparks-logo-square-small.png') top left no-repeat;
 	padding-left: 45px; padding-top: 1px; text-shadow: 1px 1px 3px #111; }
 #header h1 a { color: #fff; text-decoration: none; }
 
@@ -21,7 +21,7 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 	text-shadow: 1px 1px 3px #111; }
 #header div.nav dl dd a:hover, #header div.nav dl dd a.active { background-color: #d14000; }
 	
-#header div.header-wrapper { padding: 15px 0 10px 0; background: #333 url('/static/images/ci-logo-trans.png') 175px -250px no-repeat; }
+#header div.header-wrapper { padding: 15px 0 10px 0; background: #333 url('/static/images/sparks-logo-square-small.png') 175px -250px no-repeat; }
 
 /** Page **/
 #page { background-color: #f0f0f0; }
@@ -48,17 +48,18 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #page div.page-left div.login-box label { color: #fff; font-size: 12px; margin-bottom: 5px; }
 #page div.page-left div.login-box input.text-box, #page div.page-right div#mainsearch input.text-box, #header form#headersearch input.text-box { width: 207px; border: solid 1px #333; margin-bottom: 7px; padding: 4px; font-size: 12px;
 	border-radius: 5px; -moz-border-radius: 5px; }
-#header form#headersearch input.text-box { width: 157px; margin: 3px 5px 0 0;}
+#header form#headersearch input.text-box { width: 150px; margin: 5px; }
 #page div.page-left div.login-box input.submit, #page div.page-right div#mainsearch input.submit, #header form#headersearch input.submit, #page div.page-left div.login-box a.register { background-color: #d14000;
 	color: #fff; font-weight: normal; font-size: 12px; border: solid 1px #f0f0f0; display: inline-block; 
-	padding: 3px 10px 4px 10px; border-radius: 5px; -moz-border-radius: 5px; margin-top: 2px; }
+	padding: 3px 10px; border-radius: 5px; -moz-border-radius: 5px; }
+#header form#headersearch input.submit { margin-top: 5px; }
 #page div.page-left div.login-box a.register { padding: 5px 10px 7px 10px; float: right; margin-right: 5px; }
 
 #page div.page-left div.login-box div.profile-image { float: left; margin-right: 10px; }
 #page div.page-left div.login-box div.profile-links { float: left; width: 130px; }
 #page div.page-left div.login-box div.profile-links a { color: #fff; font-size: 12px; }
 #page div.page-left div.login-box div.profile-links dl dd { margin-bottom: 3px; padding-bottom: 3px; 
-	border-bottom: dashed 1px #7d2626; display: block; }
+	border-bottom: dashed 1px #7d2626; display: block; overflow: hidden; }
 #page div.page-left div.login-box div.profile-links dl dd.last { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
 	
 #page div.page-left div.info-box h2 { color: #fff; margin-bottom: 10px; font-size: 20px; border-bottom: solid 1px #7d2626;
@@ -84,14 +85,20 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 
 #page div.page-right table tbody tr td { padding-bottom: 4px; padding-right: 2px; }
 
-#page div.page-right ul#sparklisting {display: block}
-#page div.page-right ul#sparklisting li {display:inline-block; border: 1px solid #7D2626; height: auto; list-style: none; background-color: #ddd; padding: 5px;}
-#page div.page-right ul#sparklisting li div.sparkinfo {float:left; display: inline-table; width: 550px}
-#page div.page-right ul#sparklisting li div.sparkinfo a {display: inline-block; margin-bottom: 8px;}
-#page div.page-right ul#sparklisting li div.sparkinfo span {display: block; margin-bottom: 8px;}
-#page div.page-right ul#sparklisting li div.sparkstats {border: 0; display: block; float: right;  width: 150px}
-#page div.page-right ul#sparklisting li div.sparkstats  li {font-size: 12px; display: block; border: 0; padding: 2px; margin: 0;}
-#page div.page-right ul#sparklisting li div.sparkstats  li span {display: inline-block; width: 110px;}
+#page div.page-right ul#sparklisting { display: block; }
+#page div.page-right ul#sparklisting li { border-width: 1px 0px 0px 0px; border-top: 1px dotted #7d2626; list-style: none; overflow: hidden; padding: 10px 0px; }
+#page div.page-right ul#sparklisting li div.sparkinfo .title { font-size: 18px; color: #333377; }
+#page div.page-right ul#sparklisting li div.sparkinfo .summary .official { color: green; }
+#page div.page-right ul#sparklisting li div.sparkinfo .summary { margin-top: 10px; color: #333; }
+
+div.ratings { float: right; text-align: right; }
+div.ratings .installcount { padding: 2px 5px; background: #777; color: #fff; font-size: 12px; display: inline-block; margin-left: 5px; border: 1px solid #333; margin-top: 5px; }
+div.ratings .rating { display: inline-block; border: 1px solid #333; margin-left: 5px; background: #d14000; font-size: 14px; }
+div.ratings .rating label { background: #fff; padding: 3px 5px; display: inline-block; color: #000; }
+div.ratings .rating span { color: #fff; padding: 0px 5px; display: inline-block; color: #fff; }
+div.ratings .rating.selected label { background: #d14000 !important; color: #eee; }
+div.ratings a.rating:hover label { background: #ddd; cursor: hand; cursor: pointer; }
+div.ratings a.rating:hover { text-decoration: none !important; }
 
 #page div.code, #page code, #page pre { font-family: Monaco, Verdana, Sans-serif; font-size: 12px; background-color: #f9f9f9;
 	border: 1px solid #D0D0D0; color: #002166; display: block; margin: 15px 0 15px 0; padding: 12px 10px 12px 10px; }

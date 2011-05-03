@@ -58,6 +58,9 @@ foreach($sparks as $spark)
         continue;
     }
 
+    # Switch back to the webroot
+    chdir($webroot);
+
     try
     {
         # All or nothing. Verify versions aand insert dependencies atomically

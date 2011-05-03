@@ -36,5 +36,5 @@ if(class_exists('ZipArchive'))
 echo "Cleaning up ...\n";
 @unlink('sparks.zip');
 
-echo "Spark Manager has been install successfully!\n";
+echo "Spark Manager has been installed successfully!\n";
 echo "Try: `php tools/spark help`\n";

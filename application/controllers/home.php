@@ -53,6 +53,14 @@ class Home extends CI_Controller {
     }
 
     /**
+     * The call for docs on the spec format
+     */
+    function spec_format()
+    {
+        $this->load->view('home/spec_format');
+    }
+
+    /**
      * The call for showing how to download sparks
      */
     function get_sparks()

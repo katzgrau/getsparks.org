@@ -1,4 +1,4 @@
-<?php $this->load->spark('assets/v0.4'); ?>
+<?php $this->load->spark('assets/0.5.1'); ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -15,7 +15,8 @@
                        'jquery.available.1.6.1.min.js',
                        'fancybox/jquery.fancybox-1.3.4.pack.js',
                        'fancybox/jquery.easing-1.3.pack.js',
-                       'fancybox/jquery.mousewheel-3.0.4.pack.js')); ?>
+                       'fancybox/jquery.mousewheel-3.0.4.pack.js',
+                       'site.js')); ?>
 
 <meta http-equiv='expires' content='-1' />
 <meta http-equiv= 'pragma' content='no-cache' />
@@ -26,7 +27,7 @@
 	
 	<div id="header" class="clearfix">
 		<div class="wrapper header-wrapper clearfix">
-			<h1><a href="/" title="Sparks | Automated Package Management for Codeigniter">Sparks<span class="superscript">&nbsp;Alpha</span></a></h1>
+			<h1><a href="/" title="Sparks | Automated Package Management for Codeigniter">Sparks<span class="superscript">&nbsp;Beta</span></a></h1>
 			<div class="spark-count">
 				<p>
 					<?php echo number_format(UtilityHelper::getGlobalInstallCount()); ?> Installs and Counting!

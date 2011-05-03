@@ -1,5 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+# Flip this flag to turn on maintenance mode
+$config['is_maintanence'] = FALSE;
+
+# Use prod settings? (Super-caching, minifying, etc)
 $config['is_production'] = FALSE;
 
 /*
@@ -93,7 +97,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 
 /*
