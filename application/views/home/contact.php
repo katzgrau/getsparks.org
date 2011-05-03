@@ -67,6 +67,16 @@
     <li>Code Repository: <a href="https://github.com/katzgrau/getsparks.org">https://github.com/katzgrau/getsparks.org</a></li>
 </ol>
 
+<h3>Special Thanks</h3>
+
+<p>The GetSparks.org team extends a special thanks to these fine fellows:</p>
+
+<p>
+    &bull; Joel Cox, for testing, and for spark activity graphs<br />
+    &bull; Jake Ingman, for designing our sweet logo on a whim
+</p>
+
+
 <h3>Get Involved</h3>
 
 <p>
