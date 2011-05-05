@@ -8,22 +8,31 @@
  */
 class Rss extends CI_Controller
 {
-    public function sparks()
+    public function packages($package_name = FALSE)
+    {
+        if($package_name)
+            $this->package($package_name);
+        else
+            $this->all();
+    }
+
+    public function all()
     {
         $this->load->model('spark');
         $sparks = Spark::getLatestOf(10);
         $this->load->view('rss/sparks', array('sparks' => $sparks));
     }
 
-    public function versions($package_name)
+    public function package($package_name)
     {
         $this->load->model('spark');
+        
         $spark = Spark::getInfo($package_name);
 
-        if(!$sparks) show_404 ();
+        if(!$spark) show_404 ();
 
         $versions = $spark->getVersions(TRUE);
 
-        $this->load->view('rss/sparks', array('spark' => $spark, 'versions' => $versions));
+        $this->load->view('rss/versions', array('spark' => $spark, 'versions' => $versions));
     }
 }
