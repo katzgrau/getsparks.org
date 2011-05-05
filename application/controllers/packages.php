@@ -138,10 +138,15 @@ class Packages extends CI_Controller
 
         $spark = Spark::getInfo($package_name);
 
-        if(!$spark) show_404 ();
+        if ( ! $spark) 
+			show_404();
 
         $contributor = $spark->getContributor();
 
+		// Get the stats for this Spark
+		$data['stats'] = $spark->getStats($spark->id);
+		$this->load->helper('google_chart');
+	
         $data['contribution'] = $spark;
         $data['contributor']  = $contributor;
         $data['versions']     = $spark->getVersions(TRUE);
