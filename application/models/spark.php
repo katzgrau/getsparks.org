@@ -230,7 +230,7 @@ class Spark extends CI_Model
      */
     public function getDependencies($extended = TRUE)
     {
-        $this->db->select("s.*, v.version, v.tag, v.id AS 'version_id', d.is_direct");
+        $this->db->select("s.*, v.version, v.tag, v.is_deactivated, v.id AS 'version_id', d.is_direct");
         $this->db->from('dependencies d');
         $this->db->join('versions v', 'v.id = d.needed_version_id');
         $this->db->join('sparks s', 's.id = v.spark_id');
