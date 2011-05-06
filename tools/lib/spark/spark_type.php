@@ -37,7 +37,7 @@ class Spark_type {
     {
         foreach ($this->dependencies as $dependency)
         {
-            if (!$dependency->is_direct)
+            if ($dependency->is_direct)
             {
                 $this->install_dependency($dependency);
             }
@@ -66,7 +66,7 @@ class Spark_type {
             Spark_utils::notice("Installed dependency: $spark->name to " . $spark->installed_path());
         }
         else {
-            Spark_utils::notice("Dependency $spark->name is already installed.");
+            Spark_utils::warning("Dependency $spark->name is already installed.");
         }
     }
     
