@@ -124,7 +124,7 @@ a.sparkinfo:hover .sparkify {
 }
 
 ul#sparklisting li a.sparkinfo .title .title_seg { color: #fff; }
-ul#sparklisting li a.sparkinfo .title { font-size: 14px; background: #333; color: #aaa; padding: 10px; white-space: nowrap; -moz-border-radius: 0px 0px 10px 10px; }
+ul#sparklisting li a.sparkinfo .title { font-size: 14px; background: #333; color: #aaa; padding: 10px; white-space: nowrap; -moz-border-radius: 10px 10px 0px 0px; }
 ul#sparklisting li a.sparkinfo .summary .official { color: green; font-weight: bold; }
 ul#sparklisting li a.sparkinfo .summary { padding: 10px; color: #333; }
 
