@@ -1,14 +1,6 @@
 body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-logo-trans.png') no-repeat fixed 5px 80px; */ font-family: "Trebuchet MS", Arial, Serif;
  	font-size: 14px; color: #333; }
 
-.rss_float {
-    float: right;
-    margin-left: 10px;
-    height: 24px;
-    width: 24px;
-    background: url(/static/images/rss-24.png);
-}
-
 /** Header **/
 #header { color: #fff; border-bottom: solid 0 #4D0202; background-color: #333; }
 
@@ -194,3 +186,14 @@ span.superscript { font-size:14px; vertical-align: super; }
 #lazy_profile { min-height: 82px; }
 #lazy_profile a {float:right; color: #fff;}
 #disqus_thread ul li { border: none !important; padding: 0 !important; }
+
+a.rss_float, a.rss_float:visited {
+  float: right;
+  margin-left: 10px;
+  height: 24px;
+  width: 24px;
+  background: url(/static/images/rss-24.png);
+}
+a.rss_float:hover {
+	text-decoration: none !important;
+}
