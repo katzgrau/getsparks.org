@@ -3,8 +3,8 @@
     $hide_username = isset($hide_username) ? $hide_username : false;
 ?>
 
-<ul id="sparklisting">
-    <?php if(count($sparks) > 0): ?>
+<?php if(count($sparks) > 0): ?>
+    <ul id="sparklisting">
         <?php foreach($sparks as $spark): ?>
             <li>
                 <a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show" class="sparkinfo">
@@ -22,7 +22,7 @@
 				</a>
             </li>
         <?php endforeach; ?>
-    <?php else: ?>
-            <li>No sparks here, good sir!</li>
-    <?php endif; ?>
-</ul>
+    </ul>
+<?php else: ?>
+    <em>No sparks here, good sir!</em>
+<?php endif; ?>
