@@ -22,9 +22,8 @@ $route['api/system/latest']                           = "api/system/latest";
 
 $route['ajax/packages/(:any)/rate']                   = "ajax/packages/rate/$1";
 
-$route['rss/sparks/(:any)']       = "api/rss/versions/$1";
-$route['rss/sparks']       = "api/rss/sparks/";
-
+$route['rss/packages'] = "api/rss/packages/";
+$route['rss/packages/(:any)'] = "api/rss/packages/$1";
 
 $route['home']             = "home/index";
 $route['download']         = "home/download";

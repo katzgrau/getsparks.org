@@ -100,26 +100,25 @@ class Spark extends CI_Model
 	 * @param int $id
 	 * @return array
 	 */
-	public static function getStats($id)
-	{
-			
+	public function getStats()
+	{	
 		$CI = &get_instance();
         $CI->db->select('COUNT(*) as installs, YEARWEEK(created) AS week');
 		$CI->db->from('installs');
-		$CI->db->where(array('spark_id' => $id, 'YEARWEEK(created) <=' => date('YW')));
+		$CI->db->where(array('spark_id' => $this->id, 'YEARWEEK(created) <=' => date('YW')));
 		$CI->db->group_by('YEARWEEK(created)', NULL, FALSE);
 		$CI->db->limit('24');
 		
 		$results = $CI->db->get()->result();
 		
 		// Rewrite results to a nice array
+        $data = array();
 		foreach ($results as $result)
 		{
 			$data[$result->week] = $result->installs;	
 		}
 				
 		return $data;
-		
 	}
 
 
