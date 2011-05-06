@@ -123,10 +123,12 @@ class Spark_spec {
 
         if(!array_key_exists('dependencies', $spec))
         {
-            throw new SpecValidationException("The spec does not contain a spec dependency: $filename");
+            $spark->dependencies = array();
         }
-
-        $spark->dependencies = $spec['dependencies'];
+        else
+        {
+            $spark->dependencies = $spec['dependencies'];
+        }
 
         if(!array_key_exists('tags', $spec))
         {
