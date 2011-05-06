@@ -14,7 +14,7 @@
     <?php foreach($sparks as $spark): ?>
     <item>
       <title><?php echo $spark->name; ?></title>
-      <description><?php echo $spark->summary; ?></description>
+      <description><?php echo htmlentities($spark->summary); ?></description>
       <link><?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show</link>
       <guid isPermaLink="true"></guid>
       <pubDate><?php echo (date(DATE_RSS, strtotime($spark->created))); ?></pubDate>
