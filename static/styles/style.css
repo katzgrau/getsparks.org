@@ -89,6 +89,7 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #page div.page-right ul#sparklisting li {
 	border: 1px solid #333;
 	border-radius: 10px;
+	-moz-border-radius: 10px;
 	list-style: none;
 	width: 355px;
 	display: inline-block;
@@ -118,7 +119,6 @@ ul#sparklisting li a.sparkinfo .title .title_seg { color: #fff; }
 ul#sparklisting li a.sparkinfo .title { font-size: 14px; background: #333; color: #aaa; padding: 10px; white-space: nowrap; }
 ul#sparklisting li a.sparkinfo .summary .official { color: green; font-weight: bold; }
 ul#sparklisting li a.sparkinfo .summary { padding: 10px; color: #333; }
-
 
 div.ratings { float: right; text-align: right; }
 div.ratings .installcount { padding: 2px 5px; background: #777; color: #fff; font-size: 12px; display: inline-block; margin-left: 5px; border: 1px solid #333; margin-top: 5px; }

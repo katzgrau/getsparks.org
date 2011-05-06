@@ -7,7 +7,7 @@
     <?php if(count($sparks) > 0): ?>
         <?php foreach($sparks as $spark): ?>
             <li>
-                <a href="<?php echo base_url(); ?>/packages/<?php echo $spark->name; ?>/versions/HEAD/show" class="sparkinfo">
+                <a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show" class="sparkinfo">
                     <div class="title">
                         <div class="sparkify">&nbsp;</div>
                         <span class="title_seg"><?php echo $spark->name; ?></span> 
