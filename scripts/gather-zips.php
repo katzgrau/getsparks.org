@@ -33,8 +33,6 @@ foreach($sparks as $spark)
 {
     $handle = md5(uniqid());
     $tmp    = "/tmp/$handle";
-    $release= "{$spark->name}-{$spark->version}";
-    $release_dir = $spark_path . $spark->name;
 
     # Create a temporary holding place
     mkdir($tmp);
@@ -69,14 +67,16 @@ foreach($sparks as $spark)
         $spec = Spark_spec::loadFromDirectory($tmp);
         # Add any dependencies in the spec
         $spark->processDependencies($spec);
+        # Set the version
+        $spark->setVersion($spec->version);
         # If there's a README file, store the contents
         if($readme = $spec->getReadme())
         {
             $readme = file_get_contents($tmp.'/'.$readme);
-            $spark->setVersionReadme($spark->version, $readme);
+            $spark->setVersionReadme($spec->version, $readme);
         }
         # Mark this spark as verified
-        $spark->setVerified($spark->version, TRUE, base_url().config_item('archive_path').$spark->name.'/'.$release.".zip");
+        $spark->setVerified($spec->version, TRUE, base_url().config_item('archive_path').$spark->name.'/'.$release.".zip");
         # Commit anything we've done
         $CI->db->trans_complete();
         # Yay, keep track of it
@@ -84,9 +84,9 @@ foreach($sparks as $spark)
     }
     catch(Exception $ex)
     {
-        echo "Error processing {$spark->name} - {$spark->version}: " . $ex->getMessage() . ". Removing..\n";
+        echo "Error processing {$spark->name} - {$spec->version}: " . $ex->getMessage() . ". Removing..\n";
         $errors = array($ex->getMessage());
-        $spark->removeVersionAndNotify($spark->version, $errors);
+        $spark->removeVersionAndNotify($spec->version, $errors);
         $unsuccessful[] = $spark;
         `rm -rf $tmp`;
         continue;
@@ -95,15 +95,17 @@ foreach($sparks as $spark)
     # Switch back to the tmp dir
     chdir($tmp);
     # The spark's been added, now do some disk cleanup
+    $release     = "{$spark->name}-{$spec->version}";
+    $release_dir = $spark_path . $spark->name;
     @mkdir($release_dir, 0777, TRUE);
     `zip -r $release.zip *`;
     @copy("$tmp/$release.zip", $release_dir."/$release.zip");
-    echo "Verified $spark->name v$spark->version -- $tmp\n";
+    echo "Verified $spark->name v$spec->version -- $tmp\n";
     `rm -rf $tmp`;
 }
 
 echo "\n" . count($unsuccessful) . " errors.\n";
 foreach($unsuccessful as $spark)
 {
-    echo "$spark->id - $spark->name - $spark->version\n";
+    echo "$spark->id - $spark->name - $spec->version\n";
 }
