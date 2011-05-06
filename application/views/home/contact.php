@@ -56,7 +56,7 @@
 <a title="John Crepezzi (@seejohnrun)" target="_blank" href="http://johncrepezzi.com/"><img src="<?php echo Gravatar_helper::from_email('john@crepezzi.com', null, 50); ?>" alt="John Crepezzi" /></a>
 <a title="Beau Frusetta (@beaufrusetta)" target="_blank" href="http://beau.frusetta.com/"><img src="<?php echo Gravatar_helper::from_email('beau.frusetta@gmail.com', null, 50); ?>" alt="Beau Frusetta" /></a>
 <a title="Mike Pauley (@mdpauley)" target="_blank" href="http://www.mdpauley.com/"><img src="<?php echo Gravatar_helper::from_email('mdpauley@gmail.com', null, 50); ?>" alt="Mike Pauley" /></a>
-<a title="Seán Downey" target="_blank" href="#"><img src="<?php echo Gravatar_helper::from_email('sean@considerweb.com', null, 50); ?>" alt="Seán Downey" /></a>
+<a title="Seán Downey (@downey_sean)" target="_blank" href="https://twitter.com/#!/downey_sean"><img src="<?php echo Gravatar_helper::from_email('sean@considerweb.com', null, 50); ?>" alt="Seán Downey" /></a>
 </p>
 
 <h3>The Project</h3>
