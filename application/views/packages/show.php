@@ -109,7 +109,7 @@
 	            source repository. <br/>
 	        </small>
 	        </p>
-	        <input type="text" name="version" />
+	        <input type="text" name="tag" />
 	        <input type="hidden" name="spark_id" value="<?php echo $contribution->id; ?>" />
 	        <input type="submit" name="submit" value="Create From Tag" />
 	    </form>
