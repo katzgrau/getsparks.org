@@ -267,6 +267,7 @@ class Packages extends CI_Controller
         $sparks = array();
         $data['browse_type'] = '';
         $data['description'] = '';
+        $data['browse_type_raw'] = $type;
 
         if($type == 'latest')
         {

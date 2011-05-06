@@ -3,7 +3,7 @@ $title = ($browse_type != '' ? "$browse_type " : "") . 'Packages';
 $this->load->view('global/_new_header.php', array('title' => $title)); 
 ?>
 
-<a class="rss_float" href="<?php echo base_url(); ?>packages/browse/<?php echo $browse_type ?>.rss">&nbsp;</a>
+<a class="rss_float" href="<?php echo base_url(); ?>packages/browse/<?php echo $browse_type_raw ?>.rss">&nbsp;</a>
 
 <h2><?php echo $title; ?></h2>
 <p><?php echo $description; ?></p>
