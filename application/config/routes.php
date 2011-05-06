@@ -3,6 +3,10 @@
 $route['default_controller'] = "home";
 $route['404_override'] = '';
 
+$route['packages/browse/(:any)\.rss']                 = "api/rss/packages/$1";
+$route['packages/(:any)\.rss']                        = "api/rss/package/$1";
+
+
 # http://sparks.codeigniter.com/packages/gravataz/versions/1.0/spec.json
 $route['packages/(:any)/versions/(:any)/spec[.\/](:any)'] = "packages/spec/$1/$2/$3";
 $route['packages/(:any)/versions/(:any)/show']        = "packages/show/$1/$2/$3";
@@ -19,11 +23,6 @@ $route['search']                                      = "packages/search";
 $route['api/packages/search']                         = "api/packages/search/";
 $route['api/packages/(:any)/versions/(:any)/spec']    = "api/packages/spec/$1/$2";
 $route['api/system/latest']                           = "api/system/latest";
-
-$route['ajax/packages/(:any)/rate']                   = "ajax/packages/rate/$1";
-
-$route['rss/packages'] = "api/rss/packages/";
-$route['rss/packages/(:any)'] = "api/rss/packages/$1";
 
 $route['home']             = "home/index";
 $route['download']         = "home/download";
