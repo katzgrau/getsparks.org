@@ -89,7 +89,7 @@
                 </code>
                <?php endif; ?>
                 Or download this version manually:
-                <a href="<?php echo $version->archive_url; ?>" class="download">Get <?php echo $contribution->name; ?>-v<?php echo $version->version; ?>.zip</a>
+                <a href="<?php echo $version->archive_url; ?>" class="download">Get <?php echo basename($version->archive_url); ?>.zip</a>
             </li>
     <?php else: ?>
             <li class="last no-border" style="text-align:left; margin-bottom:15px">There isn't a latest version.</li>
@@ -155,7 +155,7 @@
                 </code>
                <?php endif; ?>
                 Or download this version manually:
-                <a href="<?php echo $version->archive_url; ?>" class="download">Get <?php echo $contribution->name; ?>-<?php echo $version->version; ?>.zip</a>
+                <a href="<?php echo $version->archive_url; ?>" class="download">Get <?php echo basename($version->archive_url); ?>.zip</a>
             </li>
         <?php $count++; endforeach; ?>
     <?php else: ?>
