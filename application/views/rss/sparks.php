@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?php echo '<?'; ?>xml version="1.0" encoding="utf-8"<?php echo '?>'; ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>GetSparks.org: Latest Registered Sparks</title>
-    <description>A feed of all of the repository's latest submissions</description>
+    <title>GetSparks.org: <?php echo $type; ?> Sparks</title>
+    <description><?php echo $description; ?></description>
     <link>http://getsparks.org</link>
     <language>en</language>
     <copyright>GetSparks.org</copyright>
