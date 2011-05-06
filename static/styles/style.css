@@ -1,6 +1,14 @@
 body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-logo-trans.png') no-repeat fixed 5px 80px; */ font-family: "Trebuchet MS", Arial, Serif;
  	font-size: 14px; color: #333; }
 
+.rss_float {
+    float: right;
+    margin-left: 10px;
+    height: 24px;
+    width: 24px;
+    background: url(/static/images/rss-24.png);
+}
+
 /** Header **/
 #header { color: #fff; border-bottom: solid 0 #4D0202; background-color: #333; }
 
@@ -116,7 +124,7 @@ a.sparkinfo:hover .sparkify {
 }
 
 ul#sparklisting li a.sparkinfo .title .title_seg { color: #fff; }
-ul#sparklisting li a.sparkinfo .title { font-size: 14px; background: #333; color: #aaa; padding: 10px; white-space: nowrap; -moz-border-radius: 0px 0px 10px 10px; }
+ul#sparklisting li a.sparkinfo .title { font-size: 14px; background: #333; color: #aaa; padding: 10px; white-space: nowrap; -moz-border-radius: 10px 10px 0px 0px; }
 ul#sparklisting li a.sparkinfo .summary .official { color: green; font-weight: bold; }
 ul#sparklisting li a.sparkinfo .summary { padding: 10px; color: #333; }
 
