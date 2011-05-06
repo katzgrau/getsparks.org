@@ -22,7 +22,7 @@ class Versions extends CI_Controller
             $this->load->model('version');
             $this->load->model('spark');
             
-            $insert = elements(array('spark_id', 'version'), $_POST);
+            $insert = elements(array('spark_id', 'tag'), $_POST);
 
             if($this->form_validation->run('add-version'))
             {
