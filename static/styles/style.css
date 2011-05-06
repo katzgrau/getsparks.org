@@ -86,14 +86,25 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #page div.page-right table tbody tr td { padding-bottom: 4px; padding-right: 2px; }
 
 #page div.page-right ul#sparklisting { display: block; }
-#page div.page-right ul#sparklisting li { border-width: 1px 0px 0px 0px; border-top: 1px dotted #7d2626; list-style: none; overflow: hidden; padding: 10px 0px; }
+#page div.page-right ul#sparklisting li { 
+  background-color: #ddd; 
+  background-image: -moz-linear-gradient(#ddd, #ccc);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ccc), to(#ddd));
+  background-image: -webkit-linear-gradient(#ddd, #ccc); 
+  background-image: -o-linear-gradient(#ddd, #ccc);
+	border: 1px solid #777;
+	border-radius: 5px;
+	padding: 10px;
+	overflow: hidden;
+	list-style: none;
+}	
 #page div.page-right ul#sparklisting li div.sparkinfo .title { font-size: 18px; color: #333377; }
 #page div.page-right ul#sparklisting li div.sparkinfo .summary .official { color: green; }
 #page div.page-right ul#sparklisting li div.sparkinfo .summary { margin-top: 10px; color: #333; }
 
 div.ratings { float: right; text-align: right; }
 div.ratings .installcount { padding: 2px 5px; background: #777; color: #fff; font-size: 12px; display: inline-block; margin-left: 5px; border: 1px solid #333; margin-top: 5px; }
-div.ratings .rating { display: inline-block; border: 1px solid #333; margin-left: 5px; background: #d14000; font-size: 14px; }
+div.ratings .rating { display: inline-block; border: 1px solid #333; margin-left: 5px; background: #d14000; font-size: 14px; border-radius: 3px; }
 div.ratings .rating label { background: #fff; padding: 3px 5px; display: inline-block; color: #000; }
 div.ratings .rating span { color: #fff; padding: 0px 5px; display: inline-block; color: #fff; }
 div.ratings .rating.selected label { background: #d14000 !important; color: #eee; }
