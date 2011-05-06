@@ -168,9 +168,9 @@ $config = array (
 
     'add-version' => array (
         array (
-            'field'   => 'version',
-            'label'   => 'Version',
-            'rules'   => 'required|min_length[1]|max_length[10]'
+            'field'   => 'tag',
+            'label'   => 'Tag',
+            'rules'   => 'required|min_length[1]|max_length[20]'
         )
     ),
     'search' => array (
