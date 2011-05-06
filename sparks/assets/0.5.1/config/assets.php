@@ -24,7 +24,7 @@ $config['assets']['less_css']   = false;
 | 
 */
 
-$config['assets']['auto_clear_cache']     = true;
+$config['assets']['auto_clear_cache']     = false;
 $config['assets']['auto_clear_css_cache'] = false;
 $config['assets']['auto_clear_js_cache']  = false;
 
