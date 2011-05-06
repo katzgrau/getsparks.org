@@ -230,7 +230,7 @@ class Spark extends CI_Model
      */
     public function getDependencies($extended = TRUE)
     {
-        $this->db->select("s.*, v.version, v.id AS 'version_id', d.is_direct");
+        $this->db->select("s.*, v.version, v.tag, v.is_deactivated, v.id AS 'version_id', d.is_direct");
         $this->db->from('dependencies d');
         $this->db->join('versions v', 'v.id = d.needed_version_id');
         $this->db->join('sparks s', 's.id = v.spark_id');
@@ -343,11 +343,12 @@ Here are some specifics: \n\n";
 
         foreach($errors as $error)
             $message .= "$error\n";
-echo $message . "\n"; return;
+
         send_email("{$contrib->email},{$sys_email}", "{$this->name} v{$version} Removed.", $message);
         
         $this->db->where('spark_id', $this->id);
         $this->db->where('version', $version);
+        
         return $this->db->delete('versions');
     }
 

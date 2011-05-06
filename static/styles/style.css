@@ -21,7 +21,7 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 	text-shadow: 1px 1px 3px #111; }
 #header div.nav dl dd a:hover, #header div.nav dl dd a.active { background-color: #d14000; }
 	
-#header div.header-wrapper { padding: 15px 0 10px 0; background: #333 url('/static/images/sparks-logo-square-small.png') 175px -250px no-repeat; }
+#header div.header-wrapper { padding: 15px 0 10px 0; background: #333 url('/static/images/ci-logo-trans.png') 175px -250px no-repeat; }
 
 /** Page **/
 #page { background-color: #f0f0f0; }
