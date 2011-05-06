@@ -97,13 +97,12 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 	background: #fff;
 	vertical-align: top;
 	padding: 0px;
-	height: 85px;
   -moz-box-shadow: 1px 2px 1px #999;
   -webkit-box-shadow: 1px 2px 1px #999;
   box-shadow: 1px 2px 1px #999;
 	margin-right: 5px;
 }
-#page div.page-right a.sparkinfo { display: block; }
+#page div.page-right a.sparkinfo { display: block; height: 85px; }
 #sparklisting a:hover, .sparkinfo a:hover { text-decoration: none; }
 a.sparkinfo .sparkify {
 	float: right;
