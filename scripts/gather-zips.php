@@ -92,6 +92,8 @@ foreach($sparks as $spark)
         continue;
     }
 
+    # Switch back to the tmp dir
+    chdir($tmp);
     # The spark's been added, now do some disk cleanup
     @mkdir($release_dir, 0777, TRUE);
     `zip -r $release.zip *`;
