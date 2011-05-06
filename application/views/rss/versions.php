@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>GetSparks.org: Latest Version of <?php echo $spark->name; ?></title>
-    <description>A feed of all of the repository's latest submissions</description>
+    <description>A feed of all of this spark's latest submissions</description>
     <link>http://getsparks.org</link>
     <language>en</language>
     <copyright>GetSparks.org</copyright>
@@ -14,7 +14,7 @@
     <?php foreach($versions as $version): ?>
     <item>
       <title><?php echo $spark->name; ?> v<?php echo $version->version; ?></title>
-      <description><?php echo $spark->summary; ?></description>
+      <description><?php echo htmlentities($spark->summary); ?></description>
       <link><?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/<?php echo $version->version; ?>/show</link>
       <guid isPermaLink="true"></guid>
       <pubDate><?php echo (date(DATE_RSS, strtotime($spark->created))); ?></pubDate>
