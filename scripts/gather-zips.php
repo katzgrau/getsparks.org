@@ -70,6 +70,9 @@ foreach($sparks as $spark)
         # Set the version
         $spark->setVersion($spec->version);
         # If there's a README file, store the contents
+        $release     = "{$spark->name}-{$spec->version}";
+        $release_dir = $spark_path . $spark->name;
+
         if($readme = $spec->getReadme())
         {
             $readme = file_get_contents($tmp.'/'.$readme);
@@ -95,8 +98,6 @@ foreach($sparks as $spark)
     # Switch back to the tmp dir
     chdir($tmp);
     # The spark's been added, now do some disk cleanup
-    $release     = "{$spark->name}-{$spec->version}";
-    $release_dir = $spark_path . $spark->name;
     @mkdir($release_dir, 0777, TRUE);
     `zip -r $release.zip *`;
     @copy("$tmp/$release.zip", $release_dir."/$release.zip");
