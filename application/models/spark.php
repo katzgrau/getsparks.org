@@ -343,11 +343,12 @@ Here are some specifics: \n\n";
 
         foreach($errors as $error)
             $message .= "$error\n";
-echo $message . "\n"; return;
+
         send_email("{$contrib->email},{$sys_email}", "{$this->name} v{$version} Removed.", $message);
         
         $this->db->where('spark_id', $this->id);
         $this->db->where('version', $version);
+        
         return $this->db->delete('versions');
     }
 
