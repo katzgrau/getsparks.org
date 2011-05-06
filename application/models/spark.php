@@ -33,7 +33,7 @@ class Spark extends CI_Model
             return self::getLatest ($name);
 
         $CI = &get_instance();
-        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme, v.id AS 'version_id'");
+        $CI->db->select("s.*, v.version, v.is_deactivated, v.archive_url, v.readme, v.tag, v.id AS 'version_id'");
         $CI->db->from('sparks s');
         $CI->db->join('versions v', 'v.spark_id = s.id');
         $CI->db->where('s.name', $name);
