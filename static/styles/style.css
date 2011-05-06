@@ -86,21 +86,39 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #page div.page-right table tbody tr td { padding-bottom: 4px; padding-right: 2px; }
 
 #page div.page-right ul#sparklisting { display: block; }
-#page div.page-right ul#sparklisting li { 
-  background-color: #ddd; 
-  background-image: -moz-linear-gradient(#ddd, #ccc);
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ccc), to(#ddd));
-  background-image: -webkit-linear-gradient(#ddd, #ccc); 
-  background-image: -o-linear-gradient(#ddd, #ccc);
-	border: 1px solid #777;
-	border-radius: 5px;
-	padding: 10px;
-	overflow: hidden;
+#page div.page-right ul#sparklisting li {
+	border: 1px solid #333;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
 	list-style: none;
-}	
-#page div.page-right ul#sparklisting li div.sparkinfo .title { font-size: 18px; color: #333377; }
-#page div.page-right ul#sparklisting li div.sparkinfo .summary .official { color: green; }
-#page div.page-right ul#sparklisting li div.sparkinfo .summary { margin-top: 10px; color: #333; }
+	width: 355px;
+	display: inline-block;
+	overflow: hidden;
+	background: #fff;
+	vertical-align: top;
+	padding: 0px;
+	height: 85px;
+  -moz-box-shadow: 1px 2px 1px #999;
+  -webkit-box-shadow: 1px 2px 1px #999;
+  box-shadow: 1px 2px 1px #999;
+	margin-right: 5px;
+}
+#page div.page-right a.sparkinfo { display: block; }
+#sparklisting a:hover, .sparkinfo a:hover { text-decoration: none; }
+a.sparkinfo .sparkify {
+	float: right;
+	background: url(/static/images/sparks-logo-white-tiny.png);
+	width: 13px;
+	height: 16px;
+}
+a.sparkinfo:hover .sparkify {
+	background: url(/static/images/sparks-logo-orange-tiny.png);
+}
+
+ul#sparklisting li a.sparkinfo .title .title_seg { color: #fff; }
+ul#sparklisting li a.sparkinfo .title { font-size: 14px; background: #333; color: #aaa; padding: 10px; white-space: nowrap; -moz-border-radius: 0px 0px 10px 10px; }
+ul#sparklisting li a.sparkinfo .summary .official { color: green; font-weight: bold; }
+ul#sparklisting li a.sparkinfo .summary { padding: 10px; color: #333; }
 
 div.ratings { float: right; text-align: right; }
 div.ratings .installcount { padding: 2px 5px; background: #777; color: #fff; font-size: 12px; display: inline-block; margin-left: 5px; border: 1px solid #333; margin-top: 5px; }

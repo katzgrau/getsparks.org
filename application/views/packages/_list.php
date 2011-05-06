@@ -7,26 +7,19 @@
     <?php if(count($sparks) > 0): ?>
         <?php foreach($sparks as $spark): ?>
             <li>
-                <?php $this->load->view('ratings/_rating', array('spark' => $spark, 'ratings' => $ratings[$spark->id])); ?>
-			    <div class="sparkinfo">
+                <a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show" class="sparkinfo">
                     <div class="title">
-           	            <a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show">
-                            <?php echo $spark->name; ?>
-                        </a> 
-                        <?php if (!$hide_username): ?>
-                            by
-                            <a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile">
-                                <?php echo $spark->username; ?>
-                            </a>
-                        <?php endif; ?>
+                        <div class="sparkify">&nbsp;</div>
+                        <span class="title_seg"><?php echo $spark->name; ?></span> 
+                        <?php if (!$hide_username): ?>by <?php echo $spark->username; ?><?php endif; ?>
                     </div>
                     <div class="summary">
                         <?php if ($spark->is_official): ?>
-                            <span class="official">[Official Spark]</span>
+                            <span class="official">Official Spark</span>
                         <?php endif; ?>
                         <?php echo $spark->summary; ?>
                     </div>
-				</div>
+				</a>
             </li>
         <?php endforeach; ?>
     <?php else: ?>
