@@ -43,7 +43,7 @@
 
 <p>
     After that, you register new versions of your spark on GetSparks by pointing
-    us towards an identically named tag in your repository. That is, if you
+    us towards a tag in your repository. That is, if you
     create tag '1.0' in your repo, just add a '1.0' version to your project in
     GetSparks. In a few minutes, it'll be available to the world.
 </p>
@@ -54,6 +54,11 @@
     For now, a Spark is simply a CodeIgniter package that is nested inside the 
     sparks/ directory. So when they are installed, sparks look like:
 </p>
+
+<pre>
+/sparks
+..../example-spark
+</pre>
 
 <p>
     Another spark that might do something more advanced, might have configs, helpers,
