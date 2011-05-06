@@ -104,9 +104,9 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 
 div.ratings { float: right; text-align: right; }
 div.ratings .installcount { padding: 2px 5px; background: #777; color: #fff; font-size: 12px; display: inline-block; margin-left: 5px; border: 1px solid #333; margin-top: 5px; }
-div.ratings .rating { display: inline-block; border: 1px solid #333; margin-left: 5px; background: #d14000; font-size: 14px; border-radius: 3px; }
-div.ratings .rating label { background: #fff; padding: 3px 5px; display: inline-block; color: #000; }
-div.ratings .rating span { color: #fff; padding: 0px 5px; display: inline-block; color: #fff; }
+div.ratings .rating { display: inline-block; border: 1px solid #333; margin-left: 5px; background: #d14000; font-size: 14px; border-radius: 2px; }
+div.ratings .rating label { overflow: hidden; background: #fff; padding: 3px 5px; display: inline-block; color: #000; }
+div.ratings .rating span { overflow: hidden; color: #fff; padding: 0px 5px; display: inline-block; color: #fff; }
 div.ratings .rating.selected label { background: #d14000 !important; color: #eee; }
 div.ratings a.rating:hover label { background: #ddd; cursor: hand; cursor: pointer; }
 div.ratings a.rating:hover { text-decoration: none !important; }
