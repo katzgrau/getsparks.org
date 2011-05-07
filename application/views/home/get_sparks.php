@@ -81,14 +81,9 @@ $autoload['sparks'] = array('example-spark/1.0.0');
     </li>
     <li>
         Extract the contents of the zip to a folder inside the sparks/ directory at the base of
-        your application. 
+        your application. You should include the version number too:
     </li>
-    <li>
-        You can name the folder anything you'd like, but <strong>example-spark</strong> should be sufficient.
-        <em>You can additionally nest the spark into a second folder with its verison number (as the
-        CLI script does), but that is entirely optional.</em>
-    </li>
-    <li>You should now have a directory structure similar to:
+    <li>You should now have a directory like this:
 <pre>
 /application
 /system
