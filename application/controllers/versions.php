@@ -33,7 +33,7 @@ class Versions extends CI_Controller
             }
             else
             {
-                UserHelper::setNotice("Try to enter a valid version string when creating a new version", FALSE);
+                UserHelper::setNotice("Try to enter a valid tag!", FALSE);
             }
 
             $spark = Spark::getById($insert['spark_id']);

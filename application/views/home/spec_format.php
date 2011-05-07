@@ -37,6 +37,7 @@ compatibility: 2.0.2
 # These are other sparks which this spark needs in order to work correctly.
 #  Dependencies should be in NAME: VERSION format, where NAME is an existing
 #  spark name, and VERSION is a version in x.x.x format.
+#  This is optional, so comment it out if it's unneeded
 dependencies:
   spark-1: 1.0.0
   spark-2: 1.0.0

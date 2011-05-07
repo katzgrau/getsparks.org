@@ -26,12 +26,12 @@
     </tr>
     <tr>
         <td>Author Website</td>
-        <td>: <a target="_blank" href="<?php echo $contributor->website; ?>"><?php echo $contributor->website; ?></a></td>
+        <td>: <a target="_blank" href="<?php echo prep_url($contributor->website); ?>"><?php echo $contributor->website; ?></a></td>
     </tr>
     <?php if($contribution->website): ?>
     <tr>
         <td>Spark Website</td>
-        <td>: <a target="_blank" href="<?php echo $contribution->website; ?>"><?php echo $contribution->website; ?></a></td>
+        <td>: <a target="_blank" href="<?php echo prep_url($contribution->website); ?>"><?php echo $contribution->website; ?></a></td>
     </tr>
     <?php endif; ?>
     <tr>
@@ -101,17 +101,18 @@
 <?php if(UserHelper::getId() == $contribution->contributor_id): ?>
 	<div class="form-wrapper clearfix">
 		<form action="<?php echo base_url(); ?>versions/add" method="post">
+	        
+            <h5>Author: Add a new version (via repository tag): <br /></h5>
 	        <p>
-	        Add a new version: <br />
-	        <small>
-	            Note that after you add this, the spark will be processed on our end. <br/>
-	            The version string you enter below should correspond to a tag in your
-	            source repository. <br/>
+            <small>
+	            After you add this, the spark will be processed on our end. <br/>
+	            The string you enter below should correspond to a tag in your
+	            source repository. If the tag isn't valid, we'll pull the latest.<br/>
 	        </small>
 	        </p>
 	        <input type="text" name="tag" />
 	        <input type="hidden" name="spark_id" value="<?php echo $contribution->id; ?>" />
-	        <input type="submit" name="submit" value="Create From Tag" />
+	        <input class="fun-button" type="submit" name="submit" value="Create From Tag" />
 	    </form>
 	</div>
 <p></p>

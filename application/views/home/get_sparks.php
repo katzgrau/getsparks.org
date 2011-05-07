@@ -34,14 +34,14 @@ You should see:
 [ SPARK ]  Retrieving spark detail from getsparks.org
 [ SPARK ]  From Downtown! Retrieving spark from Mercurial repository at https://github.com/katzgrau/example-spark
 [ SPARK ]  Installing spark
-[ SPARK ]  Spark installed to ./sparks/example-spark/1.0 - You're on fire!
+[ SPARK ]  Spark installed to ./sparks/example-spark/1.0.0 - You're on fire!
 </pre>
 
 Now your spark is installed! In your application, try:
 
 <pre>
-$this->load->spark('example-spark/1.0');      # We specify the version for now. This might change
-$this->example_spark->printHello();           # echo's "Hello from the example spark!"
+$this->load->spark('example-spark/1.0.0');      # We always specify the version for now. This might change
+$this->example_spark->printHello();             # echo's "Hello from the example spark!"
 </pre>
 
 <p>Now you can install all the sparks you want. And if you feel like contributing your own, check out <a href="<?php echo base_url(); ?>make-sparks">Making Sparks</a>.</p>
@@ -66,7 +66,7 @@ $this->example_spark->printHello();           # echo's "Hello from the example s
         version, which is the latest (sometimes denoted as 'HEAD').
     </li>
     <li>
-        Click the link to "Get example-spark-v1.0.zip", and download it.
+        Click the link to "Get example-spark-1.0.0.zip", and download it.
     </li>
     <li>
         Extract the contents of the zip to a folder inside the sparks/ directory at the base of
@@ -91,7 +91,7 @@ $this->example_spark->printHello();           # echo's "Hello from the example s
 <p>Now your spark is installed! Try this from within your application:</p>
 
 <pre>
-$this->load->spark('example-spark');   # Don't forget to add '/[version]' if you added a version folder!
+$this->load->spark('example-spark/1.0.0');   # Don't forget to add '/[version]' if you added a version folder!
 $this->example_spark->printHello();    # echo's "Hello from the example spark!"
 </pre>
 </ol>

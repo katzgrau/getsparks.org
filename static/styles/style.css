@@ -55,6 +55,8 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 #header form#headersearch input.submit { margin-top: 5px; }
 #page div.page-left div.login-box a.register { padding: 5px 10px 7px 10px; float: right; margin-right: 5px; }
 
+.fun-button { -moz-border-radius:5px 5px 5px 5px; -moz-box-shadow:1px 1px 2px #000000; background-color:#D14000; border:1px solid #F0F0F0; color:#FFFFFF; display:inline-block; font-size:11px; font-weight:normal; margin-left:10px; padding:2px 2px; text-decoration:none; }
+
 #page div.page-left div.login-box div.profile-image { float: left; margin-right: 10px; }
 #page div.page-left div.login-box div.profile-links { float: left; width: 130px; }
 #page div.page-left div.login-box div.profile-links a { color: #fff; font-size: 12px; }

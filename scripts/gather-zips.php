@@ -62,7 +62,7 @@ foreach($sparks as $spark)
     try
     {
         # All or nothing. Verify versions aand insert dependencies atomically
-        $CI->db->trans_start();
+        $CI->db->trans_begin();
         # Load the spark's YAML Spec
         $spec = Spark_spec::loadFromDirectory($tmp);
         # Add any dependencies in the spec
@@ -81,15 +81,19 @@ foreach($sparks as $spark)
         # Mark this spark as verified
         $spark->setVerified($spec->version, TRUE, base_url().config_item('archive_path').$spark->name.'/'.$release.".zip");
         # Commit anything we've done
-        $CI->db->trans_complete();
+				if($CI->db->trans_status() !== FALSE) 
+					  $CI->db->trans_commit();
+				else
+					  throw new Exception("There was an unknown error processing the spark :(");
         # Yay, keep track of it
         $successful[] = $spark;
     }
     catch(Exception $ex)
     {
-        echo "Error processing {$spark->name} - {$spec->version}: " . $ex->getMessage() . ". Removing..\n";
+			  $CI->db->trans_rollback();
+        echo "Error processing {$spark->name} - {$spark->tag}: " . $ex->getMessage() . ". Removing..\n";
         $errors = array($ex->getMessage());
-        $spark->removeVersionAndNotify($spec->version, $errors);
+        $spark->removeTagAndNotify($spark->tag, $errors);
         $unsuccessful[] = $spark;
         `rm -rf $tmp`;
         continue;
@@ -108,5 +112,5 @@ foreach($sparks as $spark)
 echo "\n" . count($unsuccessful) . " errors.\n";
 foreach($unsuccessful as $spark)
 {
-    echo "$spark->id - $spark->name - $spec->version\n";
+    echo "$spark->id - $spark->name - $spark->tag\n";
 }

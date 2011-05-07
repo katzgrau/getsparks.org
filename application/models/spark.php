@@ -337,14 +337,14 @@ class Spark extends CI_Model
      * @param array $errors The things wrong with the spark
      * @return bool
      */
-    public function removeVersionAndNotify($version, $errors)
+    public function removeTagAndNotify($tag, $errors)
     {
         $this->load->helper('email');
         $contrib   = $this->getContributor();
         $sys_email = config_item('system_alert_email');
 
         $message = "Hey there,
-This is an automated message to tell you that version '$version' of
+This is an automated message to tell you that tag '$tag' of
 $this->name couldn't be verified ($this->base_location).
 We've removed that version from our system at getsparks. Once you get
 things figured out on your end, you can re-add the version :).
@@ -353,12 +353,11 @@ Here are some specifics: \n\n";
         foreach($errors as $error)
             $message .= "$error\n";
 
-        send_email("{$contrib->email},{$sys_email}", "{$this->name} v{$version} Removed.", $message);
+        send_email("{$contrib->email},{$sys_email}", "{$this->name} {$tag} Removed.", $message);
         
         $this->db->where('spark_id', $this->id);
-        $this->db->where('version', $version);
-        
-        return $this->db->delete('versions');
+        $this->db->where('tag', $tag);
+				return $this->db->delete('versions');
     }
 
     /**

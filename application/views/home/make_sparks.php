@@ -44,7 +44,7 @@
 <p>
     After that, you register new versions of your spark on GetSparks by pointing
     us towards a tag in your repository. That is, if you
-    create tag '1.0' in your repo, just add a '1.0' version to your project in
+    create tag '1.0.0' in your repo, just add a '1.0.0' version to your project in
     GetSparks. In a few minutes, it'll be available to the world.
 </p>
 
@@ -104,17 +104,20 @@
 </p>
 
 <ol>
-    <li>Create a directory inside your sparks folder named 'birdseed'.</li>
     <li>
-        Inside birdseed, create a 'config' folder, and also, create a
-        'helpers' folder.
+        Create a directory inside your sparks folder named 'birdseed'. Inside that,
+        create a directory named '0.0.1', which is the version of this spark.
+        This exact structure (sparkname/version) is created automatically when people install your spark.
     </li>
     <li>
-        Create a file named 'birdseed.php' and 'autoload.php' inside birdseed/config. Note that
+        Inside '0.0.1', create a 'config' folder and a 'helpers' folder.
+    </li>
+    <li>
+        Create files named 'birdseed.php' and 'autoload.php' inside 0.0.1/config. Note that
         you should generally name your config files the same as your spark.
     </li>
     <li>
-        Inside birdseed/config/birdseed.php, place this, and save the file:
+        Inside 0.0.1/config/birdseed.php, place this, and save the file:
 <pre>
 &lt;?php
 
@@ -123,7 +126,7 @@ $config['twitter_api_base_url'] = 'http://api.twitter.com/1/';
 </pre>
     </li>
     <li>
-        Inside birdseed/config/autoload.php, place this, and save the file:
+        Inside 0.0.1/config/autoload.php, place this, and save the file:
 <pre>
 &lt;?php
 
@@ -141,7 +144,7 @@ $autoload['helper'] = array('birdseed');
         </p>
     </li>
     <li>
-        Create the file 'helpers/birdseed_helper.php'. Inside it, place this, and
+        Create the file '0.0.1/helpers/birdseed_helper.php'. Inside it, place this, and
         save:
         <pre>
 &lt;?php
@@ -175,7 +178,7 @@ function birdseed_fetch($username, $n = 10)
 </pre>
     </li>
     <li>
-        Inside birdseed/spark.info, place this, and save the file:
+        Inside 0.0.1/spark.info, place this, and save the file:
 <pre>
 # This is the spark-sdk specification. It's in a magical format called YAML.
 #  Use this format while developing your own sparks!
@@ -198,15 +201,17 @@ compatibility: 2.0.2
 #  some-other-spark-2: 1.0.0
 </pre>
 <p>
-    This is important for when you want to contribute your spark. Read
-    more about <a href="<?php echo base_url(); ?>spec-format">spec formats here</a>.
+    This is your 'spark.info' file, which is required with every new spark. It
+    tells the spark processor about your spark, and most importantly, supplies 
+    version information. <strong>Versions must always be in x.x.x format!</strong> Read more about
+    <a href="<?php echo base_url(); ?>spec-format">spec formats here</a>.
 </p>
     </li>
     <li>
         Now you're ready to try your new spark. From somewhere inside your
         CodeIgniter Application, try:
 <pre>
-$this->load->spark('birdseed');
+$this->load->spark('birdseed/0.0.1');
 
 # Grab _kennyk_'s tweets
 $tweets = birdseed_fetch('_kennyk_', 5);
@@ -217,7 +222,7 @@ print_r($tweets);
 &lt;?php
 
     # Load the spark and get some tweets
-    $this->load->spark('birdseed');
+    $this->load->spark('birdseed/0.0.1');
     $tweets = birdseed_fetch('_kennyk_', 5);
 
 ?&gt;
@@ -243,16 +248,20 @@ print_r($tweets);
 
 <ol>
     <li>
-        You have an account at GitHub or BitBucket, or you run your own
-        publicly-accessible git or mercurial server. If you don't have one of
-        these, go get one and join the open-source world!
+        <p>
+            You have an account at GitHub or BitBucket, or you run your own
+            publicly-accessible git or mercurial server. If you don't have one of
+            these, go get one and join the open-source world!
+        </p>
     </li>
     <li>
         You know how to set up a project in your repository.
     </li>
     <li>
-        You know what a "Clone URL" is, and how to get a publicly-readable
-        clone URL from your repository.
+        <p>
+            You know what a "Clone URL" is, and how to get a publicly-readable
+            clone URL from your repository.
+        </p>
     </li>
 </ol>
 
@@ -261,21 +270,26 @@ print_r($tweets);
 <ol>
     <li>
         <p>
-        If you haven't already, copy your spark's files into your project
+        If you haven't already, copy your spark's files (everything <em>inside</em> birdseed/0.0.1) into your project
         directory.
         </p>
     </li>
     <li>
-        It is not required, but good practice to validate your spark <em>before</em>
-        submitting it to the repository. You can do this by installing the
-        'spark-sdk' spark, <a href="http://getsparks.org/packages/spark-sdk/versions/HEAD/show">available here</a>.
+        <p>
+            <strong><a href="http://getsparks.org/packages/spark-sdk/versions/HEAD/show">Spark SDK</a></strong>: It is not required, <strong>but good practice</strong> to validate your spark <em>before</em>
+            submitting it to the repository. You can do this by installing the
+            'spark-sdk' spark, <a href="http://getsparks.org/packages/spark-sdk/versions/HEAD/show">available here</a>.
+            This is <em>almost</em> the exact validator that GetSparks.org uses.
+        </p>
     </li>
     <li>
-        Optionally, you may add a readme file at the root of your
-        spark. Readme files are expected to be in
-        <a target="_blank" href="http://daringfireball.net/projects/markdown/syntax">
-            markdown format</a>. This readme
-        will be parsed and posted with your spark when it goes live.
+        <p>
+            Optionally, you may add a readme file at the root of your
+            spark. Readme files are expected to be in
+            <a target="_blank" href="http://daringfireball.net/projects/markdown/syntax">
+                markdown format</a>. This readme
+            will be parsed and posted with your spark when it goes live.
+        </p>
     </li>
     <li>
         Push the files to your repository via:
@@ -294,13 +308,13 @@ $ git push
     <li>
         Create and push a new tag. This should be something sane, like a version number.
 <pre>
-$ hg tag '1.0'
+$ hg tag '0.0.1'
 $ hg commit -m "My neato releaso ;)"
 $ hg push
 </pre>
         Or
 <pre>
-$ git tag '1.0'
+$ git tag '0.0.1'
 $ git push --tags
 </pre>
     </li>
@@ -322,7 +336,7 @@ $ git push --tags
         <p>
             You should now be on your project's page. You'll notice a form that
             says "Add a New Version." This is where you enter the tag that you
-            created in step 3. Enter "1.0" and click "Create from Tag"
+            created in step 3. Enter "0.0.1" and click "Create from Tag"
         </p>
         <p>
             Your spark entry will be created, but marked as "unverified".
@@ -343,7 +357,7 @@ $ git push --tags
         <p>
             Once your spark has been verified, version information and a download-able
             zip will appear on the page. If you have the spark-manager installed
-            in one of your applications, you can open up a terminal and navigate to your project.
+            in one of your applications, you can open up a terminal and navigate to a new project.
             Try:
             <code>
                 $ php tools\spark install [your-spark-name]

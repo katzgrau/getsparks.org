@@ -83,7 +83,7 @@ class Spark_spec {
         /* Check that the spark file exists */
         if(!file_exists($specfile))
         {
-            throw new SpecValidationException("The spec file does not exist in the spark's root: $filename");
+            throw new SpecValidationException("The '$filename' does not exist in the spark's root: See http://getsparks.org/spec-format");
         }
 
         /* Load it, it should have a $spec setup inside it */
@@ -91,7 +91,7 @@ class Spark_spec {
 
         if(!is_array($spec))
         {
-            throw new SpecValidationException("The spec does not contain valid spec information: $filename");
+            throw new SpecValidationException("The '$filename' does not contain valid spec information: See http://getsparks.org/spec-format");
         }
 
         /* Create a spec instance */

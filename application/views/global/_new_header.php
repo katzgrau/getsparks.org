@@ -8,7 +8,7 @@
 
 <title>CodeIgniter Sparks | <?php echo isset($title) ? "$title" : "The Package Manager and Repository"; ?></title>
 
-<?php display_css(array('reset.css', 'fancybox.css', 'style.css', 'clear.css')); ?>
+<?php display_css(array('reset.css', 'style.css', 'clear.css')); ?>
 
 <?php display_js(array('jquery-1.4.4.min.js',
                        'jquery-ui-1.8.9.min.js',
