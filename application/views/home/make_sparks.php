@@ -58,6 +58,7 @@
 <pre>
 /sparks
 ..../example-spark
+......../1.0.0
 </pre>
 
 <p>
@@ -68,13 +69,15 @@
 <pre>
 /sparks
 ..../example-spark
-......../config
-......../libraries
+......../1.0.0
+............/config
+............/libraries
 ..../other-spark
-......../config
-......../libraries
-......../helpers
-......../models
+......../2.1.0
+............/config
+............/libraries
+............/helpers
+............/models
 </pre>
 
 <p>
@@ -391,10 +394,6 @@ $ git push --tags
             a single library, it might be an idea to name your library after
             the spark to keep things clear for the end user:
         </p>
-<pre>
-$this->load->spark('example_spark'); # Autoloader loads a library named 'example spark'
-$this->example_spark->doSomethingCool();
-</pre>
     </li>
     <li>
         <p>
@@ -420,7 +419,7 @@ $this->example_spark->doSomethingCool();
     <li>
         <p>
             <strong>Autoloading:</strong> The spark system allows you to autoload
-            anything you need in config/autoload.php. This can make things handy
+            anything you need in config/autoload.php (including sparks). This can make things handy
             for the end-user, but don't forget one of the major philosophies of
             CodeIgniter: Only include what you need.
         </p>
