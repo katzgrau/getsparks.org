@@ -13,7 +13,12 @@
     <em><?php echo $contribution->summary; ?></em>
 </p>
 
-<img src="<?php echo Google_chart::showBarChart($stats, '240', '80'); ?>" style="float: right" />
+<div style="float:right;">
+    <p>
+        <a href="http://twitter.com/share" class="twitter-share-button" data-text="A CodeIgniter Package via @getsparks — '<?php echo htmlentities($contribution->name); ?>'" data-count="horizontal" data-via="getsparks" data-related="_kennyk_">Tweet</a>
+    </p>
+    <img src="<?php echo Google_chart::showBarChart($stats, '240', '80'); ?>" style="float: right" />
+</div>
 
 <table style="margin-bottom:15px">
     <tr>

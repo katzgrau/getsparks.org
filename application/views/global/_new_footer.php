@@ -25,6 +25,8 @@
   document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
 
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
 <script type="text/javascript" charset="utf-8">
   var feedback_widget_options = {};
 
