@@ -74,7 +74,8 @@
 
 <p>
     &bull; Joel Cox, for testing, and for spark activity graphs<br />
-    &bull; Jake Ingman, for designing our sweet logo on a whim
+    &bull; Jake Ingman, for designing our sweet logo on a whim<br />
+    &bull; Joe Auty, for fixing bugs and being super-persistent
 </p>
 
 
