@@ -28,7 +28,7 @@ $official_sparks = Spark::getLatestOf(3, NULL, TRUE);
           src="http://platform.twitter.com/widgets/follow_button.html?screen_name=getsparks&text_color=ffffff&link_color=00aeff"
           style="width:200px; height:20px;"></iframe>
         <p style="padding-top:12px;">Hey! Keep up to date with the project through its beta and public launch by following <a style="color:white;" href="http://twitter.com/getsparks">@getsparks</a>.</p>
-        <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://getsparks.org" data-text="GetSparks — The CodeIgniter Package Manager" data-count="horizontal" data-via="_kennyk_" data-related="seejohnrun">Tweet</a>
+        <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://getsparks.org" data-text="GetSparks — The CodeIgniter Package Manager" data-count="horizontal" data-via="getsparks" data-related="_kennyk_">Tweet</a>
 	</div>
     
     <!-- End Twitter -->

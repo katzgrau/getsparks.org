@@ -45,11 +45,45 @@ class Spark_type {
 
         @mkdir(SPARK_PATH); // Two steps for windows
         @mkdir(SPARK_PATH . "/$this->name");
-        $success = @rename($this->temp_path, $this->installation_path);
-        if ($success)
-        {
-            $this->installed_path = $this->installation_path;
-        }
+        $this->recurseMove($this->temp_path, $this->installation_path);
+        $this->rrmdir($this->temp_path);
+        $this->installed_path = $this->installation_path;              
+    }
+
+    private function recurseMove($src,$dst) 
+    { 
+        $dir = opendir($src); 
+        @mkdir($dst); 
+        while(false !== ( $file = readdir($dir)) ) { 
+            if (( $file != '.' ) && ( $file != '..' )) { 
+                if ( is_dir($src . '/' . $file) ) { 
+                    $this->recurseMove($src . '/' . $file,$dst . '/' . $file); 
+                } 
+                else { 
+                    rename($src . '/' . $file,$dst . '/' . $file); 
+                } 
+            } 
+        } 
+        closedir($dir); 
+    }
+    
+    private function rrmdir($dir) 
+    { 
+        if (is_dir($dir)) { 
+            $files = scandir($dir); 
+            foreach ($files as $file) { 
+                if ($file != "." && $file != "..") { 
+                    if (is_dir($dir . "/" . $file)) {
+                        $this->rrmdir($dir . "/" . $file); 
+                    }
+                    else {
+                        unlink($dir . "/" . $file); 
+                    }
+                } 
+            } 
+            reset($files); 
+            rmdir($dir); 
+        } 
     }
 
     function install_dependency($dependency_data) {
