@@ -63,8 +63,10 @@ foreach($sparks as $spark)
     {
         # All or nothing. Verify versions aand insert dependencies atomically
         $CI->db->trans_begin();
-        # Load the spark's YAML Spec
+        # Load and validate the basics of the spark's YAML Spec
         $spec = Spark_spec::loadFromDirectory($tmp);
+        # Check that everything looks with the spec on our end
+        $spark->runPreSubmissionChecks($spec);
         # Add any dependencies in the spec
         $spark->processDependencies($spec);
         # Set the version

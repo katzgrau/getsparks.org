@@ -127,8 +127,11 @@ class Spark extends CI_Model
      * @param string $name
      * @return Spark
      */
-    public static function getLatest($name, $verified = TRUE)
+    public static function getLatest($name = FALSE, $verified = TRUE)
     {
+        if($name === FALSE)
+            $name = $this->name;
+        
         $CI = &get_instance();
         $CI->db->select('s.*, v.version, v.is_deactivated, v.archive_url, v.tag, v.readme, v.id AS version_id');
         $CI->db->from('sparks s');
@@ -412,6 +415,22 @@ Here are some specifics: \n\n";
         $CI->db->or_like('description', $term, 'both');
 
         return $CI->db->get()->result('Spark');
+    }
+
+    /**
+     * Do any preliminary checking to make sure things look
+     *  okay before we start processing dependencies and
+     *  anything like that.
+     * @param Spark_spec $spec
+     */
+    public function runPreSubmissionChecks($spec)
+    {
+        $latest = $this->getLatest();
+
+        if($latest && $latest->version == $spec->version)
+        {
+            throw new Exception("The version number set in spark.info ({$spec->version}) matches the version number from your last submission. Ie, update it.");
+        }
     }
 
     /**
