@@ -7,6 +7,13 @@ if(!file_exists("application/core"))
     exit;
 }
 
+if (file_exists("application/core/MY_Loader.php"))
+{
+    echo "This script requires its own application/core/MY_Loader.php but it appears you already have one in place. To continue the installation, move or 
+    rename your current MY_Loader.php, let the script install its own and then manually merge in your changes.\n";
+    exit;
+}
+
 echo "Pulling down spark manager from $zip ...\n";
 copy($zip, "sparks.zip");
 
