@@ -116,16 +116,29 @@ class MY_Loader extends CI_Loader
     }
 
 	/**
+	 * Pre-CI 2.0.3 method for backward compatility.
+	 * 
+	 * @deprecated
+	 * @param null $basepath
+	 * @return void
+	 */
+	function _ci_autoloader($basepath = NULL)
+	{
+		log_message('warning',__METHOD__.'() is deprecated.  Update your code to use '
+		                     .__CLASS__.'::ci_autoloader(). (no leading underscore)');
+		$this->ci_autoloader($basepath);	
+	}
+	
+	/**
 	 * Specific Autoloader (99% ripped from the parent)
 	 *
 	 * The config/autoload.php file contains an array that permits sub-systems,
 	 * libraries, and helpers to be loaded automatically.
 	 *
-	 * @access	protected
-	 * @param	array
-	 * @return	void
+	 * @param array|null $basepath
+	 * @return void
 	 */
-	function _ci_autoloader($basepath = NULL)
+	function ci_autoloader($basepath = NULL)
 	{
         if($basepath !== NULL)
         {
