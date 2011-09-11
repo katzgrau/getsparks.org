@@ -75,7 +75,8 @@
 <p>
     &bull; Joel Cox, for testing, and for spark activity graphs<br />
     &bull; Jake Ingman, for designing our sweet logo on a whim<br />
-    &bull; Joe Auty, for fixing bugs and being super-persistent
+    &bull; Joe Auty, for fixing bugs and being super-persistent<br />
+    &bull; Pull request heros: <a href="http://twitter.com/@anaxamaxan">@anaxamaxan</a>, <a href="http://twitter.com/@jessedterry">@jessedterry</a>
 </p>
 
 
