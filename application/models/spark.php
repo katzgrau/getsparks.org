@@ -127,7 +127,7 @@ class Spark extends CI_Model
      * @param string $name
      * @return Spark
      */
-    public static function getLatest($name = FALSE, $verified = TRUE)
+    public static function getLatest($name, $verified = TRUE)
     {
         if($name === FALSE)
             $name = $this->name;
@@ -425,11 +425,11 @@ Here are some specifics: \n\n";
      */
     public function runPreSubmissionChecks($spec)
     {
-        $latest = $this->getLatest();
+        $latest = $this->getLatest($this->name);
 
         if($latest && $latest->version == $spec->version)
         {
-            throw new Exception("The version number set in spark.info ({$spec->version}) matches the version number from your last submission. Ie, update it.");
+            throw new Exception("The version number set in spark.info ({$spec->version}) matches the version number from your last submission. Not only does the tag need to change, the version number does too :)");
         }
     }
 

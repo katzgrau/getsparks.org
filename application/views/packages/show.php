@@ -57,9 +57,30 @@
 </p>
 <?php endif; ?>
 
+<?php if(UserHelper::getId() == $contribution->contributor_id): ?>
+	<div class="form-wrapper clearfix">
+		<form action="<?php echo base_url(); ?>versions/add" method="post">
+
+            <h5>Author: Add a new version (via repository tag): <br /></h5>
+	        <p>
+            <small>
+	            After you add this, the spark will be processed on our end. <br/>
+	            The string you enter below should correspond to a tag in your
+	            source repository. If the tag isn't valid, we'll pull the latest.<br/>
+                <strong>Remember to update the version string in spark.info!</strong><br/>
+	        </small>
+	        </p>
+	        <input type="text" name="tag" />
+	        <input type="hidden" name="spark_id" value="<?php echo $contribution->id; ?>" />
+	        <input class="fun-button" type="submit" name="submit" value="Create From Tag" />
+	    </form>
+	</div>
+<p></p>
+<?php endif; ?>
+
 <?php if(count($versions_unverified)): ?>
 <p class="message">
-    The system is currently processing a new version for this spark (<?php echo $versions_unverified[0]->version; ?>).
+    The system is currently processing a new version of this spark (repository tag <?php echo $versions_unverified[0]->tag; ?>).
 </p>
 <?php endif; ?>
 
@@ -101,27 +122,6 @@
             <li class="last no-border" style="text-align:left; margin-bottom:15px">There isn't a latest version.</li>
     <?php endif; ?>
 </ul>
-
-
-<?php if(UserHelper::getId() == $contribution->contributor_id): ?>
-	<div class="form-wrapper clearfix">
-		<form action="<?php echo base_url(); ?>versions/add" method="post">
-	        
-            <h5>Author: Add a new version (via repository tag): <br /></h5>
-	        <p>
-            <small>
-	            After you add this, the spark will be processed on our end. <br/>
-	            The string you enter below should correspond to a tag in your
-	            source repository. If the tag isn't valid, we'll pull the latest.<br/>
-	        </small>
-	        </p>
-	        <input type="text" name="tag" />
-	        <input type="hidden" name="spark_id" value="<?php echo $contribution->id; ?>" />
-	        <input class="fun-button" type="submit" name="submit" value="Create From Tag" />
-	    </form>
-	</div>
-<p></p>
-<?php endif; ?>
 
 <?php if(count($versions) > 0): ?>
     <h2>How-To</h2>

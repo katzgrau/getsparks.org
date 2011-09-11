@@ -124,9 +124,13 @@ class MY_Loader extends CI_Loader
 	 */
 	function _ci_autoloader($basepath = NULL)
 	{
-		log_message('warning',__METHOD__.'() is deprecated.  Update your code to use '
+        if(method_exists($this, 'ci_autoloader'))
+        {
+            log_message('warning',__METHOD__.'() is deprecated.  Update your code to use '
 		                     .__CLASS__.'::ci_autoloader(). (no leading underscore)');
-		$this->ci_autoloader($basepath);	
+        }
+        
+		$this->ci_autoloader($basepath);
 	}
 	
 	/**
