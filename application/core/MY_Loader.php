@@ -92,7 +92,17 @@ class MY_Loader extends CI_Loader
         }
 
         $this->add_package_path($spark_path);
-
+        
+        # Load spark constants
+        if (defined('ENVIRONMENT') AND file_exists($spark_path.'config/'.ENVIRONMENT.'/constants'.EXT))
+        {
+            require($spark_path.'config/'.ENVIRONMENT.'/constants'.EXT);
+        }
+        else if (file_exists($spark_path.'config/constants'.EXT))
+        {
+            require($spark_path.'config/constants'.EXT);
+        }
+        
         foreach($autoload as $type => $read)
         {
             if($type == 'library')
