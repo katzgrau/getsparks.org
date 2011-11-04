@@ -178,6 +178,7 @@ span.superscript { font-size:14px; vertical-align: super; }
 #documentation h2 { font-size: 14px ; border: none ; margin-bottom: 5px ; }
 #documentation h3 { font-size: 10px; font-weight: bold; }
 #documentation p  { }
+#documentation p code { display: inline; }
 #documentation ul  { list-style:circle inside; padding-left: 25px;}
 #documentation ul li { border: none !important; padding: 0 !important; }
 #documentation code { margin: 0; white-space: pre; line-height: 1.5; padding: 0 !important; border: none !important; }
