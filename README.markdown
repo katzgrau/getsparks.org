@@ -24,7 +24,7 @@ core reasons that this would be extensively valuable:
 
 The Spark management system is being developed under a second project, at
 [https://github.com/seejohnrun/sparks](https://github.com/seejohnrun/sparks). That is the actual CLI package manager
-which one day _might_ be integrated into Reactor (projected for Q2 or Q3).
+which is [currently being integrated](https://github.com/EllisLab/CodeIgniter/tree/feature/sparks) into the CodeIgniter core.
 
 ## Project Info & Management
 
@@ -60,7 +60,7 @@ on Twitter for updates. We'll announce and evangelize.
 * Alpha Release, week of Feb 21st, 2011.
 * Beta Release, week of March 28, 2011.
 * Full Public Release, unscheduled
-* Reactor Integration, unscheduled
+* [Reactor Integration](https://github.com/EllisLab/CodeIgniter/tree/feature/sparks), begun.
 
 ## Other
 
