@@ -34,6 +34,13 @@ class MY_Loader extends CI_Loader
     var $_ci_loaded_sparks = array();
 
     /**
+     * Is this version less than CI 2.1.0? If so, accomodate
+     * @bubbafoley's world-destroying change at: http://bit.ly/sIqR7H
+     * @var bool
+     */
+    var $_is_lt_210 = false;
+
+    /**
      * Constructor. Define SPARKPATH if it doesn't exist, initialize parent
      */
     function __construct()
@@ -43,7 +50,28 @@ class MY_Loader extends CI_Loader
             define('SPARKPATH', 'sparks/');
         }
 
+        $this->_is_lt_210 = (is_callable('Loader', 'ci_autoloader')
+                               || is_callable('Loader', '_ci_autoloader'));
+
         parent::__construct();
+    }
+
+    /**
+     * To accomodate CI 2.1.0, we override the initialize() method instead of
+     *  the ci_autoloader() method. Once sparks is integrated into CI, we
+     *  can avoid the awkward version-specific logic.
+     * @return Loader
+     */
+    function initialize()
+    {
+        parent::initialize();
+
+        if(!$this->_is_lt_210)
+        {
+            $this->ci_autoloader();
+        }
+
+        return $this;
     }
 
     /**
@@ -161,14 +189,17 @@ class MY_Loader extends CI_Loader
 			return FALSE;
 		}
 
-		// Autoload packages
-		if (isset($autoload['packages']))
-		{
-			foreach ($autoload['packages'] as $package_path)
-			{
-				$this->add_package_path($package_path);
-			}
-		}
+        if($this->_is_lt_210)
+        {
+            // Autoload packages
+            if (isset($autoload['packages']))
+            {
+                foreach ($autoload['packages'] as $package_path)
+                {
+                    $this->add_package_path($package_path);
+                }
+            }
+        }
 
         // Autoload sparks
 		if (isset($autoload['sparks']))
@@ -179,56 +210,59 @@ class MY_Loader extends CI_Loader
 			}
 		}
 
-        if (isset($autoload['config']))
-		{
-            // Load any custom config file
-            if (count($autoload['config']) > 0)
+        if($this->_is_lt_210)
+        {
+            if (isset($autoload['config']))
             {
-                $CI =& get_instance();
-                foreach ($autoload['config'] as $key => $val)
+                // Load any custom config file
+                if (count($autoload['config']) > 0)
                 {
-                    $CI->config->load($val);
+                    $CI =& get_instance();
+                    foreach ($autoload['config'] as $key => $val)
+                    {
+                        $CI->config->load($val);
+                    }
                 }
             }
+
+            // Autoload helpers and languages
+            foreach (array('helper', 'language') as $type)
+            {
+                if (isset($autoload[$type]) AND count($autoload[$type]) > 0)
+                {
+                    $this->$type($autoload[$type]);
+                }
+            }
+
+            // A little tweak to remain backward compatible
+            // The $autoload['core'] item was deprecated
+            if ( ! isset($autoload['libraries']) AND isset($autoload['core']))
+            {
+                $autoload['libraries'] = $autoload['core'];
+            }
+
+            // Load libraries
+            if (isset($autoload['libraries']) AND count($autoload['libraries']) > 0)
+            {
+                // Load the database driver.
+                if (in_array('database', $autoload['libraries']))
+                {
+                    $this->database();
+                    $autoload['libraries'] = array_diff($autoload['libraries'], array('database'));
+                }
+
+                // Load all other libraries
+                foreach ($autoload['libraries'] as $item)
+                {
+                    $this->library($item);
+                }
+            }
+
+            // Autoload models
+            if (isset($autoload['model']))
+            {
+                $this->model($autoload['model']);
+            }
         }
-
-		// Autoload helpers and languages
-		foreach (array('helper', 'language') as $type)
-		{
-			if (isset($autoload[$type]) AND count($autoload[$type]) > 0)
-			{
-				$this->$type($autoload[$type]);
-			}
-		}
-
-		// A little tweak to remain backward compatible
-		// The $autoload['core'] item was deprecated
-		if ( ! isset($autoload['libraries']) AND isset($autoload['core']))
-		{
-			$autoload['libraries'] = $autoload['core'];
-		}
-
-		// Load libraries
-		if (isset($autoload['libraries']) AND count($autoload['libraries']) > 0)
-		{
-			// Load the database driver.
-			if (in_array('database', $autoload['libraries']))
-			{
-				$this->database();
-				$autoload['libraries'] = array_diff($autoload['libraries'], array('database'));
-			}
-
-			// Load all other libraries
-			foreach ($autoload['libraries'] as $item)
-			{
-				$this->library($item);
-			}
-		}
-
-		// Autoload models
-		if (isset($autoload['model']))
-		{
-			$this->model($autoload['model']);
-		}
 	}
 }
