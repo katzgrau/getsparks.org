@@ -43,6 +43,26 @@ class Spark extends CI_Model
 
         return $CI->db->get()->row(0, 'Spark');
     }
+    
+    /**
+     * Get an index array of sparks. 
+     * @return Array     
+     */
+		public static function get_index_list()
+		{
+			$data = array();
+			$CI = &get_instance();
+			$CI->db->select("id, name");
+			$CI->db->order_by('name');
+			$rows = $CI->db->from('sparks')->get()->result_array();
+			
+			foreach($rows AS $key => $row)
+			{
+				$data[$row['id']] = $row['name'];
+			}
+			
+			return $data;
+		}
 
     /**
      * Get the total number of downloads on the site
@@ -166,13 +186,32 @@ class Spark extends CI_Model
 
         return $CI->db->get()->result('Spark');
     }
+    
+    /**
+     * Get all the forks from the id passed in.
+     * @param int $id
+     * @return Spark
+     */
+    public static function getForks($id)
+    {
+        $CI = &get_instance();
+        $CI->db->select("s.*, v.version, v.tag, v.is_deactivated, v.is_verified, v.id AS 'version_id'");
+        $CI->db->from('sparks s');
+        $CI->db->join('versions v', 'v.spark_id = s.id');
+        $CI->db->where('v.is_verified', 0);
+        $CI->db->where('v.is_deactivated', FALSE);
+        $CI->db->where('s.fork_id', $id);
+        $CI->db->order_by('s.name');
+
+        return $CI->db->get()->result('Spark');
+    }
 
     /**
-     * Get the top sparks.. however that's done
+     * Get sparks 
      * @param int $n
      * @return array[Spark]
      */
-    public static function getTop($n = 10, $require_release = TRUE)
+    public static function getTop($n = 10, $require_release = TRUE, $browse = TRUE)
     {
         $CI = &get_instance();
 
@@ -186,6 +225,9 @@ class Spark extends CI_Model
             $CI->db->group_by('s.id');
         }
 
+				if($browse)
+					$CI->db->where('s.is_browse', 1);
+
         $CI->db->order_by('s.created', 'DESC');
 
         $CI->db->limit($n);
@@ -198,7 +240,7 @@ class Spark extends CI_Model
      * @param int $n
      * @return array[Spark]
      */
-    public static function getLatestOf($n = 10, $is_featured = NULL, $is_official = NULL)
+    public static function getLatestOf($n = 10, $is_featured = NULL, $is_official = NULL, $browse = TRUE)
     {
         $CI = &get_instance();
         $CI->db->select("s.*, c.username, c.email, s.created");
@@ -214,6 +256,9 @@ class Spark extends CI_Model
         $CI->db->order_by('s.created', 'DESC');
 
         if($n !== FALSE) $CI->db->limit($n);
+
+				if($browse)
+					$CI->db->where('s.is_browse', 1);
 
         return $CI->db->get()->result('Spark');
     }
