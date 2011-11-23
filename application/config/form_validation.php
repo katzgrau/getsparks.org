@@ -110,6 +110,12 @@ $config = array (
         ),
         
         array (
+            'field'   => 'is_browse',
+            'label'   => 'Browsable',
+            'rules'   => ''
+        ),
+        
+        array (
             'field'   => 'base_location',
             'label'   => 'Clone URL',
             'rules'   => 'required'
@@ -156,6 +162,12 @@ $config = array (
         array (
             'field'   => 'fork_id',
             'label'   => 'Fork Name',
+            'rules'   => ''
+        ),
+        
+        array (
+            'field'   => 'is_browse',
+            'label'   => 'Browsable',
             'rules'   => ''
         ),
         

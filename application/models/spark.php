@@ -211,7 +211,7 @@ class Spark extends CI_Model
      * @param int $n
      * @return array[Spark]
      */
-    public static function getTop($n = 10, $require_release = TRUE)
+    public static function getTop($n = 10, $require_release = TRUE, $browse = TRUE)
     {
         $CI = &get_instance();
 
@@ -225,6 +225,9 @@ class Spark extends CI_Model
             $CI->db->group_by('s.id');
         }
 
+				if($browse)
+					$CI->db->where('s.is_browse', 1);
+
         $CI->db->order_by('s.created', 'DESC');
 
         $CI->db->limit($n);
@@ -237,7 +240,7 @@ class Spark extends CI_Model
      * @param int $n
      * @return array[Spark]
      */
-    public static function getLatestOf($n = 10, $is_featured = NULL, $is_official = NULL)
+    public static function getLatestOf($n = 10, $is_featured = NULL, $is_official = NULL, $browse = TRUE)
     {
         $CI = &get_instance();
         $CI->db->select("s.*, c.username, c.email, s.created");
@@ -253,6 +256,9 @@ class Spark extends CI_Model
         $CI->db->order_by('s.created', 'DESC');
 
         if($n !== FALSE) $CI->db->limit($n);
+
+				if($browse)
+					$CI->db->where('s.is_browse', 1);
 
         return $CI->db->get()->result('Spark');
     }

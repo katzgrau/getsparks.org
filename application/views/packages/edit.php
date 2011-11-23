@@ -42,6 +42,13 @@
 		</select><br class="clear" />
 		<span class="helper">If this is a fork of another spark select the parent spark.</span><br class="clear" />
 		
+		<label for="is_browse">Browsable:</label><br class="clear" />
+		<select name="is_browse" id="is_browse" class="drop-down drop-down-small">
+			<option value="1" <?php if(set_value('is_browse', $contribution->repository_type) == '1') echo 'selected'; ?>>Yes</option>
+			<option value="0" <?php if(set_value('is_browse', $contribution->repository_type) == '0') echo 'selected'; ?>>No</option>
+		</select><br class="clear" />
+		<span class="helper">Show this spark on the browsable pages.</span><br class="clear" />
+		
 		<label for="website">Website:</label><br class="clear" />
 		<input type="text" id="base_location" name="website" class="text-box" value="<?php echo set_value('website', $contribution->website); ?>" /><br class="clear" />
 		<span class="helper">The place for news and stuff about your spark (or just the github page)</span><br class="clear" />
