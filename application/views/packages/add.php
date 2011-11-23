@@ -35,7 +35,7 @@
 		<select name="fork_id" id="repository_type" class="drop-down drop-down-small">
 			<option value="0">Not a Fork</option>
 			<?php foreach($sparkslist AS $key => $row) : ?>
-			<option value="<?=$key?>" <?php if(set_value('fork_id') == $key) echo 'selected'; ?>><?=$row?></option>
+			<option value="<?php echo $key ?>" <?php if(set_value('fork_id') == $key) echo 'selected'; ?>><?php echo $row ?></option>
 			<?php endforeach; ?>
 		</select><br class="clear" />
 		<span class="helper">If this is a fork of another spark select the parent spark.</span><br class="clear" />

@@ -171,7 +171,7 @@
 </ul>
 
 <?php if(count($forks) > 0) : ?>
-	<h2>Other Versions</h2>
+	<h2><?php echo ($contribution->fork_id > 0 ? "Alternate Verions of " : "Forks of ") . $contribution->name; ?></h2>
 	<ul>
 		<?php 
 			foreach($forks AS $key => $row) : 
@@ -183,12 +183,6 @@
 			</li>
 		<?php endforeach; ?>
 	</ul>
-	
-	<?php if($contribution->fork_id > 0) : ?>
-	<p>Above are alternative versions of <?php echo $contribution->name; ?>.</p>
-	<?php else : ?>
-	<p>Above are other forks of <?php echo $contribution->name; ?>.</p>
-	<?php endif; ?>
 <?php endif; ?>
 
 <h2>Comments</h2>
