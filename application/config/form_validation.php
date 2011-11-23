@@ -102,7 +102,19 @@ $config = array (
             'label'   => 'Repository Type',
             'rules'   => 'required|min_length[2]|max_length[3]'
         ),
-
+        
+        array (
+            'field'   => 'fork_id',
+            'label'   => 'Fork Name',
+            'rules'   => ''
+        ),
+        
+        array (
+            'field'   => 'is_browse',
+            'label'   => 'Browsable',
+            'rules'   => ''
+        ),
+        
         array (
             'field'   => 'base_location',
             'label'   => 'Clone URL',
@@ -147,6 +159,18 @@ $config = array (
             'rules'   => 'required|min_length[2]|max_length[3]'
         ),
 
+        array (
+            'field'   => 'fork_id',
+            'label'   => 'Fork Name',
+            'rules'   => ''
+        ),
+        
+        array (
+            'field'   => 'is_browse',
+            'label'   => 'Browsable',
+            'rules'   => ''
+        ),
+        
         array (
             'field'   => 'base_location',
             'label'   => 'Clone URL',
