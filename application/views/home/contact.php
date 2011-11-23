@@ -79,6 +79,13 @@
     &bull; Pull request heros: <a href="http://twitter.com/@anaxamaxan">@anaxamaxan</a>, <a href="http://twitter.com/@jessedterry">@jessedterry</a>
 </p>
 
+<p> ... and some <strong>fine organizations</strong></p>
+<p>
+    <a href="http://www.balsamiq.com/" style="text-decoration: none;">
+        <img align="top" src="http://www.balsamiq.com/images/balsamiq_logo_small_gray.png" alt="Balsamiq" />
+    </a>
+    <br /><small>for their generous support</small>
+</p>
 
 <h3>Get Involved</h3>
 

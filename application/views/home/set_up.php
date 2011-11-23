@@ -75,7 +75,7 @@
 </p>
 <ol>
     <li>Download the sparks package: <a href="<?php echo base_url(); ?>download">spark-manager.zip</a></li>
-    <li>Extract the contents of the package into a folder named 'tools' in your CodeIgniter application root.</li>
+    <li>Extract the contents of the package into a folder named 'tools' in your CodeIgniter application root (not the application folder).</li>
     <li>Verify that in your root, you have a folder named 'tools', and inside is a file named 'spark'</li>
     <li>Download the Loader class extension: <a href="<?php echo config_item('sparks_loader_url'); ?>"><?php echo config_item('sparks_loader_url'); ?></a></li>
     <li>Move the Loader class to application/core/MY_Loader.php</li>
