@@ -140,7 +140,6 @@ div.ratings a.rating:hover { text-decoration: none !important; }
 #page small { font-size: 12px; }
 
 /* Form */
-div.form-wrapper .label-error { color: red; font-size: 12px; margin: 0; padding: 0; }
 div.form-wrapper label, input { float: left; }
 div.form-wrapper label { font-weight: bold; margin-bottom: 5px; }
 div.form-wrapper input.text-box, div.form-wrapper textarea, div.form-wrapper select.drop-down { width: 400px; 
