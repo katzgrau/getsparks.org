@@ -199,3 +199,7 @@ a.rss_float, a.rss_float:visited {
 a.rss_float:hover {
 	text-decoration: none !important;
 }
+
+.version-info .version { float: left; font-weight: bold; }
+.version-info .pushed { float: right; }
+.clearfix { clear: both; }

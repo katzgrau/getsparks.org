@@ -89,7 +89,11 @@
     <?php if(count($versions) > 0): $count = 0; ?>
         <?php $latest_verion = $version = $versions[0]; ?>
             <li class="no-border">
-               <?php echo $version->version; ?> (latest/HEAD)
+               <div class="version-info">
+                   <span class="version"><?php echo $version->version; ?></span>
+                   <span class="pushed">Pushed <?php echo date("F jS, Y", strtotime($version->created)); ?></span>
+               </div>
+               <div class="clearfix"></div>
                <?php /*
                <a href="<?php echo base_url(); ?>packages/<?php echo $contribution->name; ?>/versions/<?php echo $version->version; ?>/spec.json">
                  [spec]
@@ -140,7 +144,12 @@
     <?php if(count($versions) > 1): $versions = array_slice($versions, 1); ?>
         <?php foreach($versions as $version): ?>
             <li class="no-border">
-               <?php echo $version->version; ?>
+                <div class="version-info">
+                    <span class="version"><?php echo $version->version; ?></span>
+                    <span class="pushed">Pushed <?php echo date("F jS, Y", strtotime($version->created)); ?></span>
+                </div>
+                <div class="clearfix"></div>
+
                 <?php if($is_author): ?>
                     <?php if(!$version->is_deactivated): ?>
                     <a href="#" onclick="return yank('<?php echo $version->version; ?>');">
