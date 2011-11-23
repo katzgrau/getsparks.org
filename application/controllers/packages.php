@@ -45,7 +45,7 @@ class Packages extends CI_Controller
      */
     public function add()
     {
-				$data = array();
+        $data = array();
         if(!UserHelper::isLoggedIn())
             UtilityHelper::redirectAndComeback(FALSE, "Before you contribute, log in :)");
 
@@ -287,7 +287,7 @@ class Packages extends CI_Controller
 
         if($type == 'latest')
         {
-            $sparks              = Spark::getTop(100);
+            $sparks              = Spark::getTop(200);
             $data['browse_type'] = 'Browse Latest';
             $data['description'] = 'These are the most recently registered sparks with at least one release.';
         }
