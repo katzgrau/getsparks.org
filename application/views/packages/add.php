@@ -30,6 +30,15 @@
 			<option value="git" <?php if(set_value('repository_type') == 'git') echo 'selected'; ?>>Git (git)</option>
 			<option value="hg" <?php if(set_value('repository_type') == 'hg') echo 'selected'; ?>>Mercurial (hg)</option>
 		</select><br class="clear" />
+		
+		<label for="fork_id">Spark Fork:</label><br class="clear" />
+		<select name="fork_id" id="repository_type" class="drop-down drop-down-small">
+			<option value="0">Not a Fork</option>
+			<?php foreach($sparkslist AS $key => $row) : ?>
+			<option value="<?=$key?>" <?php if(set_value('fork_id') == $key) echo 'selected'; ?>><?=$row?></option>
+			<?php endforeach; ?>
+		</select><br class="clear" />
+		<span class="helper">If this is a fork of another spark select the parent spark.</span><br class="clear" />
 
 		<label for="website">Website:</label><br class="clear" />
 		<input type="text" id="base_location" name="website" class="text-box" value="<?php echo set_value('website'); ?>" /><br class="clear" />

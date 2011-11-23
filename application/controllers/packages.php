@@ -45,6 +45,7 @@ class Packages extends CI_Controller
      */
     public function add()
     {
+				$data = array();
         if(!UserHelper::isLoggedIn())
             UtilityHelper::redirectAndComeback(FALSE, "Before you contribute, log in :)");
 
@@ -59,7 +60,7 @@ class Packages extends CI_Controller
                 $post = $_POST;
                 $post['contributor_id'] = UserHelper::getId();
 
-                $insert = elements(array('contributor_id', 'name', 'summary', 'description', 'website', 'repository_type', 'base_location'), $post);
+                $insert = elements(array('contributor_id', 'name', 'summary', 'description', 'website', 'repository_type', 'base_location', 'fork_id'), $post);
 
                 $this->load->model('Spark');
 
@@ -79,7 +80,9 @@ class Packages extends CI_Controller
             }
         }
 
-        $this->load->view('packages/add');
+
+				$data['sparkslist'] = Spark::get_index_list();
+        $this->load->view('packages/add', $data);
     }
 
     /**
@@ -103,7 +106,7 @@ class Packages extends CI_Controller
         {
             if($this->form_validation->run('edit-package'))
             {
-                $update = elements(array('name', 'summary', 'description', 'website', 'repository_type', 'base_location'), $_POST);
+                $update = elements(array('name', 'summary', 'description', 'website', 'repository_type', 'base_location', 'fork_id'), $_POST);
                 Spark::update($spark_id, $update);
                 UserHelper::setNotice("This spark has been updated. Thanks again, you're awesome.");
                 $success = TRUE;
@@ -120,8 +123,11 @@ class Packages extends CI_Controller
             $spark = Spark::getInfo($package_name);
         
         if(!$spark) show_404();
-
-        $this->load->view('packages/edit', array('contribution' => $spark));
+				
+				$data = array();
+				$data['sparkslist'] = Spark::get_index_list();
+        $data['contribution'] = $spark;
+        $this->load->view('packages/edit', $data);
     }
 
     /**
@@ -142,7 +148,16 @@ class Packages extends CI_Controller
 			show_404();
 
         $contributor = $spark->getContributor();
-
+        
+        if($spark->fork_id > 0)
+        {
+					$forks = Spark::getForks($spark->fork_id);
+					array_unshift($forks, Spark::getById($spark->fork_id));       
+        } else
+        {
+					$forks = Spark::getForks($spark->id);
+				}
+				
 		// Get the stats for this Spark
 		$data['stats'] = $spark->getStats($spark->id);
 		$this->load->helper('google_chart');
@@ -154,6 +169,7 @@ class Packages extends CI_Controller
         $data['is_author']    = ($contributor->id == UserHelper::getId());
         $data['current_user_rating'] = FALSE;
         $data['ratings']      = $this->rating->getRatings($spark->id);
+        $data['forks']				= $forks;
         
         if(UserHelper::isLoggedIn())
         {

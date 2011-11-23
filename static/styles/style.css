@@ -73,7 +73,7 @@ body { background-color: #4D0202; /* background: #f0f0f0 url('/static/images/ci-
 	border-bottom: solid 1px #7d2626; }
 
 #page div.page-right div#mainsearch {display: block; margin: 10px 0}
-#page div.page-right div#mainsearch label {font-weight: bold;}
+#page div.page-right div#mainsearch form-wrapper {font-weight: bold;}
 
 #page div.page-right ul li { color: #333; border-bottom: dashed 1px #7d2626; }
 #page div.page-left div.info-box ul li.last, #page div.page-right ul li.last { padding: 0; margin: 0; border: 0; text-align: center; }
@@ -140,6 +140,7 @@ div.ratings a.rating:hover { text-decoration: none !important; }
 #page small { font-size: 12px; }
 
 /* Form */
+div.form-wrapper .label-error { color: red; font-size: 12px; margin: 0; padding: 0; }
 div.form-wrapper label, input { float: left; }
 div.form-wrapper label { font-weight: bold; margin-bottom: 5px; }
 div.form-wrapper input.text-box, div.form-wrapper textarea, div.form-wrapper select.drop-down { width: 400px; 
