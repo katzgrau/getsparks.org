@@ -8,9 +8,7 @@ $config['access_site_protection_enabled'] = true;
 #  to passwords
 $config['access_logins'] = array (
     # Examples only. You should probably change these.
-    'USERNAME'  => 'PASSWORD',
-    'kirby'     => 'puckett',
-    'putsup'    => 'abrick',
+    'qa'  => 'getsparks'
 );
 
 # The realm. Should be somethng like Your Site Name
