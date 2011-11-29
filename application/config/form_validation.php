@@ -5,13 +5,13 @@ $config = array (
         array (
             'field'   => 'username',
             'label'   => 'Username',
-            'rules'   => 'required|min_length[4]|max_length[16]|alpha_dash'
+            'rules'   => 'required|min_length[4]|max_length[16]|alpha_dash|callback_username_check'
         ),
 
         array (
             'field'   => 'email',
             'label'   => 'Email',
-            'rules'   => 'required|valid_email'
+            'rules'   => 'required|valid_email|callback_email_check'
         ),
 
         array (

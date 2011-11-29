@@ -53,6 +53,18 @@ class Contributor extends CI_Model
     }
 
     /**
+     * Get a contributor by his email
+     * @param int $email
+     * @return Contributor
+     */
+    public static function findByEmail($email)
+    {
+        $CI = &get_instance();
+        return $CI->db->get_where('contributors', array('email' => $email))->row(0, 'Contributor');
+    }
+
+
+    /**
      *
      * @param string $username
      * @param string $password

@@ -12,7 +12,7 @@ $config['access_logins'] = array (
 );
 
 # The realm. Should be somethng like Your Site Name
-$config['access_realm'] = "Restricted Site";
+$config['access_realm'] = "GetSparks.org";
 
 # Only show the prompt for base URLs that conform to this pattern.
 #  This is a standard perl regular expression.

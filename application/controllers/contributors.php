@@ -156,6 +156,38 @@ class Contributors extends CI_Controller
     }
 
     /**
+     * A validation callback for making sure usernames aren't re-used
+     * @param string $email
+     * @return bool
+     */
+    public function username_check($username)
+    {
+        $this->load->model('contributor');
+        $this->load->library('form_validation');
+
+        if(!Contributor::findByUsername($username)) return true;
+
+        $this->form_validation->set_message('username_check', 'This username has already been used');
+        return FALSE;
+    }
+
+    /**
+     * A validation callback for making sure email addresses aren't re-used
+     * @param string $email
+     * @return bool
+     */
+    public function email_check($email)
+    {
+        $this->load->model('contributor');
+        $this->load->library('form_validation');
+
+        if(!Contributor::findByEmail($email)) return true;
+
+        $this->form_validation->set_message('email_check', 'This email has already been used');
+        return FALSE;
+    }
+
+    /**
      * A CodeIgniter validation callback for checking to see the the anti-spam
      *  robot check was correct
      * @param string $answer The submitted value
