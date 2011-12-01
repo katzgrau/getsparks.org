@@ -50,8 +50,8 @@ class MY_Loader extends CI_Loader
             define('SPARKPATH', 'sparks/');
         }
 
-        $this->_is_lt_210 = (is_callable('Loader', 'ci_autoloader')
-                               || is_callable('Loader', '_ci_autoloader'));
+        $this->_is_lt_210 = (is_callable(array('CI_Loader', 'ci_autoloader'))
+                               || is_callable(array('CI_Loader', '_ci_autoloader')));
 
         parent::__construct();
     }
@@ -120,17 +120,7 @@ class MY_Loader extends CI_Loader
         }
 
         $this->add_package_path($spark_path);
-        
-        # Load spark constants
-        if (defined('ENVIRONMENT') AND file_exists($spark_path.'config/'.ENVIRONMENT.'/constants'.EXT))
-        {
-            require($spark_path.'config/'.ENVIRONMENT.'/constants'.EXT);
-        }
-        else if (file_exists($spark_path.'config/constants'.EXT))
-        {
-            require($spark_path.'config/constants'.EXT);
-        }
-        
+
         foreach($autoload as $type => $read)
         {
             if($type == 'library')
@@ -148,7 +138,7 @@ class MY_Loader extends CI_Loader
         }
 
         // Looks for a spark's specific autoloader
-        $this->_ci_autoloader($spark_path);
+        $this->ci_autoloader($spark_path);
 
         return true;
     }
@@ -156,14 +146,11 @@ class MY_Loader extends CI_Loader
 	/**
 	 * Pre-CI 2.0.3 method for backward compatility.
 	 *
-	 * @deprecated
 	 * @param null $basepath
 	 * @return void
 	 */
 	function _ci_autoloader($basepath = NULL)
 	{
-		log_message('warning',__METHOD__.'() is deprecated.  Update your code to use '
-		                     .__CLASS__.'::ci_autoloader(). (no leading underscore)');
 		$this->ci_autoloader($basepath);
 	}
 
@@ -192,14 +179,14 @@ class MY_Loader extends CI_Loader
             return FALSE;
         }
 
-		include_once($autoload_path);
+		include($autoload_path);
 
 		if ( ! isset($autoload))
 		{
 			return FALSE;
 		}
 
-        if($this->_is_lt_210)
+        if($this->_is_lt_210 || $basepath !== NULL)
         {
             // Autoload packages
             if (isset($autoload['packages']))
@@ -220,7 +207,7 @@ class MY_Loader extends CI_Loader
 			}
 		}
 
-        if($this->_is_lt_210)
+        if($this->_is_lt_210 || $basepath !== NULL)
         {
             if (isset($autoload['config']))
             {
