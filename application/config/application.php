@@ -47,3 +47,12 @@ $config['admin_users'] = array (
     'katzgrau',
     'seejohnrun'
 );
+
+$config['sparks_phrases'] = array (
+    'Stand on the shoulders of giants!',
+    'Build upon the work of others',
+    'Code less, drink more',
+    'The one and only for PHP frameworks',
+);
+
+$config['sparks_phrase'] = $config['sparks_phrases'][array_rand($config['sparks_phrases'])];

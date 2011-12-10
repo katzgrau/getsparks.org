@@ -268,6 +268,19 @@ class Packages extends CI_Controller
         return FALSE;
     }
 
+    function summary()
+    {
+        $this->load->model('spark');
+        $items_per = 5;
+
+        $data = array();
+        $data['latest'] = Spark::getTop($items_per);;
+        $data['featured'] = Spark::getLatestOf($items_per, TRUE);;
+        $data['official'] = Spark::getLatestOf($items_per, NULL, TRUE);;
+
+        $this->load->view('packages/summary', $data);
+    }
+
     /**
      * The call for showing the package listing page. For type, handles
      *  'latest', 'featured' and 'official'

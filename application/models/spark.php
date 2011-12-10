@@ -215,9 +215,10 @@ class Spark extends CI_Model
     {
         $CI = &get_instance();
 
-        $CI->db->select("s.*, c.username, c.email");
+        $CI->db->select("s.*, c.username, c.email, s.created, MAX(v.created) AS 'last_push'");
         $CI->db->from('sparks s');
         $CI->db->join('contributors c', 's.contributor_id = c.id');
+        $CI->db->group_by('s.id');
 
         if($require_release)
         {
@@ -228,7 +229,7 @@ class Spark extends CI_Model
 				if($browse)
 					$CI->db->where('s.is_browse', 1);
 
-        $CI->db->order_by('s.created', 'DESC');
+        $CI->db->order_by('s.created DESC, v.created DESC');
 
         $CI->db->limit($n);
 
@@ -243,17 +244,19 @@ class Spark extends CI_Model
     public static function getLatestOf($n = 10, $is_featured = NULL, $is_official = NULL, $browse = TRUE)
     {
         $CI = &get_instance();
-        $CI->db->select("s.*, c.username, c.email, s.created");
+        $CI->db->select("s.*, c.username, c.email, s.created, MAX(v.created) AS 'last_push'");
         $CI->db->from('sparks s');
         $CI->db->join('contributors c', 's.contributor_id = c.id');
-        
+        $CI->db->join('versions v', 'v.spark_id = s.id');
+        $CI->db->group_by('s.id');
+
         if($is_featured !== NULL)
             $CI->db->where('s.is_featured', (bool)$is_featured);
 
         if($is_official !== NULL)
             $CI->db->where('s.is_official', (bool)$is_official);
 
-        $CI->db->order_by('s.created', 'DESC');
+        $CI->db->order_by('s.created DESC, v.created DESC');
 
         if($n !== FALSE) $CI->db->limit($n);
 

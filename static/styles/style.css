@@ -203,3 +203,20 @@ a.rss_float:hover {
 .version-info .version { float: left; font-weight: bold; }
 .version-info .pushed { float: right; }
 .clearfix { clear: both; }
+
+.spark-table {border: 1px solid #333; width: 100%;}
+.spark-table thead {background-color: #333; color: white;}
+.spark-table thead tr th {padding:11px 5px;}
+.spark-table tbody tr td {padding:0px 5px;}
+.spark-table tbody tr {border-bottom: 1px dotted #808080; height: 50px; cursor: pointer;}
+.spark-table tbody tr td {vertical-align: middle;}
+.spark-table tbody tr:hover {background-color: #f7f7f7;}
+
+.table-see-more {padding:11px 5px; background-color: #333; text-align: center; margin-bottom: 25px; color: white !important;}
+
+h3.table-title {margin: 0px 0 2px 0 !important; padding: 0;}
+
+.spark-table thead tr th.name {width: 15%;}
+.spark-table thead tr th.description {width: 55%;}
+.spark-table thead tr th.popularity {width: 10%;}
+.spark-table thead tr th.updated {width: 20%;}

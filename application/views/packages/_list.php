@@ -4,6 +4,39 @@
 ?>
 
 <?php if(count($sparks) > 0): ?>
+<table class="spark-table">
+    <thead>
+        <tr>
+            <th class="name">Package</th>
+            <th class="description">Gist</th>
+            <th class="popularity">Popularity</th>
+            <th class="updated">Last Push</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($sparks as $spark): ?>
+        <tr data-spark="<?php echo htmlentities($spark->name); ?>">
+            <td><a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a></td>
+            <td><?php echo $spark->summary; ?></td>
+            <td>High</td>
+            <td><?php echo $spark->last_push; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<?php if(isset($browse_path)): ?>
+<a href="<?php echo base_url() . $browse_path ?>">
+    <div class="table-see-more">
+        See All ...
+    </div>
+</a>
+<?php endif; ?>
+<?php else: ?>
+    <em>No sparks here, good sir!</em>
+<?php endif; ?>
+
+<!--
+<?php if(count($sparks) > 0): ?>
     <ul id="sparklisting">
         <?php foreach($sparks as $spark): ?>
             <li>
@@ -26,3 +59,4 @@
 <?php else: ?>
     <em>No sparks here, good sir!</em>
 <?php endif; ?>
+-->
