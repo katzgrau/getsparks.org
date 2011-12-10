@@ -19,7 +19,7 @@
             <td><a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a></td>
             <td><?php echo $spark->summary; ?></td>
             <td>High</td>
-            <td><?php echo $spark->last_push; ?></td>
+            <td><?php echo date('F j, Y', strtotime($spark->last_push)); ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
