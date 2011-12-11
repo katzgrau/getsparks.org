@@ -33,44 +33,22 @@ $official_sparks = Spark::getLatestOf(3, NULL, TRUE);
     
     <!-- End Twitter -->
 
-	<?php if (isset($official_sparks)): ?>
+	<?php if ($items = News::getRecent()): ?>
 	<div class="info-box clearfix">
-		<h2>Official Sparks</h2>
+		<h2>Spark News</h2>
 		<ul>
-			<?php foreach ($official_sparks as $spark): ?>
+			<?php foreach ($items as $item): ?>
 			<li class="clearfix">
-				<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><img src="<?php echo Gravatar_helper::from_email($spark->email, null, 40); ?>" /></a>
 				<p class="no-margin">
-					<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a><br />
-					by: <a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile"><?php echo $spark->username; ?></a>
+					<a style="font-size:16px;" href="<?php echo $item->url ?>"><?php echo $item->title ?></a><br />
+					<em><?php echo date('F j, Y', strtotime($item->posted)); ?></em><br />
+                    from: <a href=""><?php echo parse_url($item->url, PHP_URL_HOST) ?></a>
 				</p>
-				<br class="clear" />
-				<p class="no-margin"><em><?php echo $spark->summary; ?></em></p>
 			</li>
 			<?php endforeach; ?>
-			<li class="last"><a href="<?php echo base_url(); ?>packages/browse/official">View All Official Sparks</a></li>
+			<!-- <li class="last"><a href="<?php echo base_url(); ?>packages/browse/official">View All Official Sparks</a></li> -->
 		</ul>
 	</div>
 	<?php endif; ?>
-	
-	<?php if (isset($featured_sparks)): ?>
-	<div class="info-box clearfix">
-		<h2>Featured Sparks</h2>
-		<ul>
-			<?php foreach ($featured_sparks as $spark): ?>
-			<li class="clearfix">
-				<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><img src="<?php echo Gravatar_helper::from_email($spark->email, null, 40); ?>" /></a>
-				<p class="no-margin">
-					<a style="font-size:16px;" href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a><br />
-					by: <a href="<?php echo base_url(); ?>contributors/<?php echo $spark->username; ?>/profile"><?php echo $spark->username; ?></a>
-				</p>
-				<br class="clear" />
-				<p class="no-margin"><em><?php echo $spark->summary; ?></em></p>
-			</li>
-			<?php endforeach; ?>
-			<li class="last"><a href="<?php echo base_url(); ?>packages/browse/featured">View All Featured Sparks</a></li>
-		</ul>
-	</div>
-	<?php endif; ?>
-		
+
 </div>
