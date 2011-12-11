@@ -212,7 +212,7 @@ a.rss_float:hover {
 .spark-table tbody tr td {vertical-align: middle;}
 .spark-table tbody tr:hover {background-color: white;}
 
-.table-see-more {padding:11px 5px; background-color: #333; text-align: center; margin-bottom: 25px; color: white !important;}
+.table-see-more {padding:11px 5px; background-color: #333; text-align: center; margin-bottom: 25px; color: white !important; text-decoration: none !important;}
 
 h3.table-title {margin: 0px 0 2px 0 !important; padding: 0;}
 

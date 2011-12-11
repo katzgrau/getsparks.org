@@ -9,7 +9,7 @@
         <tr>
             <th class="name">Package</th>
             <th class="description">Gist</th>
-            <th class="popularity">Popularity</th>
+            <th class="popularity">Author</th>
             <th class="updated">Last Push</th>
         </tr>
     </thead>
@@ -18,14 +18,14 @@
         <tr data-spark="<?php echo htmlentities($spark->name); ?>">
             <td><a href="<?php echo base_url(); ?>packages/<?php echo $spark->name; ?>/versions/HEAD/show"><?php echo $spark->name; ?></a></td>
             <td><?php echo $spark->summary; ?></td>
-            <td>High</td>
+            <td><?php echo $spark->username; ?></td>
             <td><?php echo date('F j, Y', strtotime($spark->last_push)); ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
 <?php if(isset($browse_path)): ?>
-<a href="<?php echo base_url() . $browse_path ?>">
+<a href="<?php echo base_url() . $browse_path ?>" style="text-decoration: none;">
     <div class="table-see-more">
         See All ...
     </div>

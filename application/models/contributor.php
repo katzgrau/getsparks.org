@@ -84,8 +84,9 @@ class Contributor extends CI_Model
     {
         $CI = &get_instance();
         $CI->load->model('spark');
-        $CI->db->select("s.*, s.created, MAX(v.created) AS 'last_push'");
+        $CI->db->select("s.*, c.username, s.created, MAX(v.created) AS 'last_push'");
         $CI->db->join('versions v', 'v.spark_id = s.id');
+        $CI->db->join('contributors c', 's.contributor_id = c.id');
         $CI->db->group_by('s.id');
         $CI->db->order_by('s.created DESC, v.created DESC');
         

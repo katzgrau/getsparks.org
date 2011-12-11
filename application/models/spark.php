@@ -455,12 +455,15 @@ Here are some specifics: \n\n";
     public static function search($term)
     {
         $CI = &get_instance();
-        $CI->db->select("s.*, c.username, c.email");
+        $CI->db->select("s.*, c.username, c.email, MAX(v.created) AS 'last_push'");
         $CI->db->from('sparks s');
         $CI->db->join('contributors c', 's.contributor_id = c.id');
+        $CI->db->join('versions v', 'v.spark_id = s.id');
+        $CI->db->group_by('s.id');
         $CI->db->like('name', $term, 'both');
         $CI->db->or_like('summary', $term, 'both');
         $CI->db->or_like('description', $term, 'both');
+        $CI->db->order_by('s.created DESC, v.created DESC');
 
         return $CI->db->get()->result('Spark');
     }
