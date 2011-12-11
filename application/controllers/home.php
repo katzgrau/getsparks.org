@@ -124,6 +124,13 @@ class Home extends CI_Controller {
 		$this->load->view('home/project');
 	}
 
+    function news()
+    {
+        $this->load->model('news');
+        $data['items'] = News::getRecent(100);
+        $this->load->view('home/news', $data);
+    }
+
     /**
      * The installation script
      */

@@ -270,6 +270,8 @@ class Packages extends CI_Controller
 
     function summary()
     {
+        UtilityHelper::tryPageCache(1);
+
         $this->load->model('spark');
         $items_per = 5;
 

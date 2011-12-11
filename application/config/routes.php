@@ -28,6 +28,7 @@ $route['api/system/latest']                           = "api/system/latest";
 $route['ajax/packages/(:any)/rate'] = "ajax/packages/rate/$1";
 
 $route['home']             = "home/index";
+$route['news']             = "home/news";
 $route['download']         = "home/download";
 $route['set-up']           = "home/set_up";
 $route['set-up-mx']        = "home/set_up_mx";
