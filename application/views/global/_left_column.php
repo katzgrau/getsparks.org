@@ -35,18 +35,18 @@ $official_sparks = Spark::getLatestOf(3, NULL, TRUE);
 
 	<?php if ($items = News::getRecent()): ?>
 	<div class="info-box clearfix">
-		<h2>Spark News</h2>
+		<h2>GetSparks.org News</h2>
 		<ul>
 			<?php foreach ($items as $item): ?>
 			<li class="clearfix">
 				<p class="no-margin">
-					<a style="font-size:16px;" href="<?php echo $item->url ?>"><?php echo $item->title ?></a><br />
+					<a style="font-size:16px;" target="_blank" href="<?php echo $item->url ?>"><?php echo $item->title ?></a><br />
 					<em><?php echo date('F j, Y', strtotime($item->posted)); ?></em><br />
                     from: <a href=""><?php echo parse_url($item->url, PHP_URL_HOST) ?></a>
 				</p>
 			</li>
 			<?php endforeach; ?>
-			<!-- <li class="last"><a href="<?php echo base_url(); ?>packages/browse/official">View All Official Sparks</a></li> -->
+			<li class="last"><a href="<?php echo base_url(); ?>news">See More ...</a></li>
 		</ul>
 	</div>
 	<?php endif; ?>

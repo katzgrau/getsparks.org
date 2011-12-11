@@ -45,7 +45,15 @@ $(document).ready(function() {
     $('.spark-table').children('tbody').children('tr').click(function(ev){
         var el    = $(ev.currentTarget);
         var spark = el.data('spark');
-        window.location.href = base_url + 'packages/'+ spark +'/versions/HEAD/show';
+
+        if(spark) {
+            window.location.href = base_url + 'packages/'+ spark +'/versions/HEAD/show';
+        } else {
+            var loc = el.find('a').attr('href');
+            if(loc) {
+                window.location.href = loc;
+            }
+        }
     });
 
 });
