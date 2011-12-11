@@ -210,7 +210,7 @@ a.rss_float:hover {
 .spark-table tbody tr td {padding:0px 5px;}
 .spark-table tbody tr {border-bottom: 1px dotted #808080; height: 50px; cursor: pointer;}
 .spark-table tbody tr td {vertical-align: middle;}
-.spark-table tbody tr:hover {background-color: #f7f7f7;}
+.spark-table tbody tr:hover {background-color: white;}
 
 .table-see-more {padding:11px 5px; background-color: #333; text-align: center; margin-bottom: 25px; color: white !important;}
 
