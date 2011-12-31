@@ -390,21 +390,23 @@ class Spark extends CI_Model
      */
     public function removeTagAndNotify($tag, $errors)
     {
-        $this->load->helper('email');
+        $this->load->helper('mailer');
         $contrib   = $this->getContributor();
         $sys_email = config_item('system_alert_email');
 
         $message = "Hey there,
+        
 This is an automated message to tell you that tag '$tag' of
 $this->name couldn't be verified ($this->base_location).
 We've removed that version from our system at getsparks. Once you get
-things figured out on your end, you can re-add the version :).
+things figured out on your end, you can re-add the version :)
+                
 Here are some specifics: \n\n";
 
         foreach($errors as $error)
             $message .= "$error\n";
 
-        send_email("{$contrib->email},{$sys_email}", "{$this->name} {$tag} Removed.", $message);
+        MailerHelper::sendSparkRejection($contrib->email, "{$this->name} {$tag}", $message);
         
         $this->db->where('spark_id', $this->id);
         $this->db->where('tag', $tag);

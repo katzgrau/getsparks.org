@@ -28,7 +28,7 @@ $config['install_count_base'] = 1232;
 $config['archive_path'] = 'static/archives/';
 
 # Where to send system alerts
-$config['system_alert_email'] = 'cron@oconf.org';
+$config['system_alert_email'] = 'ohcrap@getsparks.org';
 
 # The place to email when shit goes wrong
 $config['support_email'] = 'ohcrap@getsparks.org';

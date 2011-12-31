@@ -6,6 +6,9 @@ $config['is_maintanence'] = FALSE;
 # Use prod settings? (Super-caching, minifying, etc)
 $config['is_production'] = FALSE;
 
+# Environment-specific for SES. Required for mailing.
+$config['ses_secret_key'] = '';
+$config['ses_access_key'] = '';
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

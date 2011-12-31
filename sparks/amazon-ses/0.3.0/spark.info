@@ -1,0 +1,7 @@
+# Spark spec
+name: amazon-ses
+version: 0.2.2
+compatibility: 2.0.0
+dependencies:
+  curl: 1.0.0
+tags: ["email", "amazon", "ses", "aws", "cloud", "service"]
