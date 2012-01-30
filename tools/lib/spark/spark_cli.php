@@ -163,7 +163,7 @@ class Spark_CLI {
 
         if ($version == null && !array_key_exists('f', $flags))
         {
-            throw new Spark_exception("Please specify a version of remove all with -f");
+            throw new Spark_exception("Please specify a version (spark remove -v1.0.0 foo) or remove all with -f");
         }
 
         Spark_utils::notice("Removing $spark_name (" . ($version ? $version : 'ALL') . ") from $dir_to_remove");
