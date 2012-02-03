@@ -4,7 +4,7 @@ global $CFG;
 
 if(!defined('SPARKPATH'))
 {
-	define('SPARKPATH', APPPATH.'sparks/');
+	define('SPARKPATH', 'sparks/');
 }
 
 
