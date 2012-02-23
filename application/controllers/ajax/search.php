@@ -16,12 +16,11 @@ class Search extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
-		$submit = $this->input->post('submit');
 		$search_results = array();
 
 		$search_term = $this->input->get_post('term', TRUE);
 		
-		if($submit)
+		if($search_term)
 		{
 			if($this->form_validation->run('search'))
 			{

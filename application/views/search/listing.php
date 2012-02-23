@@ -6,7 +6,7 @@ $this->load->view('global/_new_header.php', array('title' => $title)); ?>
 
 <p><?php echo $description; ?></p>
 <div id="mainsearch">
-	<form action="/search" method="post">
+	<form action="/search" method="get">
 		<fieldset>
 			<label for="term">Search term</label>
 			<br class="clear" />
