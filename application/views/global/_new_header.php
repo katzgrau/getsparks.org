@@ -45,7 +45,7 @@
                     <dd><a href="/about">About</a></dd>
 				</dl>
 				<dl style="float:right">
-                <dd><form action="/search" method="get" id="headersearch"><input type="text" name="term" value="" class="text-box" /><input type="submit" name="submit" class="submit" value="Search" /></form></dd>
+                <dd><form action="/search" method="post" id="headersearch"><input type="text" name="term" value="" class="text-box" /><input type="submit" name="submit" class="submit" value="Search" /></form></dd>
 				</dl>
 			</div>
 		</div>
