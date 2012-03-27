@@ -19,7 +19,7 @@ class Search extends CI_Controller {
 		$submit = $this->input->post('submit');
 		$search_results = array();
 
-		$search_term = $this->input->post('term');
+		$search_term = $this->input->get_post('term', TRUE);
 		
 		if($submit)
 		{
