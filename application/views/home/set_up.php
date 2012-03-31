@@ -102,6 +102,6 @@
 <a name="option-3"></a>
 <h3>Option 3. It Doesn't Go Well</h3>
 <p>
-    Send us an email at <a href="ohcrap@getsparks.org">ohcrap@getsparks.org</a>, and let us know. We'll try and get you up and running.
+    Send us an email at <a href="mailto:ohcrap@getsparks.org">ohcrap@getsparks.org</a>, and let us know. We'll try and get you up and running.
 </p>
 <?php $this->load->view('global/_new_footer.php'); ?>
