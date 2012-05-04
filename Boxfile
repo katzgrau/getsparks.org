@@ -9,6 +9,7 @@ web1: #component type & number
   php_extensions:
     - mysql
     - apc
+    - curl
      
 db1: #component type & number 
   name: sparks           #component settings
