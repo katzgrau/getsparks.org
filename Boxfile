@@ -4,6 +4,7 @@ web1: #component type & number
     - application/cache
     - application/logs
     - static/cache
+    - static/archives
   php_version: 5.3.8
   php_extensions:
     - mysql
