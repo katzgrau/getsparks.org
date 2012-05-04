@@ -1,0 +1,14 @@
+web1: #component type & number
+  name: getsparks            #component settings
+  shared_writable_dirs:
+    - application/cache
+    - application/logs
+    - static/cache
+  php_version: 5.3.8
+  php_extensions:
+    - mysql
+    - apc
+     
+db1: #component type & number 
+  name: sparks           #component settings
+  type: mysql
