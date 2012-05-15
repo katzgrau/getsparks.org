@@ -10,7 +10,27 @@ web1: #component type & number
     - mysql
     - apc
     - curl
-     
+    - zip
+ 
 db1: #component type & number 
   name: sparks           #component settings
   type: mysql
+
+# General Pagoda Settings:
+#
+# Environment Variables:
+#    
+#   To let the app know it's running in production:
+#
+#      PAGODA_PRODUCTION = 1
+#
+#   Mailing is done through Amazon SES (for now)
+#
+#      SES_SECRET_KEY = ?
+#      SES_ACCESS_KEY = ?
+#
+# Importing Existing GetSparks.org Content
+#
+#
+#
+#
