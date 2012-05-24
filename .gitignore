@@ -5,3 +5,4 @@ application/logs/*
 application/cache/*
 *.swp
 *.swo
+/vendor/.composer/

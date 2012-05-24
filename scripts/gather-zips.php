@@ -92,7 +92,7 @@ foreach($sparks as $spark)
     }
     catch(Exception $ex)
     {
-			  $CI->db->trans_rollback();
+	    $CI->db->trans_rollback();
         echo "Error processing {$spark->name} - {$spark->tag}: " . $ex->getMessage() . ". Removing..\n";
         $errors = array($ex->getMessage());
         $spark->removeTagAndNotify($spark->tag, $errors);
@@ -105,6 +105,7 @@ foreach($sparks as $spark)
     chdir($tmp);
     # The spark's been added, now do some disk cleanup
     @mkdir($release_dir, 0777, TRUE);
+    # http://stackoverflow.com/questions/1334613/how-to-recursively-zip-a-directory-in-php
     `zip -r $release.zip *`;
     @copy("$tmp/$release.zip", $release_dir."/$release.zip");
     echo "Verified $spark->name v$spec->version -- $tmp\n";

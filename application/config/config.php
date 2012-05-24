@@ -4,7 +4,11 @@
 $config['is_maintanence'] = FALSE;
 
 # Use prod settings? (Super-caching, minifying, etc)
-$config['is_production'] = FALSE;
+if(@$_SERVER['PAGODA_PRODUCTION']) {
+    $config['is_production'] = TRUE;
+} else { 
+    $config['is_production'] = FALSE;
+}
 
 # Environment-specific for SES. Required for mailing.
 $config['ses_secret_key'] = '';
@@ -24,7 +28,7 @@ $config['ses_access_key'] = '';
 |
 */
 # $config['base_url']	= '';
-	$config['base_url']	= 'http://sparks.codeigniter.com/';
+$config['base_url']	= '/';
 # $config['base_url']	= 'http://localhost:8888/';
 /*
 |--------------------------------------------------------------------------

@@ -41,9 +41,17 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '127.0.0.1:3306';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
+if(@$_SERVER['PAGODA_PRODUCTION']) {
+    # Use built-in Padoga environment vars
+    $db['default']['hostname'] = $_SERVER['DB1_HOST'].':'.$_SERVER['DB1_PORT'];
+    $db['default']['username'] = $_SERVER['DB1_USER'];
+    $db['default']['password'] = $_SERVER['DB1_PASS'];
+} else {
+    $db['default']['hostname'] = '127.0.0.1:3306';
+    $db['default']['username'] = 'root';
+    $db['default']['password'] = '';
+}
+
 $db['default']['database'] = 'sparks';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

@@ -18,7 +18,7 @@
 <p>
     GetSparks.org is <strong>entirely backed by external repositories.</strong>
     That means we do not host your projects. Your project can live happily on your
-    <a href="http://github.com" target="_blank">GitHub</a> or <a href="http://bitbucket.com" target="_blank">BitBucket</a> account, or personal git or mercurial server. When you
+    <a href="http://github.com" target="_blank">GitHub</a> or <a href="http://bitbucket.org" target="_blank">BitBucket</a> account, or personal git or mercurial server. When you
     register a spark at GetSparks, you simply point us to your repository.
 </p>
 

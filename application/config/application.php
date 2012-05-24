@@ -13,7 +13,7 @@ $config['sparks_download_button_text'] = 'Get Sparks Now!';
 $config['sparks_download_button_url'] = config_item('base_url').'set-up';
 
 # Get the latest
-$config['spark_manager_version_latest'] = '0.0.7';
+$config['spark_manager_version_latest'] = '0.0.9';
 
 # Where to download the spark manager (the file)
 $config['sparks_download_url'] = config_item('base_url').'static/install/spark-manager-'.$config['spark_manager_version_latest'].'.zip';
