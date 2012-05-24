@@ -288,7 +288,7 @@ class Packages extends CI_Controller
      *  'latest', 'featured' and 'official'
      * @param string $type
      */
-    function browse($type)
+    function browse($type = false)
     {
         UtilityHelper::tryPageCache(1);
         
@@ -317,6 +317,14 @@ class Packages extends CI_Controller
             $sparks              = Spark::getLatestOf(FALSE, NULL, TRUE);
             $data['browse_type'] = 'Browse Official';
             $data['description'] = 'These are sparks written by GetSparks, the Reactor Team, or CodeIgntier gurus';
+        }
+        else
+        {
+            # Ugly fix for now, not sure why we didn't have a 'browse all'
+            # in the first place :P
+            $sparks = Spark::getTop(1000);
+            $data['browse_type'] = 'Browse All';
+            $data['description'] = 'These are all of GetSparks\' sparks';
         }
 
         # Get a list of spark ids on this page
