@@ -93,53 +93,55 @@ class MY_Loader extends CI_Loader
             {
                 $this->spark($s);
             }
+        }else{
+	    //
+	    $length = strlen($spark);
+	    if( ($length > 0) && (($spark[0] == '/') || ($spark[$length-1] == '/')) )
+	        $spark = trim($spark, '/');
+	
+	    $spark_path = SPARKPATH . $spark . '/';
+	    $parts      = explode('/', $spark);
+	    $spark_slug = strtolower($parts[0]);
+	
+	    # If we've already loaded this spark, bail
+	    if(array_key_exists($spark_slug, $this->_ci_loaded_sparks))
+	    {
+	        return true;
+	    }
+	
+	    # Check that it exists. CI Doesn't check package existence by itself
+	    if(!file_exists($spark_path))
+	    {
+	        show_error("Cannot find spark path at $spark_path");
+	    }
+	
+	    if(count($parts) == 2)
+	    {
+	        $this->_ci_loaded_sparks[$spark_slug] = $spark;
+	    }
+	
+	    $this->add_package_path($spark_path);
+	
+	    foreach($autoload as $type => $read)
+	    {
+	        if($type == 'library')
+	            $this->library($read);
+	        elseif($type == 'model')
+	            $this->model($read);
+	        elseif($type == 'config')
+	            $this->config($read);
+	        elseif($type == 'helper')
+	            $this->helper($read);
+	        elseif($type == 'view')
+	            $this->view($read);
+	        else
+	            show_error ("Could not autoload object of type '$type' ($read) for spark $spark");
+	    }
+	
+	    // Looks for a spark's specific autoloader
+	    $this->ci_autoloader($spark_path);
         }
-
-        $spark = ltrim($spark, '/');
-        $spark = rtrim($spark, '/');
-
-        $spark_path = SPARKPATH . $spark . '/';
-        $parts      = explode('/', $spark);
-        $spark_slug = strtolower($parts[0]);
-
-        # If we've already loaded this spark, bail
-        if(array_key_exists($spark_slug, $this->_ci_loaded_sparks))
-        {
-            return true;
-        }
-
-        # Check that it exists. CI Doesn't check package existence by itself
-        if(!file_exists($spark_path))
-        {
-            show_error("Cannot find spark path at $spark_path");
-        }
-
-        if(count($parts) == 2)
-        {
-            $this->_ci_loaded_sparks[$spark_slug] = $spark;
-        }
-
-        $this->add_package_path($spark_path);
-
-        foreach($autoload as $type => $read)
-        {
-            if($type == 'library')
-                $this->library($read);
-            elseif($type == 'model')
-                $this->model($read);
-            elseif($type == 'config')
-                $this->config($read);
-            elseif($type == 'helper')
-                $this->helper($read);
-            elseif($type == 'view')
-                $this->view($read);
-            else
-                show_error ("Could not autoload object of type '$type' ($read) for spark $spark");
-        }
-
-        // Looks for a spark's specific autoloader
-        $this->ci_autoloader($spark_path);
-
+        
         return true;
     }
 
