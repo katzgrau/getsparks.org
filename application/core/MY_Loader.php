@@ -165,6 +165,11 @@ class MY_Loader extends CI_Loader
 	 */
 	function ci_autoloader($basepath = NULL)
 	{
+        if (!defined('EXT'))
+        {
+            define('EXT', '.php');
+        }
+
         if($basepath !== NULL)
         {
             $autoload_path = $basepath.'config/autoload'.EXT;
