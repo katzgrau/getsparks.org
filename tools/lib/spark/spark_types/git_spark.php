@@ -38,7 +38,7 @@ class Git_spark extends Spark_type {
     function retrieve()
     {
         // check out the right tag
-        `git clone $this->base_location $this->temp_path`;
+        `git clone --recursive $this->base_location $this->temp_path`;
         `cd $this->temp_path; git checkout $this->tag -b $this->temp_token`;
         // remove the git directory
         Spark_utils::remove_full_directory("$this->temp_path/.git");
